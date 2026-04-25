@@ -9,3 +9,4 @@ G:\CannabisCOA.Parser\src\CannabisCOA.Parser.Core\obj\Debug\net10.0\CannabisCOA.
 G:\CannabisCOA.Parser\src\CannabisCOA.Parser.Core\obj\Debug\net10.0\refint\CannabisCOA.Parser.Core.dll
 G:\CannabisCOA.Parser\src\CannabisCOA.Parser.Core\obj\Debug\net10.0\CannabisCOA.Parser.Core.pdb
 G:\CannabisCOA.Parser\src\CannabisCOA.Parser.Core\obj\Debug\net10.0\ref\CannabisCOA.Parser.Core.dll
+G:\CannabisCOA.Parser\src\CannabisCOA.Parser.Core\obj\Debug\net10.0\CannabisCOA.Parser.Core.sourcelink.json
