@@ -1,0 +1,11 @@
+G:\CannabisCOA.Parser\src\CannabisCOA.Parser.Core\bin\Debug\net10.0\CannabisCOA.Parser.Core.deps.json
+G:\CannabisCOA.Parser\src\CannabisCOA.Parser.Core\bin\Debug\net10.0\CannabisCOA.Parser.Core.dll
+G:\CannabisCOA.Parser\src\CannabisCOA.Parser.Core\bin\Debug\net10.0\CannabisCOA.Parser.Core.pdb
+G:\CannabisCOA.Parser\src\CannabisCOA.Parser.Core\obj\Debug\net10.0\CannabisCOA.Parser.Core.GeneratedMSBuildEditorConfig.editorconfig
+G:\CannabisCOA.Parser\src\CannabisCOA.Parser.Core\obj\Debug\net10.0\CannabisCOA.Parser.Core.AssemblyInfoInputs.cache
+G:\CannabisCOA.Parser\src\CannabisCOA.Parser.Core\obj\Debug\net10.0\CannabisCOA.Parser.Core.AssemblyInfo.cs
+G:\CannabisCOA.Parser\src\CannabisCOA.Parser.Core\obj\Debug\net10.0\CannabisCOA.Parser.Core.csproj.CoreCompileInputs.cache
+G:\CannabisCOA.Parser\src\CannabisCOA.Parser.Core\obj\Debug\net10.0\CannabisCOA.Parser.Core.dll
+G:\CannabisCOA.Parser\src\CannabisCOA.Parser.Core\obj\Debug\net10.0\refint\CannabisCOA.Parser.Core.dll
+G:\CannabisCOA.Parser\src\CannabisCOA.Parser.Core\obj\Debug\net10.0\CannabisCOA.Parser.Core.pdb
+G:\CannabisCOA.Parser\src\CannabisCOA.Parser.Core\obj\Debug\net10.0\ref\CannabisCOA.Parser.Core.dll
