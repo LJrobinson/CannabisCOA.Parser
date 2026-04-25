@@ -1,0 +1,39 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v10.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v10.0": {
+      "CannabisCOA.Parser.Cli/1.0.0": {
+        "dependencies": {
+          "CannabisCOA.Parser.Core": "1.0.0"
+        },
+        "runtime": {
+          "CannabisCOA.Parser.Cli.dll": {}
+        }
+      },
+      "CannabisCOA.Parser.Core/1.0.0": {
+        "runtime": {
+          "CannabisCOA.Parser.Core.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "CannabisCOA.Parser.Cli/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "CannabisCOA.Parser.Core/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

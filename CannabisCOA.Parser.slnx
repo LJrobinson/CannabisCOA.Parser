@@ -1,5 +1,6 @@
 <Solution>
   <Folder Name="/src/">
+    <Project Path="src/CannabisCOA.Parser.Cli/CannabisCOA.Parser.Cli.csproj" />
     <Project Path="src/CannabisCOA.Parser.Core/CannabisCOA.Parser.Core.csproj" />
   </Folder>
   <Folder Name="/tests/">

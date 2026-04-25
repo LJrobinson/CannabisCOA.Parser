@@ -1,5 +1,6 @@
 using CannabisCOA.Parser.Core.Adapters.Interfaces;
 using CannabisCOA.Parser.Core.Calculators;
+using CannabisCOA.Parser.Core.Enums;
 using CannabisCOA.Parser.Core.Models;
 using CannabisCOA.Parser.Core.Parsers;
 
@@ -11,6 +12,11 @@ public class GenericCoaAdapter : ICoaAdapter
 
     public bool CanParse(string text) => true; // always fallback
 
+    public ProductType DetectProductType(string text)
+    {
+        return ProductTypeDetector.Detect(text);
+    }
+
     public CoaResult Parse(string text)
     {
         var cannabinoids = GenericCannabinoidTextParser.Parse(text);
@@ -20,11 +26,13 @@ public class GenericCoaAdapter : ICoaAdapter
         var freshness = FreshnessCalculator.Calculate(testDate);
 
         var compliance = ComplianceParser.Parse(text);
+        var terpenes = GenericTerpeneTextParser.Parse(text);
 
         return new CoaResult
         {
             LabName = LabName,
             Cannabinoids = cannabinoids,
+            Terpenes = terpenes,
             TestDate = testDate,
             Freshness = freshness,
             Compliance = compliance

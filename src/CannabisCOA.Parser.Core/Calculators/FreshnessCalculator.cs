@@ -26,7 +26,15 @@ public static class FreshnessCalculator
             _ => "Old"
         };
 
-        var score = Math.Max(0, 100 - days);
+        var score = days switch
+        {
+            <= 30 => 100,
+            <= 60 => 85,
+            <= 90 => 70,
+            <= 120 => 50,
+            <= 180 => 30,
+            _ => 10
+        };
 
         return new FreshnessResult
         {

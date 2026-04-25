@@ -11,8 +11,8 @@ public class CannabinoidCalculatorTests
     {
         var profile = new CannabinoidProfile
         {
-            THC = 0.42m,
-            THCA = 24.88m
+            THC = new ParsedField<decimal> { FieldName = "THC", Value = 0.42m },
+            THCA = new ParsedField<decimal> { FieldName = "THCA", Value = 24.88m }
         };
 
         CannabinoidCalculator.CalculateTotals(profile);

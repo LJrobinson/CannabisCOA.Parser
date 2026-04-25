@@ -1,5 +1,6 @@
-using CannabisCOA.Parser.Core.Adapters.Interfaces;
 using CannabisCOA.Parser.Core.Adapters.Generic;
+using CannabisCOA.Parser.Core.Adapters.Interfaces;
+using CannabisCOA.Parser.Core.Adapters.Labs.Digipath;
 
 namespace CannabisCOA.Parser.Core.Adapters;
 
@@ -7,7 +8,7 @@ public static class AdapterResolver
 {
     private static readonly List<ICoaAdapter> Adapters = new()
     {
-        // Future lab adapters go here
+        new DigipathAdapter(),
         new GenericCoaAdapter()
     };
 

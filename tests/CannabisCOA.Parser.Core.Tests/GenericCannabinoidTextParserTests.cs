@@ -17,9 +17,9 @@ public class GenericCannabinoidTextParserTests
 
         var result = GenericCannabinoidTextParser.Parse(text);
 
-        Assert.Equal(0.42m, result.THC);
-        Assert.Equal(24.88m, result.THCA);
-        Assert.Equal(0.05m, result.CBD);
-        Assert.Equal(0.12m, result.CBDA);
+        Assert.Equal(0.42m, result.THC.Value);
+        Assert.Equal(24.88m, result.THCA.Value);
+        Assert.Equal(0.05m, result.CBD.Value);
+        Assert.Equal(0.12m, result.CBDA.Value);
     }
 }
