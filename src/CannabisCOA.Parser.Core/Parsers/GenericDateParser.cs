@@ -12,6 +12,7 @@ public static class GenericDateParser
         "ANALYSIS DATE",
         "DATE OF ANALYSIS",
         "REPORT DATE",
+        "REPORT CREATED",
         "DATE REPORTED",
         "REPORTED",
         "COMPLETED",
