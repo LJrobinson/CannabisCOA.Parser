@@ -5,59 +5,133 @@ namespace CannabisCOA.Parser.Core.Parsers;
 
 public static class ComplianceParser
 {
+    private static readonly string[] ExplicitStatusLabels =
+    [
+        "OVERALL RESULT",
+        "FINAL RESULT",
+        "OVERALL STATUS",
+        "COMPLIANCE STATUS",
+        "RESULT STATUS",
+        "STATUS"
+    ];
+
     public static ComplianceResult Parse(string text)
     {
-        var upper = text.ToUpperInvariant();
+        if (string.IsNullOrWhiteSpace(text))
+            return Unknown();
 
-        var overallPatterns = new[]
+        var rows = NormalizeRows(text);
+
+        // 1. Look for explicit overall result rows
+        foreach (var row in rows)
         {
-            @"OVERALL\s+RESULT[^\w]*(PASS|PASSED|FAIL|FAILED)",
-            @"FINAL\s+RESULT[^\w]*(PASS|PASSED|FAIL|FAILED)",
-            @"RESULT[^\w]*(PASS|PASSED|FAIL|FAILED)",
-            @"STATUS[^\w]*(PASS|PASSED|FAIL|FAILED)"
-        };
+            var upper = row.ToUpperInvariant();
 
-        foreach (var pattern in overallPatterns)
-        {
-            var match = Regex.Match(upper, pattern, RegexOptions.IgnoreCase);
-
-            if (!match.Success)
+            if (!ContainsExplicitLabel(upper))
                 continue;
 
-            var value = match.Groups[1].Value;
-
-            if (value.StartsWith("PASS"))
-                return Passed();
-
-            if (value.StartsWith("FAIL"))
-                return Failed();
+            if (TryExtractStatus(upper, out var status))
+                return status;
         }
 
-        if (Regex.IsMatch(upper, @"\bPASS(ED)?\b"))
-            return Passed();
-
-        if (Regex.IsMatch(upper, @"\bFAIL(ED)?\b"))
-            return Failed();
-
-        return new ComplianceResult
+        // 2. Secondary: look for strong standalone phrases (NOT analyte rows)
+        foreach (var row in rows)
         {
-            Passed = false,
-            Status = "unknown",
-            ContaminantsPassed = null
-        };
+            var upper = row.ToUpperInvariant();
+
+            if (LooksLikeAnalyteRow(upper))
+                continue;
+
+            if (TryExtractStandaloneStatus(upper, out var status))
+                return status;
+        }
+
+        // 3. Default: unknown (never guess)
+        return Unknown();
     }
 
-    private static ComplianceResult Passed() => new()
+    private static bool ContainsExplicitLabel(string row)
+    {
+        return ExplicitStatusLabels.Any(label => row.Contains(label));
+    }
+
+    private static bool TryExtractStatus(string row, out ComplianceResult result)
+    {
+        if (row.Contains("PASS"))
+        {
+            result = Passed(row);
+            return true;
+        }
+
+        if (row.Contains("FAIL"))
+        {
+            result = Failed(row);
+            return true;
+        }
+
+        result = Unknown();
+        return false;
+    }
+
+    private static bool TryExtractStandaloneStatus(string row, out ComplianceResult result)
+    {
+        // Accept ONLY very clean standalone lines
+        if (Regex.IsMatch(row, @"^\s*(PASS|PASSED)\s*$"))
+        {
+            result = Passed(row);
+            return true;
+        }
+
+        if (Regex.IsMatch(row, @"^\s*(FAIL|FAILED)\s*$"))
+        {
+            result = Failed(row);
+            return true;
+        }
+
+        result = Unknown();
+        return false;
+    }
+
+    private static bool LooksLikeAnalyteRow(string row)
+    {
+        // Prevent things like:
+        // "Salmonella PASS"
+        // "Residual Solvents: PASS"
+        // "Pesticides - PASS"
+
+        return Regex.IsMatch(row, @":\s*(PASS|FAIL|PASSED|FAILED)") ||
+               Regex.IsMatch(row, @"\b(PPM|CFU|LOD|LOQ|ACTION LIMIT)\b");
+    }
+
+    private static List<string> NormalizeRows(string text)
+    {
+        return text
+            .Replace("\r\n", "\n")
+            .Replace('\r', '\n')
+            .Split('\n')
+            .Select(r => Regex.Replace(r.Trim(), @"\s+", " "))
+            .Where(r => !string.IsNullOrWhiteSpace(r))
+            .ToList();
+    }
+
+    private static ComplianceResult Passed(string source) => new()
     {
         Passed = true,
         Status = "pass",
         ContaminantsPassed = true
     };
 
-    private static ComplianceResult Failed() => new()
+    private static ComplianceResult Failed(string source) => new()
     {
         Passed = false,
         Status = "fail",
         ContaminantsPassed = false
+    };
+
+    private static ComplianceResult Unknown() => new()
+    {
+        Passed = false,
+        Status = "unknown",
+        ContaminantsPassed = null
     };
 }
