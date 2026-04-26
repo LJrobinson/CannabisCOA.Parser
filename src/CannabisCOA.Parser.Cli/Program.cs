@@ -2,10 +2,15 @@
 using System.Text.Json.Serialization;
 using CannabisCOA.Parser.Core.Analysis;
 
+const string GenericLabName = "Generic";
+const string UnknownLabsLogPath = "unknown-labs.txt";
+const string FailuresLogPath = "failures.txt";
+
 var argsList = args.ToList();
 var scoreOnly = argsList.Contains("--score-only");
 var raw = argsList.Contains("--raw");
 var csv = argsList.Contains("--csv");
+var loggedUnknownLabs = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
 
 var jsonOptions = new JsonSerializerOptions
 {
@@ -85,14 +90,14 @@ if (argsList.Contains("--batch"))
 
             writer.WriteLine(JsonSerializer.Serialize(res, jsonOptions));
 
-            if (res.Coa.LabName == "Generic")
+            if (IsGenericLab(res.Coa.LabName))
             {
-                File.AppendAllText("unknown-labs.txt", file + Environment.NewLine);
+                LogUnknownLabOnce(file);
             }
         }
         catch (Exception ex)
         {
-            File.AppendAllText("failures.txt", file + " | " + ex.Message + Environment.NewLine);
+            File.AppendAllText(FailuresLogPath, file + " | " + ex.Message + Environment.NewLine);
         }
     }
 
@@ -149,9 +154,9 @@ if (!raw)
     result.Coa.Terpenes.TotalTerpenes = Math.Round(result.Coa.Terpenes.TotalTerpenes, 2);
 }
 
-if (result.Coa.LabName == "Generic")
+if (IsGenericLab(result.Coa.LabName))
 {
-    File.AppendAllText("unknown-labs.txt", "Unknown lab detected" + Environment.NewLine);
+    LogUnknownLabOnce(CreateUnknownLabPreview(inputText));
 }
 
 var hasCritical = result.Validation.Warnings.Any(w => w.Severity == "critical");
@@ -178,3 +183,44 @@ if (csv)
 }
 
 Console.WriteLine(JsonSerializer.Serialize(result, jsonOptions));
+
+bool IsGenericLab(string labName)
+{
+    return string.Equals(labName, GenericLabName, StringComparison.OrdinalIgnoreCase);
+}
+
+void LogUnknownLabOnce(string entry)
+{
+    var cleanEntry = CollapseWhitespace(entry);
+
+    if (string.IsNullOrWhiteSpace(cleanEntry))
+        cleanEntry = "Unknown input";
+
+    if (!loggedUnknownLabs.Add(cleanEntry))
+        return;
+
+    if (File.Exists(UnknownLabsLogPath))
+    {
+        var existingEntries = File.ReadLines(UnknownLabsLogPath);
+
+        if (existingEntries.Any(line => string.Equals(line, cleanEntry, StringComparison.OrdinalIgnoreCase)))
+            return;
+    }
+
+    File.AppendAllText(UnknownLabsLogPath, cleanEntry + Environment.NewLine);
+}
+
+static string CreateUnknownLabPreview(string text)
+{
+    var preview = CollapseWhitespace(text);
+
+    if (preview.Length <= 140)
+        return preview;
+
+    return preview[..140] + "...";
+}
+
+static string CollapseWhitespace(string text)
+{
+    return string.Join(" ", text.Split((char[]?)null, StringSplitOptions.RemoveEmptyEntries));
+}

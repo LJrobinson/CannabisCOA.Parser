@@ -8,7 +8,7 @@ namespace CannabisCOA.Parser.Core.Adapters.Generic;
 
 public class GenericCoaAdapter : ICoaAdapter
 {
-    public string LabName => "Unknown";
+    public string LabName => "Generic";
 
     public bool CanParse(string text)
     {

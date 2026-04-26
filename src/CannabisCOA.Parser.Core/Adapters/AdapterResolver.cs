@@ -29,13 +29,31 @@ public static class AdapterResolver
 
     public static ICoaAdapter Resolve(string text)
     {
-        var matches = Adapters
-            .Where(adapter => adapter.CanParse(text))
-            .ToList();
+        ICoaAdapter? bestAdapter = null;
+        var bestScore = 0;
 
-        if (matches.Count > 0)
-            return matches[0];
+        foreach (var adapter in Adapters)
+        {
+            var score = GetMatchScore(adapter, text);
 
-        return GenericAdapter;
+            if (score > bestScore)
+            {
+                bestAdapter = adapter;
+                bestScore = score;
+            }
+        }
+
+        return bestAdapter ?? GenericAdapter;
+    }
+
+    private static int GetMatchScore(ICoaAdapter adapter, string text)
+    {
+        if (!adapter.CanParse(text))
+            return 0;
+
+        if (adapter is BaseLabAdapter labAdapter)
+            return labAdapter.MatchScore(text);
+
+        return 1;
     }
 }
