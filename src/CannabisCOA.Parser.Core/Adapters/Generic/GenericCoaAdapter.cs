@@ -8,10 +8,12 @@ namespace CannabisCOA.Parser.Core.Adapters.Generic;
 
 public class GenericCoaAdapter : ICoaAdapter
 {
-    public string LabName => "Generic";
-    
+    public string LabName => "Unknown";
 
-    public bool CanParse(string text) => true; // always fallback
+    public bool CanParse(string text)
+    {
+        return true;
+    }
 
     public ProductType DetectProductType(string text)
     {
@@ -20,26 +22,27 @@ public class GenericCoaAdapter : ICoaAdapter
 
     public CoaResult Parse(string text)
     {
-        var productType = DetectProductType(text);
-        
         var cannabinoids = GenericCannabinoidTextParser.Parse(text);
         CannabinoidCalculator.CalculateTotals(cannabinoids);
 
         var testDate = GenericDateParser.ExtractTestDate(text);
-        var freshness = FreshnessCalculator.Calculate(testDate);
-
-        var compliance = ComplianceParser.Parse(text);
-        var terpenes = GenericTerpeneTextParser.Parse(text);
+        var harvestDate = GenericDateParser.ExtractHarvestDate(text);
+        var packageDate = GenericDateParser.ExtractPackageDate(text);
 
         return new CoaResult
         {
+            ProductType = DetectProductType(text),
+            IsAmended = CoaMetadataParser.IsAmended(text),
             LabName = LabName,
-            ProductType = productType,
-            Cannabinoids = cannabinoids,
-            Terpenes = terpenes,
+            ProductName = string.Empty,
+            BatchId = string.Empty,
+            HarvestDate = harvestDate,
             TestDate = testDate,
-            Freshness = freshness,
-            Compliance = compliance
+            PackageDate = packageDate,
+            Cannabinoids = cannabinoids,
+            Terpenes = GenericTerpeneTextParser.Parse(text),
+            Compliance = ComplianceParser.Parse(text),
+            Freshness = FreshnessCalculator.Calculate(testDate)
         };
     }
 }

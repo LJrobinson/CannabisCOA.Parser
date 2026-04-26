@@ -14,6 +14,9 @@ public static class DigipathFlowerParser
         CannabinoidCalculator.CalculateTotals(cannabinoids);
 
         var testDate = GenericDateParser.ExtractTestDate(text);
+        var harvestDate = GenericDateParser.ExtractHarvestDate(text);
+        var packageDate = GenericDateParser.ExtractPackageDate(text);
+
         var freshness = FreshnessCalculator.Calculate(testDate);
         var compliance = ComplianceParser.Parse(text);
         var terpenes = GenericTerpeneTextParser.Parse(text);
@@ -25,9 +28,9 @@ public static class DigipathFlowerParser
             LabName = labName,
             ProductName = string.Empty,
             BatchId = string.Empty,
-            HarvestDate = null,
+            HarvestDate = harvestDate,
             TestDate = testDate,
-            PackageDate = null,
+            PackageDate = packageDate,
             Cannabinoids = cannabinoids,
             Terpenes = terpenes,
             Compliance = compliance,
