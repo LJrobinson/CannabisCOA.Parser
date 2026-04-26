@@ -11,14 +11,16 @@ public static class GenericDateParser
         "DATE TESTED",
         "ANALYSIS DATE",
         "DATE OF ANALYSIS",
-        "REPORTED",
+        "REPORT DATE",
         "DATE REPORTED",
+        "REPORTED",
         "COMPLETED",
         "DATE COMPLETED"
     ];
 
     private static readonly string[] HarvestDateLabels =
     [
+        "HARVEST/PRODUCTION DATE",
         "HARVEST DATE",
         "DATE HARVESTED",
         "HARVESTED"
@@ -67,12 +69,7 @@ public static class GenericDateParser
 
         foreach (var row in rows)
         {
-            var upper = row.ToUpperInvariant();
-
-            if (!ContainsAnyLabel(upper, labels))
-                continue;
-
-            var date = ExtractDateFromRow(row);
+            var date = ExtractDateAfterFirstMatchingLabel(row, labels);
             if (date != null)
                 return date;
         }
@@ -95,9 +92,22 @@ public static class GenericDateParser
         return null;
     }
 
-    private static bool ContainsAnyLabel(string row, string[] labels)
+    private static DateTime? ExtractDateAfterFirstMatchingLabel(string row, string[] labels)
     {
-        return labels.Any(label => row.Contains(label));
+        foreach (var label in labels.OrderByDescending(label => label.Length))
+        {
+            var index = row.IndexOf(label, StringComparison.OrdinalIgnoreCase);
+            if (index < 0)
+                continue;
+
+            var afterLabel = row[(index + label.Length)..];
+
+            var date = ExtractDateFromRow(afterLabel);
+            if (date != null)
+                return date;
+        }
+
+        return null;
     }
 
     private static DateTime? ExtractDateFromRow(string row)

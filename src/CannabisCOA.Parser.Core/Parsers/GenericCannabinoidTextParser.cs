@@ -117,6 +117,9 @@ public static class GenericCannabinoidTextParser
         if (mgPerGramValue is not null)
             return mgPerGramValue.NormalizedValue;
 
+        if (matches.Count >= 3)
+            return matches[^2].NormalizedValue;
+
         return matches.Last().NormalizedValue;
     }
 

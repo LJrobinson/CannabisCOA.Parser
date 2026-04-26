@@ -22,4 +22,8 @@
     <ProjectReference Include="..\..\src\CannabisCOA.Parser.Core\CannabisCOA.Parser.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="Fixtures\**\*.*" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
 </Project>
