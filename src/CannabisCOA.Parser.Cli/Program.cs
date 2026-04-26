@@ -1,5 +1,17 @@
 ﻿using System.Text.Json;
+using System.Text.Json.Serialization;
 using CannabisCOA.Parser.Core.Analysis;
+
+var argsList = args.ToList();
+var scoreOnly = argsList.Contains("--score-only");
+var raw = argsList.Contains("--raw");
+var csv = argsList.Contains("--csv");
+
+var jsonOptions = new JsonSerializerOptions
+{
+    WriteIndented = !raw,
+    Converters = { new JsonStringEnumConverter() }
+};
 
 if (args.Length == 0)
 {
@@ -8,14 +20,105 @@ if (args.Length == 0)
     Console.WriteLine("Usage:");
     Console.WriteLine("  cannabis-coa \"THC: 0.42% THCA: 24.88%\"");
     Console.WriteLine("  cannabis-coa --file fixtures/digipath-flower.txt");
+    Console.WriteLine("  cannabis-coa --file fixtures/digipath-flower.txt --score-only");
+    Console.WriteLine("  cannabis-coa --file fixtures/digipath-flower.txt --raw");
+    Console.WriteLine("  cannabis-coa --batch G:\\COAs --out parsed.jsonl");
+    return;
+}
+
+if (argsList.Contains("--batch"))
+{
+    var dirIndex = argsList.IndexOf("--batch");
+
+    if (dirIndex + 1 >= argsList.Count)
+    {
+        Console.Error.WriteLine("Missing folder path after --batch");
+        Environment.Exit(1);
+        return;
+    }
+
+    var inputDir = argsList[dirIndex + 1];
+
+    if (!Directory.Exists(inputDir))
+    {
+        Console.Error.WriteLine($"Directory not found: {inputDir}");
+        Environment.Exit(1);
+        return;
+    }
+
+    var output = "output.jsonl";
+
+    if (argsList.Contains("--out"))
+    {
+        var outIdx = argsList.IndexOf("--out");
+
+        if (outIdx + 1 < argsList.Count)
+        {
+            output = argsList[outIdx + 1];
+        }
+    }
+
+    var files = Directory.GetFiles(inputDir, "*.*", SearchOption.AllDirectories)
+        .Where(f =>
+            f.EndsWith(".txt", StringComparison.OrdinalIgnoreCase) ||
+            f.EndsWith(".pdf", StringComparison.OrdinalIgnoreCase))
+        .ToList();
+
+    using var writer = new StreamWriter(output, append: false);
+
+    foreach (var file in files)
+    {
+        try
+        {
+            var text = file.EndsWith(".pdf", StringComparison.OrdinalIgnoreCase)
+                ? PdfTextExtractor.Extract(file)
+                : File.ReadAllText(file);
+
+            var res = CoaAnalyzer.Analyze(text);
+
+            if (!raw)
+            {
+                res.Coa.Cannabinoids.TotalTHC = Math.Round(res.Coa.Cannabinoids.TotalTHC, 2);
+                res.Coa.Cannabinoids.TotalCBD = Math.Round(res.Coa.Cannabinoids.TotalCBD, 2);
+                res.Coa.Terpenes.TotalTerpenes = Math.Round(res.Coa.Terpenes.TotalTerpenes, 2);
+            }
+
+            writer.WriteLine(JsonSerializer.Serialize(res, jsonOptions));
+
+            if (res.Coa.LabName == "Generic")
+            {
+                File.AppendAllText("unknown-labs.txt", file + Environment.NewLine);
+            }
+        }
+        catch (Exception ex)
+        {
+            File.AppendAllText("failures.txt", file + " | " + ex.Message + Environment.NewLine);
+        }
+    }
+
+    Console.WriteLine($"Processed {files.Count} files → {output}");
     return;
 }
 
 string inputText;
 
-if (args.Length >= 2 && args[0] == "--file")
+if (argsList.Contains("--stdin"))
 {
-    var filePath = args[1];
+    using var reader = new StreamReader(Console.OpenStandardInput());
+    inputText = await reader.ReadToEndAsync();
+}
+else if (argsList.Contains("--file"))
+{
+    var fileFlagIndex = argsList.IndexOf("--file");
+
+    if (fileFlagIndex + 1 >= argsList.Count)
+    {
+        Console.Error.WriteLine("Missing file path after --file");
+        Environment.Exit(1);
+        return;
+    }
+
+    var filePath = argsList[fileFlagIndex + 1];
 
     if (!File.Exists(filePath))
     {
@@ -24,18 +127,54 @@ if (args.Length >= 2 && args[0] == "--file")
         return;
     }
 
-    inputText = File.ReadAllText(filePath);
+    inputText = filePath.EndsWith(".pdf", StringComparison.OrdinalIgnoreCase)
+        ? PdfTextExtractor.Extract(filePath)
+        : File.ReadAllText(filePath);
 }
 else
 {
-    inputText = string.Join(" ", args);
+    inputText = string.Join(" ", argsList.Where(a =>
+        a != "--score-only" &&
+        a != "--raw" &&
+        a != "--csv"
+    ));
 }
 
 var result = CoaAnalyzer.Analyze(inputText);
 
-var jsonOptions = new JsonSerializerOptions
+if (!raw)
 {
-    WriteIndented = true
-};
+    result.Coa.Cannabinoids.TotalTHC = Math.Round(result.Coa.Cannabinoids.TotalTHC, 2);
+    result.Coa.Cannabinoids.TotalCBD = Math.Round(result.Coa.Cannabinoids.TotalCBD, 2);
+    result.Coa.Terpenes.TotalTerpenes = Math.Round(result.Coa.Terpenes.TotalTerpenes, 2);
+}
+
+if (result.Coa.LabName == "Generic")
+{
+    File.AppendAllText("unknown-labs.txt", "Unknown lab detected" + Environment.NewLine);
+}
+
+var hasCritical = result.Validation.Warnings.Any(w => w.Severity == "critical");
+Environment.ExitCode = hasCritical ? 3 : (result.Validation.IsValid ? 0 : 2);
+
+if (scoreOnly)
+{
+    Console.WriteLine(JsonSerializer.Serialize(result.Score, jsonOptions));
+    return;
+}
+
+if (csv)
+{
+    Console.WriteLine("Lab,Type,TotalTHC,TotalTerps,Score,Tier");
+    Console.WriteLine(string.Join(",",
+        result.Coa.LabName,
+        result.Coa.ProductType,
+        result.Coa.Cannabinoids.TotalTHC,
+        result.Coa.Terpenes.TotalTerpenes,
+        result.Score.Score,
+        result.Score.Tier
+    ));
+    return;
+}
 
 Console.WriteLine(JsonSerializer.Serialize(result, jsonOptions));

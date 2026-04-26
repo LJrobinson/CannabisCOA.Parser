@@ -17,3 +17,8 @@ G:\CannabisCOA.Parser\src\CannabisCOA.Parser.Cli\obj\Debug\net10.0\refint\Cannab
 G:\CannabisCOA.Parser\src\CannabisCOA.Parser.Cli\obj\Debug\net10.0\CannabisCOA.Parser.Cli.pdb
 G:\CannabisCOA.Parser\src\CannabisCOA.Parser.Cli\obj\Debug\net10.0\CannabisCOA.Parser.Cli.genruntimeconfig.cache
 G:\CannabisCOA.Parser\src\CannabisCOA.Parser.Cli\obj\Debug\net10.0\ref\CannabisCOA.Parser.Cli.dll
+G:\CannabisCOA.Parser\src\CannabisCOA.Parser.Cli\bin\Debug\net10.0\UglyToad.PdfPig.dll
+G:\CannabisCOA.Parser\src\CannabisCOA.Parser.Cli\bin\Debug\net10.0\UglyToad.PdfPig.Core.dll
+G:\CannabisCOA.Parser\src\CannabisCOA.Parser.Cli\bin\Debug\net10.0\UglyToad.PdfPig.Fonts.dll
+G:\CannabisCOA.Parser\src\CannabisCOA.Parser.Cli\bin\Debug\net10.0\UglyToad.PdfPig.Tokenization.dll
+G:\CannabisCOA.Parser\src\CannabisCOA.Parser.Cli\bin\Debug\net10.0\UglyToad.PdfPig.Tokens.dll

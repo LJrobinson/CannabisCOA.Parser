@@ -8,6 +8,16 @@ public static class CoaValidator
     {
         var result = new ValidationResult();
 
+        if (coa.IsAmended)
+        {
+            result.Warnings.Add(new ValidationWarning
+            {
+                Code = "AMENDED_COA",
+                Message = "COA is marked as amended, revised, or corrected.",
+                Severity = "warning"
+            });
+        }
+
         if (coa.Cannabinoids.TotalTHC > 40m)
         {
             result.Warnings.Add(new ValidationWarning
@@ -18,7 +28,17 @@ public static class CoaValidator
             });
         }
 
-        if (coa.Terpenes.TotalTerpenes > 5m)
+        if (coa.Cannabinoids.TotalCBD > 100m)
+        {
+            result.Warnings.Add(new ValidationWarning
+            {
+                Code = "TOTAL_CBD_HIGH",
+                Message = "Total CBD is unusually high.",
+                Severity = "warning"
+            });
+        }
+
+        if (coa.Terpenes.TotalTerpenes > 25m)
         {
             result.Warnings.Add(new ValidationWarning
             {

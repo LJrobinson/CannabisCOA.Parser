@@ -9,6 +9,7 @@ namespace CannabisCOA.Parser.Core.Adapters.Generic;
 public class GenericCoaAdapter : ICoaAdapter
 {
     public string LabName => "Generic";
+    
 
     public bool CanParse(string text) => true; // always fallback
 
@@ -19,6 +20,8 @@ public class GenericCoaAdapter : ICoaAdapter
 
     public CoaResult Parse(string text)
     {
+        var productType = DetectProductType(text);
+        
         var cannabinoids = GenericCannabinoidTextParser.Parse(text);
         CannabinoidCalculator.CalculateTotals(cannabinoids);
 
@@ -31,6 +34,7 @@ public class GenericCoaAdapter : ICoaAdapter
         return new CoaResult
         {
             LabName = LabName,
+            ProductType = productType,
             Cannabinoids = cannabinoids,
             Terpenes = terpenes,
             TestDate = testDate,

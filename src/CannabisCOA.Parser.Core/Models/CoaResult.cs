@@ -1,7 +1,12 @@
+using CannabisCOA.Parser.Core.Enums;
+
 namespace CannabisCOA.Parser.Core.Models;
 
 public class CoaResult
 {
+    public ProductType ProductType { get; set; } = ProductType.Unknown;
+    public bool IsAmended { get; set; }
+
     public string LabName { get; set; } = "";
     public string ProductName { get; set; } = "";
     public string BatchId { get; set; } = "";

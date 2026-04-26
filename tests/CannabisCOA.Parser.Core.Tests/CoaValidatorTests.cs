@@ -29,7 +29,7 @@ public class CoaValidatorTests
         {
             Terpenes = new TerpeneProfile
             {
-                TotalTerpenes = 6.2m
+                TotalTerpenes = 26.2m
             }
         };
 
