@@ -157,6 +157,25 @@ public static class GenericTerpeneTextParser
                 return value;
         }
 
+        foreach (var rawLine in text.Split('\n'))
+        {
+            var line = rawLine.Trim();
+
+            if (!Regex.IsMatch(line, @"^Total\s+\d+\.\d+\s+\d+\.\d+$", RegexOptions.IgnoreCase))
+                continue;
+
+            var match = Regex.Match(line, @"^Total\s+(\d+\.\d+)\s+\d+\.\d+$", RegexOptions.IgnoreCase);
+
+            if (!match.Success)
+                continue;
+
+            if (!decimal.TryParse(match.Groups[1].Value, out var value))
+                continue;
+
+            if (value > 0m && value <= 25m)
+                return value;
+        }
+
         return 0m;
     }
 }
