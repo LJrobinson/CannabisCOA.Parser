@@ -34,6 +34,6 @@ public class DigipathFixtureTests
         Assert.True(result.Compliance.Passed);
         Assert.Equal("pass", result.Compliance.Status);
 
-        //Assert.True(result.Terpenes.TotalTerpenes > 0);
+        Assert.True(result.Terpenes.TotalTerpenes > 0);
     }
 }
