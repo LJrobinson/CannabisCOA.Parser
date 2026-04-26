@@ -5,6 +5,14 @@ namespace CannabisCOA.Parser.Core.Parsers;
 
 public static class ProductTypeDetector
 {
+    private static readonly string[] StrongContextPatterns =
+    [
+        @"^\s*PRODUCT\s*TYPE\b",
+        @"^\s*SAMPLE\s*TYPE\b",
+        @"^\s*MATRIX\b",
+        @"^\s*CATEGORY\b"
+    ];
+
     public static ProductType Detect(string text)
     {
         if (string.IsNullOrWhiteSpace(text))
@@ -12,7 +20,6 @@ public static class ProductTypeDetector
 
         var rows = NormalizeRows(text);
 
-        // Priority order matters (most specific → least)
         if (MatchAny(rows, PreRollPatterns))
             return ProductType.PreRoll;
 
@@ -31,13 +38,11 @@ public static class ProductTypeDetector
         if (MatchAny(rows, TincturePatterns))
             return ProductType.Tincture;
 
-        if (MatchAny(rows, FlowerPatterns))
+        if (MatchAny(rows, FlowerPatterns, requireContext: true))
             return ProductType.Flower;
 
         return ProductType.Unknown;
     }
-
-    // --- Pattern Sets ---
 
     private static readonly string[] PreRollPatterns =
     [
@@ -65,7 +70,9 @@ public static class ProductTypeDetector
     private static readonly string[] EdiblePatterns =
     [
         @"\bEDIBLE\b",
+        @"\bEDIBLES\b",
         @"\bGUMMY\b",
+        @"\bGUMMIES\b",
         @"\bCHOCOLATE\b",
         @"\bINFUSED\b"
     ];
@@ -91,12 +98,13 @@ public static class ProductTypeDetector
         @"\bWHOLE FLOWER\b"
     ];
 
-    // --- Helpers ---
-
-    private static bool MatchAny(IEnumerable<string> rows, string[] patterns)
+    private static bool MatchAny(IEnumerable<string> rows, string[] patterns, bool requireContext = false)
     {
         foreach (var row in rows)
         {
+            if (requireContext && !HasStrongContext(row))
+                continue;
+
             foreach (var pattern in patterns)
             {
                 if (Regex.IsMatch(row, pattern, RegexOptions.IgnoreCase))
@@ -105,6 +113,12 @@ public static class ProductTypeDetector
         }
 
         return false;
+    }
+
+    private static bool HasStrongContext(string row)
+    {
+        return StrongContextPatterns.Any(pattern =>
+            Regex.IsMatch(row, pattern, RegexOptions.IgnoreCase));
     }
 
     private static List<string> NormalizeRows(string text)
