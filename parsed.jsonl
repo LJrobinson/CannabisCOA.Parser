@@ -1,230 +1,6 @@
 {
   "Coa": {
     "ProductType": "Unknown",
-    "IsAmended": true,
-    "LabName": "Digipath",
-    "ProductName": "",
-    "BatchId": "",
-    "HarvestDate": null,
-    "TestDate": "2026-03-13T00:00:00",
-    "PackageDate": null,
-    "Cannabinoids": {
-      "THC": {
-        "FieldName": "THC",
-        "Value": 0.201,
-        "SourceText": "\u03949-THC 0.003 0.201 2.01 Eucalyptol 470-82-6 0.0053 \u003CLOQ \u003CLOQ",
-        "Confidence": 0.95
-      },
-      "THCA": {
-        "FieldName": "THCA",
-        "Value": 29.420,
-        "SourceText": "THCa 0.004 29.420 294.20 Guaiol 489-86-1 0.0050 \u003CLOQ \u003CLOQ",
-        "Confidence": 0.95
-      },
-      "CBD": {
-        "FieldName": "CBD",
-        "Value": 0,
-        "SourceText": "CBD 0.014 \u003CLOQ \u003CLOQ Ocimene 13877-91-3 0.0083 \u003CLOQ \u003CLOQ",
-        "Confidence": 0.85
-      },
-      "CBDA": {
-        "FieldName": "CBDA",
-        "Value": 0.072,
-        "SourceText": "CBDa 0.004 0.072 0.72 p-Cymene 99-87-6 0.0043 \u003CLOQ \u003CLOQ",
-        "Confidence": 0.95
-      },
-      "TotalTHC": 26.00,
-      "TotalCBD": 0.06
-    },
-    "Terpenes": {
-      "Terpenes": {
-        "\u03B4-Limonene": 0.3661,
-        "\u03B2-Myrcene": 0.2261,
-        "\u03B2-Caryophyllene": 0.2010,
-        "Linalool": 0.0828,
-        "\u03B2-Pinene": 0.0697,
-        "\u03B1-Humulene": 0.0494,
-        "\u03B1-Bisabolol": 0.0413,
-        "\u03B1-Pinene": 0.0378,
-        "Nerolidol": 0.0251,
-        "Camphene": 0.0107,
-        "Caryophyllene Oxide": 0.0054,
-        "Guaiol": 0,
-        "Eucalyptol": 0,
-        "\u03B4-3-Carene": 0,
-        "Terpinolene": 0,
-        "p-Cymene": 0,
-        "Ocimene": 0,
-        "\u03B1-Terpinene": 0,
-        "Isopulegol": 0,
-        "Farnesene": 0,
-        "Geraniol": 0,
-        "\u03B3-Terpinene": 0
-      },
-      "TotalTerpenes": 31.76
-    },
-    "Compliance": {
-      "Passed": true,
-      "ContaminantsPassed": true,
-      "Status": "pass"
-    },
-    "Freshness": {
-      "DaysSinceTest": 45,
-      "Score": 85,
-      "Band": "Good"
-    }
-  },
-  "Validation": {
-    "IsValid": false,
-    "Warnings": [
-      {
-        "Code": "AMENDED_COA",
-        "Message": "COA is marked as amended, revised, or corrected.",
-        "Severity": "warning"
-      },
-      {
-        "Code": "TOTAL_TERPENES_HIGH",
-        "Message": "Total terpenes are unusually high.",
-        "Severity": "warning"
-      }
-    ]
-  },
-  "Score": {
-    "Score": 90,
-    "Tier": "God Tier",
-    "Breakdown": {
-      "Potency": 35,
-      "Terpenes": 25,
-      "Freshness": 20,
-      "Compliance": 10
-    }
-  },
-  "Profile": {
-    "DominantTerpene": "\u03B4-Limonene",
-    "TopTerpenes": [
-      "\u03B4-Limonene",
-      "\u03B2-Myrcene",
-      "\u03B2-Caryophyllene"
-    ],
-    "ProfileType": "Floral",
-    "Lean": "Unknown"
-  }
-}
-{
-  "Coa": {
-    "ProductType": "Unknown",
-    "IsAmended": true,
-    "LabName": "Digipath",
-    "ProductName": "",
-    "BatchId": "",
-    "HarvestDate": null,
-    "TestDate": "2026-03-13T00:00:00",
-    "PackageDate": null,
-    "Cannabinoids": {
-      "THC": {
-        "FieldName": "THC",
-        "Value": 0.201,
-        "SourceText": "\u03949-THC 0.003 0.201 2.01 Eucalyptol 470-82-6 0.0053 \u003CLOQ \u003CLOQ",
-        "Confidence": 0.95
-      },
-      "THCA": {
-        "FieldName": "THCA",
-        "Value": 29.420,
-        "SourceText": "THCa 0.004 29.420 294.20 Guaiol 489-86-1 0.0050 \u003CLOQ \u003CLOQ",
-        "Confidence": 0.95
-      },
-      "CBD": {
-        "FieldName": "CBD",
-        "Value": 0,
-        "SourceText": "CBD 0.014 \u003CLOQ \u003CLOQ Ocimene 13877-91-3 0.0083 \u003CLOQ \u003CLOQ",
-        "Confidence": 0.85
-      },
-      "CBDA": {
-        "FieldName": "CBDA",
-        "Value": 0.072,
-        "SourceText": "CBDa 0.004 0.072 0.72 p-Cymene 99-87-6 0.0043 \u003CLOQ \u003CLOQ",
-        "Confidence": 0.95
-      },
-      "TotalTHC": 26.00,
-      "TotalCBD": 0.06
-    },
-    "Terpenes": {
-      "Terpenes": {
-        "\u03B4-Limonene": 0.3661,
-        "\u03B2-Myrcene": 0.2261,
-        "\u03B2-Caryophyllene": 0.2010,
-        "Linalool": 0.0828,
-        "\u03B2-Pinene": 0.0697,
-        "\u03B1-Humulene": 0.0494,
-        "\u03B1-Bisabolol": 0.0413,
-        "\u03B1-Pinene": 0.0378,
-        "Nerolidol": 0.0251,
-        "Camphene": 0.0107,
-        "Caryophyllene Oxide": 0.0054,
-        "Guaiol": 0,
-        "Eucalyptol": 0,
-        "\u03B4-3-Carene": 0,
-        "Terpinolene": 0,
-        "p-Cymene": 0,
-        "Ocimene": 0,
-        "\u03B1-Terpinene": 0,
-        "Isopulegol": 0,
-        "Farnesene": 0,
-        "Geraniol": 0,
-        "\u03B3-Terpinene": 0
-      },
-      "TotalTerpenes": 31.76
-    },
-    "Compliance": {
-      "Passed": true,
-      "ContaminantsPassed": true,
-      "Status": "pass"
-    },
-    "Freshness": {
-      "DaysSinceTest": 45,
-      "Score": 85,
-      "Band": "Good"
-    }
-  },
-  "Validation": {
-    "IsValid": false,
-    "Warnings": [
-      {
-        "Code": "AMENDED_COA",
-        "Message": "COA is marked as amended, revised, or corrected.",
-        "Severity": "warning"
-      },
-      {
-        "Code": "TOTAL_TERPENES_HIGH",
-        "Message": "Total terpenes are unusually high.",
-        "Severity": "warning"
-      }
-    ]
-  },
-  "Score": {
-    "Score": 90,
-    "Tier": "God Tier",
-    "Breakdown": {
-      "Potency": 35,
-      "Terpenes": 25,
-      "Freshness": 20,
-      "Compliance": 10
-    }
-  },
-  "Profile": {
-    "DominantTerpene": "\u03B4-Limonene",
-    "TopTerpenes": [
-      "\u03B4-Limonene",
-      "\u03B2-Myrcene",
-      "\u03B2-Caryophyllene"
-    ],
-    "ProfileType": "Floral",
-    "Lean": "Unknown"
-  }
-}
-{
-  "Coa": {
-    "ProductType": "Unknown",
     "IsAmended": false,
     "LabName": "Digipath",
     "ProductName": "",
@@ -285,12 +61,12 @@
         "Geraniol": 0,
         "Camphene": 0
       },
-      "TotalTerpenes": 32.64
+      "TotalTerpenes": 2.14
     },
     "Compliance": {
-      "Passed": true,
-      "ContaminantsPassed": true,
-      "Status": "pass"
+      "Passed": false,
+      "ContaminantsPassed": null,
+      "Status": "unknown"
     },
     "Freshness": {
       "DaysSinceTest": 62,
@@ -299,23 +75,17 @@
     }
   },
   "Validation": {
-    "IsValid": false,
-    "Warnings": [
-      {
-        "Code": "TOTAL_TERPENES_HIGH",
-        "Message": "Total terpenes are unusually high.",
-        "Severity": "warning"
-      }
-    ]
+    "IsValid": true,
+    "Warnings": []
   },
   "Score": {
-    "Score": 90,
-    "Tier": "God Tier",
+    "Score": 70,
+    "Tier": "Solid",
     "Breakdown": {
       "Potency": 35,
-      "Terpenes": 25,
+      "Terpenes": 15,
       "Freshness": 20,
-      "Compliance": 10
+      "Compliance": 0
     }
   },
   "Profile": {
@@ -333,66 +103,43 @@
   "Coa": {
     "ProductType": "Unknown",
     "IsAmended": true,
-    "LabName": "Digipath",
+    "LabName": "Ace Analytical Laboratory",
     "ProductName": "",
     "BatchId": "",
-    "HarvestDate": null,
-    "TestDate": "2026-03-13T00:00:00",
+    "HarvestDate": "2025-10-23T00:00:00",
+    "TestDate": "2025-11-25T00:00:00",
     "PackageDate": null,
     "Cannabinoids": {
       "THC": {
         "FieldName": "THC",
-        "Value": 0.201,
-        "SourceText": "\u03949-THC 0.003 0.201 2.01 Eucalyptol 470-82-6 0.0053 \u003CLOQ \u003CLOQ",
-        "Confidence": 0.95
+        "Value": 5,
+        "SourceText": "Total THC Total CBD Analysis Date: 11/17/2025",
+        "Confidence": 0.9
       },
       "THCA": {
         "FieldName": "THCA",
-        "Value": 29.420,
-        "SourceText": "THCa 0.004 29.420 294.20 Guaiol 489-86-1 0.0050 \u003CLOQ \u003CLOQ",
-        "Confidence": 0.95
+        "Value": 22.959,
+        "SourceText": "THCa 0.060 22.959 229.59",
+        "Confidence": 0.85
       },
       "CBD": {
         "FieldName": "CBD",
-        "Value": 0,
-        "SourceText": "CBD 0.014 \u003CLOQ \u003CLOQ Ocimene 13877-91-3 0.0083 \u003CLOQ \u003CLOQ",
-        "Confidence": 0.85
+        "Value": 5,
+        "SourceText": "Total THC Total CBD Analysis Date: 11/17/2025",
+        "Confidence": 0.9
       },
       "CBDA": {
         "FieldName": "CBDA",
-        "Value": 0.072,
-        "SourceText": "CBDa 0.004 0.072 0.72 p-Cymene 99-87-6 0.0043 \u003CLOQ \u003CLOQ",
-        "Confidence": 0.95
+        "Value": 0.082,
+        "SourceText": "CBDa 0.060 \u003CLOQ \u003CLOQ \u03B1-Humulene 0.04 0.82 0.082",
+        "Confidence": 0.9
       },
-      "TotalTHC": 26.00,
-      "TotalCBD": 0.06
+      "TotalTHC": 25.14,
+      "TotalCBD": 5.07
     },
     "Terpenes": {
-      "Terpenes": {
-        "\u03B4-Limonene": 0.3661,
-        "\u03B2-Myrcene": 0.2261,
-        "\u03B2-Caryophyllene": 0.2010,
-        "Linalool": 0.0828,
-        "\u03B2-Pinene": 0.0697,
-        "\u03B1-Humulene": 0.0494,
-        "\u03B1-Bisabolol": 0.0413,
-        "\u03B1-Pinene": 0.0378,
-        "Nerolidol": 0.0251,
-        "Camphene": 0.0107,
-        "Caryophyllene Oxide": 0.0054,
-        "Guaiol": 0,
-        "Eucalyptol": 0,
-        "\u03B4-3-Carene": 0,
-        "Terpinolene": 0,
-        "p-Cymene": 0,
-        "Ocimene": 0,
-        "\u03B1-Terpinene": 0,
-        "Isopulegol": 0,
-        "Farnesene": 0,
-        "Geraniol": 0,
-        "\u03B3-Terpinene": 0
-      },
-      "TotalTerpenes": 31.76
+      "Terpenes": {},
+      "TotalTerpenes": 23.87
     },
     "Compliance": {
       "Passed": true,
@@ -400,440 +147,7 @@
       "Status": "pass"
     },
     "Freshness": {
-      "DaysSinceTest": 45,
-      "Score": 85,
-      "Band": "Good"
-    }
-  },
-  "Validation": {
-    "IsValid": false,
-    "Warnings": [
-      {
-        "Code": "AMENDED_COA",
-        "Message": "COA is marked as amended, revised, or corrected.",
-        "Severity": "warning"
-      },
-      {
-        "Code": "TOTAL_TERPENES_HIGH",
-        "Message": "Total terpenes are unusually high.",
-        "Severity": "warning"
-      }
-    ]
-  },
-  "Score": {
-    "Score": 90,
-    "Tier": "God Tier",
-    "Breakdown": {
-      "Potency": 35,
-      "Terpenes": 25,
-      "Freshness": 20,
-      "Compliance": 10
-    }
-  },
-  "Profile": {
-    "DominantTerpene": "\u03B4-Limonene",
-    "TopTerpenes": [
-      "\u03B4-Limonene",
-      "\u03B2-Myrcene",
-      "\u03B2-Caryophyllene"
-    ],
-    "ProfileType": "Floral",
-    "Lean": "Unknown"
-  }
-}
-{
-  "Coa": {
-    "ProductType": "Unknown",
-    "IsAmended": false,
-    "LabName": "Digipath",
-    "ProductName": "",
-    "BatchId": "",
-    "HarvestDate": null,
-    "TestDate": "2026-02-24T00:00:00",
-    "PackageDate": null,
-    "Cannabinoids": {
-      "THC": {
-        "FieldName": "THC",
-        "Value": 1.362,
-        "SourceText": "\u03949-THC 0.003 1.362 13.62 \u03B1-Pinene 80-56-8 0.0032 0.0129 0.129",
-        "Confidence": 0.95
-      },
-      "THCA": {
-        "FieldName": "THCA",
-        "Value": 29.719,
-        "SourceText": "THCa 0.004 29.719 297.19 Caryophyllene Oxide 1139-30-6 0.0039 0.0130 0.130",
-        "Confidence": 0.95
-      },
-      "CBD": {
-        "FieldName": "CBD",
-        "Value": 0,
-        "SourceText": "CBD 0.014 \u003CLOQ \u003CLOQ Terpinolene 586-62-9 0.0060 \u003CLOQ \u003CLOQ",
-        "Confidence": 0.85
-      },
-      "CBDA": {
-        "FieldName": "CBDA",
-        "Value": 0.080,
-        "SourceText": "CBDa 0.004 0.080 0.80 \u03B4 -3-Carene 13466-78-9 0.0046 \u003CLOQ \u003CLOQ",
-        "Confidence": 0.95
-      },
-      "TotalTHC": 27.43,
-      "TotalCBD": 0.07
-    },
-    "Terpenes": {
-      "Terpenes": {
-        "\u03B2-Myrcene": 0.8124,
-        "\u03B2-Caryophyllene": 0.5517,
-        "\u03B1-Humulene": 0.2031,
-        "\u03B1-Bisabolol": 0.1266,
-        "Guaiol": 0.1218,
-        "Ocimene": 0.0772,
-        "\u03B4-Limonene": 0.0768,
-        "Linalool": 0.0573,
-        "Farnesene": 0.0434,
-        "\u03B2-Pinene": 0.0318,
-        "Nerolidol": 0.0155,
-        "Caryophyllene Oxide": 0.0130,
-        "\u03B1-Pinene": 0.0129,
-        "Isopulegol": 0,
-        "Eucalyptol": 0,
-        "\u03B4-3-Carene": 0,
-        "Terpinolene": 0,
-        "p-Cymene": 0,
-        "\u03B3-Terpinene": 0,
-        "\u03B1-Terpinene": 0,
-        "Geraniol": 0,
-        "Camphene": 0
-      },
-      "TotalTerpenes": 32.64
-    },
-    "Compliance": {
-      "Passed": true,
-      "ContaminantsPassed": true,
-      "Status": "pass"
-    },
-    "Freshness": {
-      "DaysSinceTest": 62,
-      "Score": 70,
-      "Band": "Good"
-    }
-  },
-  "Validation": {
-    "IsValid": false,
-    "Warnings": [
-      {
-        "Code": "TOTAL_TERPENES_HIGH",
-        "Message": "Total terpenes are unusually high.",
-        "Severity": "warning"
-      }
-    ]
-  },
-  "Score": {
-    "Score": 90,
-    "Tier": "God Tier",
-    "Breakdown": {
-      "Potency": 35,
-      "Terpenes": 25,
-      "Freshness": 20,
-      "Compliance": 10
-    }
-  },
-  "Profile": {
-    "DominantTerpene": "\u03B2-Myrcene",
-    "TopTerpenes": [
-      "\u03B2-Myrcene",
-      "\u03B2-Caryophyllene",
-      "\u03B1-Humulene"
-    ],
-    "ProfileType": "Floral",
-    "Lean": "Unknown"
-  }
-}
-{
-  "Coa": {
-    "ProductType": "Unknown",
-    "IsAmended": false,
-    "LabName": "Digipath",
-    "ProductName": "",
-    "BatchId": "",
-    "HarvestDate": null,
-    "TestDate": "2026-02-24T00:00:00",
-    "PackageDate": null,
-    "Cannabinoids": {
-      "THC": {
-        "FieldName": "THC",
-        "Value": 1.362,
-        "SourceText": "\u03949-THC 0.003 1.362 13.62 \u03B1-Pinene 80-56-8 0.0032 0.0129 0.129",
-        "Confidence": 0.95
-      },
-      "THCA": {
-        "FieldName": "THCA",
-        "Value": 29.719,
-        "SourceText": "THCa 0.004 29.719 297.19 Caryophyllene Oxide 1139-30-6 0.0039 0.0130 0.130",
-        "Confidence": 0.95
-      },
-      "CBD": {
-        "FieldName": "CBD",
-        "Value": 0,
-        "SourceText": "CBD 0.014 \u003CLOQ \u003CLOQ Terpinolene 586-62-9 0.0060 \u003CLOQ \u003CLOQ",
-        "Confidence": 0.85
-      },
-      "CBDA": {
-        "FieldName": "CBDA",
-        "Value": 0.080,
-        "SourceText": "CBDa 0.004 0.080 0.80 \u03B4 -3-Carene 13466-78-9 0.0046 \u003CLOQ \u003CLOQ",
-        "Confidence": 0.95
-      },
-      "TotalTHC": 27.43,
-      "TotalCBD": 0.07
-    },
-    "Terpenes": {
-      "Terpenes": {
-        "\u03B2-Myrcene": 0.8124,
-        "\u03B2-Caryophyllene": 0.5517,
-        "\u03B1-Humulene": 0.2031,
-        "\u03B1-Bisabolol": 0.1266,
-        "Guaiol": 0.1218,
-        "Ocimene": 0.0772,
-        "\u03B4-Limonene": 0.0768,
-        "Linalool": 0.0573,
-        "Farnesene": 0.0434,
-        "\u03B2-Pinene": 0.0318,
-        "Nerolidol": 0.0155,
-        "Caryophyllene Oxide": 0.0130,
-        "\u03B1-Pinene": 0.0129,
-        "Isopulegol": 0,
-        "Eucalyptol": 0,
-        "\u03B4-3-Carene": 0,
-        "Terpinolene": 0,
-        "p-Cymene": 0,
-        "\u03B3-Terpinene": 0,
-        "\u03B1-Terpinene": 0,
-        "Geraniol": 0,
-        "Camphene": 0
-      },
-      "TotalTerpenes": 32.64
-    },
-    "Compliance": {
-      "Passed": true,
-      "ContaminantsPassed": true,
-      "Status": "pass"
-    },
-    "Freshness": {
-      "DaysSinceTest": 62,
-      "Score": 70,
-      "Band": "Good"
-    }
-  },
-  "Validation": {
-    "IsValid": false,
-    "Warnings": [
-      {
-        "Code": "TOTAL_TERPENES_HIGH",
-        "Message": "Total terpenes are unusually high.",
-        "Severity": "warning"
-      }
-    ]
-  },
-  "Score": {
-    "Score": 90,
-    "Tier": "God Tier",
-    "Breakdown": {
-      "Potency": 35,
-      "Terpenes": 25,
-      "Freshness": 20,
-      "Compliance": 10
-    }
-  },
-  "Profile": {
-    "DominantTerpene": "\u03B2-Myrcene",
-    "TopTerpenes": [
-      "\u03B2-Myrcene",
-      "\u03B2-Caryophyllene",
-      "\u03B1-Humulene"
-    ],
-    "ProfileType": "Floral",
-    "Lean": "Unknown"
-  }
-}
-{
-  "Coa": {
-    "ProductType": "Unknown",
-    "IsAmended": false,
-    "LabName": "Digipath",
-    "ProductName": "",
-    "BatchId": "",
-    "HarvestDate": null,
-    "TestDate": "2026-02-24T00:00:00",
-    "PackageDate": null,
-    "Cannabinoids": {
-      "THC": {
-        "FieldName": "THC",
-        "Value": 1.362,
-        "SourceText": "\u03949-THC 0.003 1.362 13.62 \u03B1-Pinene 80-56-8 0.0032 0.0129 0.129",
-        "Confidence": 0.95
-      },
-      "THCA": {
-        "FieldName": "THCA",
-        "Value": 29.719,
-        "SourceText": "THCa 0.004 29.719 297.19 Caryophyllene Oxide 1139-30-6 0.0039 0.0130 0.130",
-        "Confidence": 0.95
-      },
-      "CBD": {
-        "FieldName": "CBD",
-        "Value": 0,
-        "SourceText": "CBD 0.014 \u003CLOQ \u003CLOQ Terpinolene 586-62-9 0.0060 \u003CLOQ \u003CLOQ",
-        "Confidence": 0.85
-      },
-      "CBDA": {
-        "FieldName": "CBDA",
-        "Value": 0.080,
-        "SourceText": "CBDa 0.004 0.080 0.80 \u03B4 -3-Carene 13466-78-9 0.0046 \u003CLOQ \u003CLOQ",
-        "Confidence": 0.95
-      },
-      "TotalTHC": 27.43,
-      "TotalCBD": 0.07
-    },
-    "Terpenes": {
-      "Terpenes": {
-        "\u03B2-Myrcene": 0.8124,
-        "\u03B2-Caryophyllene": 0.5517,
-        "\u03B1-Humulene": 0.2031,
-        "\u03B1-Bisabolol": 0.1266,
-        "Guaiol": 0.1218,
-        "Ocimene": 0.0772,
-        "\u03B4-Limonene": 0.0768,
-        "Linalool": 0.0573,
-        "Farnesene": 0.0434,
-        "\u03B2-Pinene": 0.0318,
-        "Nerolidol": 0.0155,
-        "Caryophyllene Oxide": 0.0130,
-        "\u03B1-Pinene": 0.0129,
-        "Isopulegol": 0,
-        "Eucalyptol": 0,
-        "\u03B4-3-Carene": 0,
-        "Terpinolene": 0,
-        "p-Cymene": 0,
-        "\u03B3-Terpinene": 0,
-        "\u03B1-Terpinene": 0,
-        "Geraniol": 0,
-        "Camphene": 0
-      },
-      "TotalTerpenes": 32.64
-    },
-    "Compliance": {
-      "Passed": true,
-      "ContaminantsPassed": true,
-      "Status": "pass"
-    },
-    "Freshness": {
-      "DaysSinceTest": 62,
-      "Score": 70,
-      "Band": "Good"
-    }
-  },
-  "Validation": {
-    "IsValid": false,
-    "Warnings": [
-      {
-        "Code": "TOTAL_TERPENES_HIGH",
-        "Message": "Total terpenes are unusually high.",
-        "Severity": "warning"
-      }
-    ]
-  },
-  "Score": {
-    "Score": 90,
-    "Tier": "God Tier",
-    "Breakdown": {
-      "Potency": 35,
-      "Terpenes": 25,
-      "Freshness": 20,
-      "Compliance": 10
-    }
-  },
-  "Profile": {
-    "DominantTerpene": "\u03B2-Myrcene",
-    "TopTerpenes": [
-      "\u03B2-Myrcene",
-      "\u03B2-Caryophyllene",
-      "\u03B1-Humulene"
-    ],
-    "ProfileType": "Floral",
-    "Lean": "Unknown"
-  }
-}
-{
-  "Coa": {
-    "ProductType": "Unknown",
-    "IsAmended": false,
-    "LabName": "Digipath",
-    "ProductName": "",
-    "BatchId": "",
-    "HarvestDate": null,
-    "TestDate": "2025-12-17T00:00:00",
-    "PackageDate": null,
-    "Cannabinoids": {
-      "THC": {
-        "FieldName": "THC",
-        "Value": 0.225,
-        "SourceText": "\u03949-THC 0.003 0.225 2.25 Geraniol 106-24-1 0.0050 \u003CLOQ \u003CLOQ",
-        "Confidence": 0.95
-      },
-      "THCA": {
-        "FieldName": "THCA",
-        "Value": 26.564,
-        "SourceText": "THCa 0.004 26.564 265.64 Caryophyllene Oxide 1139-30-6 0.0039 0.0093 0.093",
-        "Confidence": 0.95
-      },
-      "CBD": {
-        "FieldName": "CBD",
-        "Value": 0,
-        "SourceText": "CBD 0.014 \u003CLOQ \u003CLOQ Ocimene 13877-91-3 0.0083 \u003CLOQ \u003CLOQ",
-        "Confidence": 0.85
-      },
-      "CBDA": {
-        "FieldName": "CBDA",
-        "Value": 0.056,
-        "SourceText": "CBDa 0.004 0.056 0.56 p-Cymene 99-87-6 0.0043 \u003CLOQ \u003CLOQ",
-        "Confidence": 0.95
-      },
-      "TotalTHC": 23.52,
-      "TotalCBD": 0.05
-    },
-    "Terpenes": {
-      "Terpenes": {
-        "\u03B2-Caryophyllene": 0.6959,
-        "\u03B4-Limonene": 0.2522,
-        "\u03B1-Humulene": 0.1923,
-        "Linalool": 0.1777,
-        "\u03B2-Myrcene": 0.1263,
-        "\u03B1-Bisabolol": 0.1011,
-        "Nerolidol": 0.0805,
-        "\u03B2-Pinene": 0.0585,
-        "Farnesene": 0.0528,
-        "\u03B1-Pinene": 0.0305,
-        "Camphene": 0.0100,
-        "Caryophyllene Oxide": 0.0093,
-        "Geraniol": 0,
-        "Eucalyptol": 0,
-        "Terpinolene": 0,
-        "p-Cymene": 0,
-        "Ocimene": 0,
-        "\u03B4-3-Carene": 0,
-        "Isopulegol": 0,
-        "Guaiol": 0,
-        "\u03B1-Terpinene": 0,
-        "\u03B3-Terpinene": 0
-      },
-      "TotalTerpenes": 27.54
-    },
-    "Compliance": {
-      "Passed": true,
-      "ContaminantsPassed": true,
-      "Status": "pass"
-    },
-    "Freshness": {
-      "DaysSinceTest": 131,
+      "DaysSinceTest": 153,
       "Score": 30,
       "Band": "Aging"
     }
@@ -842,30 +156,26 @@
     "IsValid": false,
     "Warnings": [
       {
-        "Code": "TOTAL_TERPENES_HIGH",
-        "Message": "Total terpenes are unusually high.",
+        "Code": "AMENDED_COA",
+        "Message": "COA is marked as amended, revised, or corrected.",
         "Severity": "warning"
       }
     ]
   },
   "Score": {
-    "Score": 75,
-    "Tier": "Solid",
+    "Score": 80,
+    "Tier": "Fire",
     "Breakdown": {
-      "Potency": 30,
+      "Potency": 35,
       "Terpenes": 25,
       "Freshness": 10,
       "Compliance": 10
     }
   },
   "Profile": {
-    "DominantTerpene": "\u03B2-Caryophyllene",
-    "TopTerpenes": [
-      "\u03B2-Caryophyllene",
-      "\u03B4-Limonene",
-      "\u03B1-Humulene"
-    ],
-    "ProfileType": "Floral",
+    "DominantTerpene": "",
+    "TopTerpenes": [],
+    "ProfileType": "Unknown",
     "Lean": "Unknown"
   }
 }
@@ -932,12 +242,12 @@
         "\u03B3-Terpinene": 0,
         "Farnesene": 0
       },
-      "TotalTerpenes": 36.78
+      "TotalTerpenes": 1.45
     },
     "Compliance": {
-      "Passed": true,
-      "ContaminantsPassed": true,
-      "Status": "pass"
+      "Passed": false,
+      "ContaminantsPassed": null,
+      "Status": "unknown"
     },
     "Freshness": {
       "DaysSinceTest": 84,
@@ -952,22 +262,17 @@
         "Code": "AMENDED_COA",
         "Message": "COA is marked as amended, revised, or corrected.",
         "Severity": "warning"
-      },
-      {
-        "Code": "TOTAL_TERPENES_HIGH",
-        "Message": "Total terpenes are unusually high.",
-        "Severity": "warning"
       }
     ]
   },
   "Score": {
-    "Score": 95,
-    "Tier": "God Tier",
+    "Score": 70,
+    "Tier": "Solid",
     "Breakdown": {
       "Potency": 40,
-      "Terpenes": 25,
+      "Terpenes": 10,
       "Freshness": 20,
-      "Compliance": 10
+      "Compliance": 0
     }
   },
   "Profile": {

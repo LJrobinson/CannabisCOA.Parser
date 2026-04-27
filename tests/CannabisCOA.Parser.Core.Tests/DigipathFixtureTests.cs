@@ -31,8 +31,9 @@ public class DigipathFixtureTests
         Assert.NotNull(result.TestDate);
         Assert.Equal(new DateTime(2025, 12, 17), result.TestDate);
 
-        Assert.True(result.Compliance.Passed);
-        Assert.Equal("pass", result.Compliance.Status);
+        Assert.False(result.Compliance.Passed);
+        Assert.Null(result.Compliance.ContaminantsPassed);
+        Assert.Equal("unknown", result.Compliance.Status);
 
         Assert.True(result.Terpenes.TotalTerpenes > 0);
     }

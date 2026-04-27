@@ -1,0 +1,106 @@
+{
+  "Coa": {
+    "ProductType": "Flower",
+    "IsAmended": true,
+    "LabName": "Ace Analytical Laboratory",
+    "ProductName": "",
+    "BatchId": "",
+    "HarvestDate": "2025-10-23T00:00:00",
+    "TestDate": "2025-11-25T00:00:00",
+    "PackageDate": null,
+    "Cannabinoids": {
+      "THC": {
+        "FieldName": "THC",
+        "Value": 0.285,
+        "SourceText": "\u03949-THC 0.060 0.285 2.85 \u03B2-Caryophyllene 0.04 2.93 0.293",
+        "Confidence": 0.95
+      },
+      "THCA": {
+        "FieldName": "THCA",
+        "Value": 22.959,
+        "SourceText": "THCa 0.060 22.959 229.59",
+        "Confidence": 0.95
+      },
+      "CBD": {
+        "FieldName": "CBD",
+        "Value": 0,
+        "SourceText": "CBD 0.060 \u003CLOQ \u003CLOQ",
+        "Confidence": 0.85
+      },
+      "CBDA": {
+        "FieldName": "CBDA",
+        "Value": 0,
+        "SourceText": "CBDa 0.060 \u003CLOQ \u003CLOQ \u03B1-Humulene 0.04 0.82 0.082",
+        "Confidence": 0.85
+      },
+      "TotalTHC": 20.42,
+      "TotalCBD": 0.00
+    },
+    "Terpenes": {
+      "Terpenes": {
+        "\u03B4-Limonene": 1.261,
+        "\u03B2-Myrcene": 1.063,
+        "\u03B2-Caryophyllene": 0.293,
+        "Linalool": 0.211,
+        "\u03B2-Pinene": 0.185,
+        "Ocimene": 0.159,
+        "\u03B1-Pinene": 0.129,
+        "\u03B1-Humulene": 0.082,
+        "Camphene": 0.028,
+        "Terpinolene": 0.015,
+        "\u03B1-Bisabolol": 0.010,
+        "\u03B1-Terpinene": 0,
+        "Caryophyllene Oxide": 0,
+        "\u03B4-3-Carene": 0,
+        "Eucalyptol": 0,
+        "\u03B3-Terpinene": 0,
+        "Geraniol": 0,
+        "Guaiol": 0,
+        "Isopulegol": 0,
+        "p-Cymene": 0,
+        "Nerolidol": 0
+      },
+      "TotalTerpenes": 3.44
+    },
+    "Compliance": {
+      "Passed": false,
+      "ContaminantsPassed": true,
+      "Status": "unknown"
+    },
+    "Freshness": {
+      "DaysSinceTest": 153,
+      "Score": 30,
+      "Band": "Aging"
+    }
+  },
+  "Validation": {
+    "IsValid": false,
+    "Warnings": [
+      {
+        "Code": "AMENDED_COA",
+        "Message": "COA is marked as amended, revised, or corrected.",
+        "Severity": "warning"
+      }
+    ]
+  },
+  "Score": {
+    "Score": 60,
+    "Tier": "Mid",
+    "Breakdown": {
+      "Potency": 30,
+      "Terpenes": 20,
+      "Freshness": 10,
+      "Compliance": 0
+    }
+  },
+  "Profile": {
+    "DominantTerpene": "\u03B4-Limonene",
+    "TopTerpenes": [
+      "\u03B4-Limonene",
+      "\u03B2-Myrcene",
+      "\u03B2-Caryophyllene"
+    ],
+    "ProfileType": "Floral",
+    "Lean": "Unknown"
+  }
+}

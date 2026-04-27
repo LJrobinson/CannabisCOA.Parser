@@ -244,6 +244,662 @@ public class DigipathFlowerParserTests
         Assert.DoesNotContain(validation.Warnings, warning => warning.Code == "TOTAL_TERPENES_HIGH");
     }
 
+    [Fact]
+    public void Pesticide_Row_With_Unknown_Microbial_Boundary_Returns_Unknown_Contaminants()
+    {
+        var text = BuildDigipathPesticideTable(
+            "Abamectin 0.44320 0.00000 <LOD Pass Aerobic Bacteria 100 10000 NR NT");
+
+        var result = CoaParser.Parse(text);
+
+        Assert.False(result.Compliance.Passed);
+        Assert.Null(result.Compliance.ContaminantsPassed);
+        Assert.Equal("unknown", result.Compliance.Status);
+    }
+
+    [Fact]
+    public void Pesticide_Loq_Row_With_Microbial_Boundary_Passes_Contaminants()
+    {
+        var text = BuildDigipathPesticideTable(
+            "Acequinocyl 0.40000 4.00000 <LOQ Pass Bile-Tolerant Gram-Negative Bacteria 100 1000 <100 Pass");
+
+        var result = CoaParser.Parse(text);
+
+        Assert.False(result.Compliance.Passed);
+        Assert.True(result.Compliance.ContaminantsPassed);
+        Assert.Equal("unknown", result.Compliance.Status);
+    }
+
+    [Fact]
+    public void Pesticide_Row_Stops_Before_Right_Side_Aspergillus_Boundary()
+    {
+        var text = BuildDigipathPesticideTable(
+            "Etoxazole 0.40000 0.40000 <LOQ Pass Aspergillus fumigatus Negative Pass");
+
+        var result = CoaParser.Parse(text);
+
+        Assert.False(result.Compliance.Passed);
+        Assert.True(result.Compliance.ContaminantsPassed);
+        Assert.Equal("unknown", result.Compliance.Status);
+    }
+
+    [Fact]
+    public void Multi_Word_Pesticide_Row_Passes_Contaminants()
+    {
+        var text = BuildDigipathPesticideTable(
+            "Piperonyl Butoxide 0.40000 3.00000 <LOQ Pass");
+
+        var result = CoaParser.Parse(text);
+
+        Assert.False(result.Compliance.Passed);
+        Assert.True(result.Compliance.ContaminantsPassed);
+        Assert.Equal("unknown", result.Compliance.Status);
+    }
+
+    [Fact]
+    public void Pesticide_Numeric_Mass_Above_Limit_Fails_Compliance()
+    {
+        var text = BuildDigipathPesticideTable(
+            "Bifenazate 0.40000 0.40000 0.50000 Pass");
+
+        var result = CoaParser.Parse(text);
+
+        Assert.False(result.Compliance.Passed);
+        Assert.False(result.Compliance.ContaminantsPassed);
+        Assert.Equal("fail", result.Compliance.Status);
+    }
+
+    [Fact]
+    public void Pesticide_Explicit_Fail_Status_Fails_Compliance()
+    {
+        var text = BuildDigipathPesticideTable(
+            "Bifenazate 0.40000 0.40000 0.30000 Fail");
+
+        var result = CoaParser.Parse(text);
+
+        Assert.False(result.Compliance.Passed);
+        Assert.False(result.Compliance.ContaminantsPassed);
+        Assert.Equal("fail", result.Compliance.Status);
+    }
+
+    [Fact]
+    public void Malformed_Pesticide_Row_Does_Not_Guess_From_Microbial_Side()
+    {
+        var text = BuildDigipathPesticideTable(
+            "Bifenazate 0.40000 Aerobic Bacteria 100");
+
+        var result = CoaParser.Parse(text);
+
+        Assert.False(result.Compliance.Passed);
+        Assert.Null(result.Compliance.ContaminantsPassed);
+        Assert.Equal("unknown", result.Compliance.Status);
+    }
+
+    [Fact]
+    public void Pesticide_Table_Preserves_Explicit_Overall_Pass()
+    {
+        var text = BuildDigipathPesticideTableWithOverall(
+            "PASS",
+            "Abamectin 0.44320 0.00000 <LOD Pass Aerobic Bacteria 100 10000 NR NT");
+
+        var result = CoaParser.Parse(text);
+
+        Assert.True(result.Compliance.Passed);
+        Assert.True(result.Compliance.ContaminantsPassed);
+        Assert.Equal("pass", result.Compliance.Status);
+    }
+
+    [Fact]
+    public void Pesticide_Table_Preserves_Explicit_Overall_Fail()
+    {
+        var text = BuildDigipathPesticideTableWithOverall(
+            "FAIL",
+            "Abamectin 0.44320 0.00000 <LOD Pass Aerobic Bacteria 100 10000 NR NT");
+
+        var result = CoaParser.Parse(text);
+
+        Assert.False(result.Compliance.Passed);
+        Assert.False(result.Compliance.ContaminantsPassed);
+        Assert.Equal("fail", result.Compliance.Status);
+    }
+
+    [Fact]
+    public void Passing_Pesticide_Table_With_Unknown_Overall_Marks_Contaminants_Only()
+    {
+        var text = BuildDigipathPesticideTable(
+            "Acequinocyl 0.40000 4.00000 <LOQ Pass Bile-Tolerant Gram-Negative Bacteria 100 1000 <100 Pass",
+            "Piperonyl Butoxide 0.40000 3.00000 <LOQ Pass");
+
+        var result = CoaParser.Parse(text);
+
+        Assert.False(result.Compliance.Passed);
+        Assert.True(result.Compliance.ContaminantsPassed);
+        Assert.Equal("unknown", result.Compliance.Status);
+    }
+
+    [Fact]
+    public void Heavy_Metal_Numeric_Row_Passes_Contaminants()
+    {
+        var text = BuildDigipathHeavyMetalTable(
+            "Arsenic 4.6 2000.0 7.1 Pass");
+
+        var result = CoaParser.Parse(text);
+
+        Assert.False(result.Compliance.Passed);
+        Assert.True(result.Compliance.ContaminantsPassed);
+        Assert.Equal("unknown", result.Compliance.Status);
+    }
+
+    [Fact]
+    public void Heavy_Metal_Qualified_Row_Passes_Contaminants()
+    {
+        var text = BuildDigipathHeavyMetalTable(
+            "Cadmium 6.9 820.0 <LOQ Pass");
+
+        var result = CoaParser.Parse(text);
+
+        Assert.False(result.Compliance.Passed);
+        Assert.True(result.Compliance.ContaminantsPassed);
+        Assert.Equal("unknown", result.Compliance.Status);
+    }
+
+    [Fact]
+    public void Full_Digipath_Heavy_Metal_Table_Passes_Contaminants()
+    {
+        var text = BuildDigipathHeavyMetalTable(
+            "Arsenic 4.6 2000.0 7.1 Pass",
+            "Cadmium 6.9 820.0 <LOQ Pass",
+            "Lead 4.5 1200.0 6.3 Pass",
+            "Mercury 3.6 400.0 3.9 Pass");
+
+        var result = CoaParser.Parse(text);
+
+        Assert.False(result.Compliance.Passed);
+        Assert.True(result.Compliance.ContaminantsPassed);
+        Assert.Equal("unknown", result.Compliance.Status);
+    }
+
+    [Fact]
+    public void Heavy_Metal_Numeric_Result_Above_Limit_Fails_Compliance()
+    {
+        var text = BuildDigipathHeavyMetalTable(
+            "Arsenic 4.6 2000.0 2500.0 Pass");
+
+        var result = CoaParser.Parse(text);
+
+        Assert.False(result.Compliance.Passed);
+        Assert.False(result.Compliance.ContaminantsPassed);
+        Assert.Equal("fail", result.Compliance.Status);
+    }
+
+    [Fact]
+    public void Heavy_Metal_Explicit_Fail_Status_Fails_Compliance()
+    {
+        var text = BuildDigipathHeavyMetalTable(
+            "Lead 4.5 1200.0 6.3 Fail");
+
+        var result = CoaParser.Parse(text);
+
+        Assert.False(result.Compliance.Passed);
+        Assert.False(result.Compliance.ContaminantsPassed);
+        Assert.Equal("fail", result.Compliance.Status);
+    }
+
+    [Fact]
+    public void Malformed_Heavy_Metal_Row_Does_Not_Guess_From_Nearby_Text()
+    {
+        var text = BuildDigipathHeavyMetalTable(
+            "Mercury 3.6 Heavy Metals Pass");
+
+        var result = CoaParser.Parse(text);
+
+        Assert.False(result.Compliance.Passed);
+        Assert.Null(result.Compliance.ContaminantsPassed);
+        Assert.Equal("unknown", result.Compliance.Status);
+    }
+
+    [Fact]
+    public void Passing_Pesticides_And_Failing_Heavy_Metals_Fail_Compliance()
+    {
+        var text = BuildDigipathPesticideAndHeavyMetalTable(
+            "Acequinocyl 0.40000 4.00000 <LOQ Pass Bile-Tolerant Gram-Negative Bacteria 100 1000 <100 Pass",
+            "Arsenic 4.6 2000.0 2500.0 Pass");
+
+        var result = CoaParser.Parse(text);
+
+        Assert.False(result.Compliance.Passed);
+        Assert.False(result.Compliance.ContaminantsPassed);
+        Assert.Equal("fail", result.Compliance.Status);
+    }
+
+    [Fact]
+    public void Heavy_Metal_Table_Preserves_Explicit_Overall_Fail()
+    {
+        var text = BuildDigipathHeavyMetalTableWithOverall(
+            "FAIL",
+            "Arsenic 4.6 2000.0 7.1 Pass");
+
+        var result = CoaParser.Parse(text);
+
+        Assert.False(result.Compliance.Passed);
+        Assert.False(result.Compliance.ContaminantsPassed);
+        Assert.Equal("fail", result.Compliance.Status);
+    }
+
+    [Fact]
+    public void Heavy_Metal_Table_Preserves_Explicit_Overall_Pass()
+    {
+        var text = BuildDigipathHeavyMetalTableWithOverall(
+            "PASS",
+            "Arsenic 4.6 2000.0 7.1 Pass");
+
+        var result = CoaParser.Parse(text);
+
+        Assert.True(result.Compliance.Passed);
+        Assert.True(result.Compliance.ContaminantsPassed);
+        Assert.Equal("pass", result.Compliance.Status);
+    }
+
+    [Fact]
+    public void Passing_Heavy_Metal_Table_With_Unknown_Overall_Marks_Contaminants_Only()
+    {
+        var text = BuildDigipathHeavyMetalTable(
+            "Arsenic 4.6 2000.0 7.1 Pass",
+            "Cadmium 6.9 820.0 <LOQ Pass");
+
+        var result = CoaParser.Parse(text);
+
+        Assert.False(result.Compliance.Passed);
+        Assert.True(result.Compliance.ContaminantsPassed);
+        Assert.Equal("unknown", result.Compliance.Status);
+    }
+
+    [Fact]
+    public void Quantitative_Microbial_Nr_Nt_Row_Is_Unknown()
+    {
+        var text = BuildDigipathMicrobialTable(
+            "Aerobic Bacteria 100 10000 NR NT");
+
+        var result = CoaParser.Parse(text);
+
+        Assert.False(result.Compliance.Passed);
+        Assert.Null(result.Compliance.ContaminantsPassed);
+        Assert.Equal("unknown", result.Compliance.Status);
+    }
+
+    [Fact]
+    public void Quantitative_Microbial_Less_Than_Row_Passes()
+    {
+        var text = BuildDigipathMicrobialTable(
+            "Bile-Tolerant Gram-Negative Bacteria 100 1000 <100 Pass");
+
+        var result = CoaParser.Parse(text);
+
+        Assert.False(result.Compliance.Passed);
+        Assert.True(result.Compliance.ContaminantsPassed);
+        Assert.Equal("unknown", result.Compliance.Status);
+    }
+
+    [Fact]
+    public void Coliforms_Less_Than_Row_Passes()
+    {
+        var text = BuildDigipathMicrobialTable(
+            "Coliforms 100 1000 <100 Pass");
+
+        var result = CoaParser.Parse(text);
+
+        Assert.False(result.Compliance.Passed);
+        Assert.True(result.Compliance.ContaminantsPassed);
+        Assert.Equal("unknown", result.Compliance.Status);
+    }
+
+    [Fact]
+    public void Yeast_And_Mold_Less_Than_Row_Passes()
+    {
+        var text = BuildDigipathMicrobialTable(
+            "Yeast & Mold 100 10000 <100 Pass");
+
+        var result = CoaParser.Parse(text);
+
+        Assert.False(result.Compliance.Passed);
+        Assert.True(result.Compliance.ContaminantsPassed);
+        Assert.Equal("unknown", result.Compliance.Status);
+    }
+
+    [Fact]
+    public void Powdery_Mildew_Nr_Nt_Row_Is_Unknown()
+    {
+        var text = BuildDigipathMicrobialTable(
+            "Powdery Mildew 0 NR NT");
+
+        var result = CoaParser.Parse(text);
+
+        Assert.False(result.Compliance.Passed);
+        Assert.Null(result.Compliance.ContaminantsPassed);
+        Assert.Equal("unknown", result.Compliance.Status);
+    }
+
+    [Fact]
+    public void Stec_Ecoli_Negative_Row_Passes()
+    {
+        var text = BuildDigipathMicrobialTable(
+            "STEC E. coli Negative Pass");
+
+        var result = CoaParser.Parse(text);
+
+        Assert.False(result.Compliance.Passed);
+        Assert.True(result.Compliance.ContaminantsPassed);
+        Assert.Equal("unknown", result.Compliance.Status);
+    }
+
+    [Fact]
+    public void Salmonella_Negative_Row_Passes()
+    {
+        var text = BuildDigipathMicrobialTable(
+            "Salmonella Negative Pass");
+
+        var result = CoaParser.Parse(text);
+
+        Assert.False(result.Compliance.Passed);
+        Assert.True(result.Compliance.ContaminantsPassed);
+        Assert.Equal("unknown", result.Compliance.Status);
+    }
+
+    [Fact]
+    public void Aspergillus_Negative_Row_Passes()
+    {
+        var text = BuildDigipathMicrobialTable(
+            "Aspergillus niger Negative Pass");
+
+        var result = CoaParser.Parse(text);
+
+        Assert.False(result.Compliance.Passed);
+        Assert.True(result.Compliance.ContaminantsPassed);
+        Assert.Equal("unknown", result.Compliance.Status);
+    }
+
+    [Fact]
+    public void Quantitative_Microbial_Numeric_Result_Above_Limit_Fails_Compliance()
+    {
+        var text = BuildDigipathMicrobialTable(
+            "Coliforms 100 1000 1200 Pass");
+
+        var result = CoaParser.Parse(text);
+
+        Assert.False(result.Compliance.Passed);
+        Assert.False(result.Compliance.ContaminantsPassed);
+        Assert.Equal("fail", result.Compliance.Status);
+    }
+
+    [Fact]
+    public void Quantitative_Microbial_Explicit_Fail_Status_Fails_Compliance()
+    {
+        var text = BuildDigipathMicrobialTable(
+            "Yeast & Mold 100 10000 5000 Fail");
+
+        var result = CoaParser.Parse(text);
+
+        Assert.False(result.Compliance.Passed);
+        Assert.False(result.Compliance.ContaminantsPassed);
+        Assert.Equal("fail", result.Compliance.Status);
+    }
+
+    [Fact]
+    public void Binary_Microbial_Positive_Result_Fails_Compliance()
+    {
+        var text = BuildDigipathMicrobialTable(
+            "Salmonella Positive Pass");
+
+        var result = CoaParser.Parse(text);
+
+        Assert.False(result.Compliance.Passed);
+        Assert.False(result.Compliance.ContaminantsPassed);
+        Assert.Equal("fail", result.Compliance.Status);
+    }
+
+    [Fact]
+    public void Binary_Microbial_Detected_Result_Fails_Compliance()
+    {
+        var text = BuildDigipathMicrobialTable(
+            "Aspergillus fumigatus Detected Pass");
+
+        var result = CoaParser.Parse(text);
+
+        Assert.False(result.Compliance.Passed);
+        Assert.False(result.Compliance.ContaminantsPassed);
+        Assert.Equal("fail", result.Compliance.Status);
+    }
+
+    [Fact]
+    public void Malformed_Microbial_Row_Does_Not_Guess_From_Pesticide_Side()
+    {
+        var text = BuildDigipathMicrobialTable(
+            "Bile-Tolerant Gram-Negative Bacteria 100 Abamectin 0.44320");
+
+        var result = CoaParser.Parse(text);
+
+        Assert.False(result.Compliance.Passed);
+        Assert.Null(result.Compliance.ContaminantsPassed);
+        Assert.Equal("unknown", result.Compliance.Status);
+    }
+
+    [Fact]
+    public void Passing_Pesticides_Heavy_Metals_And_Failing_Microbials_Fail_Compliance()
+    {
+        var text = BuildDigipathPesticideHeavyMetalAndMicrobialTable(
+            "Acequinocyl 0.40000 4.00000 <LOQ Pass",
+            "Arsenic 4.6 2000.0 7.1 Pass",
+            "Salmonella Positive Pass");
+
+        var result = CoaParser.Parse(text);
+
+        Assert.False(result.Compliance.Passed);
+        Assert.False(result.Compliance.ContaminantsPassed);
+        Assert.Equal("fail", result.Compliance.Status);
+    }
+
+    [Fact]
+    public void Passing_Microbial_Table_With_Unknown_Overall_Marks_Contaminants_Only()
+    {
+        var text = BuildDigipathMicrobialTable(
+            "Bile-Tolerant Gram-Negative Bacteria 100 1000 <100 Pass",
+            "Salmonella Negative Pass");
+
+        var result = CoaParser.Parse(text);
+
+        Assert.False(result.Compliance.Passed);
+        Assert.True(result.Compliance.ContaminantsPassed);
+        Assert.Equal("unknown", result.Compliance.Status);
+    }
+
+    [Fact]
+    public void Microbial_Table_With_Unknown_Rows_And_No_Fail_Returns_Unknown_Contaminants()
+    {
+        var text = BuildDigipathMicrobialTable(
+            "Aerobic Bacteria 100 10000 NR NT",
+            "Salmonella Negative Pass");
+
+        var result = CoaParser.Parse(text);
+
+        Assert.False(result.Compliance.Passed);
+        Assert.Null(result.Compliance.ContaminantsPassed);
+        Assert.Equal("unknown", result.Compliance.Status);
+    }
+
+    [Fact]
+    public void Mycotoxin_Aflatoxins_Qualified_Row_Passes_Contaminants()
+    {
+        var text = BuildDigipathMycotoxinTable(
+            "Aflatoxins 4.90 20.00 <LOQ Pass");
+
+        var result = CoaParser.Parse(text);
+
+        Assert.False(result.Compliance.Passed);
+        Assert.True(result.Compliance.ContaminantsPassed);
+        Assert.Equal("unknown", result.Compliance.Status);
+    }
+
+    [Fact]
+    public void Mycotoxin_Ochratoxin_Qualified_Row_Passes_Contaminants()
+    {
+        var text = BuildDigipathMycotoxinTable(
+            "Ochratoxin A 4.40 20.00 <LOQ Pass");
+
+        var result = CoaParser.Parse(text);
+
+        Assert.False(result.Compliance.Passed);
+        Assert.True(result.Compliance.ContaminantsPassed);
+        Assert.Equal("unknown", result.Compliance.Status);
+    }
+
+    [Fact]
+    public void Full_Digipath_Mycotoxin_Table_Passes_Contaminants()
+    {
+        var text = BuildDigipathMycotoxinTable(
+            "Aflatoxins 4.90 20.00 <LOQ Pass",
+            "Ochratoxin A 4.40 20.00 <LOQ Pass");
+
+        var result = CoaParser.Parse(text);
+
+        Assert.False(result.Compliance.Passed);
+        Assert.True(result.Compliance.ContaminantsPassed);
+        Assert.Equal("unknown", result.Compliance.Status);
+    }
+
+    [Fact]
+    public void Mycotoxins_Pass_Section_Label_Does_Not_Set_Overall_Passed()
+    {
+        var text = """
+            Digipath Labs
+            Product Type: Flower
+            Safety & Quality Tests
+            Mycotoxins Pass
+            Analyte LOQ Limit Mass Status
+            PPB PPB PPB
+            Aflatoxins 4.90 20.00 <LOQ Pass
+            Residual Solvents Pass
+            """;
+
+        var result = CoaParser.Parse(text);
+
+        Assert.False(result.Compliance.Passed);
+        Assert.True(result.Compliance.ContaminantsPassed);
+        Assert.Equal("unknown", result.Compliance.Status);
+    }
+
+    [Fact]
+    public void Mycotoxin_Numeric_Mass_Above_Limit_Fails_Compliance()
+    {
+        var text = BuildDigipathMycotoxinTable(
+            "Aflatoxins 4.90 20.00 25.00 Pass");
+
+        var result = CoaParser.Parse(text);
+
+        Assert.False(result.Compliance.Passed);
+        Assert.False(result.Compliance.ContaminantsPassed);
+        Assert.Equal("fail", result.Compliance.Status);
+    }
+
+    [Fact]
+    public void Mycotoxin_Explicit_Fail_Status_Fails_Compliance()
+    {
+        var text = BuildDigipathMycotoxinTable(
+            "Ochratoxin A 4.40 20.00 5.00 Fail");
+
+        var result = CoaParser.Parse(text);
+
+        Assert.False(result.Compliance.Passed);
+        Assert.False(result.Compliance.ContaminantsPassed);
+        Assert.Equal("fail", result.Compliance.Status);
+    }
+
+    [Fact]
+    public void Malformed_Mycotoxin_Row_Does_Not_Guess_From_Nearby_Text()
+    {
+        var text = BuildDigipathMycotoxinTable(
+            "Ochratoxin A 4.40 Mycotoxins Pass");
+
+        var result = CoaParser.Parse(text);
+
+        Assert.False(result.Compliance.Passed);
+        Assert.Null(result.Compliance.ContaminantsPassed);
+        Assert.Equal("unknown", result.Compliance.Status);
+    }
+
+    [Fact]
+    public void Mycotoxin_Prose_Does_Not_Create_Compliance_Result()
+    {
+        var text = """
+            Digipath Labs
+            Product Type: Flower
+            Tested Mycotoxins: aflatoxin B1, aflatoxin B2, aflatoxin G1, aflatoxin G2, & Ochratoxin.
+            """;
+
+        var result = CoaParser.Parse(text);
+
+        Assert.False(result.Compliance.Passed);
+        Assert.Null(result.Compliance.ContaminantsPassed);
+        Assert.Equal("unknown", result.Compliance.Status);
+    }
+
+    [Fact]
+    public void Passing_Contaminants_And_Failing_Mycotoxins_Fail_Compliance()
+    {
+        var text = BuildDigipathAllContaminantsTable(
+            "Acequinocyl 0.40000 4.00000 <LOQ Pass",
+            "Arsenic 4.6 2000.0 7.1 Pass",
+            "Salmonella Negative Pass",
+            "Aflatoxins 4.90 20.00 25.00 Pass");
+
+        var result = CoaParser.Parse(text);
+
+        Assert.False(result.Compliance.Passed);
+        Assert.False(result.Compliance.ContaminantsPassed);
+        Assert.Equal("fail", result.Compliance.Status);
+    }
+
+    [Fact]
+    public void Mycotoxin_Table_Preserves_Explicit_Overall_Fail()
+    {
+        var text = BuildDigipathMycotoxinTableWithOverall(
+            "FAIL",
+            "Aflatoxins 4.90 20.00 <LOQ Pass");
+
+        var result = CoaParser.Parse(text);
+
+        Assert.False(result.Compliance.Passed);
+        Assert.False(result.Compliance.ContaminantsPassed);
+        Assert.Equal("fail", result.Compliance.Status);
+    }
+
+    [Fact]
+    public void Mycotoxin_Table_Preserves_Explicit_Overall_Pass()
+    {
+        var text = BuildDigipathMycotoxinTableWithOverall(
+            "PASS",
+            "Aflatoxins 4.90 20.00 <LOQ Pass");
+
+        var result = CoaParser.Parse(text);
+
+        Assert.True(result.Compliance.Passed);
+        Assert.True(result.Compliance.ContaminantsPassed);
+        Assert.Equal("pass", result.Compliance.Status);
+    }
+
+    [Fact]
+    public void Passing_Mycotoxin_Table_With_Unknown_Overall_Marks_Contaminants_Only()
+    {
+        var text = BuildDigipathMycotoxinTable(
+            "Aflatoxins 4.90 20.00 <LOQ Pass",
+            "Ochratoxin A 4.40 20.00 <LOQ Pass");
+
+        var result = CoaParser.Parse(text);
+
+        Assert.False(result.Compliance.Passed);
+        Assert.True(result.Compliance.ContaminantsPassed);
+        Assert.Equal("unknown", result.Compliance.Status);
+    }
+
     private static string BuildDigipathTable(params string[] rows)
     {
         return $"""
@@ -269,6 +925,155 @@ public class DigipathFlowerParserTests
             {string.Join('\n', rows)}
             Safety & Quality Tests
             Overall Result: PASS
+            """;
+    }
+
+    private static string BuildDigipathPesticideTable(params string[] rows)
+    {
+        return $"""
+            Digipath Labs
+            Product Type: Flower
+            Safety & Quality Tests
+            Pesticides Pass Microbials Pass
+            Analyte LOQ Limit Mass Status Analyte LOQ Limit Units Status
+            PPM PPM PPM CFU/g CFU/g CFU/g
+            {string.Join('\n', rows)}
+            Heavy Metals Pass
+            """;
+    }
+
+    private static string BuildDigipathPesticideTableWithOverall(string overall, params string[] rows)
+    {
+        return $"""
+            {BuildDigipathPesticideTable(rows)}
+            Overall Result: {overall}
+            """;
+    }
+
+    private static string BuildDigipathHeavyMetalTable(params string[] rows)
+    {
+        return $"""
+            Digipath Labs
+            Product Type: Flower
+            Safety & Quality Tests
+            Heavy Metals Pass
+            Analyte LOQ Limit Units Status
+            PPB PPB PPB
+            {string.Join('\n', rows)}
+            Mycotoxins Pass
+            """;
+    }
+
+    private static string BuildDigipathHeavyMetalTableWithOverall(string overall, params string[] rows)
+    {
+        return $"""
+            {BuildDigipathHeavyMetalTable(rows)}
+            Overall Result: {overall}
+            """;
+    }
+
+    private static string BuildDigipathPesticideAndHeavyMetalTable(string pesticideRow, string heavyMetalRow)
+    {
+        return $"""
+            Digipath Labs
+            Product Type: Flower
+            Safety & Quality Tests
+            Pesticides Pass Microbials Pass
+            Analyte LOQ Limit Mass Status Analyte LOQ Limit Units Status
+            PPM PPM PPM CFU/g CFU/g CFU/g
+            {pesticideRow}
+            Heavy Metals Pass
+            Analyte LOQ Limit Units Status
+            PPB PPB PPB
+            {heavyMetalRow}
+            Mycotoxins Pass
+            """;
+    }
+
+    private static string BuildDigipathMycotoxinTable(params string[] rows)
+    {
+        return $"""
+            Digipath Labs
+            Product Type: Flower
+            Safety & Quality Tests
+            Mycotoxins
+            Pass
+            Analyte LOQ Limit Mass Status
+            PPB PPB PPB
+            {string.Join('\n', rows)}
+            Residual Solvents Pass
+            """;
+    }
+
+    private static string BuildDigipathMycotoxinTableWithOverall(string overall, params string[] rows)
+    {
+        return $"""
+            {BuildDigipathMycotoxinTable(rows)}
+            Overall Result: {overall}
+            """;
+    }
+
+    private static string BuildDigipathMicrobialTable(params string[] rows)
+    {
+        return $"""
+            Digipath Labs
+            Product Type: Flower
+            Safety & Quality Tests
+            Pesticides Pass Microbials Pass
+            Analyte LOQ Limit Mass Status Analyte LOQ Limit Units Status
+            PPM PPM PPM CFU/g CFU/g CFU/g
+            {string.Join('\n', rows)}
+            Heavy Metals Pass
+            """;
+    }
+
+    private static string BuildDigipathPesticideHeavyMetalAndMicrobialTable(
+        string pesticideRow,
+        string heavyMetalRow,
+        string microbialRow)
+    {
+        return $"""
+            Digipath Labs
+            Product Type: Flower
+            Safety & Quality Tests
+            Pesticides Pass Microbials Pass
+            Analyte LOQ Limit Mass Status Analyte LOQ Limit Units Status
+            PPM PPM PPM CFU/g CFU/g CFU/g
+            {pesticideRow}
+            {microbialRow}
+            Heavy Metals Pass
+            Analyte LOQ Limit Units Status
+            PPB PPB PPB
+            {heavyMetalRow}
+            Mycotoxins Pass
+            """;
+    }
+
+    private static string BuildDigipathAllContaminantsTable(
+        string pesticideRow,
+        string heavyMetalRow,
+        string microbialRow,
+        string mycotoxinRow)
+    {
+        return $"""
+            Digipath Labs
+            Product Type: Flower
+            Safety & Quality Tests
+            Pesticides Pass Microbials Pass
+            Analyte LOQ Limit Mass Status Analyte LOQ Limit Units Status
+            PPM PPM PPM CFU/g CFU/g CFU/g
+            {pesticideRow}
+            {microbialRow}
+            Heavy Metals Pass
+            Analyte LOQ Limit Units Status
+            PPB PPB PPB
+            {heavyMetalRow}
+            Mycotoxins
+            Pass
+            Analyte LOQ Limit Mass Status
+            PPB PPB PPB
+            {mycotoxinRow}
+            Residual Solvents Pass
             """;
     }
 }
