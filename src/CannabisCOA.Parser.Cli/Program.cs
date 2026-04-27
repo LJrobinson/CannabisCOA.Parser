@@ -10,6 +10,7 @@ var argsList = args.ToList();
 var scoreOnly = argsList.Contains("--score-only");
 var raw = argsList.Contains("--raw");
 var csv = argsList.Contains("--csv");
+var dumpText = argsList.Contains("--dump-text");
 var loggedUnknownLabs = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
 
 var jsonOptions = new JsonSerializerOptions
@@ -27,6 +28,7 @@ if (args.Length == 0)
     Console.WriteLine("  cannabis-coa --file fixtures/digipath-flower.txt");
     Console.WriteLine("  cannabis-coa --file fixtures/digipath-flower.txt --score-only");
     Console.WriteLine("  cannabis-coa --file fixtures/digipath-flower.txt --raw");
+    Console.WriteLine("  cannabis-coa --file sample.pdf --dump-text");
     Console.WriteLine("  cannabis-coa --batch G:\\COAs --out parsed.jsonl");
     return;
 }
@@ -68,6 +70,22 @@ if (argsList.Contains("--batch"))
             f.EndsWith(".txt", StringComparison.OrdinalIgnoreCase) ||
             f.EndsWith(".pdf", StringComparison.OrdinalIgnoreCase))
         .ToList();
+
+    if (dumpText)
+    {
+        foreach (var file in files)
+        {
+            Console.WriteLine($"===== {file} =====");
+
+            var text = file.EndsWith(".pdf", StringComparison.OrdinalIgnoreCase)
+                ? PdfTextExtractor.Extract(file)
+                : File.ReadAllText(file);
+
+            Console.WriteLine(text);
+        }
+
+        return;
+    }
 
     using var writer = new StreamWriter(output, append: false);
 
@@ -141,8 +159,15 @@ else
     inputText = string.Join(" ", argsList.Where(a =>
         a != "--score-only" &&
         a != "--raw" &&
-        a != "--csv"
+        a != "--csv" &&
+        a != "--dump-text"
     ));
+}
+
+if (dumpText)
+{
+    Console.Write(inputText);
+    return;
 }
 
 var result = CoaAnalyzer.Analyze(inputText);
