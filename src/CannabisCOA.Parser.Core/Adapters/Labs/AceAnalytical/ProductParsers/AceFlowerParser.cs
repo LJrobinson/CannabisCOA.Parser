@@ -3,6 +3,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using CannabisCOA.Parser.Core.Calculators;
 using CannabisCOA.Parser.Core.Enums;
+using CannabisCOA.Parser.Core.Mappers;
 using CannabisCOA.Parser.Core.Models;
 using CannabisCOA.Parser.Core.Parsers;
 
@@ -125,6 +126,9 @@ public static class AceFlowerParser
         @"^\s*(?<result>Not\s+Detected|Negative|Positive|Detected|ND|NR|NT)\s+(?<status>Pass|Fail|NT|NR)(?=\s|$)",
         RegexOptions.IgnoreCase | RegexOptions.Compiled);
 
+
+    //LEGACY COA RESULT
+
     public static CoaResult Parse(string text, string labName)
     {
         var cannabinoids = ParseAceCannabinoidsOrFallback(text);
@@ -151,6 +155,21 @@ public static class AceFlowerParser
             Compliance = ParseAceComplianceOrFallback(text),
             Freshness = FreshnessCalculator.Calculate(testDate)
         };
+    }
+
+    //FUTURE COA RESULT
+
+    public static CoaDocument ParseDocument(
+        string text,
+        string labName,
+        string? sourceFileName = null)
+    {
+        var result = Parse(text, labName);
+
+        return CoaDocumentMapper.FromCoaResult(
+            result,
+            sourceFileName,
+            parserName: nameof(AceFlowerParser));
     }
 
     private static CannabinoidProfile ParseAceCannabinoidsOrFallback(string text)

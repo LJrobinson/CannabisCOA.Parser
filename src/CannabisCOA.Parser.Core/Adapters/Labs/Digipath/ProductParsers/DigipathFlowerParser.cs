@@ -2,6 +2,7 @@ using System.Globalization;
 using System.Text;
 using System.Text.RegularExpressions;
 using CannabisCOA.Parser.Core.Calculators;
+using CannabisCOA.Parser.Core.Mappers;
 using CannabisCOA.Parser.Core.Models;
 using CannabisCOA.Parser.Core.Parsers;
 
@@ -192,6 +193,7 @@ public static class DigipathFlowerParser
         @"^\s*(?<result>Not\s+Detected|Negative|Positive|Detected|NR|NT)\s+(?<status>Pass|Fail|NT|NR)(?=\s|$)",
         RegexOptions.IgnoreCase | RegexOptions.Compiled);
 
+    //LEGACY PARSING RETURN
     public static CoaResult Parse(string text, string labName)
     {
         var productType = ProductTypeDetector.Detect(text);
@@ -214,6 +216,21 @@ public static class DigipathFlowerParser
             Freshness = freshness,
             Compliance = compliance
         };
+    }
+
+
+    //FUTURE COA PARSING RESULT
+    public static CoaDocument ParseDocument(
+        string text,
+        string labName,
+        string? sourceFileName = null)
+    {
+        var result = Parse(text, labName);
+
+        return CoaDocumentMapper.FromCoaResult(
+            result,
+            sourceFileName,
+            parserName: nameof(DigipathFlowerParser));
     }
 
     private static CannabinoidProfile ParseDigipathCannabinoidsOrFallback(string text)

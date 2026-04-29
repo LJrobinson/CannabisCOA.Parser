@@ -1,9 +1,20 @@
+using CannabisCOA.Parser.Core.Parsers;
+using CannabisCOA.Parser.Core.Adapters.Labs.Digipath.ProductParsers;
 using Xunit;
 
 namespace CannabisCOA.Parser.Core.Tests;
 
 public class DigipathFlowerParserTests
 {
+    private static string FixturePath(string fileName)
+    {
+        return Path.GetFullPath(Path.Combine(
+            AppContext.BaseDirectory,
+            "..", "..", "..", "..","..",
+            "fixtures",
+            fileName));
+    }
+
     [Fact]
     public void Parses_Cannabinoid_Side_Of_Combined_Digipath_Row()
     {
@@ -1075,5 +1086,139 @@ public class DigipathFlowerParserTests
             {mycotoxinRow}
             Residual Solvents Pass
             """;
+    }
+
+    [Fact]
+    public void DigipathFlowerParser_ParseDocument_ReturnsCoaDocument()
+    {
+        var text = File.ReadAllText(FixturePath("digipath-flower.txt"));
+
+        var document = DigipathFlowerParser.ParseDocument(
+            text,
+            "Digipath Labs",
+            "digipath-flower.txt");
+
+        Assert.Equal("Digipath Labs", document.LabName);
+        Assert.Equal("Flower", document.ProductType);
+        Assert.NotEmpty(document.Cannabinoids);
+        Assert.Equal("DigipathFlowerParser", document.ParserMetadata.ParserName);
+    }
+
+    [Fact]
+    public void DigipathFlowerParser_ParseDocument_MapsFlowerCoaV1CoreFields()
+    {
+        var text = File.ReadAllText(FixturePath("digipath-flower.txt"));
+
+        var document = DigipathFlowerParser.ParseDocument(
+            text,
+            "Digipath Labs",
+            "digipath-flower.txt");
+
+        Assert.Equal("flower-coa-v1", document.SchemaVersion);
+        Assert.Equal("Digipath Labs", document.LabName);
+        Assert.Equal("Flower", document.ProductType);
+        Assert.Equal("digipath-flower.txt", document.ParserMetadata.SourceFileName);
+        Assert.Equal("Digipath Labs", document.ParserMetadata.DetectedLab);
+        Assert.Equal(nameof(DigipathFlowerParser), document.ParserMetadata.ParserName);
+        Assert.NotEmpty(document.Cannabinoids);
+        Assert.NotNull(document.TotalThcPercent);
+        Assert.True(document.TotalThcPercent > 0m);
+        Assert.NotNull(document.TotalTerpenesPercent);
+        Assert.True(document.TotalTerpenesPercent > 0m);
+        Assert.Contains(document.SafetyResults, result => result.Category == "Overall Compliance");
+        Assert.True(document.ParserMetadata.ConfidenceScore > 0m);
+    }
+
+    [Fact]
+    public void DigipathFlowerParser_ParseDocument_MapsExpectedCannabinoidValues()
+    {
+        var text = File.ReadAllText(FixturePath("digipath-flower.txt"));
+
+        var document = DigipathFlowerParser.ParseDocument(
+            text,
+            "Digipath Labs",
+            "digipath-flower.txt");
+
+        var thca = FindCannabinoid("THCA");
+        var thc = FindCannabinoid("THC");
+        var cbda = FindCannabinoid("CBDA");
+
+        Assert.Equal(24.88m, thca.Percent);
+        Assert.Equal(0.42m, thc.Percent);
+        Assert.Equal(0.12m, cbda.Percent);
+        Assert.Equal("%", thca.Unit);
+        Assert.Equal("%", thc.Unit);
+        Assert.Equal("%", cbda.Unit);
+        Assert.False(string.IsNullOrWhiteSpace(thca.SourceText));
+        Assert.False(string.IsNullOrWhiteSpace(thc.SourceText));
+        Assert.False(string.IsNullOrWhiteSpace(cbda.SourceText));
+
+        CannabisCOA.Parser.Core.Models.CoaAnalyteResult FindCannabinoid(string name)
+        {
+            return document.Cannabinoids.Single(cannabinoid =>
+                cannabinoid.Name == name ||
+                cannabinoid.NormalizedName == name);
+        }
+    }
+
+    [Fact]
+    public void DigipathFlowerParser_ParseDocument_CannabinoidPercentMatchesMgPerGram()
+    {
+        var text = File.ReadAllText(FixturePath("digipath-flower.txt"));
+
+        var document = DigipathFlowerParser.ParseDocument(
+            text,
+            "Digipath Labs",
+            "digipath-flower.txt");
+
+        foreach (var cannabinoid in document.Cannabinoids)
+        {
+            if (cannabinoid.Percent is null || cannabinoid.MgPerGram is null)
+                continue;
+
+            Assert.Equal(cannabinoid.Percent.Value * 10m, cannabinoid.MgPerGram.Value, 2);
+        }
+    }
+
+    [Fact]
+    public void DigipathFlowerParser_ParseDocument_MapsExpectedTotals()
+    {
+        var text = File.ReadAllText(FixturePath("digipath-flower.txt"));
+
+        var document = DigipathFlowerParser.ParseDocument(
+            text,
+            "Digipath Labs",
+            "digipath-flower.txt");
+
+        Assert.Equal(22.24m, Math.Round(document.TotalThcPercent!.Value, 2));
+        Assert.Equal(0.16m, Math.Round(document.TotalCbdPercent!.Value, 2));
+        Assert.True(document.TotalTerpenesPercent > 0m);
+    }
+
+    [Fact]
+    public void DigipathFlowerParser_ParseDocument_TotalCbdMatchesFormula()
+    {
+        var text = File.ReadAllText(FixturePath("digipath-flower.txt"));
+
+        var document = DigipathFlowerParser.ParseDocument(
+            text,
+            "Digipath Labs",
+            "digipath-flower.txt");
+
+        var cbd = FindCannabinoidPercent("CBD");
+        var cbda = FindCannabinoidPercent("CBDA");
+        var expectedTotalCbd = cbd + (cbda * 0.877m);
+
+        Assert.Equal(
+            Math.Round(expectedTotalCbd, 4),
+            Math.Round(document.TotalCbdPercent!.Value, 4));
+
+        decimal FindCannabinoidPercent(string name)
+        {
+            return document.Cannabinoids.Single(cannabinoid =>
+                    cannabinoid.Name == name ||
+                    cannabinoid.NormalizedName == name)
+                .Percent!.Value;
+        }
     }
 }

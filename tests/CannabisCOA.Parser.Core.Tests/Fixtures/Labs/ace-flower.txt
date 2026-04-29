@@ -1,0 +1,37 @@
+Ace Analytical Laboratory
+
+Kush Mints
+Silver Black Attack LLC
+MME ID: 45779336388196486818 - C014 -
+Harvest/Production Date: 11/25/2025
+Plant, Flower - Cured, Indoor
+Sample: DIGP2512.1361.P.06679
+METRC Sample: 1A40403000044C1000008993
+Batch #: 1A40403000044C1000008993; Lot #: 1A40403000044C1000008979
+Sample Date: 12/12/2025 Report Date: 12/17/2025
+
+Potency Test Results
+Cannabinoid Test Results
+Analyte LOQ Mass Mass
+% % mg/g
+THCa 0.004 26.564 265.64
+Δ9-THC 0.003 0.225 2.25
+CBDa 0.004 0.056 0.56
+CBD 0.014 <LOQ <LOQ
+
+Total Potential THC = (THCa * 0.877) + d9-THC + d8-THC
+
+Terpene Test Results
+β-Caryophyllene 87-44-5 0.0053 0.6959 6.959
+δ-Limonene 5989-27-5 0.0040 0.2522 2.522
+Total 1.7871 17.871
+
+Safety & Quality Tests
+Visual
+Microbiological
+Heavy Metals
+Mycotoxins
+Pass
+Pass
+Pass
+Pass

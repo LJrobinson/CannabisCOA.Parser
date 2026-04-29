@@ -1,0 +1,56 @@
+{
+  "schemaVersion": "flower-coa-v1",
+  "labName": "Ace Analytical Laboratory",
+  "labLicenseNumber": null,
+  "productName": "NYC Diesel Bulk",
+  "productType": "Flower",
+  "strainName": "NYC Diesel",
+  "batchId": "402R2NYCD",
+  "lotId": "402R2NYCD1",
+  "metrcBatchId": "1A4040300002775000034672",
+  "metrcSampleId": "1A4040300002775000034711",
+  "harvestDate": null,
+  "sampleReceivedDate": "2025-12-15",
+  "testDate": "2025-12-15",
+  "reportCreatedDate": "2025-12-18",
+  "packageDate": null,
+  "overallStatus": "Pass",
+  "cannabinoids": [
+    {
+      "name": "THCA",
+      "normalizedName": "THCA",
+      "value": 24.88,
+      "unit": "%",
+      "mgPerGram": null,
+      "percent": 24.88,
+      "loq": null,
+      "lod": null,
+      "sourceText": "THCA: 24.88%"
+    }
+  ],
+  "terpenes": [],
+  "safetyResults": [
+    {
+      "category": "Pesticides",
+      "analyteName": null,
+      "status": "Pass",
+      "value": null,
+      "unit": null,
+      "limit": null,
+      "limitUnit": null,
+      "sourceText": "Pesticides Pass"
+    }
+  ],
+  "totalThcPercent": 21.84,
+  "totalCbdPercent": null,
+  "totalCannabinoidsPercent": null,
+  "totalTerpenesPercent": null,
+  "parserMetadata": {
+    "sourceFileName": "sample.pdf",
+    "detectedLab": "Ace Analytical Laboratory",
+    "parserName": "AceFlowerParser",
+    "confidenceScore": 0.92,
+    "warnings": [],
+    "missingFields": []
+  }
+}

@@ -1,10 +1,22 @@
 using CannabisCOA.Parser.Core.Enums;
+using CannabisCOA.Parser.Core.Parsers;
+using CannabisCOA.Parser.Core.Adapters.Labs.AceAnalytical.ProductParsers;
 using Xunit;
 
 namespace CannabisCOA.Parser.Core.Tests;
 
 public class AceFlowerParserTests
 {
+    private static string FixturePath(string fileName)
+    {
+        return Path.GetFullPath(Path.Combine(
+            AppContext.BaseDirectory,
+            "..", "..", "..",
+            "Fixtures",
+            "Labs",
+            fileName));
+    }
+
     [Fact]
     public void Parses_Ace_Cannabinoid_Table_By_Mass_Percent()
     {
@@ -278,5 +290,21 @@ public class AceFlowerParserTests
             {header}
             {string.Join('\n', rows)}
             """;
+    }
+
+    [Fact]
+    public void AceFlowerParser_ParseDocument_ReturnsCoaDocument()
+    {
+        var text = File.ReadAllText(FixturePath("ace-flower.txt"));
+
+        var document = AceFlowerParser.ParseDocument(
+            text,
+            "Ace Analytical Laboratory",
+            "ace-flower.txt");
+
+        Assert.Equal("Ace Analytical Laboratory", document.LabName);
+        Assert.Equal("Flower", document.ProductType);
+        Assert.NotEmpty(document.Cannabinoids);
+        Assert.Equal("AceFlowerParser", document.ParserMetadata.ParserName);
     }
 }
