@@ -108,3 +108,4 @@ G:\CannabisCOA.Parser\tests\CannabisCOA.Parser.Core.Tests\bin\Debug\net10.0\Fixt
 G:\CannabisCOA.Parser\tests\CannabisCOA.Parser.Core.Tests\bin\Debug\net10.0\Fixtures\Labs\rsr-flower-real-001.txt
 G:\CannabisCOA.Parser\tests\CannabisCOA.Parser.Core.Tests\bin\Debug\net10.0\Fixtures\Labs\ma-flower-real-001.txt
 G:\CannabisCOA.Parser\tests\CannabisCOA.Parser.Core.Tests\bin\Debug\net10.0\Fixtures\Labs\nvcannlabs-flower-real-001.txt
+G:\CannabisCOA.Parser\tests\CannabisCOA.Parser.Core.Tests\bin\Debug\net10.0\Fixtures\Labs\kaycha-flower-real-001.txt

@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("CannabisCOA.Parser.Cli")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+518a898afaaa369315550f2a29159f11b7b8605c")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+be0ee21eb05edcbe74bf6f1100e34e07cc5959e4")]
 [assembly: System.Reflection.AssemblyProductAttribute("CannabisCOA.Parser.Cli")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CannabisCOA.Parser.Cli")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
