@@ -10,7 +10,9 @@ public static class ProductTypeDetector
         @"^\s*PRODUCT\s*TYPE\b",
         @"^\s*SAMPLE\s*TYPE\b",
         @"^\s*MATRIX\b",
-        @"^\s*CATEGORY\b"
+        @"^\s*CATEGORY\b",
+        @"\bPLANT\s*,?\s*FLOWER\b",
+        @"\bFLOWER\s*-\s*CURED\b"
     ];
 
     public static ProductType Detect(string text)

@@ -1,0 +1,133 @@
+Certicate of Analysis
+Silver State Cultivation Sample: 2510G3L0149.12123
+Strain: Gorilla Glue #4
+Sparks, NV 89431 Batch #: 9580 3311 4391 4182; Lot #: 9580 3311 4391 4182
+Sample Received: 10/31/2025; Report Created: 11/06/2025
+Lic. #95697016138994411312 Harvest/Production Date:
+Gorilla Glue #4
+Plant, Flower - Cured, Indoor
+Harvest Process Lot: ; METRC Batch: ABC04030000008C000055187; METRC Sample: ABC04030000008C000055223
+Cannabinoids Terpenes
+(G3 SOP# LC402 / HPLC-PDA) (G3 SOP# GC302 / GCMS-HS)
+25.64% <LOQ 29.76% 10.06 mg/g
+Total Potential THC Total Potential CBD Total Cannabinoids Total Terpenes Cinnamon Hops Lemon
+Analyte LOQ Mass Mass Terpene LOQ Mass Mass
+% % mg/g mg/g mg/g %
+THCa 0.00016 28.66 286.6 β-Caryophyllene 0.0025 7.40 0.740
+α-Humulene 0.0025 2.27 0.227
+Δ9-THC 0.00016 0.51 5.1
+δ -Limonene 0.0025 0.40 0.040
+Δ8-THC 0.00016 <LOQ <LOQ
+3-Carene 0.0025 <LOQ <LOQ
+CBD 0.00016 <LOQ <LOQ
+α-Bisabolol 0.0025 <LOQ <LOQ
+CBDa 0.00016 <LOQ <LOQ
+α-Pinene 0.0025 <LOQ <LOQ
+CBG 0.00016 <LOQ <LOQ
+α-Terpinene 0.0025 <LOQ <LOQ
+CBN 0.00016 <LOQ <LOQ
+β-Myrcene 0.0025 <LOQ <LOQ
+THCV 0.00016 <LOQ <LOQ
+β-Ocimene 0.0025 <LOQ <LOQ
+CBGa 0.00016 0.59 5.9 β-Pinene 0.0025 <LOQ <LOQ
+Camphene 0.0025 <LOQ <LOQ
+Caryophyllene Oxide 0.0025 <LOQ <LOQ
+Total THC = THCa * 0.877 + ∆9-THC + ∆8-THC
+Total CBD CBDa * 0.877 + CBD Eucalyptol 0.0025 <LOQ <LOQ
+=
+LOQ = Limit of Quantitation; Cannabinoid concentration values reported at 0.5% or less γ-Terpinene 0.0025 <LOQ <LOQ
+may be estimated; The reported result is based on a sample weight with the applicable
+moisture content for that sample; Unless otherwise stated all quality control samples Geraniol 0.0025 <LOQ <LOQ
+performed within specications established by the Laboratory.
+Guaiol 0.0025 <LOQ <LOQ
+Isopulegol 0.0025 <LOQ <LOQ
+Linalool 0.0025 <LOQ <LOQ
+Nerolidol 0.0025 <LOQ <LOQ
+Ocimene 0.0025 <LOQ <LOQ
+p-Cymene 0.0025 <LOQ <LOQ
+Terpinolene 0.0025 <LOQ <LOQ
+trans-Nerolidol 0.0025 <LOQ <LOQ
+LOQ = Limit of Quantitation; The reported result is based on a sample weight with the
+applicable moisture content for that sample; Unless otherwise stated all quality control
+samples performed within specications established by the Laboratory.
+Pass Pass Pass Not Tested Pass Pass Pass
+8.5%
+SOP# LA601 / Moisture
+SOP# LA602 / Microscope Analyzer
+Pesticides Microbials Mycotoxins Solvents Heavy Metals Foreign Matter Moisture
+http://www.g3labsllc.com Condent LIMS
+(702) 417-9602 All Rights Reserved
+Lic# 46100778561169443516 coa.support@condentlims.com
+Isaac A Maceo (866) 506-5866
+Scientic Director www.condentlims.com
+This product has been tested by G3 Labs using valid testing methodologies and a quality system as required by state law. Pass/Fail (P/F) test results are reported in accordance with tolerance
+limits specied in Nevada Cannabis Compliance Regulations – NCCR 1-14. Values reported relate only to the product tested. G3 Labs makes no claims as to the efcacy, safety or other risks
+associated with any detected or non-detected levels of any compounds reported herein. This Certicate shall not be reproduced except in full, without the written approval of G3 Labs. 1 of 2
+
+Certicate of Analysis
+Silver State Cultivation Sample: 2510G3L0149.12123
+Strain: Gorilla Glue #4
+Sparks, NV 89431 Batch #: 9580 3311 4391 4182; Lot #: 9580 3311 4391 4182
+Sample Received: 10/31/2025; Report Created: 11/06/2025
+Lic. #95697016138994411312 Harvest/Production Date:
+Gorilla Glue #4
+Plant, Flower - Cured, Indoor
+Harvest Process Lot: ; METRC Batch: ABC04030000008C000055187; METRC Sample: ABC04030000008C000055223
+Pesticides Pass Microbials Pass
+(G3 SOP# GC304 & LC404 / GCMS-MS & LCMS-MS)
+Analyte LOQ Limit Mass Status Analyte Units LOQ Limit Status
+PPM PPM PPM CFU/g CFU/g CFU/g
+Abamectin 0.005 0.000 <LOD Pass Aspergillus avus ND 1 1 Pass
+Acequinocyl 0.005 4.000 <LOQ Pass Aspergillus fumigatus ND 1 1 Pass
+Bifenazate 0.005 0.400 <LOQ Pass Aspergillus niger ND 1 1 Pass
+Bifenthrin 0.005 0.000 <LOD Pass Aspergillus terreus ND 1 1 Pass
+Cyuthrin 0.005 2.000 <LOQ Pass Enterobacteriaceae <LOQ 100 999 Pass
+Cypermethrin 0.005 0.000 <LOD Pass Coliforms <LOQ 100 999 Pass
+Daminozide 0.005 0.000 <LOD Pass STEC (E. coli) ND 1 Pass
+Dimethomorph 0.005 2.000 <LOQ Pass Salmonella ND 1 Pass
+Etoxazole 0.005 0.400 <LOQ Pass Yeast & Mold 100 100 9999 Pass
+Fenhexamid 0.005 1.000 <LOQ Pass
+Flonicamid 0.005 1.000 <LOQ Pass Yeast & Mold (G3 SOP# MB206 / RYM Petrilm)
+Total Coliform (G3 SOP# MB207 / EC Petrilm)
+Fludioxonil 0.005 0.500 <LOQ Pass (G3 Petrilm)
+Total Aerobic Bacteria SOP# MB208 / AC
+Imidacloprid 0.005 0.500 <LOQ Pass Enterobacteriaceae (G3 SOP# MB210 / EB Petrilm)
+Aspergillus (G3 SOP# MB212 / GENE-UP PCR)
+Myclobutanil 0.005 0.400 <LOQ Pass (E. coli) (G3 PCR)
+STEC SOP# MB213 / GENE-UP
+Paclobutrazol 0.005 0.000 <LOD Pass Salmonella (G3 SOP# MB213 / GENE-UP PCR)
+Piperonyl Butoxide 0.005 3.000 <LOQ Pass
+Heavy Metals Pass
+Pyrethrins 0.005 2.000 <LOQ Pass (G3 SOP# IC501 / ICPMS)
+Quintozene 0.005 0.800 <LOQ Pass
+Analyte LOQ Limit Mass Status
+Spinetoram 0.005 1.000 <LOQ Pass
+PPB PPB PPB
+Spinosad 0.005 1.000 <LOQ Pass Arsenic 2.5 2000.0 <LOQ Pass
+Spirotetramat 0.005 1.000 <LOQ Pass Cadmium 2.5 820.0 <LOQ Pass
+Lead 2.5 1200.0 <LOQ Pass
+Thiamethoxam 0.005 0.400 <LOQ Pass
+Mercury 2.5 400.0 <LOQ Pass
+Trioxystrobin 0.005 1.000 <LOQ Pass
+LOQ = Limit of Quantitation; The reported result is based on a sample weight with the applicable
+moisture content for that sample; Unless otherwise stated all quality control samples performed
+within specications established by the Laboratory.
+Mycotoxins Pass
+(G3 SOP# LC404 / LCMS-MS)
+Analyte LOQ Limit Mass Status
+PPB PPB PPB
+Aatoxins 2.00 20.00 <LOQ Pass
+LOQ = Limit of Quantitation; LOD = Limit of Detection; The reported result is based on a Ochratoxin A 2.00 20.00 <LOQ Pass
+sample weight with the applicable moisture content for that sample; Unless otherwise
+LOQ = Limit of Quantitation; The reported result is based on a sample weight with the applicable
+stated all quality control samples performed within specications established by the
+moisture content for that sample; Unless otherwise stated all quality control samples performed
+Laboratory. within specications established by the Laboratory.
+http://www.g3labsllc.com Condent LIMS
+(702) 417-9602 All Rights Reserved
+Lic# 46100778561169443516 coa.support@condentlims.com
+Isaac A Maceo (866) 506-5866
+Scientic Director www.condentlims.com
+This product has been tested by G3 Labs using valid testing methodologies and a quality system as required by state law. Pass/Fail (P/F) test results are reported in accordance with tolerance
+limits specied in Nevada Cannabis Compliance Regulations – NCCR 1-14. Values reported relate only to the product tested. G3 Labs makes no claims as to the efcacy, safety or other risks
+associated with any detected or non-detected levels of any compounds reported herein. This Certicate shall not be reproduced except in full, without the written approval of G3 Labs. 2 of 2
