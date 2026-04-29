@@ -4,19 +4,31 @@ A .NET parser for extracting structured cannabis Certificate of Analysis (COA) d
 
 COAs are often formatted for humans, not databases. This project aims to turn inconsistent lab reports into clean, usable structured data for analytics, compliance review, inventory workflows, and automation.
 
-## Current Focus
+## Current Status
 
-The current target is:
+Flower COA parsing is complete for 8 Nevada labs:
 
-- Flower COAs
-- Nevada cannabis labs
-- Text-based PDFs / extracted text
-- Clean JSON output
-- Repeatable parsing rules by lab
+- 374Labs
+- G3 Labs
+- NV Cann Labs
+- Ace Analytical Laboratory
+- Kaycha Labs
+- Digipath Labs
+- MA Analytics
+- RSR Analytical Laboratories
 
-Target milestone:
+The parser handles:
 
-Parse Flower COAs from 8 Nevada labs with 90%+ field accuracy.
+- Lab-specific formatting differences
+- Interleaved cannabinoid / terpene tables
+- Column-based and row-based layouts
+- mg/g ↔ % normalization
+- Precision preservation
+- ND / LOQ handling
+- Total THC validation (THCa * 0.877 + THC)
+- Terpene total validation
+
+Batch parsing across real COA PDFs is supported via CLI.
 
 ## Supported / Target Labs
 
@@ -28,6 +40,18 @@ Parse Flower COAs from 8 Nevada labs with 90%+ field accuracy.
 - Digipath Labs
 - MA Analytics
 - RSR Analytical Laboratories
+
+## Validation & Scoring
+
+Parsed COAs are not just extracted — they are validated and scored:
+
+- Total THC is verified using standard cannabinoid conversion formulas
+- Terpene totals are cross-checked against individual analytes
+- Freshness scoring based on test date
+- Compliance flags (pass/fail detection)
+- Overall product scoring (Potency / Terpenes / Freshness / Compliance)
+
+This allows COAs to be used directly for analytics and decision-making.
 
 ## Example Usage
 
@@ -64,6 +88,12 @@ dotnet run --project src/CannabisCOA.Parser.Cli -- --file fixtures/digipath-flow
   }
 }
 
+## Batch Processing
+
+Parse a folder of COAs into newline-delimited JSON:
+
+dotnet run --project src/CannabisCOA.Parser.Cli -- --batch G:\COAs --out parsed.jsonl
+
 ## Why This Exists
 
 Cannabis operators, analysts, and compliance teams often need COA data in a usable format, but lab reports are usually locked inside inconsistent PDFs.
@@ -72,12 +102,14 @@ This project is built to reduce manual entry, improve repeatability, and make ca
 
 ## Roadmap
 
-- [ ] Support all 8 target labs for Flower COAs
-- [ ] Add accuracy scoring against known expected outputs
-- [ ] Improve field-level validation
-- [ ] Export parsed results to CSV
-- [ ] Expand support to additional product types
-- [ ] Add batch processing for folders of COAs
+- [x] Flower COA parsing across 8 Nevada labs
+- [x] Batch processing via CLI
+- [x] Chemistry validation (THC / terpenes)
+- [ ] Improve CBD / CBDA edge-case handling
+- [ ] Expand terpene parsing coverage for all labs
+- [ ] Add safety/compliance category parsing
+- [ ] Export parsed results to CSV / database
+- [ ] Support additional product types (Pre-roll, Edible, Concentrate, etc.)
 
 ## Tech Stack
 
