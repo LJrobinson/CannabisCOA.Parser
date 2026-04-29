@@ -1,0 +1,157 @@
+Certicate of Analysis
+Powered by Condent LIMS
+1 of 2
+Vegas Valley Growers Sample: 2026NVC0595-3773
+Strain: Flower - Peach Ringz
+Las Vegas, NV 89119 Batch #: 1A404030000164D000038171; Lot #: 1A404030000164D000038078
+Sample Received: 03/17/2026; Report Created: 03/20/2026; Harvest/Production Date: 02/23/2026
+Lic. #78652642552793589227
+Flower Peach Ringz
+-
+Plant, Flower - Cured
+Harvest Process Lot: H128; METRC Batch: 1A404030000164D000038078; METRC Sample: 1A404030000164D000038171
+Pass Pass Pass Not Tested Pass Pass
+Safety
+Pesticides Microbials Mycotoxins Solvents Heavy Metals Foreign Matter
+Terpenes
+30.782% 27.890%
+Total Potential 25.379 mg/g
+THCa THC
+Lavender Lemon Cinnamon Total Terpenes
+<LOQ Pass
+Analyte LOQ Mass Mass
+12.1% mg/g mg/g %
+Total Potential Linalool 0.083 5.920 0.5920
+CBD Moisture
+δ -Limonene 0.083 5.567 0.5567
+The photo this is of sample collected by the lab and from the nal β-Caryophyllene 0.083 4.655 0.4655
+on report a may vary
+packaging Farnesene 0.083 1.936 0.1936
+β-Myrcene 0.083 1.580 0.1580
+α-Humulene 0.083 1.244 0.1244
+Cannabinoids α-Bisabolol 0.083 1.099 0.1099
+β-Pinene 0.083 0.777 0.0777
+Analyte LOQ Mass Mass
+α-Terpineol 0.083 0.665 0.0665
+% % mg/g
+α-Pinene 0.083 0.581 0.0581
+THCa 0.083 30.782 307.82
+Nerolidol 0.083 0.530 0.0530
+Δ9-THC 0.083 0.894 8.94
+Terpinolene 0.083 0.340 0.0340
+CBD 0.083 <LOQ <LOQ
+CBDa 0.083 <LOQ <LOQ Caryophyllene Oxide 0.083 0.210 0.0210
+CBC 0.083 <LOQ <LOQ Camphene 0.083 0.158 0.0158
+CBG 0.083 0.127 1.27 Guaiol 0.083 0.117 0.0117
+CBN 0.083 <LOQ <LOQ α-Terpinene 0.083 <LOQ <LOQ
+THCV 0.083 <LOQ <LOQ Citronellol 0.083 <LOQ <LOQ
+Δ8-THC 0.083 <LOQ <LOQ 3-Carene 0.083 <LOQ <LOQ
+CBGa 0.083 2.478 24.78 Eucalyptol 0.083 <LOQ <LOQ
+CBDV 0.083 <LOQ <LOQ
+Fenchone 0.083 <LOQ <LOQ
+CBDVa 0.083 <LOQ <LOQ
+γ-Terpinene 0.083 <LOQ <LOQ
+Total 34.281 342.81
+Geraniol 0.083 <LOQ <LOQ
+Menthol 0.083 <LOQ <LOQ
+Total THC = THCa * 0.877 + ∆9-THC + ∆8-THC β-Ocimene 0.083 <LOQ <LOQ
+Total CBD = CBDa * 0.877 + CBD
+Isopulegol 0.083 <LOQ <LOQ
+Total Edible THC = ∆9-THC + ∆8-THC
+p-Cymene 0.083 <LOQ <LOQ
+LOQ = Limit of Quantitation; The reported result is based on a sample weight with the
+applicable moisture content for that sample; Unless otherwise stated all quality control Valencene 0.083 <LOQ <LOQ
+samples performed within specications established by the Laboratory. Cannabinoids
+analyzed by SOP-021.
+Notes:
+LOQ = Limit of Quantitation; The reported result is based on a sample weight with the
+applicable moisture content for that sample; Unless otherwise stated all quality control
+samples performed within specications established by the Laboratory. Terpenes
+analyzed by SOP-022. Eucalyptol, fenchone, menthol, a-terpineol, citronellol, valencene,
+and farnesene analyses are not ISO/IEC 17025 accredited.
+6631 Schuster Street Condent LIMS
+Las Vegas, NV All Rights Reserved
+(702) 826-2700 Parker Hein coa.support@condentlims.com
+http://www.nvcann.com Scientic (866) 506-5866
+Director
+All pass limits are as specied in NAC 453.A and CCB NCCRs. Unless otherwise stated all quality control samples performed within specications established by the Laboratory. This product has
+been tested by NV Cann Labs using valid testing methodologies and a quality system as required by Nevada state law. Values reported relate only to the product tested. NV Cann Labs makes no
+claims as to the efcacy, safety, or other risks associated with any detected or non-detected levels of any compounds reported herein. This Certicate shall not be reproduced except in full,
+without the written approval of NV Cann Labs. Uncertainty budgets are available upon request. All analyses were performed at NV Cann Labs unless otherwise stated. Sampling Plan SOP-001
+and Sampling Method SOP-027 were used to collect samples. If sample(s) are NOT collected by NV Cann Labs, result(s) apply to the samples as received.
+
+Certicate of Analysis
+Powered by Condent LIMS
+2 of 2
+Vegas Valley Growers Sample: 2026NVC0595-3773
+Strain: Flower - Peach Ringz
+Las Vegas, NV 89119 Batch #: 1A404030000164D000038171; Lot #: 1A404030000164D000038078
+Sample Received: 03/17/2026; Report Created: 03/20/2026; Harvest/Production Date: 02/23/2026
+Lic. #78652642552793589227
+Flower Peach Ringz
+-
+Plant, Flower - Cured
+Harvest Process Lot: H128; METRC Batch: 1A404030000164D000038078; METRC Sample: 1A404030000164D000038171
+Pesticides Pass Microbials Pass
+Analyte LOQ Limit Mass Status Analyte Limit Mass Status
+PPM PPM PPM CFU/g CFU/g
+Abamectin 0.040 0.00001 <LOQ Pass Aspergillus avus Negative Pass
+Acequinocyl 0.040 4 <LOQ Pass Aspergillus fumigatus Negative Pass
+Bifenazate 0.040 0.4 <LOQ Pass Aspergillus niger Negative Pass
+Bifenthrin 0.040 0.00001 <LOQ Pass Aspergillus terreus Negative Pass
+Cyuthrin 0.040 2 <LOQ Pass Bile-Tolerant Gram-Negative Bacteria 1000 ND Pass
+Cypermethrin 0.040 0.00001 <LOQ Pass Coliforms 1000 ND Pass
+Daminozide 0.040 0.00001 <LOQ Pass E. Coli Negative Pass
+Dimethomorph 0.040 2 <LOQ Pass Salmonella Negative Pass
+Etoxazole 0.040 0.4 <LOQ Pass Yeast & Mold 10000 ND Pass
+Fenhexamid 0.040 1 <LOQ Pass
+Flonicamid 0.040 1 <LOQ Pass
+Fludioxonil 0.040 0.5 <LOQ Pass
+TNTC = Too Numerous to Count; Unless otherwise stated all quality control samples
+Imidacloprid 0.040 0.5 <LOQ Pass
+performed within specications established by the Laboratory. Analyzed according to
+Myclobutanil 0.040 0.4 <LOQ Pass SOP-030 (Aerobic Bacteria), SOP-031 (Yeast and Mold), SOP-032 (Enterobacteriaceae),
+Paclobutrazol 0.040 0.00001 <LOQ Pass SOP-033 (Coliforms), SOP-033.8-11 (E. coli), SOP-034 (Salmonella).
+Piperonyl Butoxide 0.040 3 <LOQ Pass
+Pyrethrins 0.040 2 <LOQ Pass
+Heavy Metals Pass
+Quintozene 0.500 0.8 <LOQ Pass
+Spinetoram 0.040 1 <LOQ Pass
+Spinosad 0.040 1 <LOQ Pass Analyte LOQ Limit Mass Status
+Spirotetramat 0.040 1 <LOQ Pass PPB PPB PPB
+Thiamethoxam 0.040 0.4 <LOQ Pass Arsenic 125.000 2000 <LOQ Pass
+Trioxystrobin 0.040 1 <LOQ Pass Cadmium 125.000 820 <LOQ Pass
+LOQ Limit of Quantitation; The reported result is based on a sample weight with the Lead 125.000 1200 <LOQ Pass
+=
+applicable moisture content for that sample; Unless otherwise stated all quality control Mercury 125.000 400 <LOQ Pass
+samples performed within specications established by the Laboratory. Pesticides
+analyzed by SOP-026/044.
+LOQ = Limit of Quantitation; The reported result is based on a sample weight with the
+Residual Solvents Not Tested applicable moisture content for that sample; Unless otherwise stated all quality control
+samples performed within specications established by the Laboratory. Metals analyzed
+by SOP-023.
+Analyte LOQ Limit Mass Status
+Mycotoxins Pass
+Analyte LOQ Limit Mass Status
+PPB PPB PPB
+Aatoxin B1 4.000 <LOQ Tested
+Aatoxin B2 4.000 <LOQ Tested
+Aatoxin G1 4.000 <LOQ Tested
+Aatoxin G2 4.000 <LOQ Tested
+Total Aatoxins 16.000 20 <LOQ Pass
+Foreign Matter Notes:
+Ochratoxin A 4.000 20 <LOQ Pass
+LOQ = Limit of Quantitation; The reported result is based on a sample weight with the
+applicable moisture content for that sample; Unless otherwise stated all quality control
+General Notes: samples performed within specications established by the Laboratory. Mycotoxins
+analyzed by SOP-024.
+6631 Schuster Street Condent LIMS
+Las Vegas, NV All Rights Reserved
+(702) 826-2700 Parker Hein coa.support@condentlims.com
+http://www.nvcann.com Scientic (866) 506-5866
+Director
+All pass limits are as specied in NAC 453.A and CCB NCCRs. Unless otherwise stated all quality control samples performed within specications established by the Laboratory. This product has
+been tested by NV Cann Labs using valid testing methodologies and a quality system as required by Nevada state law. Values reported relate only to the product tested. NV Cann Labs makes no
+claims as to the efcacy, safety, or other risks associated with any detected or non-detected levels of any compounds reported herein. This Certicate shall not be reproduced except in full,
+without the written approval of NV Cann Labs. Uncertainty budgets are available upon request. All analyses were performed at NV Cann Labs unless otherwise stated. Sampling Plan SOP-001
+and Sampling Method SOP-027 were used to collect samples. If sample(s) are NOT collected by NV Cann Labs, result(s) apply to the samples as received.

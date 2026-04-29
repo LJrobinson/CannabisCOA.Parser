@@ -31,6 +31,9 @@ public static class ProductTypeDetector
         if (MatchAny(rows, ConcentratePatterns))
             return ProductType.Concentrate;
 
+        if (MatchAny(rows, FlowerPatterns, requireContext: true))
+            return ProductType.Flower;
+
         if (MatchAny(rows, EdiblePatterns))
             return ProductType.Edible;
 
@@ -39,9 +42,6 @@ public static class ProductTypeDetector
 
         if (MatchAny(rows, TincturePatterns))
             return ProductType.Tincture;
-
-        if (MatchAny(rows, FlowerPatterns, requireContext: true))
-            return ProductType.Flower;
 
         return ProductType.Unknown;
     }

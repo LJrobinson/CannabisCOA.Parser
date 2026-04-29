@@ -7,7 +7,7 @@ public class LabAdapterDetectionTests
     [Theory]
     [InlineData("374Labs Certificate of Analysis Product Type: Flower THC: 20% Result: PASS", "374 Labs")]
     [InlineData("G3 Labs Certificate of Analysis Product Type: Flower THC: 20% Result: PASS", "G3 Labs")]
-    [InlineData("NV CannLabs Certificate of Analysis Product Type: Flower THC: 20% Result: PASS", "NV CannLabs")]
+    [InlineData("NV CannLabs Certificate of Analysis Product Type: Flower THC: 20% Result: PASS", "NV Cann Labs")]
     [InlineData("Ace Analytical Laboratory Certificate of Analysis Product Type: Flower THC: 20% Result: PASS", "Ace Analytical Laboratory")]
     [InlineData("Kaycha Labs Certificate of Analysis Product Type: Flower THC: 20% Result: PASS", "Kaycha Labs")]
     [InlineData("Digipath Labs Certificate of Analysis Product Type: Flower THC: 20% Result: PASS", "Digipath")]

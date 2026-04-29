@@ -1,0 +1,66 @@
+using CannabisCOA.Parser.Core.Adapters.Labs.NVCannLabs;
+using CannabisCOA.Parser.Core.Enums;
+using Xunit;
+
+namespace CannabisCOA.Parser.Core.Tests;
+
+public class NVCannLabsParserTests
+{
+    private static string FixturePath(string fileName)
+    {
+        return Path.GetFullPath(Path.Combine(
+            AppContext.BaseDirectory,
+            "..", "..", "..",
+            "Fixtures",
+            "Labs",
+            fileName));
+    }
+
+    [Fact]
+    public void NVCannLabsAdapter_Parse_RealFlowerFixtureDetectsHeaderFields()
+    {
+        var text = File.ReadAllText(FixturePath("nvcannlabs-flower-real-001.txt"));
+
+        var result = new NVCannLabsAdapter().Parse(text);
+
+        Assert.Equal("NV Cann Labs", result.LabName);
+        Assert.Equal(ProductType.Flower, result.ProductType);
+        Assert.NotNull(result.TestDate);
+        Assert.Equal(30.782m, result.Cannabinoids.THCA.Value);
+        Assert.Equal(0.894m, result.Cannabinoids.THC.Value);
+    }
+
+    [Fact]
+    public void NVCannLabsAdapter_Parse_RealFlowerFixture_NormalizesTotalTerpenesToPercent()
+    {
+        var text = File.ReadAllText(FixturePath("nvcannlabs-flower-real-001.txt"));
+
+        var result = new NVCannLabsAdapter().Parse(text);
+
+        Assert.Equal(2.5379m, result.Terpenes.TotalTerpenes);
+    }
+
+    [Fact]
+    public void NVCannLabsAdapter_Parse_RealFlowerFixture_TotalThcMatchesFormulaWithinTolerance()
+    {
+        var text = File.ReadAllText(FixturePath("nvcannlabs-flower-real-001.txt"));
+
+        var result = new NVCannLabsAdapter().Parse(text);
+
+        var thca = result.Cannabinoids.THCA.Value;
+        var thc = result.Cannabinoids.THC.Value;
+        var delta8 = 0m;
+
+        var expectedTotalThc = (thca * 0.877m) + thc + delta8;
+
+        // Allow small lab rounding differences
+        Assert.True(Math.Abs(result.Cannabinoids.TotalTHC - expectedTotalThc) <= 0.02m);
+
+        // NV Cann reports ~27.890
+        var roundedExpected = Math.Round(expectedTotalThc, 3);
+        Assert.True(roundedExpected is 27.890m or 27.891m);
+
+        var roundedActual = Math.Round(result.Cannabinoids.TotalTHC, 3);
+        Assert.True(roundedActual is 27.890m or 27.891m);
+    }
+}
