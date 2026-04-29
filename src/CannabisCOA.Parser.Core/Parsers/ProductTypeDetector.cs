@@ -12,7 +12,9 @@ public static class ProductTypeDetector
         @"^\s*MATRIX\b",
         @"^\s*CATEGORY\b",
         @"\bPLANT\s*,?\s*FLOWER\b",
-        @"\bFLOWER\s*-\s*CURED\b"
+        @"\bPLANT\b.*\bFLOWERS\b",
+        @"\bFLOWER\s*-\s*CURED\b",
+        @"\b(?:ENHANCED\s*/\s*)?INFUSED\s+FLOWERS\b"
     ];
 
     public static ProductType Detect(string text)
@@ -75,8 +77,7 @@ public static class ProductTypeDetector
         @"\bEDIBLES\b",
         @"\bGUMMY\b",
         @"\bGUMMIES\b",
-        @"\bCHOCOLATE\b",
-        @"\bINFUSED\b"
+        @"\bCHOCOLATE\b"
     ];
 
     private static readonly string[] TopicalPatterns =
@@ -96,6 +97,7 @@ public static class ProductTypeDetector
     private static readonly string[] FlowerPatterns =
     [
         @"\bFLOWER\b",
+        @"\bFLOWERS\b",
         @"\bBUD\b",
         @"\bWHOLE FLOWER\b"
     ];

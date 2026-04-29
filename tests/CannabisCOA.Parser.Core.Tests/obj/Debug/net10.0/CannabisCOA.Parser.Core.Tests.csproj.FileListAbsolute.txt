@@ -109,3 +109,11 @@ G:\CannabisCOA.Parser\tests\CannabisCOA.Parser.Core.Tests\bin\Debug\net10.0\Fixt
 G:\CannabisCOA.Parser\tests\CannabisCOA.Parser.Core.Tests\bin\Debug\net10.0\Fixtures\Labs\ma-flower-real-001.txt
 G:\CannabisCOA.Parser\tests\CannabisCOA.Parser.Core.Tests\bin\Debug\net10.0\Fixtures\Labs\nvcannlabs-flower-real-001.txt
 G:\CannabisCOA.Parser\tests\CannabisCOA.Parser.Core.Tests\bin\Debug\net10.0\Fixtures\Labs\kaycha-flower-real-001.txt
+G:\CannabisCOA.Parser\tests\CannabisCOA.Parser.Core.Tests\bin\Debug\net10.0\Fixtures\Labs\374labs-preroll-real-001.txt
+G:\CannabisCOA.Parser\tests\CannabisCOA.Parser.Core.Tests\bin\Debug\net10.0\Fixtures\Labs\ace-preroll-real-001.txt
+G:\CannabisCOA.Parser\tests\CannabisCOA.Parser.Core.Tests\bin\Debug\net10.0\Fixtures\Labs\digipath-preroll-real-001.txt
+G:\CannabisCOA.Parser\tests\CannabisCOA.Parser.Core.Tests\bin\Debug\net10.0\Fixtures\Labs\g3-preroll-real-001.txt
+G:\CannabisCOA.Parser\tests\CannabisCOA.Parser.Core.Tests\bin\Debug\net10.0\Fixtures\Labs\kaycha-preroll-real-001.txt
+G:\CannabisCOA.Parser\tests\CannabisCOA.Parser.Core.Tests\bin\Debug\net10.0\Fixtures\Labs\ma-preroll-real-001.txt
+G:\CannabisCOA.Parser\tests\CannabisCOA.Parser.Core.Tests\bin\Debug\net10.0\Fixtures\Labs\nvcannlabs-preroll-real-001.txt
+G:\CannabisCOA.Parser\tests\CannabisCOA.Parser.Core.Tests\bin\Debug\net10.0\Fixtures\Labs\rsr-preroll-real-001.txt

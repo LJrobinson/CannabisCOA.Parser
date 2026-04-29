@@ -63,6 +63,29 @@ public class RSRFixtureTests
         Assert.Equal(1.12m, result.Cannabinoids.THC.Value);
     }
 
+    [Theory]
+    [InlineData("CBD", "CBD 0.25 <LOQ <LOQ")]
+    [InlineData("CBDA", "CBDa 0.25 <LOQ <LOQ")]
+    [InlineData("CBD", "CBD 0.25 ND ND")]
+    public void RsrAnalyticalAdapter_Parse_CbdNonDetectRows_MapToZeroConfidence(string cannabinoidName, string cannabinoidRow)
+    {
+        var text = $"""
+        RSR Analytical Laboratories
+        Product Type: Plant, Flower - Cured
+        THCa 0.25 20.00 200.00
+        Δ9-THC 0.25 1.00 10.00
+        {cannabinoidRow}
+        """;
+
+        var result = new RSRAnalyticalAdapter().Parse(text);
+        var field = cannabinoidName == "CBDA"
+            ? result.Cannabinoids.CBDA
+            : result.Cannabinoids.CBD;
+
+        Assert.Equal(0m, field.Value);
+        Assert.Equal(0m, field.Confidence);
+    }
+
     [Fact]
     public void RsrAnalyticalAdapter_Parse_RealFlowerFixture_MapsExpectedCannabinoidValues()
     {

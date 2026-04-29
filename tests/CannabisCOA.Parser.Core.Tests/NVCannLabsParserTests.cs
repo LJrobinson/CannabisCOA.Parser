@@ -30,6 +30,29 @@ public class NVCannLabsParserTests
         Assert.Equal(0.894m, result.Cannabinoids.THC.Value);
     }
 
+    [Theory]
+    [InlineData("CBD", "CBD 0.083 <LOQ <LOQ")]
+    [InlineData("CBDA", "CBDa 0.083 <LOQ <LOQ")]
+    [InlineData("CBD", "CBD 0.083 ND ND")]
+    public void NVCannLabsAdapter_Parse_CbdNonDetectRows_MapToZeroConfidence(string cannabinoidName, string cannabinoidRow)
+    {
+        var text = $"""
+        NV Cann Labs
+        Product Type: Plant, Flower - Cured
+        THCa 0.083 30.782 307.82
+        Δ9-THC 0.083 0.894 8.94
+        {cannabinoidRow}
+        """;
+
+        var result = new NVCannLabsAdapter().Parse(text);
+        var field = cannabinoidName == "CBDA"
+            ? result.Cannabinoids.CBDA
+            : result.Cannabinoids.CBD;
+
+        Assert.Equal(0m, field.Value);
+        Assert.Equal(0m, field.Confidence);
+    }
+
     [Fact]
     public void NVCannLabsAdapter_Parse_RealFlowerFixture_NormalizesTotalTerpenesToPercent()
     {

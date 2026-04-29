@@ -17,9 +17,39 @@ public class ProductTypeDetectorTests
     }
 
     [Fact]
+    public void Detects_Flower_From_Nevada_Plant_Flower_Cured()
+    {
+        var text = "Plant, Flower - Cured";
+
+        var result = ProductTypeDetector.Detect(text);
+
+        Assert.Equal(ProductType.Flower, result);
+    }
+
+    [Fact]
+    public void Detects_Flower_From_Nevada_Bulk_Plant_Enhanced_Infused_Flowers()
+    {
+        var text = "Bulk Plant, Enhanced/Infused Flowers";
+
+        var result = ProductTypeDetector.Detect(text);
+
+        Assert.Equal(ProductType.Flower, result);
+    }
+
+    [Fact]
     public void Detects_PreRoll()
     {
         var text = "Infused Pre-Roll 1g";
+
+        var result = ProductTypeDetector.Detect(text);
+
+        Assert.Equal(ProductType.PreRoll, result);
+    }
+
+    [Fact]
+    public void Detects_PreRoll_From_Nevada_Plant_Enhanced_Infused_Preroll()
+    {
+        var text = "Plant, Enhanced/Infused Preroll";
 
         var result = ProductTypeDetector.Detect(text);
 
@@ -97,6 +127,29 @@ public class ProductTypeDetectorTests
         var result = ProductTypeDetector.Detect(text);
 
         Assert.Equal(ProductType.Unknown, result);
+    }
+
+    [Fact]
+    public void Does_Not_Classify_Generic_Infused_Text_As_Edible()
+    {
+        var text = "Product Description: Infused cannabis product";
+
+        var result = ProductTypeDetector.Detect(text);
+
+        Assert.Equal(ProductType.Unknown, result);
+    }
+
+    [Fact]
+    public void Detects_Flower_When_Total_Edible_THC_Formula_Appears_With_Strong_Flower_Context()
+    {
+        var text = """
+        Product Type: Plant, Flower - Cured
+        Total Edible THC = Δ9-THC + Δ8-THC
+        """;
+
+        var result = ProductTypeDetector.Detect(text);
+
+        Assert.Equal(ProductType.Flower, result);
     }
 
     [Fact]

@@ -73,6 +73,20 @@ public static class GenericCannabinoidTextParser
             if (alias == null)
                 continue;
 
+            // 🚨 HARD GUARD: Non-detect rows should never produce numeric values > Cannabinoid-specific non-detect rule
+            var upperRow = row.ToUpperInvariant();
+
+            if (upperRow.Contains("<LOQ") || upperRow.Contains("ND") || upperRow.Contains("NOT DETECTED"))
+            {
+                return new ParsedField<decimal>
+                {
+                    FieldName = fieldName,
+                    Value = 0m,
+                    SourceText = row,
+                    Confidence = 0m
+                };
+            }    
+
             var unitContext = DetectNearbyUnitContext(rows, i);
             var value = ExtractBestValueAfterAlias(row, alias, unitContext);
 
