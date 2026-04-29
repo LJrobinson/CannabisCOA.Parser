@@ -5,7 +5,7 @@ namespace CannabisCOA.Parser.Core.Tests;
 public class LabAdapterDetectionTests
 {
     [Theory]
-    [InlineData("374Labs Certificate of Analysis Product Type: Flower THC: 20% Result: PASS", "374Labs")]
+    [InlineData("374Labs Certificate of Analysis Product Type: Flower THC: 20% Result: PASS", "374 Labs")]
     [InlineData("G3 Labs Certificate of Analysis Product Type: Flower THC: 20% Result: PASS", "G3 Labs")]
     [InlineData("NV CannLabs Certificate of Analysis Product Type: Flower THC: 20% Result: PASS", "NV CannLabs")]
     [InlineData("Ace Analytical Laboratory Certificate of Analysis Product Type: Flower THC: 20% Result: PASS", "Ace Analytical Laboratory")]

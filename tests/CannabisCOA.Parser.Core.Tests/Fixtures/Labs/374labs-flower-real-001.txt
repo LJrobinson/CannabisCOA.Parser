@@ -1,0 +1,133 @@
+Certicate of Analysis
+Powered by Condent LIMS
+1 of 2
+Gravitas Nevada LTD Sample: 2603TSF0081.2012
+3175 Westwood Drive Strain: 702 Headband
+Las Vegas, NV 89109 Batch #: S2.P32.R1.0223; Lot #: 8
+brett@blvd.vegas Sample Received: 03/17/2026; Report Generated: 03/20/2026
+(415) 819-4383
+Lic. #88234039028324550335
+702 Headband
+Plant, Flower - Cured
+Harvest Process Lot: ; METRC Batch: 1A4040300000E11000055240; METRC Sample: 1A4040300000E11000055250
+Safety
+Pass Pass Pass
+Pesticides Microbials Mycotoxins
+Not Tested Pass Pass
+Solvents Heavy Metals Foreign Matter
+The photo on this report is of a sample collected by the lab and may vary from the nal packaging
+Cannabinoids Terpenes
+13.4 %
+27.09% 0.06%
+Pass
+Total Potential THC Total Potential CBD Moisture Hops Lemon Cinnamon
+Analyte LOQ Result Result
+Analyte LOQ Result Result
+% % mg/g
+% % mg/g
+THCa 0.05 30.01 300.1
+β-Myrcene 0.05 1.15 11.5
+Δ9-THC 0.05 0.72 7.2 δ -Limonene 0.05 0.70 7.0
+Δ8-THC 0.05 0.05 0.5 β-Caryophyllene 0.05 0.58 5.8
+CBD 0.05 <LOQ <LOQ α-Humulene 0.05 0.16 1.6
+CBDa 0.05 0.07 0.7 Linalool 0.05 0.10 1.0
+β-Pinene 0.05 0.09 0.9
+CBC 0.05 <LOQ <LOQ
+α-Bisabolol 0.05 0.05 0.5
+CBG 0.05 0.16 1.6
+α-Pinene 0.05 <LOQ <LOQ
+CBN 0.05 <LOQ <LOQ Caryophyllene Oxide 0.05 <LOQ <LOQ
+THCV 0.05 <LOQ <LOQ Ocimene 0.05 <LOQ <LOQ
+CBGa 0.05 1.03 10.3 Terpinolene 0.05 <LOQ <LOQ
+Total 32.03 320.3 trans-Nerolidol 0.05 <LOQ <LOQ
+Total 2.83 28.3
+10 Greg St Condent LIMS
+Sparks, NV All Rights Reserved
+coa.support@condentlims.com
+(844) 374-5227
+Dr. Jeff Angermann (866) 506-5866
+www.374labs.com
+Scientic Director www.condentlims.com
+Unless otherwise stated all quality control samples performed within specications established by the Laboratory. This product has been tested by 374 Labs, LLC (MME#
+03754325902079441647) using valid testing methodologies and a quality system as required by State of Nevada. Pass/Fail results are based on criteria established by the State of Nevada
+under Title 56 NRS 678, NCCR 11. Values reported relate only to the product tested. 374 Labs makes no claims as to the efcacy, safety or other risks associated with any detected or non-
+detected levels of any compounds reported herein. This Certicate shall not be reproduced except in full, without the written approval of 374 Labs. Uncertainty information is available upon
+request. 374 Labs complies with ISO/IEC 17025:2017 standards (PJLA Accreditation Number: 90002; PJLA Certicate Number: L23-126). Photo is of sample collected by the lab and may vary
+from nal packaging. LOQ has been set to the Limit of Detection (LOD) / Method Detection Limit (MDL) for all endpoints.
+
+Certicate of Analysis
+Powered by Condent LIMS
+2 of 2
+Gravitas Nevada LTD Sample: 2603TSF0081.2012
+3175 Westwood Drive Strain: 702 Headband
+Las Vegas, NV 89109 Batch #: S2.P32.R1.0223; Lot #: 8
+brett@blvd.vegas Sample Received: 03/17/2026; Report Generated: 03/20/2026
+(415) 819-4383
+Lic. #88234039028324550335
+702 Headband
+Plant, Flower - Cured
+Harvest Process Lot: ; METRC Batch: 1A4040300000E11000055240; METRC Sample: 1A4040300000E11000055250
+Pesticides Pass Microbials Pass
+Analyte Result LOQ Limit Status Analyte Limit LOQ Result Status
+PPM PPM PPM CFU/g CFU/g CFU/g
+Abamectin <MDL 0.150 0.000 Pass Aspergillus avus 1 1 <LOQ Pass
+Acequinocyl <LOQ 0.150 4.000 Pass Aspergillus fumigatus 1 1 <LOQ Pass
+Beta-Cyuthrin <LOQ 0.600 2.000 Pass Aspergillus niger 1 1 <LOQ Pass
+Aspergillus terreus 1 1 <LOQ Pass
+Bifenazate <LOQ 0.080 0.400 Pass
+Total Enterobacteriaceae 1000 100 <LOQ Pass
+Bifenthrin <MDL 0.060 0.000 Pass
+Total Coliforms 1000 100 <LOQ Pass
+Cyuthrin <LOQ 0.600 2.000 Pass
+Pathogenic E. Coli 1 <LOQ Pass
+Cypermethrin <MDL 0.090 0.000 Pass
+Salmonella 1 <LOQ Pass
+Daminozide <MDL 0.090 0.000 Pass
+Total Yeast & Mold 10000 100 <LOQ Pass
+Dimethomorph <LOQ 0.080 2.000 Pass
+Etoxazole <LOQ 0.080 0.400 Pass
+Fenhexamid <LOQ 0.080 1.000 Pass
+Flonicamid <LOQ 0.080 1.000 Pass Residual Solvents Not Tested
+Fludioxonil <LOQ 0.080 0.500 Pass
+Analyte Result LOQ Limit Status
+Imidacloprid <LOQ 0.080 0.500 Pass
+Myclobutanil <LOQ 0.080 0.400 Pass
+Paclobutrazol <MDL 0.080 0.000 Pass
+Piperonyl Butoxide <LOQ 0.080 3.000 Pass
+Plant Growth Regulators <LOQ Tested
+Pyrethrins <LOQ 0.310 2.000 Pass
+Quintozene <LOQ 0.500 0.800 Pass
+Spinetoram <LOQ 0.080 1.000 Pass
+Spinosad <LOQ 0.080 1.000 Pass
+Spirotetramat <LOQ 0.080 1.000 Pass
+Thiamethoxam <LOQ 0.080 0.400 Pass
+Trioxystrobin <LOQ 0.080 1.000 Pass
+Mycotoxins Pass
+Analyte Result LOQ Limit Status
+Heavy Metals Pass PPM PPM PPM
+Aatoxins <LOQ 0.005 0.020 Pass
+Analyte Result LOQ Limit Status
+B1 <LOQ 0.005 Tested
+PPM PPM PPM
+B2 <LOQ 0.005 Tested
+Arsenic <LOQ 0.260 2.000 Pass
+G1 <LOQ 0.005 Tested
+Cadmium <LOQ 0.260 0.820 Pass
+G2 <LOQ 0.005 Tested
+Lead <LOQ 0.260 1.200 Pass
+Ochratoxin A <LOQ 0.015 0.020 Pass
+Mercury <LOQ 0.120 0.400 Pass
+Total Mycotoxins <LOQ 0.020 Pass
+10 Greg St Condent LIMS
+Sparks, NV All Rights Reserved
+coa.support@condentlims.com
+(844) 374-5227
+Dr. Jeff Angermann (866) 506-5866
+www.374labs.com
+Scientic Director www.condentlims.com
+Unless otherwise stated all quality control samples performed within specications established by the Laboratory. This product has been tested by 374 Labs, LLC (MME#
+03754325902079441647) using valid testing methodologies and a quality system as required by State of Nevada. Pass/Fail results are based on criteria established by the State of Nevada
+under Title 56 NRS 678, NCCR 11. Values reported relate only to the product tested. 374 Labs makes no claims as to the efcacy, safety or other risks associated with any detected or non-
+detected levels of any compounds reported herein. This Certicate shall not be reproduced except in full, without the written approval of 374 Labs. Uncertainty information is available upon
+request. 374 Labs complies with ISO/IEC 17025:2017 standards (PJLA Accreditation Number: 90002; PJLA Certicate Number: L23-126). Photo is of sample collected by the lab and may vary
+from nal packaging. LOQ has been set to the Limit of Detection (LOD) / Method Detection Limit (MDL) for all endpoints.
