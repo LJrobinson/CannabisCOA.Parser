@@ -1,0 +1,145 @@
+Certicate of Analysis
+1 of 2 Certicate # AT-2648
+Notes:
+Clear River LLC
+Sample: 2603RSR0033.0299
+100 E. Bruce Woodbury Strain: Garlic Cookies
+Laughlin, NV 89029 Lot #: 354 GC 01-05-26-B1
+jadepiatt@nevadammj.net Sample Received: 03/27/2026; Report Created: 04/01/2026;
+(614) 302-8554
+Lic. #02685010272987196695
+Bud Garlic Cookies
+-
+Plant, Flower - Cured, Indoor
+Harvest Process Lot: ; METRC Batch: 1A4040300000285000032964; METRC Sample: 1A4040300000285000033837
+Safety
+Pass Pass Pass
+Pesticides Microbials Mycotoxins
+Not Tested Pass Pass
+Foreign
+Solvents Metals Matter
+Cannabinoids Terpenes
+34.21% ND 8.3%
+Lemon Cinnamon Hops
+Total THC Total CBD Moisture
+Analyte LOQ LOQ Mass Mass
+Analyte LOQ Mass Mass mg/g % % mg/g
+δ -Limonene 0.25 0.025 0.590 5.90
+% % mg/g
+β-Caryophyllene 0.25 0.025 0.586 5.86
+THCa 0.25 37.74 377.4
+β-Myrcene 0.16 0.016 0.368 3.68
+Δ9-THC 0.25 1.12 11.2
+α-Humulene 0.24 0.024 0.230 2.30
+Δ8-THC 0.25 ND ND α-Bisabolol 0.20 0.020 0.106 1.06
+CBDa 0.25 ND ND β-Pinene 0.14 0.014 0.093 0.93
+CBD 0.25 ND ND α-Pinene 0.22 0.022 0.059 0.59
+Caryophyllene Oxide 0.21 0.021 0.057 0.57
+CBN 0.25 ND ND
+Linalool 0.28 0.028 0.053 0.53
+CBGa 0.25 1.07 10.7
+α-Terpinene 0.23 0.023 NR NR
+CBG 0.25 NR NR
+Camphene 0.17 0.017 NR NR
+Δ10-THC 0.01 NR NR cis-Nerolidol 0.19 0.019 NR NR
+Total 39.92 399.2 δ -3-Carene 0.24 0.024 NR NR
+Eucalyptol 0.34 0.034 NR NR
+γ-Terpinene 0.25 0.025 NR NR
+Guaiol 0.15 0.015 NR NR
+Isopulegol 0.27 0.027 NR NR
+Ocimene 0.21 0.021 NR NR
+p-Cymene 0.21 0.021 NR NR
+Terpinolene 0.23 0.023 <0.023 <0.23
+trans-Nerolidol 0.19 0.019 NR NR
+Total Potential THC = (THCa * 0.877) + ∆9-THC + ∆8-THC, Total Potential CBD = (CBDa Total 2.143 21.43
+* 0.877) + CBD; LOQ = Limit of Quantitation; NR = Not Reported; ND = Not Detected; NR = Not Reported; ND = Not Detected; LOQ = Limit of Quantitation
+Cannabinoids for ower and trim reported as received. Notes:
+Cannabinoids: RSR-SOP-002 by HPLC Terpenes: RSR-SOP-003 by GC-MS
+241 W Charleston Blvd. Condent LIMS
+Las Vegas, NV All Rights Reserved
+(702) 761-4944 coa.support@condentlims.com
+Haifei Yin
+http://www.rsrlabs.com (866) 506-5866
+Scientic Director
+Lic# 34783954003475226897 www.condentlims.com
+This product has been tested by RSR Analytical Laboratories using valid testing methodologies and a quality system as required by state law. Values reported relate only to the product tested.
+RSR Analytical Laboratories makes no claims as to the efcacy, safety or other risks associated with any detected or non-detected levels of any compounds reported herein. This Certicate shall
+not be reproduced except in full, without the written approval of RSR Analytical Laboratories.
+
+Certicate of Analysis
+2 of 2 Certicate # AT-2648
+Notes:
+Clear River LLC
+Sample: 2603RSR0033.0299
+100 E. Bruce Woodbury Strain: Garlic Cookies
+Laughlin, NV 89029 Lot #: 354 GC 01-05-26-B1
+jadepiatt@nevadammj.net Sample Received: 03/27/2026; Report Created: 04/01/2026;
+(614) 302-8554
+Lic. #02685010272987196695
+Bud Garlic Cookies
+-
+Plant, Flower - Cured, Indoor
+Harvest Process Lot: ; METRC Batch: 1A4040300000285000032964; METRC Sample: 1A4040300000285000033837
+Pesticides Pass Heavy Metals Pass
+Analyte LOQ Limit Mass Status Analyte LOQ Limit Mass Status
+PPM PPM PPM PPM PPM PPM
+Abamectin 0.040 0.000 ND Pass Arsenic 1 2 <LOQ Pass
+Acequinocyl 0.020 4.000 ND Pass Cadmium 1 1 <LOQ Pass
+Bifenazate 0.020 0.400 ND Pass Lead 1 1 <LOQ Pass
+Bifenthrin 0.020 0.000 ND Pass Mercury 0 0 <LOQ Pass
+Cyuthrin 0.500 2.000 ND Pass
+Cypermethrin 0.100 0.000 ND Pass
+NR = Not Reported; ND = Not Detected; LOQ = Limit of Quantitation;
+Daminozide 0.020 0.000 ND Pass
+Heavy Metals: RSR-SOP-004 by ICP-MS
+Dimethomorph 0.010 2.000 ND Pass
+Etoxazole 0.020 0.400 ND Pass
+Fenhexamid 0.020 1.000 ND Pass Microbials Pass
+Flonicamid 0.020 1.000 ND Pass
+Fludioxonil 0.020 0.500 ND Pass Analyte Limit Mass Status
+Imidacloprid 0.020 0.500 ND Pass CFU/g CFU/g
+Myclobutanil 0.020 0.400 ND Pass Aerobic Bacteria NR NT
+Paclobutrazol 0.020 0.000 ND Pass Aspergillus avus Negative Pass
+Piperonyl Butoxide 0.020 3.000 ND Pass Aspergillus fumigatus Negative Pass
+Pyrethrins 0.010 2.000 ND Pass Aspergillus niger Negative Pass
+Aspergillus terreus Negative Pass
+PCNB 0.100 0.800 ND Pass
+Bile-Tolerant Gram-Negative Bacteria 1000 ND Pass
+Spinetoram 0.004 1.000 ND Pass
+Coliforms 1000 ND Pass
+Spinosad 0.004 1.000 ND Pass
+E. Coli Negative Pass
+Spirotetramat 0.020 1.000 ND Pass
+Salmonella Negative Pass
+Thiamethoxam 0.020 0.400 ND Pass Yeast & Mold 10000 1200 Pass
+Trioxystrobin 0.020 1.000 ND Pass
+TNTC = Too Numerous to Count > 15 x State Limit; NR = Not Reported; ND = Not Detected;
+Tested Microbial Endpoints: Total viable aerobic bacteria, total yeast and mold, total coliforms,
+bile-tolerant gram-negative bacteria, E.coli pathogenic strains, and Salmonella spp.
+Aspergillus: RSR-SOP-020
+Aerobic Bacteria: RSR-SOP-013
+Yeast and Mold: RSR-SOP-014
+Total Coliform: RSR-SOP-016
+NR = Not Reported; ND = Not Detected; Tested Pesticides: Nevada Division of Public Bile Tolerant Gram Negative: RSR-SOP-015
+and Behavioral Health Monitoring List for Pest Control Substances E. Coli: RSR-SOP-016 & RSR-SOP-019
+Pesticides: RSR-SOP-005 by LC-MS/MS/GC-ECD Salmonella: RSR-SOP-018
+Residual Solvents Not Tested Mycotoxins Pass
+Analyte LOQ Limit Mass Status Analyte LOQ Limit Mass Status
+PPM PPM PPM
+Total Aatoxins (B1, B2, G1, G2) 0.02 0.02 ND Pass
+Ochratoxin A 0.00 0.02 ND Pass
+NR = Not Reported; ND = Not Detected; LOQ = Limit of Quantitation; Tested Mycotoxins:
+aatoxin B1, aatoxin B2, aatoxin G1, aatoxin G2, and Ochratoxin. LOQ for each
+mycotoxin is Aatoxin G2, 2 ppb; Aatoxin G1, 5 ppb; Aatoxin B2, 5 ppb and Aatoxin B1,
+Residual Solvents: RSR-SOP-006 by GC-MS 5 ppb
+Moisture Content: RSR-SOP-010; Water Activity: RSR-SOP-009 Mycotoxins: RSR-SOP-005 by LC-MS/MS
+241 W Charleston Blvd. Condent LIMS
+Las Vegas, NV All Rights Reserved
+(702) 761-4944 coa.support@condentlims.com
+Haifei Yin
+http://www.rsrlabs.com (866) 506-5866
+Scientic Director
+Lic# 34783954003475226897 www.condentlims.com
+This product has been tested by RSR Analytical Laboratories using valid testing methodologies and a quality system as required by state law. Values reported relate only to the product tested.
+RSR Analytical Laboratories makes no claims as to the efcacy, safety or other risks associated with any detected or non-detected levels of any compounds reported herein. This Certicate shall
+not be reproduced except in full, without the written approval of RSR Analytical Laboratories.

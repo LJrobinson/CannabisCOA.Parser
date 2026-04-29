@@ -1,5 +1,7 @@
 using System;
 using System.IO;
+using CannabisCOA.Parser.Core.Adapters.Labs.RSRAnalytical;
+using CannabisCOA.Parser.Core.Enums;
 using Xunit;
 
 namespace CannabisCOA.Parser.Core.Tests;
@@ -15,6 +17,16 @@ public class RSRFixtureTests
             name);
 
         return File.ReadAllText(path);
+    }
+
+    private static string FixturePath(string fileName)
+    {
+        return Path.GetFullPath(Path.Combine(
+            AppContext.BaseDirectory,
+            "..", "..", "..",
+            "Fixtures",
+            "Labs",
+            fileName));
     }
 
     [Fact]
@@ -35,5 +47,87 @@ public class RSRFixtureTests
         Assert.True(result.Compliance.Passed);
 
         Assert.Equal(2.143m, result.Terpenes.TotalTerpenes);
+    }
+
+    [Fact]
+    public void RsrAnalyticalAdapter_Parse_RealFlowerFixtureDetectsHeaderFields()
+    {
+        var text = File.ReadAllText(FixturePath("rsr-flower-real-001.txt"));
+
+        var result = new RSRAnalyticalAdapter().Parse(text);
+
+        Assert.Equal("RSR Analytical Laboratories", result.LabName);
+        Assert.Equal(ProductType.Flower, result.ProductType);
+        Assert.NotNull(result.TestDate);
+        Assert.Equal(37.74m, result.Cannabinoids.THCA.Value);
+        Assert.Equal(1.12m, result.Cannabinoids.THC.Value);
+    }
+
+    [Fact]
+    public void RsrAnalyticalAdapter_Parse_RealFlowerFixture_MapsExpectedCannabinoidValues()
+    {
+        var text = File.ReadAllText(FixturePath("rsr-flower-real-001.txt"));
+
+        var result = new RSRAnalyticalAdapter().Parse(text);
+        var document = CannabisCOA.Parser.Core.Mappers.CoaDocumentMapper.FromCoaResult(result);
+
+        var thca = FindCannabinoid("THCA");
+        var thc = FindCannabinoid("THC");
+
+        Assert.Equal(37.74m, thca.Percent);
+        Assert.Equal(1.12m, thc.Percent);
+        Assert.Equal("%", thca.Unit);
+        Assert.Equal("%", thc.Unit);
+        Assert.False(string.IsNullOrEmpty(thca.SourceText));
+        Assert.False(string.IsNullOrEmpty(thc.SourceText));
+
+        CannabisCOA.Parser.Core.Models.CoaAnalyteResult FindCannabinoid(string name)
+        {
+            return document.Cannabinoids.Single(cannabinoid =>
+                cannabinoid.Name == name ||
+                cannabinoid.NormalizedName == name);
+        }
+    }
+
+    [Fact]
+    public void RsrAnalyticalAdapter_Parse_RealFlowerFixture_TotalThcMatchesFormulaWithinTolerance()
+    {
+        var text = File.ReadAllText(FixturePath("rsr-flower-real-001.txt"));
+
+        var result = new RSRAnalyticalAdapter().Parse(text);
+
+        var thca = result.Cannabinoids.THCA.Value;
+        var thc = result.Cannabinoids.THC.Value;
+        var delta8 = 0m;
+        var expectedTotalThc = (thca * 0.877m) + thc + delta8;
+
+        Assert.True(Math.Abs(result.Cannabinoids.TotalTHC - expectedTotalThc) <= 0.02m);
+
+        var roundedTotalThc = Math.Round(result.Cannabinoids.TotalTHC, 2);
+        Assert.True(roundedTotalThc is 34.21m or 34.22m);
+    }
+
+    [Fact]
+    public void RsrAnalyticalAdapter_Parse_RealFlowerFixture_MapsTotalTerpenes()
+    {
+        var text = File.ReadAllText(FixturePath("rsr-flower-real-001.txt"));
+
+        var result = new RSRAnalyticalAdapter().Parse(text);
+
+        Assert.NotNull(result.Terpenes);
+        Assert.Equal(2.143m, result.Terpenes.TotalTerpenes);
+    }
+
+    [Fact]
+    public void RsrAnalyticalAdapter_Parse_RealFlowerFixture_TerpeneTotalMatchesSumWithinTolerance()
+    {
+        var text = File.ReadAllText(FixturePath("rsr-flower-real-001.txt"));
+
+        var result = new RSRAnalyticalAdapter().Parse(text);
+        var terpeneSum = result.Terpenes.Terpenes.Values
+            .Where(percent => percent > 0m)
+            .Sum();
+
+        Assert.True(Math.Abs(terpeneSum - result.Terpenes.TotalTerpenes) <= 0.1m);
     }
 }
