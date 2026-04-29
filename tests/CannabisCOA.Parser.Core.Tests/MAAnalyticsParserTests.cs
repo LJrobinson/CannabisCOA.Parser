@@ -30,6 +30,29 @@ public class MAAnalyticsParserTests
         Assert.Equal(0.544m, result.Cannabinoids.THC.Value);
     }
 
+    [Theory]
+    [InlineData("CBD", "CBD 0.640 <LOQ <LOQ")]
+    [InlineData("CBDA", "CBDa 0.160 <LOQ <LOQ")]
+    [InlineData("CBD", "CBD 0.640 ND ND")]
+    public void MAAnalyticsAdapter_Parse_CbdNonDetectRows_MapToZeroConfidence(string cannabinoidName, string cannabinoidRow)
+    {
+        var text = $"""
+        MA Analytics
+        Product Type: Plant, Flower - Cured
+        THCa 0.160 26.278 262.78
+        Δ9-THC 0.640 0.544 5.44
+        {cannabinoidRow}
+        """;
+
+        var result = new MAAnalyticsAdapter().Parse(text);
+        var field = cannabinoidName == "CBDA"
+            ? result.Cannabinoids.CBDA
+            : result.Cannabinoids.CBD;
+
+        Assert.Equal(0m, field.Value);
+        Assert.Equal(0m, field.Confidence);
+    }
+
     [Fact]
     public void MAAnalyticsAdapter_Parse_RealFlowerFixture_TotalThcMatchesFormulaWithinTolerance()
     {

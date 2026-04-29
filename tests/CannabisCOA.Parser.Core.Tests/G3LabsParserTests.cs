@@ -30,6 +30,29 @@ public class G3LabsParserTests
         Assert.Equal(0.51m, result.Cannabinoids.THC.Value);
     }
 
+    [Theory]
+    [InlineData("CBD", "CBD 0.00016 <LOQ <LOQ")]
+    [InlineData("CBDA", "CBDa 0.00016 <LOQ <LOQ")]
+    [InlineData("CBD", "CBD 0.00016 ND ND")]
+    public void G3LabsAdapter_Parse_CbdNonDetectRows_MapToZeroConfidence(string cannabinoidName, string cannabinoidRow)
+    {
+        var text = $"""
+        G3 Labs
+        Product Type: Plant, Flower - Cured
+        THCa 0.00016 28.66 286.6
+        Δ9-THC 0.00016 0.51 5.1
+        {cannabinoidRow}
+        """;
+
+        var result = new G3LabsAdapter().Parse(text);
+        var field = cannabinoidName == "CBDA"
+            ? result.Cannabinoids.CBDA
+            : result.Cannabinoids.CBD;
+
+        Assert.Equal(0m, field.Value);
+        Assert.Equal(0m, field.Confidence);
+    }
+
     [Fact]
     public void G3LabsAdapter_Parse_RealFlowerFixtureNormalizesTotalTerpenesToPercent()
     {

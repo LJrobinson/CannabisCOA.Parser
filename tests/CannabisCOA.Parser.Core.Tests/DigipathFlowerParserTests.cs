@@ -60,7 +60,7 @@ public class DigipathFlowerParserTests
         var result = CoaParser.Parse(text);
 
         Assert.Equal(0m, result.Cannabinoids.CBD.Value);
-        Assert.True(result.Cannabinoids.CBD.Confidence > 0m);
+        Assert.Equal(0m, result.Cannabinoids.CBD.Confidence);
     }
 
     [Fact]
@@ -78,6 +78,26 @@ public class DigipathFlowerParserTests
         Assert.Equal(0.225m, result.Cannabinoids.THC.Value);
         Assert.Equal(0.056m, result.Cannabinoids.CBDA.Value);
         Assert.Equal(0m, result.Cannabinoids.CBD.Value);
+    }
+
+    [Theory]
+    [InlineData("CBD", "CBD 0.014 <LOQ <LOQ")]
+    [InlineData("CBDA", "CBDa 0.004 <LOQ <LOQ")]
+    [InlineData("CBD", "CBD 0.014 ND ND")]
+    public void DigipathFlowerParser_Parse_CbdNonDetectRows_MapToZeroConfidence(string cannabinoidName, string cannabinoidRow)
+    {
+        var text = BuildDigipathTable(
+            "THCa 0.004 26.564 265.64",
+            "Δ9-THC 0.003 0.225 2.25",
+            cannabinoidRow);
+
+        var result = CoaParser.Parse(text);
+        var field = cannabinoidName == "CBDA"
+            ? result.Cannabinoids.CBDA
+            : result.Cannabinoids.CBD;
+
+        Assert.Equal(0m, field.Value);
+        Assert.Equal(0m, field.Confidence);
     }
 
     [Fact]

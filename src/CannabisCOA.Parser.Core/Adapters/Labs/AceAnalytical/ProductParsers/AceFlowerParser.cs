@@ -251,7 +251,7 @@ public static class AceFlowerParser
             if (!mgPerGramToken.IsQualified)
                 return false;
 
-            confidence = 0.85m;
+            confidence = 0m;
             return true;
         }
 

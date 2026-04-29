@@ -1693,7 +1693,7 @@ public static class DigipathFlowerParser
         if (!TryParseDigipathResultTriple(tokens, out var percent, out _, out var isLoq))
             return false;
 
-        var confidence = isLoq ? 0.85m : 0.95m;
+        var confidence = isLoq ? 0m : 0.95m;
 
         parsedRow = new ParsedDigipathCannabinoidRow(anchor.CanonicalName, percent, row, confidence);
         return true;
@@ -2177,7 +2177,7 @@ public static class DigipathFlowerParser
             return null;
 
         if (token.IsNonDetect || token.IsLessThan)
-            return new ParsedDigipathValue(0m, 0.85m);
+            return new ParsedDigipathValue(0m, 0m);
 
         var unit = string.IsNullOrWhiteSpace(token.Unit)
             ? context.PrimaryResultUnit

@@ -11,7 +11,7 @@ public class Labs374Adapter : BaseLabAdapter
     public override string LabName => "374 Labs";
 
     private static readonly Regex CannabinoidRowRegex = new(
-        @"^\s*(?<name>THCa|THCA|Δ9-THC|∆9-THC|Δ8-THC|∆8-THC|CBDa|CBDA|CBD|CBC|CBG|CBN|THCV|CBGa|CBGA)\s+(?<loq><\s*LOQ|<\s*LOD|<\s*MDL|ND|NR|NT|\d{1,6}(?:\.\d+)?|\.\d+)\s+(?<percent><\s*LOQ|<\s*LOD|<\s*MDL|ND|NR|NT|\d{1,6}(?:\.\d+)?|\.\d+)\s+(?<mg><\s*LOQ|<\s*LOD|<\s*MDL|ND|NR|NT|\d{1,6}(?:\.\d+)?|\.\d+)(?=\s|$)",
+        @"^\s*(?<name>THCa|THCA|Δ9-THC|∆9-THC|Δ8-THC|∆8-THC|CBDa|CBDA|CBD|CBC|CBG|CBN|THCV|CBGa|CBGA)\s+(?<loq><\s*LOQ|<\s*LOD|<\s*MDL|ND|NR|NT|\d{1,6}(?:\.\d+)?|\.\d+)\s+(?<percent><\s*LOQ|<\s*LOD|<\s*MDL|ND|NR|NT|Not\s+Detected|\d{1,6}(?:\.\d+)?|\.\d+)\s+(?<mg><\s*LOQ|<\s*LOD|<\s*MDL|ND|NR|NT|Not\s+Detected|\d{1,6}(?:\.\d+)?|\.\d+)(?=\s|$)",
         RegexOptions.IgnoreCase | RegexOptions.Compiled);
 
     protected override string[] DetectionTerms =>
@@ -58,12 +58,13 @@ public class Labs374Adapter : BaseLabAdapter
             if (fieldName is null)
                 continue;
 
+            var percentRaw = match.Groups["percent"].Value;
             var field = new ParsedField<decimal>
             {
                 FieldName = fieldName,
-                Value = ParseResultValue(match.Groups["percent"].Value),
+                Value = ParseResultValue(percentRaw),
                 SourceText = row,
-                Confidence = 0.95m
+                Confidence = IsNonDetectResultValue(percentRaw) ? 0m : 0.95m
             };
 
             switch (fieldName)
@@ -92,19 +93,27 @@ public class Labs374Adapter : BaseLabAdapter
 
     private static decimal ParseResultValue(string raw)
     {
-        var normalized = Regex.Replace(raw.Trim(), @"\s+", string.Empty);
-
-        if (normalized.StartsWith("<", StringComparison.OrdinalIgnoreCase) ||
-            normalized.Equals("ND", StringComparison.OrdinalIgnoreCase) ||
-            normalized.Equals("NR", StringComparison.OrdinalIgnoreCase) ||
-            normalized.Equals("NT", StringComparison.OrdinalIgnoreCase))
+        if (IsNonDetectResultValue(raw))
         {
             return 0m;
         }
 
+        var normalized = Regex.Replace(raw.Trim(), @"\s+", string.Empty);
+
         return decimal.TryParse(normalized, NumberStyles.Number, CultureInfo.InvariantCulture, out var value)
             ? value
             : 0m;
+    }
+
+    private static bool IsNonDetectResultValue(string raw)
+    {
+        var normalized = Regex.Replace(raw.Trim(), @"\s+", string.Empty);
+
+        return normalized.StartsWith("<", StringComparison.OrdinalIgnoreCase) ||
+               normalized.Equals("ND", StringComparison.OrdinalIgnoreCase) ||
+               normalized.Equals("NR", StringComparison.OrdinalIgnoreCase) ||
+               normalized.Equals("NT", StringComparison.OrdinalIgnoreCase) ||
+               normalized.Equals("NOTDETECTED", StringComparison.OrdinalIgnoreCase);
     }
 
     private static string? NormalizeCannabinoidName(string name)

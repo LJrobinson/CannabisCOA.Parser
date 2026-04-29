@@ -37,6 +37,26 @@ public class AceFlowerParserTests
         Assert.Equal(0m, result.Cannabinoids.CBD.Value);
     }
 
+    [Theory]
+    [InlineData("CBD", "CBD 0.060 <LOQ <LOQ")]
+    [InlineData("CBDA", "CBDa 0.060 <LOQ <LOQ")]
+    [InlineData("CBD", "CBD 0.060 ND ND")]
+    public void AceFlowerParser_Parse_CbdNonDetectRows_MapToZeroConfidence(string cannabinoidName, string cannabinoidRow)
+    {
+        var text = BuildAceCannabinoidTable(
+            "THCa 0.060 22.959 229.59",
+            "Δ9-THC 0.060 0.285 2.85",
+            cannabinoidRow);
+
+        var result = CoaParser.Parse(text);
+        var field = cannabinoidName == "CBDA"
+            ? result.Cannabinoids.CBDA
+            : result.Cannabinoids.CBD;
+
+        Assert.Equal(0m, field.Value);
+        Assert.Equal(0m, field.Confidence);
+    }
+
     [Fact]
     public void Parses_Ace_Terpene_Table_By_Mass_Percent()
     {
