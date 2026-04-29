@@ -1,4 +1,5 @@
 using CannabisCOA.Parser.Core.Adapters;
+using CannabisCOA.Parser.Core.Adapters.Generic;
 using CannabisCOA.Parser.Core.Adapters.Labs.AceAnalytical.ProductParsers;
 using CannabisCOA.Parser.Core.Enums;
 using CannabisCOA.Parser.Core.Models;
@@ -11,13 +12,17 @@ public class AceAnalyticalAdapter : BaseLabAdapter
 
     protected override string[] DetectionTerms =>
     [
-        "ACE ANALYTICAL",
         "ACE ANALYTICAL LABORATORY",
-        "ACE ANALYTICAL LAB"
+        "ACE ANALYTICAL LABS",
+        "LIC# 91781014075623623744",
+        "7151 CASCADE VALLEY CT"
     ];
 
     public override CoaResult Parse(string text)
     {
+        if (!CanParse(text))
+            return new GenericCoaAdapter().Parse(text);
+
         var productType = DetectProductType(text);
 
         return productType switch

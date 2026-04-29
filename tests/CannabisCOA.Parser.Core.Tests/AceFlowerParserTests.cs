@@ -307,4 +307,127 @@ public class AceFlowerParserTests
         Assert.NotEmpty(document.Cannabinoids);
         Assert.Equal("AceFlowerParser", document.ParserMetadata.ParserName);
     }
+
+    [Fact]
+    public void AceFlowerParser_ParseDocument_MapsFlowerCoaV1CoreFields()
+    {
+        var text = File.ReadAllText(FixturePath("ace-flower.txt"));
+
+        var document = AceFlowerParser.ParseDocument(
+            text,
+            "Ace Analytical Laboratory",
+            "ace-flower.txt");
+
+        Assert.Equal("flower-coa-v1", document.SchemaVersion);
+        Assert.Equal("Ace Analytical Laboratory", document.LabName);
+        Assert.Equal("Flower", document.ProductType);
+        Assert.Equal(nameof(AceFlowerParser), document.ParserMetadata.ParserName);
+        Assert.NotEmpty(document.Cannabinoids);
+        Assert.NotNull(document.TotalThcPercent);
+        Assert.True(document.ParserMetadata.ConfidenceScore > 0m);
+    }
+
+    [Fact]
+    public void AceFlowerParser_ParseDocument_MapsExpectedCannabinoidValues()
+    {
+        var text = File.ReadAllText(FixturePath("ace-flower.txt"));
+
+        var document = AceFlowerParser.ParseDocument(
+            text,
+            "Ace Analytical Laboratory",
+            "ace-flower.txt");
+
+        var thca = FindCannabinoid("THCA");
+        var thc = FindCannabinoid("THC");
+        var cbda = FindCannabinoid("CBDA");
+
+        Assert.True(thca.Percent > 20m);
+        Assert.True(thc.Percent > 0m);
+        Assert.True(cbda.Percent >= 0m);
+        Assert.Equal("%", thca.Unit);
+        Assert.Equal("%", thc.Unit);
+        Assert.Equal("%", cbda.Unit);
+        Assert.False(string.IsNullOrWhiteSpace(thca.SourceText));
+        Assert.False(string.IsNullOrWhiteSpace(thc.SourceText));
+        Assert.False(string.IsNullOrWhiteSpace(cbda.SourceText));
+
+        CannabisCOA.Parser.Core.Models.CoaAnalyteResult FindCannabinoid(string name)
+        {
+            return document.Cannabinoids.Single(cannabinoid =>
+                cannabinoid.Name == name ||
+                cannabinoid.NormalizedName == name);
+        }
+    }
+
+    [Fact]
+    public void AceFlowerParser_ParseDocument_MapsExpectedTotals()
+    {
+        var text = File.ReadAllText(FixturePath("ace-flower-real-001.txt"));
+
+        var document = AceFlowerParser.ParseDocument(
+            text,
+            "Ace Analytical Laboratory",
+            "ace-flower-real-001.txt");
+
+        Assert.NotNull(document.TotalThcPercent);
+        Assert.True(document.TotalThcPercent > 0, $"Expected TotalThcPercent > 0 but was {document.TotalThcPercent}");
+
+        Assert.NotNull(document.TotalCbdPercent);
+        Assert.True(document.TotalCbdPercent >= 0, $"Expected TotalCbdPercent >= 0 but was {document.TotalCbdPercent}");
+
+        // Ace total terpene parsing is not part of this test yet.
+        // Zero is allowed because Ace may not populate terpenes in this fixture.
+        Assert.True(document.TotalTerpenesPercent is null or >= 0);
+    }
+
+    [Fact]
+    public void AceFlowerParser_ParseDocument_MapsRealCoaExactValues()
+    {
+        var text = File.ReadAllText(FixturePath("ace-flower-real-001.txt"));
+
+        var document = AceFlowerParser.ParseDocument(
+            text,
+            "Ace Analytical Laboratory",
+            "ace-flower-real-001.txt");
+
+        var thca = FindCannabinoid("THCA");
+        var thc = FindCannabinoid("THC");
+
+        Assert.Equal(30.504m, Math.Round(thca.Percent!.Value, 3));
+        Assert.Equal(0.207m, Math.Round(thc.Percent!.Value, 3));
+        Assert.Equal(26.959m, Math.Round(document.TotalThcPercent!.Value, 3));
+        Assert.Equal(1.956m, Math.Round(document.TotalTerpenesPercent!.Value, 3));
+
+        CannabisCOA.Parser.Core.Models.CoaAnalyteResult FindCannabinoid(string name)
+        {
+            return document.Cannabinoids.Single(cannabinoid =>
+                cannabinoid.Name == name ||
+                cannabinoid.NormalizedName == name);
+        }
+    }
+
+    [Fact]
+    public void AceAnalyticalAdapter_Parse_RealFixtureDetectsAceFlowerHeaderFields()
+    {
+        var text = File.ReadAllText(FixturePath("ace-flower-real-001.txt"));
+
+        var result = new CannabisCOA.Parser.Core.Adapters.Labs.AceAnalytical.AceAnalyticalAdapter()
+            .Parse(text);
+
+        Assert.Equal("Ace Analytical Laboratory", result.LabName);
+        Assert.Equal(ProductType.Flower, result.ProductType);
+        Assert.Equal(new DateTime(2025, 12, 8), result.HarvestDate);
+        Assert.NotNull(result.TestDate);
+    }
+
+    [Fact]
+    public void AceAnalyticalAdapter_DoesNotIncorrectlyParseNonAceLab()
+    {
+        var text = File.ReadAllText(FixturePath("Digipath_Flower.txt"));
+
+        var result = new CannabisCOA.Parser.Core.Adapters.Labs.AceAnalytical.AceAnalyticalAdapter()
+            .Parse(text);
+
+        Assert.NotEqual("Ace Analytical Laboratory", result.LabName);
+    }
 }

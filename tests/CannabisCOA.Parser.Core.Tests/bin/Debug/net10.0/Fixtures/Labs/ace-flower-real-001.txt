@@ -1,0 +1,168 @@
+Certificate of Analysis
+1 of 2
+SRENE
+Reno Area, NV 89509
+Lic. #17334914845519714402
+Sample: 2601ACE0017_P_00172
+Strain: Royale Grape
+Batch #: 251208-H231.2_Royale Grape; Lot #: Lot 2
+Harvest/Production date: 12/08/2025
+Sample Received: 01/08/2026; Report Created: 01/12/2026;
+Royale Grape
+Plant, Flower - Cured, Indoor
+Harvest Process Lot: Lot 2; METRC Batch: 1A4040300002329000042548; METRC Sample: 1A4040300002329000042549
+
+Cannabinoids
+26.959 %
+Total THC
+<LOQ %
+Total CBD
+10.14%
+Pass
+Analysis Date: 1/9/2026
+Moisture
+Analyte LOQ Mass Mass
+% % mg/g
+THCa 0.060 30.504 305.04
+Δ9-THC 0.060 0.207 2.07
+Δ8-THC 0.060 <LOQ <LOQ
+THCVa 0.060 0.156 1.56
+THCV 0.060 <LOQ <LOQ
+CBDa 0.060 <LOQ <LOQ
+CBD 0.060 <LOQ <LOQ
+CBDV 0.060 <LOQ <LOQ
+CBN 0.060 <LOQ <LOQ
+CBGa 0.060 1.769 17.69
+CBG 0.060 0.141 1.41
+CBC 0.060 <LOQ <LOQ
+Total 32.777 327.77
+Analysis Date: 1/8/2026
+Total THC = THCa * 0.877 + ∆9-THC + ∆8-THC; Total CBD = CBDa * 0.877 + CBD
+LOQ = Limit of Quantitation; The reported result is based on a sample weight with the applicable moisture content for that sample.
+
+Safety
+Pass
+Pesticides
+Pass
+Microbials
+Pass
+Mycotoxins
+Not Tested
+Solvents
+Pass
+Metals
+Pass
+Analysis Date: 1/8/2026
+Foreign Matter
+
+Terpenes
+Analyte LOQ Mass Mass
+mg/g mg/g %
+δ-Limonene 0.04 7.52 0.752
+β-Caryophyllene 0.04 4.12 0.412
+Linalool 0.04 3.38 0.338
+β-Pinene 0.04 1.33 0.133
+α-Humulene 0.04 1.13 0.113
+β-Myrcene 0.04 0.91 0.091
+α-Pinene 0.04 0.79 0.079
+Camphene 0.04 0.25 0.025
+Terpinolene 0.04 0.08 0.008
+Caryophyllene Oxide 0.04 0.05 0.005
+α-Bisabolol 0.04 <LOQ <LOQ
+α-Terpinene 0.04 <LOQ <LOQ
+δ-3-Carene 0.04 <LOQ <LOQ
+Eucalyptol 0.04 <LOQ <LOQ
+γ-Terpinene 0.04 <LOQ <LOQ
+Geraniol 0.25 <LOQ <LOQ
+Guaiol 0.04 <LOQ <LOQ
+Isopulegol 0.04 <LOQ <LOQ
+Ocimene 0.04 <LOQ <LOQ
+p-Cymene 0.04 <LOQ <LOQ
+trans-Nerolidol 0.04 <LOQ <LOQ
+Total 19.56 1.956
+Lemon Cinnamon Lavender
+Analysis Date: 1/8/2026
+
+Ace Analytical Laboratory
+7151 Cascade Valley Ct.
+Las Vegas, NV
+(702) 749-7429
+Lic# 91781014075623623744
+
+--- PAGE 2 ---
+
+Certificate of Analysis
+2 of 2
+SRENE
+Reno Area, NV 89509
+Lic. #17334914845519714402
+Sample: 2601ACE0017_P_00172
+Strain: Royale Grape
+Batch #: 251208-H231.2_Royale Grape; Lot #: Lot 2
+Harvest/Production date: 12/08/2025
+Sample Received: 01/08/2026; Report Created: 01/12/2026;
+Royale Grape
+Plant, Flower - Cured, Indoor
+Harvest Process Lot: Lot 2; METRC Batch: 1A4040300002329000042548; METRC Sample: 1A4040300002329000042549
+
+Pesticides Pass
+Analyte LOD LOQ Limit Mass Status
+PPM PPM PPM PPM
+Abamectin 0.010 0.020 >LOD <LOD Pass
+Acequinocyl 0.020 4.000 <LOQ Pass
+Bifenazate 0.020 0.400 <LOQ Pass
+Bifenthrin 0.002 0.020 >LOD <LOD Pass
+Cyfluthrin 0.020 2.000 <LOQ Pass
+Cypermethrin 0.005 0.020 >LOD <LOD Pass
+Daminozide 0.006 0.020 >LOD <LOD Pass
+Dimethomorph 0.020 2.000 <LOQ Pass
+Etoxazole 0.020 0.400 <LOQ Pass
+Fenhexamid 0.020 1.000 <LOQ Pass
+Flonicamid 0.020 1.000 <LOQ Pass
+Fludioxonil 0.020 0.500 <LOQ Pass
+Imidacloprid 0.020 0.500 <LOQ Pass
+Myclobutanil 0.020 0.400 <LOQ Pass
+Paclobutrazol 0.002 0.020 >LOD <LOD Pass
+Piperonyl Butoxide 0.020 3.000 <LOQ Pass
+Pyrethrins 0.100 2.000 <LOQ Pass
+Quintozene 0.200 0.800 <LOQ Pass
+Spinetoram 0.020 1.000 <LOQ Pass
+Spinosad 0.020 1.000 <LOQ Pass
+Spirotetramat 0.020 1.000 <LOQ Pass
+Thiamethoxam 0.020 0.400 <LOQ Pass
+Trifloxystrobin 0.020 1.000 <LOQ Pass
+Analysis Date: 1/8/2026 18:35
+
+Heavy Metals Pass
+Analyte LOQ Limit Mass Status
+PPB PPB PPB
+Lead 50 1200 <LOQ Pass
+Cadmium 50 820 <LOQ Pass
+Arsenic 50 2000 <LOQ Pass
+Mercury 50 400 <LOQ Pass
+Analysis Date: 1/12/2026
+
+Microbials Pass
+Analyte LOQ Limit Mass Status
+CFU/g CFU/g CFU/g
+Aspergillus flavus ND Pass
+Aspergillus fumigatus ND Pass
+Aspergillus niger ND Pass
+Aspergillus terreus ND Pass
+Bile-Tolerant Gram-Negative Bacteria 100 1000 ND Pass
+Coliforms 100 1000 ND Pass
+E. Coli ND Pass
+Salmonella ND Pass
+Yeast & Mold 100 10000 100.00 Pass
+Analysis Date: 1/7/2026
+
+Residual Solvents Not Tested
+Analyte LOQ Limit Mass Status
+Analysis Date:
+
+Mycotoxins Pass
+Analyte LOQ Limit Mass Status
+PPB PPB PPB
+Aflatoxins 5.00 20.00 <LOQ Pass
+Ochratoxin A 5.00 20.00 <LOQ Pass
+Analysis Date: 1/8/2026 18:35
