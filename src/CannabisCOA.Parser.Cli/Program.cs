@@ -30,6 +30,7 @@ if (args.Length == 0)
     Console.WriteLine("  cannabis-coa --file fixtures/digipath-flower.txt --raw");
     Console.WriteLine("  cannabis-coa --file sample.pdf --dump-text");
     Console.WriteLine("  cannabis-coa --batch G:\\COAs --out parsed.jsonl");
+    Console.WriteLine("  cannabis-coa --batch G:\\COAs --out parsed.jsonl --csv parsed.csv");
     return;
 }
 
@@ -65,6 +66,22 @@ if (argsList.Contains("--batch"))
         }
     }
 
+    string? csvOutput = null;
+
+    if (argsList.Contains("--csv"))
+    {
+        var csvIdx = argsList.IndexOf("--csv");
+
+        if (csvIdx + 1 >= argsList.Count)
+        {
+            Console.Error.WriteLine("Missing file path after --csv");
+            Environment.Exit(1);
+            return;
+        }
+
+        csvOutput = argsList[csvIdx + 1];
+    }
+
     var files = Directory.GetFiles(inputDir, "*.*", SearchOption.AllDirectories)
         .Where(f =>
             f.EndsWith(".txt", StringComparison.OrdinalIgnoreCase) ||
@@ -88,6 +105,12 @@ if (argsList.Contains("--batch"))
     }
 
     using var writer = new StreamWriter(output, append: false);
+    using var csvWriter = csvOutput is null ? null : new StreamWriter(csvOutput, append: false);
+
+    if (csvWriter is not null)
+    {
+        BatchCsvWriter.WriteHeader(csvWriter);
+    }
 
     foreach (var file in files)
     {
@@ -107,6 +130,7 @@ if (argsList.Contains("--batch"))
             }
 
             writer.WriteLine(JsonSerializer.Serialize(res, jsonOptions));
+            BatchCsvWriter.WriteRow(csvWriter, file, res);
 
             if (IsGenericLab(res.Coa.LabName))
             {

@@ -1,62 +1,58 @@
 # CannabisCOA.Parser
 
-A .NET parser for extracting structured cannabis Certificate of Analysis (COA) data from messy lab PDF/text reports.
+CannabisCOA.Parser is a C#/.NET parser for cannabis Certificates of Analysis (COAs), built to normalize messy lab PDF output into structured cannabinoid, terpene, product, lab, date, and warning data.
 
-COAs are designed for people, not databases. This project turns inconsistent lab reports into structured JSON that can support analytics, compliance review, inventory workflows, batch QA, and automation.
-
-The goal is not to build a toy parser that works on one perfect PDF. The goal is to survive real-world COA chaos: different labs, different units, different table layouts, side-by-side extraction bleed, non-detect rows, amended reports, duplicated templates, and PDF text that looks like it was assembled by a raccoon with a label maker.
+The parser is designed around real Nevada COA layouts, including inconsistent PDF text extraction, flattened side-by-side tables, amended reports, lab-specific potency tables, and product-type-specific unit rules.
 
 ## Current Status
 
-Active development, fixture-first, with a passing regression suite.
+Latest validation state:
 
-Current local test status:
+- Test suite: **243/243 passing**
+- Latest mixed-product batch size: **120 COAs**
+- Actionable parser warnings in latest batch: **0**
+- Remaining batch warnings: **AMENDED_COA only**
+- Current batch testing folder: `G:\COA_BatchTests\combined-current\`
 
-```powershell
-dotnet test
-# 243/243 passing
-```
-
-Current mixed-product batch stress test status:
-
-- 120 real COAs processed
-- 0 `MISSING_TEST_DATE` warnings
-- 0 unknown product type failures observed in the latest batch
-- 0 actionable chemistry warnings remaining in the latest post-fix batch
-- Remaining warnings are currently amended-report flags only: `AMENDED_COA`
-
-The parser is currently strongest on Nevada lab COAs and has locked coverage across multiple labs, product types, and table layouts.
+The parser currently has stable flower parsing across the supported Nevada lab set, plus active mixed-product support for real-world edible, vape, concentrate, and pre-roll layouts observed in batch testing.
 
 ## Supported Labs
 
-The parser currently targets these Nevada COA lab formats:
+Current lab adapters / lab coverage include:
 
 - 374 Labs
 - G3 Labs
 - NV Cann Labs
 - Ace Analytical Laboratory
 - Kaycha Labs
-- Digipath Labs
+- Digipath
 - MA Analytics
 - RSR Analytical Laboratories
 
-## Supported Product Types
+## Product Coverage
 
-The parser detects and validates multiple product types:
+The original milestone focused on flower COAs. The project now supports a broader mixed-product baseline.
 
-- Flower
-- Pre-Roll
-- Edible
-- Concentrate
-- Vape
-- Topical
-- Tincture
+| Lab | Flower | Pre-Roll | Edible | Vape | Concentrate | Tincture | Topical |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| 374 Labs | ✅ | Partial | — | ✅ | Partial | — | — |
+| G3 Labs | ✅ | Partial | — | — | — | — | — |
+| NV Cann Labs | ✅ | ✅ | — | Partial | ✅ | — | — |
+| Ace Analytical Laboratory | ✅ | Partial | — | ✅ | — | — | — |
+| Kaycha Labs | ✅ | Partial | ✅ | Partial | Partial | — | — |
+| Digipath | ✅ | Partial | — | ✅ | ✅ | — | — |
+| MA Analytics | ✅ | Partial | — | — | Partial | — | — |
+| RSR Analytical Laboratories | ✅ | Partial | — | — | — | — | — |
 
-Flower parsing is the most mature baseline across the full lab set. Recent work has expanded and regression-locked several non-flower layouts, including Kaycha edibles, Digipath vapes, 374 Labs vapes, and NV Cann concentrate/vape side-by-side table patterns.
+Legend:
 
-## What It Extracts
+- ✅ = supported with fixture-backed parsing or batch-validated behavior
+- Partial = supported for some observed layouts, but more fixtures are needed
+- — = not yet validated
 
-`CannabisCOA.Parser` extracts structured COA data including:
+## What the Parser Extracts
+
+The parser currently normalizes:
 
 - Product type
 - Lab name
@@ -66,467 +62,368 @@ Flower parsing is the most mature baseline across the full lab set. Recent work 
 - Test date
 - Package date
 - Amended COA status
-- Cannabinoids
+- Major cannabinoid values:
   - THC
   - THCA
   - CBD
   - CBDA
   - Total THC
   - Total CBD
-- Terpenes
-  - Individual terpene breakdown
-  - Total terpenes
-  - Dominant terpene profile support
-- Compliance status
-- Freshness scoring
-- Validation warnings
-- Product score and score breakdown
+- Total terpenes
+- Individual terpene breakdowns where available
+- Source text for key cannabinoids
+- Confidence values
+- Parser/validation warnings
 
-Each parsed cannabinoid field includes:
+## Nevada Unit Handling
 
-- Field name
-- Parsed value
-- Source text
-- Confidence
+CannabisCOA.Parser follows the practical Nevada reporting distinction used during project validation:
 
-The source text is intentionally preserved so parser output can be audited against the raw extracted COA text.
+- Flower, trim, shake, and pre-roll products use percent as the canonical stored/display value.
+- Other product types, including edibles, vapes, and concentrates, use mg/unit or mg/g depending on the source table and product layout.
 
-## Why This Exists
+Examples:
 
-Cannabis operators, analysts, inventory teams, and compliance staff often need COA data in a usable format, but the data is usually trapped in inconsistent PDFs.
+- Flower cannabinoid rows are generally stored from the percent column.
+- Vape/concentrate cannabinoid rows are generally stored from the mg/g column.
+- Edible potency rows are stored from the mg/unit value when reported per unit.
 
-Manual entry is slow, error-prone, and hard to scale. This project reduces that pain by turning messy lab reports into consistent structured output.
+## Key Parsing Milestones
 
-Practical use cases include:
+### Flower COA Baseline
 
-- Internal COA QA
-- Inventory enrichment
-- Product scoring
-- Retail analytics
-- Compliance review
-- Batch-level data validation
-- Vendor/lab consistency checks
-- Future database loading and dashboard workflows
+Flower COA parsing is stable across the main Nevada lab set. The parser handles lab-specific cannabinoid and terpene table layouts, lab/date metadata, amended report flags, and common PDF text extraction issues.
 
-## Parser Philosophy
+### Kaycha Edible Cannabinoids
 
-This project follows a narrow, fixture-first strategy:
+Kaycha edible COAs use a vertical/row-oriented cannabinoid potency table that differs from Kaycha flower layouts.
 
-1. Use real COA text fixtures whenever possible.
-2. Add one narrow regression test for one known layout.
-3. Fix the lab adapter, not the generic parser, unless the problem is truly generic.
-4. Preserve existing passing lab/product behavior.
-5. Avoid broad refactors during parser lock-in work.
-6. Keep source text auditable.
-7. Treat side-by-side table bleed as a lab-layout problem, not a reason to loosen validation.
+Current behavior:
 
-The project favors boring, targeted fixes over heroic parser wizardry. Less magic, more receipts.
+- Parses edible THC from the actual cannabinoid potency table.
+- Uses mg/unit for edible potency values.
+- Prevents product description text, water activity text, and formula rows from contaminating cannabinoid fields.
+- Handles `<LOQ`, `ND`, `NR`, `NT`, and related non-detect values as zero-confidence non-detects.
 
-## Important Parsing Rules
+### Digipath Vape and Concentrate Cannabinoids
 
-### Flower / Pre-Roll
+Digipath vape/concentrate COAs can use mg/g-based cannabinoid tables and side-by-side cannabinoid/terpene layouts.
 
-Nevada flower-like products are commonly reported and validated using percentage values.
+Current behavior:
 
-For flower and pre-roll COAs, cannabinoid values generally use the percent column as the canonical parsed value.
+- Supports Digipath row-based cannabinoid tables.
+- Supports vape/concentrate mg/g storage.
+- Handles side-by-side cannabinoid/terpene extraction.
+- Preserves percent behavior for flower/pre-roll layouts.
+- Allows Digipath body/header identity to outrank NV Cann footer/subcontract mentions during lab resolution.
 
-### Vape / Concentrate / Edible / Other Non-Flower Products
+### 374 Labs Vape Terpenes
 
-Non-flower products often require mg/g or mg/unit handling depending on product type and lab format.
+374 Labs vape COAs can extract as flattened cannabinoid/terpene rows.
 
-Examples already handled:
+Current behavior:
 
-- Kaycha edible potency tables use mg/unit as the canonical edible value.
-- Digipath vape/concentrate tables may report cannabinoid rows as `LOQ | mg/g | %`.
-- NV Cann concentrate/vape side-by-side tables require bounded parsing to avoid terpene bleed.
+- Parses terpene segments from flattened side-by-side rows.
+- Stores terpene result percent rather than LOQ.
+- Validates mg/g and percent relationship before accepting terpene values.
+- Avoids treating repeated LOQ values as terpene results.
 
-### Non-Detect Handling
+### MA Analytics and NV Cann Labs Terpene Aliases
 
-The parser normalizes common non-detect tokens such as:
+MA Analytics and NV Cann Labs terpene total mismatches were traced to missing terpene aliases rather than total parsing or rounding.
 
-- `<LOQ`
-- `ND`
-- `NR`
-- `NT`
-- `Not Detected`
+Current behavior:
 
-When a cannabinoid is non-detect, the value is set to `0` and confidence is set to `0`.
+- Expanded lab-specific terpene alias support.
+- Preserves strict validator tolerance.
+- Fixes observed terpene total mismatch warnings without weakening validation.
 
-### Total THC / Total CBD
+### NV Cann Labs Side-by-Side Cannabinoid Bleed
 
-Total THC is validated using:
+NV Cann concentrate COAs can extract as side-by-side cannabinoid/terpene rows.
+
+Example raw row:
 
 ```text
-Total THC = THC + (THCA * 0.877)
+Δ9-THC 0.106 10.125 1.420 Caryophyllene Oxide 0.015 <LOQ <LOQ
 ```
 
-Total CBD is validated using:
+Current behavior:
+
+- Adds NV-only bounded cannabinoid parsing.
+- Slices cannabinoid rows before terpene analytes.
+- Prevents terpene-side `<LOQ` values from making cannabinoids appear non-detect.
+- Prevents terpene-side numeric values from becoming cannabinoid values.
+- Stores mg/g for concentrates and vapes.
+- Stores percent for flower and pre-rolls.
+
+## Latest Batch Validation
+
+Latest mixed-product batch validation:
 
 ```text
-Total CBD = CBD + (CBDA * 0.877)
+Batch folder: G:\COA_BatchTests\combined-current\
+COAs parsed: 120
+Tests passing: 243/243
+Actionable parser warnings: 0
+Remaining warnings: AMENDED_COA only
 ```
 
-Some lab-specific parsers may include additional cannabinoids such as Delta-8 THC in local total calculations when the source table supports it.
+Validated real-world layout coverage includes:
 
-## Recent Locked Fixes
+- Flower cannabinoid tables
+- Flower terpene tables
+- Edible vertical cannabinoid potency tables
+- Vape/concentrate mg/g cannabinoid layouts
+- Flattened side-by-side cannabinoid/terpene layouts
+- Side-by-side table bleed prevention
+- Terpene total mismatch resolution
+- Lab misclassification prevention for Digipath/NV footer overlap
+- Non-detect normalization for `<LOQ`, `ND`, `NR`, `NT`, and related values
 
-Recent parser lock-in work includes:
+## CLI Usage
 
-- Kaycha edible cannabinoid table parsing
-  - Parses vertical edible potency rows
-  - Uses mg/unit values
-  - Avoids product description, formula text, and water activity bleed
-
-- Digipath vape cannabinoid parsing
-  - Supports vape/concentrate cannabinoid rows using mg/g-first layouts
-  - Handles side-by-side cannabinoid/terpene table extraction
-  - Avoids terpene-side values contaminating THC/CBD
-
-- 374 Labs vape terpene breakdown parsing
-  - Parses flattened cannabinoid/terpene table rows
-  - Stores terpene result percent, not LOQ
-  - Skips non-detect terpene rows
-
-- MA Analytics terpene alias expansion
-  - Adds missing terpene analytes and aliases
-  - Resolves terpene total mismatch warnings caused by missed rows
-
-- NV Cann Labs terpene alias expansion
-  - Adds missing terpene analytes and aliases
-  - Resolves terpene total mismatch warnings caused by missed rows
-
-- NV Cann Labs side-by-side table bleed fix
-  - Adds NV-only bounded cannabinoid parsing
-  - Slices cannabinoid rows before terpene analytes
-  - Prevents terpene-side `<LOQ` from zeroing valid cannabinoid values
-  - Prevents terpene-side numbers from being parsed as THC/CBD
-
-- Digipath vs NV adapter detection tightening
-  - Prevents Digipath COAs with NV Cann footer/subcontract text from being misrouted to NV Cann parsing
-
-## Example CLI Usage
-
-Run the parser against a single PDF or text fixture:
+### Parse a Single PDF
 
 ```powershell
-dotnet run --project src\CannabisCOA.Parser.Cli -- --file "path\to\coa.pdf"
+dotnet run --project src\CannabisCOA.Parser.Cli -- --file "G:\path\to\coa.pdf"
 ```
 
-Dump extracted text from a PDF:
+### Dump Extracted Text From a PDF
+
+Useful when creating fixtures or debugging PDF extraction:
 
 ```powershell
-dotnet run --project src\CannabisCOA.Parser.Cli -- --file "path\to\coa.pdf" --dump-text
+dotnet run --project src\CannabisCOA.Parser.Cli -- --file "G:\path\to\coa.pdf" --dump-text
 ```
 
-Parse a batch folder into JSON output:
+### Batch Parse COAs to JSONL
+
+Current batch testing path:
 
 ```powershell
-dotnet run --project src\CannabisCOA.Parser.Cli -- --batch "G:\COA_BatchTests\combined-current" --out "wave-current.jsonl"
+dotnet run --project src\CannabisCOA.Parser.Cli -- --batch "G:\COA_BatchTests\combined-current" --out "G:\COA_BatchTests\parsed.jsonl"
 ```
 
-Run the test suite:
+### Batch Parse COAs to JSONL and CSV
+
+CSV export is CLI-only and additive. It does not change parser behavior.
+
+```powershell
+dotnet run --project src\CannabisCOA.Parser.Cli -- --batch "G:\COA_BatchTests\combined-current" --out "G:\COA_BatchTests\parsed.jsonl" --csv "G:\COA_BatchTests\parsed.csv"
+```
+
+## CSV Export
+
+The CLI supports optional flat CSV export for Excel, Power BI, and operational review.
+
+CSV is written only when `--csv` is provided.
+
+Initial CSV columns:
+
+```text
+FileName,ProductType,LabName,ProductName,BatchId,IsAmended,HarvestDate,TestDate,PackageDate,THC,THCA,CBD,CBDA,TotalTHC,TotalCBD,TotalTerpenes,THCSourceText,THCConfidence,THCASourceText,THCAConfidence,CBDSourceText,CBDConfidence,CBDASourceText,CBDAConfidence,Warnings
+```
+
+CSV behavior:
+
+- One row per COA.
+- Dates are written as `yyyy-MM-dd`.
+- Missing/null values are blank.
+- Decimal values use invariant culture.
+- Warnings are pipe-delimited in a single cell.
+- CSV values are escaped correctly for commas, quotes, and line breaks.
+- Terpene breakdown columns are intentionally excluded from v1 CSV to keep the export flat and stable.
+
+## JSONL Output
+
+Batch JSONL output writes one parsed COA result per line.
+
+Typical result structure includes:
+
+- `Coa`
+  - `ProductType`
+  - `IsAmended`
+  - `LabName`
+  - `ProductName`
+  - `BatchId`
+  - `HarvestDate`
+  - `TestDate`
+  - `PackageDate`
+  - `Cannabinoids`
+  - `TotalTerpenes`
+  - `Terpenes`
+- `Warnings`
+
+JSONL remains the preferred machine-readable/debug format. CSV is the preferred business review format.
+
+## Warnings
+
+The parser emits warnings for important validation conditions.
+
+Current warning examples include:
+
+- `AMENDED_COA`
+- `MISSING_THC_VALUES`
+- `TERPENE_TOTAL_MISMATCH`
+- `TERPENE_BREAKDOWN_MISSING`
+- `MISSING_TEST_DATE`
+- Unknown or unsupported product/lab patterns where applicable
+
+Current latest batch status:
+
+```text
+MISSING_THC_VALUES: 0
+TERPENE_TOTAL_MISMATCH: 0
+TERPENE_BREAKDOWN_MISSING: 0
+AMENDED_COA: 15
+```
+
+`AMENDED_COA` is expected metadata/compliance signaling, not a parser failure.
+
+## Testing
+
+Run the full test suite:
 
 ```powershell
 dotnet test
 ```
 
-Build the test project without running tests:
-
-```powershell
-dotnet build tests\CannabisCOA.Parser.Core.Tests\CannabisCOA.Parser.Core.Tests.csproj -v minimal
-```
-
-## Example Output Shape
-
-```json
-{
-  "Coa": {
-    "ProductType": "Flower",
-    "IsAmended": false,
-    "LabName": "MA Analytics",
-    "ProductName": "Sample Flower",
-    "BatchId": "ABC123",
-    "HarvestDate": "2026-02-25T00:00:00",
-    "TestDate": "2026-03-27T00:00:00",
-    "PackageDate": "2026-03-29T00:00:00",
-    "Cannabinoids": {
-      "THC": {
-        "FieldName": "THC",
-        "Value": 0.544,
-        "SourceText": "Δ9-THC 0.160 0.544 5.44",
-        "Confidence": 0.95
-      },
-      "THCA": {
-        "FieldName": "THCA",
-        "Value": 26.278,
-        "SourceText": "THCa 0.160 26.278 262.78",
-        "Confidence": 0.95
-      },
-      "CBD": {
-        "FieldName": "CBD",
-        "Value": 0,
-        "SourceText": "CBD 0.640 ND ND",
-        "Confidence": 0
-      },
-      "CBDA": {
-        "FieldName": "CBDA",
-        "Value": 0,
-        "SourceText": "CBDa 0.160 ND ND",
-        "Confidence": 0
-      },
-      "TotalTHC": 23.59,
-      "TotalCBD": 0.00
-    },
-    "Terpenes": {
-      "Terpenes": {
-        "β-Myrcene": 0.66359,
-        "β-Caryophyllene": 0.53103,
-        "δ-Limonene": 0.41148,
-        "Linalool": 0.23188
-      },
-      "TotalTerpenes": 2.17
-    },
-    "Compliance": {
-      "Passed": true,
-      "ContaminantsPassed": true,
-      "Status": "pass"
-    },
-    "Freshness": {
-      "DaysSinceTest": 33,
-      "Score": 85,
-      "Band": "Good"
-    }
-  },
-  "Validation": {
-    "IsValid": true,
-    "Warnings": []
-  },
-  "Score": {
-    "Score": 75,
-    "Tier": "Solid",
-    "Breakdown": {
-      "Potency": 30,
-      "Terpenes": 15,
-      "Freshness": 20,
-      "Compliance": 10
-    }
-  },
-  "Profile": {
-    "DominantTerpene": "β-Myrcene",
-    "TopTerpenes": [
-      "β-Myrcene",
-      "β-Caryophyllene",
-      "δ-Limonene"
-    ],
-    "ProfileType": "Floral",
-    "Lean": "Unknown"
-  }
-}
-```
-
-## Validation & Scoring
-
-Parsed COAs are validated and scored after extraction.
-
-Validation currently checks for issues such as:
-
-- Missing THC values
-- Missing test dates
-- Unknown product types
-- Amended COAs
-- Terpene total mismatches
-- Missing terpene breakdowns when a total is present
-- Total THC / CBD sanity checks
-- Product-type-aware chemistry expectations
-
-Scoring currently considers:
-
-- Potency
-- Terpenes
-- Freshness
-- Compliance status
-
-The validation layer is intentionally separate from parsing so extraction, warnings, and scoring can evolve independently.
-
-## Project Structure
+Current expected result:
 
 ```text
-src/
-  CannabisCOA.Parser.Core/
-    Adapters/
-      Labs/
-        374Labs/
-        AceAnalytical/
-        Digipath/
-        G3Labs/
-        KaychaLabs/
-        MAAnalytics/
-        NVCannLabs/
-        RSRAnalytical/
-    Parsers/
-    Validation/
-    Scoring/
-
-  CannabisCOA.Parser.Cli/
-    CLI entry point for single-file and batch parsing
-
-tests/
-  CannabisCOA.Parser.Core.Tests/
-    Fixtures/
-      Labs/
-    Lab-specific parser tests
-    Adapter detection tests
-    Validator tests
+243/243 passing
 ```
 
-## Fixture Workflow
+## Fixture Strategy
 
-Preferred workflow for locking a new COA layout:
+The parser is developed with real fixture-backed regression tests wherever possible.
 
-1. Dump raw text from the PDF.
-2. Save the raw text fixture under `tests/CannabisCOA.Parser.Core.Tests/Fixtures/Labs/`.
-3. Add one narrow failing test for the exact layout.
-4. Patch only the relevant lab adapter.
-5. Run `dotnet test`.
-6. Batch test against `G:\COA_BatchTests\combined-current`.
-7. Compare warnings before/after.
-
-Example fixture dump:
-
-```powershell
-dotnet run --project src\CannabisCOA.Parser.Cli -- --file "G:\COA_BatchTests\combined-current\sample.pdf" --dump-text > tests\CannabisCOA.Parser.Core.Tests\Fixtures\Labs\new-fixture.txt
-```
-
-## Batch Testing Workflow
-
-Current batch testing folder:
+Fixture location:
 
 ```text
-G:\COA_BatchTests\combined-current\
+tests/CannabisCOA.Parser.Core.Tests/Fixtures/Labs/
 ```
 
-Recommended batch command:
+Fixture strategy:
+
+1. Add a narrow fixture or raw text snippet for the exact failing layout.
+2. Add one focused regression test.
+3. Make the smallest lab-specific production fix.
+4. Avoid broad generic parser changes unless the issue is truly generic.
+5. Preserve existing lab/product behavior.
+6. Re-run the full test suite.
+7. Re-run the mixed-product batch test.
+
+## Development Principles
+
+This project intentionally favors lab-specific parsers over over-aggressive generic guessing.
+
+Core rules:
+
+- Prefer real fixtures over assumptions.
+- Fix one lab/product/layout at a time.
+- Avoid broad refactors during parser hardening.
+- Do not loosen validators to hide parser misses.
+- Preserve source precision where the COA provides it.
+- Treat side-by-side PDF extraction as a first-class problem.
+- Keep generic parsers conservative.
+- Use lab-specific parsing when layout identity is known.
+- Keep source text traceability for key parsed values.
+
+## Current Roadmap
+
+Completed / current milestone:
+
+- [x] Stable flower parsing baseline across main Nevada labs
+- [x] Mixed-product batch parsing baseline
+- [x] Kaycha edible cannabinoid table support
+- [x] Digipath vape/concentrate cannabinoid support
+- [x] Digipath side-by-side vape cannabinoid support
+- [x] 374 Labs vape terpene breakdown support
+- [x] MA Analytics terpene alias expansion
+- [x] NV Cann Labs terpene alias expansion
+- [x] NV Cann Labs side-by-side concentrate cannabinoid bleed fix
+- [x] Digipath vs NV Cann footer/subcontract lab detection improvement
+- [x] Batch CSV export
+
+Next practical targets:
+
+- [ ] Add more fixture-backed coverage for pre-roll edge layouts
+- [ ] Add more fixture-backed coverage for tincture and topical COAs
+- [ ] Add safety/compliance category parsing
+- [ ] Add terpene breakdown export option or normalized secondary CSV
+- [ ] Add database export / ingestion path
+- [ ] Add support matrix automation from fixtures/tests
+- [ ] Polish SourceText slicing for already-correct values where source rows still contain appended table text
+- [ ] Add CLI/output tests if/when a CLI test harness pattern is introduced
+
+## Recommended Next Engineering Step
+
+The parser warning board is currently clean for the latest mixed-product batch. The next highest-value technical step is not another parser change unless a new batch exposes a real failure.
+
+Recommended next step:
+
+1. Keep the current parser locked.
+2. Use the new CSV export against the mixed batch.
+3. Review CSV in Excel/Power BI.
+4. Decide which downstream shape matters most:
+   - one-row-per-COA summary CSV
+   - normalized cannabinoid CSV
+   - normalized terpene CSV
+   - safety/compliance CSV
+   - database import tables
+
+## Example Workflow
 
 ```powershell
-dotnet run --project src\CannabisCOA.Parser.Cli -- --batch "G:\COA_BatchTests\combined-current" --out "wave-current.jsonl"
+# Run full tests
+dotnet test
+
+# Parse current mixed batch to JSONL and CSV
+dotnet run --project src\CannabisCOA.Parser.Cli -- --batch "G:\COA_BatchTests\combined-current" --out "G:\COA_BatchTests\parsed.jsonl" --csv "G:\COA_BatchTests\parsed.csv"
+
+# Review git changes
+git status
+git diff --stat
 ```
 
-Batch review focuses on warning deltas:
+## Repository Hygiene
 
-- `MISSING_THC_VALUES`
-- `MISSING_TEST_DATE`
-- `TERPENE_BREAKDOWN_MISSING`
-- `TERPENE_TOTAL_MISMATCH`
-- `AMENDED_COA`
-- Unknown or incorrect product type
-- Wrong lab adapter resolution
-- Suspicious source text bleed
+Generated build outputs should not be committed.
 
-A clean chemistry batch does not necessarily mean every future COA is solved. It means the current known fixture/batch patterns are locked and regression-protected.
+Common generated folders:
 
-## Development Notes
+```text
+bin/
+obj/
+TestResults/
+```
 
-Generated build outputs should not be committed:
+If generated files appear in Git status, clean them before committing.
 
-- `bin/`
-- `obj/`
-- `Debug/`
-- `Release/`
-
-If build artifacts show up in `git status`, restore them before committing:
+Example:
 
 ```powershell
 git restore -- src\CannabisCOA.Parser.Cli\bin src\CannabisCOA.Parser.Cli\obj src\CannabisCOA.Parser.Core\bin src\CannabisCOA.Parser.Core\obj tests\CannabisCOA.Parser.Core.Tests\bin tests\CannabisCOA.Parser.Core.Tests\obj
 ```
 
-Recommended `.gitignore` entries:
+## License
 
-```gitignore
-bin/
-obj/
-.vs/
-.vscode/
-TestResults/
-*.user
-*.suo
-*.cache
-*.pdb
+Add license details here if/when the project is ready for public reuse.
+
+## Summary
+
+CannabisCOA.Parser has moved from a flower-only parsing baseline into a mixed-product, fixture-backed COA parsing engine with real batch validation.
+
+Current state:
+
+```text
+243/243 tests passing
+120-file mixed-product batch clean of actionable parser warnings
+JSONL batch output
+CSV batch export
+lab-specific handling for multiple real-world PDF extraction layouts
 ```
 
-## Roadmap
-
-### Locked / Completed
-
-- [x] Lab adapter framework
-- [x] CLI parser entry point
-- [x] Single-file parsing
-- [x] Batch parsing
-- [x] JSON output
-- [x] Flower COA parsing across 8 Nevada labs
-- [x] Product type detection
-- [x] Cannabinoid parsing
-- [x] Terpene parsing
-- [x] Total THC / CBD validation
-- [x] Terpene total validation
-- [x] Product-type-aware validation
-- [x] Non-detect confidence normalization
-- [x] Source text preservation
-- [x] Lab adapter detection tests
-- [x] Kaycha edible cannabinoid parsing
-- [x] Digipath vape cannabinoid parsing
-- [x] Digipath side-by-side vape cannabinoid parsing
-- [x] 374 Labs vape terpene breakdown parsing
-- [x] MA/NV terpene alias expansion
-- [x] NV Cann side-by-side table bleed fix
-- [x] Mixed-product batch stress testing baseline
-
-### Next Best Targets
-
-- [ ] Add more real fixture coverage for each lab/product combination
-- [ ] Add CSV export for analyst workflows
-- [ ] Add database-ready output shape
-- [ ] Expand safety/compliance contaminant category parsing
-- [ ] Add stronger product name and batch ID extraction
-- [ ] Add duplicate COA detection for batch runs
-- [ ] Add batch summary report output
-- [ ] Add CI workflow for automated test runs
-- [ ] Add package/release workflow when API shape stabilizes
-
-### Future Ideas
-
-- [ ] COA quality score by lab/vendor
-- [ ] COA freshness dashboard
-- [ ] Terpene profile clustering
-- [ ] Retail inventory enrichment pipeline
-- [ ] Compliance exception reports
-- [ ] Parser confidence dashboard
-- [ ] Postgres loading pipeline
-- [ ] Excel-friendly exports
-
-## Tech Stack
-
-- C#
-- .NET 10
-- xUnit
-- CLI-first workflow
-- JSON output
-- Fixture-backed parser tests
-- Lab-specific adapters
-
-## Portfolio Summary
-
-`CannabisCOA.Parser` is a real-world cannabis data extraction tool built to convert inconsistent COA PDFs into structured, validated JSON.
-
-It demonstrates:
-
-- Domain-specific parser design
-- Test-driven development
-- Batch data validation
-- Lab-specific adapter architecture
-- PDF text extraction handling
-- RegEx and bounded table parsing
-- Data quality checks
-- Product-type-aware cannabis chemistry logic
-- Practical analytics pipeline thinking
-
-This project is built from actual operational pain: cannabis COA data exists, but it is messy, inconsistent, and trapped in documents. This parser turns that pain into structured data.
+At this point, the project is ready to support downstream analytics workflows, QA review, CSV/Power BI reporting, and future safety/compliance parsing.
