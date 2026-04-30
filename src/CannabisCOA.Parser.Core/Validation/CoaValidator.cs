@@ -1,3 +1,4 @@
+using CannabisCOA.Parser.Core.Enums;
 using CannabisCOA.Parser.Core.Models;
 
 namespace CannabisCOA.Parser.Core.Validation;
@@ -7,6 +8,7 @@ public static class CoaValidator
     public static ValidationResult Validate(CoaResult coa)
     {
         var result = new ValidationResult();
+        var profile = ResolveProfile(coa.ProductType);
 
         if (coa.IsAmended)
         {
@@ -18,7 +20,8 @@ public static class CoaValidator
             });
         }
 
-        if (coa.Cannabinoids.TotalTHC > 40m)
+        if (profile.TotalThcHighThreshold is { } totalThcHighThreshold &&
+            coa.Cannabinoids.TotalTHC > totalThcHighThreshold)
         {
             result.Warnings.Add(new ValidationWarning
             {
@@ -28,7 +31,8 @@ public static class CoaValidator
             });
         }
 
-        if (coa.Cannabinoids.TotalCBD > 100m)
+        if (profile.TotalCbdHighThreshold is { } totalCbdHighThreshold &&
+            coa.Cannabinoids.TotalCBD > totalCbdHighThreshold)
         {
             result.Warnings.Add(new ValidationWarning
             {
@@ -44,6 +48,17 @@ public static class CoaValidator
             {
                 Code = "TOTAL_TERPENES_HIGH",
                 Message = "Total terpenes are unusually high.",
+                Severity = "warning"
+            });
+        }
+
+        if (coa.Terpenes?.TotalTerpenes > 0m &&
+            (coa.Terpenes.Terpenes == null || coa.Terpenes.Terpenes.Count == 0))
+        {
+            result.Warnings.Add(new ValidationWarning
+            {
+                Code = "TERPENE_BREAKDOWN_MISSING",
+                Message = "Total terpenes reported without individual breakdown.",
                 Severity = "warning"
             });
         }
@@ -79,5 +94,22 @@ public static class CoaValidator
         }
 
         return result;
+    }
+
+    private static ValidationProfile ResolveProfile(ProductType productType)
+    {
+        return productType switch
+        {
+            ProductType.Unknown or ProductType.Flower or ProductType.PreRoll => new ValidationProfile
+            {
+                TotalThcHighThreshold = 40m,
+                TotalCbdHighThreshold = 100m,
+                TotalTerpenesHighThreshold = 25m
+            },
+            _ => new ValidationProfile
+            {
+                TotalTerpenesHighThreshold = 25m
+            }
+        };
     }
 }

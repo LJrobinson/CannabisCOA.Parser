@@ -64,6 +64,32 @@ public class NVCannLabsParserTests
     }
 
     [Fact]
+    public void NVCannLabsAdapter_Parse_RealFlowerFixture_MapsExpectedIndividualTerpenes()
+    {
+        var text = File.ReadAllText(FixturePath("nvcannlabs-flower-real-001.txt"));
+
+        var result = new NVCannLabsAdapter().Parse(text);
+
+        Assert.Equal(0.5920m, result.Terpenes.Terpenes["Linalool"]);
+        Assert.Equal(0.5567m, result.Terpenes.Terpenes["δ-Limonene"]);
+        Assert.Equal(0.4655m, result.Terpenes.Terpenes["β-Caryophyllene"]);
+    }
+
+    [Fact]
+    public void NVCannLabsAdapter_Parse_RealFlowerFixture_TerpeneTotalMatchesSumWithinTolerance()
+    {
+        var text = File.ReadAllText(FixturePath("nvcannlabs-flower-real-001.txt"));
+
+        var result = new NVCannLabsAdapter().Parse(text);
+
+        var terpeneSum = result.Terpenes.Terpenes.Values
+            .Where(percent => percent > 0m)
+            .Sum();
+
+        Assert.InRange(terpeneSum, result.Terpenes.TotalTerpenes - 0.1m, result.Terpenes.TotalTerpenes + 0.1m);
+    }
+
+    [Fact]
     public void NVCannLabsAdapter_Parse_RealFlowerFixture_TotalThcMatchesFormulaWithinTolerance()
     {
         var text = File.ReadAllText(FixturePath("nvcannlabs-flower-real-001.txt"));

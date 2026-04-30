@@ -13,6 +13,29 @@ public class NVCannLabsAdapter : BaseLabAdapter
         @"(?<value>\d{1,6}(?:\.\d+)?|\.\d+)\s*mg\s*/\s*g",
         RegexOptions.IgnoreCase | RegexOptions.Compiled);
 
+    private static readonly Regex TerpeneResultTripleRegex = new(
+        @"^\s+(?<loq><\s*LOQ|<\s*LOD|ND|NR|NT|\d{1,6}(?:\.\d+)?|\.\d+)\s+(?<mg><\s*LOQ|<\s*LOD|ND|NR|NT|\d{1,6}(?:\.\d+)?|\.\d+)\s+(?<percent><\s*LOQ|<\s*LOD|ND|NR|NT|\d{1,6}(?:\.\d+)?|\.\d+)(?=\s|$)",
+        RegexOptions.IgnoreCase | RegexOptions.Compiled);
+
+    private static readonly (string CanonicalName, Regex NameRegex)[] NvTerpeneAnchors =
+    [
+        ("Linalool", new Regex(@"(?<![\p{L}\p{N}])Linalool(?![\p{L}\p{N}])", RegexOptions.IgnoreCase | RegexOptions.Compiled)),
+        ("δ-Limonene", new Regex(@"(?<![\p{L}\p{N}])δ\s*-\s*Limonene(?![\p{L}\p{N}])", RegexOptions.IgnoreCase | RegexOptions.Compiled)),
+        ("β-Caryophyllene", new Regex(@"(?<![\p{L}\p{N}])β\s*-\s*Caryophyllene(?![\p{L}\p{N}])", RegexOptions.IgnoreCase | RegexOptions.Compiled)),
+        ("Farnesene", new Regex(@"(?<![\p{L}\p{N}])Farnesene(?![\p{L}\p{N}])", RegexOptions.IgnoreCase | RegexOptions.Compiled)),
+        ("β-Myrcene", new Regex(@"(?<![\p{L}\p{N}])β\s*-\s*Myrcene(?![\p{L}\p{N}])", RegexOptions.IgnoreCase | RegexOptions.Compiled)),
+        ("α-Humulene", new Regex(@"(?<![\p{L}\p{N}])α\s*-\s*Humulene(?![\p{L}\p{N}])", RegexOptions.IgnoreCase | RegexOptions.Compiled)),
+        ("α-Bisabolol", new Regex(@"(?<![\p{L}\p{N}])α\s*-\s*Bisabolol(?![\p{L}\p{N}])", RegexOptions.IgnoreCase | RegexOptions.Compiled)),
+        ("β-Pinene", new Regex(@"(?<![\p{L}\p{N}])β\s*-\s*Pinene(?![\p{L}\p{N}])", RegexOptions.IgnoreCase | RegexOptions.Compiled)),
+        ("α-Terpineol", new Regex(@"(?<![\p{L}\p{N}])α\s*-\s*Terpineol(?![\p{L}\p{N}])", RegexOptions.IgnoreCase | RegexOptions.Compiled)),
+        ("α-Pinene", new Regex(@"(?<![\p{L}\p{N}])α\s*-\s*Pinene(?![\p{L}\p{N}])", RegexOptions.IgnoreCase | RegexOptions.Compiled)),
+        ("Nerolidol", new Regex(@"(?<![\p{L}\p{N}])Nerolidol(?![\p{L}\p{N}])", RegexOptions.IgnoreCase | RegexOptions.Compiled)),
+        ("Terpinolene", new Regex(@"(?<![\p{L}\p{N}])Terpinolene(?![\p{L}\p{N}])", RegexOptions.IgnoreCase | RegexOptions.Compiled)),
+        ("Caryophyllene Oxide", new Regex(@"(?<![\p{L}\p{N}])Caryophyllene\s+Oxide(?![\p{L}\p{N}])", RegexOptions.IgnoreCase | RegexOptions.Compiled)),
+        ("Camphene", new Regex(@"(?<![\p{L}\p{N}])Camphene(?![\p{L}\p{N}])", RegexOptions.IgnoreCase | RegexOptions.Compiled)),
+        ("Guaiol", new Regex(@"(?<![\p{L}\p{N}])Guaiol(?![\p{L}\p{N}])", RegexOptions.IgnoreCase | RegexOptions.Compiled))
+    ];
+
     protected override string[] DetectionTerms =>
     [
         "NV CANNLABS",
@@ -27,6 +50,14 @@ public class NVCannLabsAdapter : BaseLabAdapter
 
         if (TryParseNvTotalTerpenes(text, out var totalTerpenes))
             result.Terpenes.TotalTerpenes = totalTerpenes;
+
+        if (TryParseNvTerpenes(text, out var terpenes))
+        {
+            result.Terpenes.Terpenes.Clear();
+
+            foreach (var terpene in terpenes)
+                result.Terpenes.Terpenes[terpene.Key] = terpene.Value;
+        }
 
         return result;
     }
@@ -53,6 +84,44 @@ public class NVCannLabsAdapter : BaseLabAdapter
         return false;
     }
 
+    private static bool TryParseNvTerpenes(string text, out Dictionary<string, decimal> terpenes)
+    {
+        terpenes = new Dictionary<string, decimal>();
+
+        foreach (var row in NormalizeRows(text))
+        {
+            foreach (var anchor in NvTerpeneAnchors)
+            {
+                var nameMatch = anchor.NameRegex.Match(row);
+
+                if (!nameMatch.Success)
+                    continue;
+
+                var afterName = row[(nameMatch.Index + nameMatch.Length)..];
+                var valueMatch = TerpeneResultTripleRegex.Match(afterName);
+
+                if (!valueMatch.Success ||
+                    !TryParseDecimalToken(valueMatch.Groups["percent"].Value, out var percent) ||
+                    percent <= 0m ||
+                    percent > 25m)
+                {
+                    continue;
+                }
+
+                if (TryParseDecimalToken(valueMatch.Groups["mg"].Value, out var mgPerGram) &&
+                    mgPerGram > 0m &&
+                    Math.Abs((mgPerGram / 10m) - percent) > 0.001m)
+                {
+                    continue;
+                }
+
+                terpenes[anchor.CanonicalName] = percent;
+            }
+        }
+
+        return terpenes.Count > 0;
+    }
+
     private static bool TryExtractMgPerGramTotal(string row, out decimal totalTerpenes)
     {
         totalTerpenes = 0m;
@@ -66,6 +135,29 @@ public class NVCannLabsAdapter : BaseLabAdapter
 
         totalTerpenes = mgPerGram / 10m;
         return true;
+    }
+
+    private static bool TryParseDecimalToken(string raw, out decimal value)
+    {
+        value = 0m;
+
+        if (IsNonDetectResultValue(raw))
+            return false;
+
+        var normalized = Regex.Replace(raw.Trim(), @"\s+", string.Empty);
+
+        return decimal.TryParse(normalized, NumberStyles.Number, CultureInfo.InvariantCulture, out value);
+    }
+
+    private static bool IsNonDetectResultValue(string raw)
+    {
+        var normalized = Regex.Replace(raw.Trim(), @"\s+", string.Empty);
+
+        return normalized.StartsWith("<", StringComparison.OrdinalIgnoreCase) ||
+               normalized.Equals("ND", StringComparison.OrdinalIgnoreCase) ||
+               normalized.Equals("NR", StringComparison.OrdinalIgnoreCase) ||
+               normalized.Equals("NT", StringComparison.OrdinalIgnoreCase) ||
+               normalized.Equals("NOTDETECTED", StringComparison.OrdinalIgnoreCase);
     }
 
     private static List<string> NormalizeRows(string text)

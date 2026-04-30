@@ -18,6 +18,17 @@ public class G3LabsAdapter : BaseLabAdapter
         @"(?<value>\d{1,6}(?:\.\d+)?|\.\d+)\s*mg\s*/\s*g",
         RegexOptions.IgnoreCase | RegexOptions.Compiled);
 
+    private static readonly Regex TerpeneResultTripleRegex = new(
+        @"^\s+(?<loq><\s*LOQ|<\s*LOD|ND|NR|NT|\d{1,6}(?:\.\d+)?|\.\d+)\s+(?<mg><\s*LOQ|<\s*LOD|ND|NR|NT|\d{1,6}(?:\.\d+)?|\.\d+)\s+(?<percent><\s*LOQ|<\s*LOD|ND|NR|NT|\d{1,6}(?:\.\d+)?|\.\d+)(?=\s|$)",
+        RegexOptions.IgnoreCase | RegexOptions.Compiled);
+
+    private static readonly (string CanonicalName, Regex NameRegex)[] G3TerpeneAnchors =
+    [
+        ("β-Caryophyllene", new Regex(@"(?<![\p{L}\p{N}])β\s*-\s*Caryophyllene(?![\p{L}\p{N}])", RegexOptions.IgnoreCase | RegexOptions.Compiled)),
+        ("α-Humulene", new Regex(@"(?<![\p{L}\p{N}])α\s*-\s*Humulene(?![\p{L}\p{N}])", RegexOptions.IgnoreCase | RegexOptions.Compiled)),
+        ("δ-Limonene", new Regex(@"(?<![\p{L}\p{N}])δ\s*-\s*Limonene(?![\p{L}\p{N}])", RegexOptions.IgnoreCase | RegexOptions.Compiled))
+    ];
+
     protected override string[] DetectionTerms =>
     [
         "G3LABS",
@@ -37,6 +48,14 @@ public class G3LabsAdapter : BaseLabAdapter
 
         if (TryParseG3TotalTerpenes(text, out var totalTerpenes))
             result.Terpenes.TotalTerpenes = totalTerpenes;
+
+        if (TryParseG3Terpenes(text, out var terpenes))
+        {
+            result.Terpenes.Terpenes.Clear();
+
+            foreach (var terpene in terpenes)
+                result.Terpenes.Terpenes[terpene.Key] = terpene.Value;
+        }
 
         return result;
     }
@@ -123,6 +142,44 @@ public class G3LabsAdapter : BaseLabAdapter
         return false;
     }
 
+    private static bool TryParseG3Terpenes(string text, out Dictionary<string, decimal> terpenes)
+    {
+        terpenes = new Dictionary<string, decimal>();
+
+        foreach (var row in NormalizeRows(text))
+        {
+            foreach (var anchor in G3TerpeneAnchors)
+            {
+                var nameMatch = anchor.NameRegex.Match(row);
+
+                if (!nameMatch.Success)
+                    continue;
+
+                var afterName = row[(nameMatch.Index + nameMatch.Length)..];
+                var valueMatch = TerpeneResultTripleRegex.Match(afterName);
+
+                if (!valueMatch.Success ||
+                    !TryParseDecimalToken(valueMatch.Groups["percent"].Value, out var percent) ||
+                    percent <= 0m ||
+                    percent > 25m)
+                {
+                    continue;
+                }
+
+                if (TryParseDecimalToken(valueMatch.Groups["mg"].Value, out var mgPerGram) &&
+                    mgPerGram > 0m &&
+                    Math.Abs((mgPerGram / 10m) - percent) > 0.001m)
+                {
+                    continue;
+                }
+
+                terpenes[anchor.CanonicalName] = percent;
+            }
+        }
+
+        return terpenes.Count > 0;
+    }
+
     private static bool TryExtractMgPerGramTotal(string row, out decimal totalTerpenes)
     {
         totalTerpenes = 0m;
@@ -150,6 +207,18 @@ public class G3LabsAdapter : BaseLabAdapter
         return decimal.TryParse(normalized, NumberStyles.Number, CultureInfo.InvariantCulture, out var value)
             ? value
             : 0m;
+    }
+
+    private static bool TryParseDecimalToken(string raw, out decimal value)
+    {
+        value = 0m;
+
+        if (IsNonDetectResultValue(raw))
+            return false;
+
+        var normalized = Regex.Replace(raw.Trim(), @"\s+", string.Empty);
+
+        return decimal.TryParse(normalized, NumberStyles.Number, CultureInfo.InvariantCulture, out value);
     }
 
     private static bool IsNonDetectResultValue(string raw)

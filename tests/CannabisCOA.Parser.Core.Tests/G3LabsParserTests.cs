@@ -65,6 +65,33 @@ public class G3LabsParserTests
     }
 
     [Fact]
+    public void G3LabsAdapter_Parse_RealFlowerFixture_MapsExpectedIndividualTerpenes()
+    {
+        var text = File.ReadAllText(FixturePath("g3-flower-real-001.txt"));
+
+        var result = new G3LabsAdapter().Parse(text);
+
+        Assert.Equal(0.740m, result.Terpenes.Terpenes["β-Caryophyllene"]);
+        Assert.Equal(0.227m, result.Terpenes.Terpenes["α-Humulene"]);
+        Assert.Equal(0.040m, result.Terpenes.Terpenes["δ-Limonene"]);
+    }
+
+    [Fact]
+    public void G3LabsAdapter_Parse_RealFlowerFixture_TerpeneTotalMatchesSumWithinTolerance()
+    {
+        var text = File.ReadAllText(FixturePath("g3-flower-real-001.txt"));
+
+        var result = new G3LabsAdapter().Parse(text);
+
+        var terpeneSum = result.Terpenes.Terpenes.Values
+            .Where(percent => percent > 0m)
+            .Sum();
+
+        Assert.InRange(terpeneSum, result.Terpenes.TotalTerpenes - 0.1m, result.Terpenes.TotalTerpenes + 0.1m);
+        Assert.Equal(1.006m, result.Terpenes.TotalTerpenes);
+    }
+
+    [Fact]
     public void G3LabsAdapter_Parse_RealFlowerFixture_TotalThcMatchesFormula()
     {
         var text = File.ReadAllText(FixturePath("g3-flower-real-001.txt"));
