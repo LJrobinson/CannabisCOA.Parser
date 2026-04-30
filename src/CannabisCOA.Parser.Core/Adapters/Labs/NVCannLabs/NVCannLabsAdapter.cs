@@ -1,6 +1,7 @@
 using System.Globalization;
 using System.Text.RegularExpressions;
 using CannabisCOA.Parser.Core.Adapters;
+using CannabisCOA.Parser.Core.Enums;
 using CannabisCOA.Parser.Core.Models;
 
 namespace CannabisCOA.Parser.Core.Adapters.Labs.NVCannLabs;
@@ -16,6 +17,19 @@ public class NVCannLabsAdapter : BaseLabAdapter
     private static readonly Regex TerpeneResultTripleRegex = new(
         @"^\s+(?<loq><\s*LOQ|<\s*LOD|ND|NR|NT|\d{1,6}(?:\.\d+)?|\.\d+)\s+(?<mg><\s*LOQ|<\s*LOD|ND|NR|NT|\d{1,6}(?:\.\d+)?|\.\d+)\s+(?<percent><\s*LOQ|<\s*LOD|ND|NR|NT|\d{1,6}(?:\.\d+)?|\.\d+)(?=\s|$)",
         RegexOptions.IgnoreCase | RegexOptions.Compiled);
+
+    private static readonly Regex ResultTokenRegex = new(
+        @"<\s*LOQ|<\s*LOD|ND|NR|NT|Not\s+Detected|\d{1,6}(?:\.\d+)?|\.\d+",
+        RegexOptions.IgnoreCase | RegexOptions.Compiled);
+
+    private static readonly (string FieldName, Regex NameRegex)[] NvCannabinoidAnchors =
+    [
+        ("THCA", new Regex(@"^\s*THC\s*-?\s*A\b|^\s*THCa\b", RegexOptions.IgnoreCase | RegexOptions.Compiled)),
+        ("CBDA", new Regex(@"^\s*CBD\s*-?\s*A\b|^\s*CBDa\b", RegexOptions.IgnoreCase | RegexOptions.Compiled)),
+        ("D8-THC", new Regex(@"^\s*(?:Δ|∆)8\s*-\s*THC\b|^\s*D8\s*-\s*THC\b", RegexOptions.IgnoreCase | RegexOptions.Compiled)),
+        ("THC", new Regex(@"^\s*(?:Δ|∆)9\s*-\s*THC\b|^\s*D9\s*-\s*THC\b", RegexOptions.IgnoreCase | RegexOptions.Compiled)),
+        ("CBD", new Regex(@"^\s*CBD(?!\s*-?\s*A\b)(?!a\b)\b", RegexOptions.IgnoreCase | RegexOptions.Compiled))
+    ];
 
     private static readonly (string CanonicalName, Regex NameRegex)[] NvTerpeneAnchors =
     [
@@ -61,6 +75,9 @@ public class NVCannLabsAdapter : BaseLabAdapter
     {
         var result = base.Parse(text);
 
+        if (TryParseNvSideBySideCannabinoids(text, result.ProductType, out var cannabinoids))
+            result.Cannabinoids = cannabinoids;
+
         if (TryParseNvTotalTerpenes(text, out var totalTerpenes))
             result.Terpenes.TotalTerpenes = totalTerpenes;
 
@@ -73,6 +90,151 @@ public class NVCannLabsAdapter : BaseLabAdapter
         }
 
         return result;
+    }
+
+    private static bool TryParseNvSideBySideCannabinoids(
+        string text,
+        ProductType productType,
+        out CannabinoidProfile cannabinoids)
+    {
+        cannabinoids = CreateEmptyCannabinoidProfile();
+        var acceptedRows = 0;
+        var delta8 = 0m;
+
+        foreach (var row in NormalizeRows(text))
+        {
+            if (!TryFindLeadingCannabinoid(row, out var fieldName, out var aliasEndIndex))
+                continue;
+
+            var slicedRow = SliceBeforeFirstTerpene(row, aliasEndIndex);
+
+            if (!TryParseCannabinoidRow(slicedRow, fieldName, productType, out var parsedField))
+                continue;
+
+            acceptedRows++;
+
+            switch (fieldName)
+            {
+                case "THC":
+                    cannabinoids.THC = parsedField;
+                    break;
+                case "THCA":
+                    cannabinoids.THCA = parsedField;
+                    break;
+                case "CBD":
+                    cannabinoids.CBD = parsedField;
+                    break;
+                case "CBDA":
+                    cannabinoids.CBDA = parsedField;
+                    break;
+                case "D8-THC":
+                    delta8 = parsedField.Value;
+                    break;
+            }
+        }
+
+        if (acceptedRows == 0)
+            return false;
+
+        cannabinoids.TotalTHC = cannabinoids.THC.Value +
+                                (cannabinoids.THCA.Value * 0.877m) +
+                                delta8;
+        cannabinoids.TotalCBD = cannabinoids.CBD.Value +
+                                (cannabinoids.CBDA.Value * 0.877m);
+
+        return true;
+    }
+
+    private static bool TryFindLeadingCannabinoid(
+        string row,
+        out string fieldName,
+        out int aliasEndIndex)
+    {
+        foreach (var anchor in NvCannabinoidAnchors)
+        {
+            var match = anchor.NameRegex.Match(row);
+
+            if (!match.Success)
+                continue;
+
+            fieldName = anchor.FieldName;
+            aliasEndIndex = match.Index + match.Length;
+            return true;
+        }
+
+        fieldName = string.Empty;
+        aliasEndIndex = -1;
+        return false;
+    }
+
+    private static string SliceBeforeFirstTerpene(string row, int searchStartIndex)
+    {
+        var earliestTerpeneIndex = row.Length;
+
+        foreach (var anchor in NvTerpeneAnchors)
+        {
+            var match = anchor.NameRegex.Match(row, searchStartIndex);
+
+            if (match.Success && match.Index < earliestTerpeneIndex)
+                earliestTerpeneIndex = match.Index;
+        }
+
+        return row[..earliestTerpeneIndex].Trim();
+    }
+
+    private static bool TryParseCannabinoidRow(
+        string row,
+        string fieldName,
+        ProductType productType,
+        out ParsedField<decimal> parsedField)
+    {
+        parsedField = Empty(fieldName);
+
+        if (!TryFindLeadingCannabinoid(row, out _, out var aliasEndIndex))
+            return false;
+
+        var tokens = ResultTokenRegex.Matches(row[aliasEndIndex..])
+            .Cast<Match>()
+            .Select(match => Regex.Replace(match.Value.Trim(), @"\s+", " "))
+            .ToList();
+
+        if (tokens.Count < 3)
+            return false;
+
+        var valueToken = ShouldStoreCannabinoidsAsMgPerGram(productType)
+            ? tokens[2]
+            : tokens[1];
+
+        if (IsNonDetectResultValue(valueToken))
+        {
+            parsedField = new ParsedField<decimal>
+            {
+                FieldName = fieldName,
+                Value = 0m,
+                SourceText = row,
+                Confidence = 0m
+            };
+
+            return true;
+        }
+
+        if (!decimal.TryParse(valueToken, NumberStyles.Number, CultureInfo.InvariantCulture, out var value))
+            return false;
+
+        var maxValue = ShouldStoreCannabinoidsAsMgPerGram(productType) ? 1000m : 100m;
+
+        if (value < 0m || value > maxValue)
+            return false;
+
+        parsedField = new ParsedField<decimal>
+        {
+            FieldName = fieldName,
+            Value = value,
+            SourceText = row,
+            Confidence = 0.95m
+        };
+
+        return true;
     }
 
     private static bool TryParseNvTotalTerpenes(string text, out decimal totalTerpenes)
@@ -162,6 +324,11 @@ public class NVCannLabsAdapter : BaseLabAdapter
         return decimal.TryParse(normalized, NumberStyles.Number, CultureInfo.InvariantCulture, out value);
     }
 
+    private static bool ShouldStoreCannabinoidsAsMgPerGram(ProductType productType)
+    {
+        return productType is not ProductType.Flower and not ProductType.PreRoll;
+    }
+
     private static bool IsNonDetectResultValue(string raw)
     {
         var normalized = Regex.Replace(raw.Trim(), @"\s+", string.Empty);
@@ -171,6 +338,28 @@ public class NVCannLabsAdapter : BaseLabAdapter
                normalized.Equals("NR", StringComparison.OrdinalIgnoreCase) ||
                normalized.Equals("NT", StringComparison.OrdinalIgnoreCase) ||
                normalized.Equals("NOTDETECTED", StringComparison.OrdinalIgnoreCase);
+    }
+
+    private static CannabinoidProfile CreateEmptyCannabinoidProfile()
+    {
+        return new CannabinoidProfile
+        {
+            THC = Empty("THC"),
+            THCA = Empty("THCA"),
+            CBD = Empty("CBD"),
+            CBDA = Empty("CBDA")
+        };
+    }
+
+    private static ParsedField<decimal> Empty(string fieldName)
+    {
+        return new ParsedField<decimal>
+        {
+            FieldName = fieldName,
+            Value = 0m,
+            SourceText = string.Empty,
+            Confidence = 0m
+        };
     }
 
     private static List<string> NormalizeRows(string text)

@@ -19,4 +19,23 @@ public class LabAdapterDetectionTests
 
         Assert.Equal(expectedLab, result.LabName);
     }
+
+    [Fact]
+    public void Resolves_Digipath_When_DigipathBodyContains_NvCannLabsFooterText()
+    {
+        var text = """
+        Digipath Labs
+        Certificate of Analysis
+        Concentrates & Extracts, Formulated Vape Oil
+        Cannabinoid Test Results Terpene Test Results
+        Analyte LOQ Mass Mass Analyte CAS No. LOQ Mass Mass
+        mg/g % % mg/g
+        Δ9-THC 0.0030 749.470 74.9470 Terpinolene 586-62-9 0.006 0.023 0.23
+        All analyses were performed at NV Cann Labs unless otherwise stated.
+        """;
+
+        var result = CoaParser.Parse(text);
+
+        Assert.Equal("Digipath", result.LabName);
+    }
 }

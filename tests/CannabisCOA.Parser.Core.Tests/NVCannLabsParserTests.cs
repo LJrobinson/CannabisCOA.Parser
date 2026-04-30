@@ -54,6 +54,35 @@ public class NVCannLabsParserTests
     }
 
     [Fact]
+    public void NVCannLabsAdapter_Parse_ConcentrateSideBySideRows_DoesNotBleedTerpenesIntoCannabinoids()
+    {
+        var text = """
+        NV Cann Labs
+        Product Type: Concentrate
+        Cannabinoids Terpenes
+        Analyte LOQ Mass Mass
+        % % mg/g
+        Δ9-THC 0.106 10.125 1.420 Caryophyllene Oxide 0.015 <LOQ <LOQ
+        THCa 0.106 <LOQ <LOQ Camphene 0.015 <LOQ <LOQ
+        CBD 0.106 <LOQ <LOQ 3-Carene 0.015 <LOQ <LOQ
+        CBDa 0.106 <LOQ <LOQ δ -Limonene 0.015 <LOQ <LOQ
+        """;
+
+        var result = new NVCannLabsAdapter().Parse(text);
+
+        Assert.Equal(ProductType.Concentrate, result.ProductType);
+        Assert.Equal(1.420m, result.Cannabinoids.THC.Value);
+        Assert.Equal(0m, result.Cannabinoids.THCA.Value);
+        Assert.Equal(0m, result.Cannabinoids.CBD.Value);
+        Assert.Equal(0m, result.Cannabinoids.CBDA.Value);
+        Assert.Equal(1.420m, result.Cannabinoids.TotalTHC);
+        Assert.DoesNotContain("Caryophyllene Oxide", result.Cannabinoids.THC.SourceText);
+        Assert.DoesNotContain("Camphene", result.Cannabinoids.THCA.SourceText);
+        Assert.DoesNotContain("3-Carene", result.Cannabinoids.CBD.SourceText);
+        Assert.DoesNotContain("Limonene", result.Cannabinoids.CBDA.SourceText);
+    }
+
+    [Fact]
     public void NVCannLabsAdapter_Parse_RealFlowerFixture_NormalizesTotalTerpenesToPercent()
     {
         var text = File.ReadAllText(FixturePath("nvcannlabs-flower-real-001.txt"));
