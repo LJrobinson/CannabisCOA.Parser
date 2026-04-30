@@ -18,6 +18,10 @@ public class KaychaLabsAdapter : BaseLabAdapter
         @"^\s*(?<name>[A-Z0-9]+(?:-[A-Z0-9]+)*(?:\s+[A-Z0-9]+(?:-[A-Z0-9]+)*)*)\s+(?<lod>\d{1,6}(?:\.\d+)?)\s+(?<loq>\d{1,6}(?:\.\d+)?)\s+\S+\s+(?<percent><\s*LOQ|\d{1,6}(?:\.\d+)?)\s+(?<mg><\s*\d{1,6}(?:\.\d+)?|\d{1,6}(?:\.\d+)?)\s*$",
         RegexOptions.IgnoreCase | RegexOptions.Compiled);
 
+    private static readonly Regex EdibleCannabinoidRowRegex = new(
+        @"^\s*(?<name>CBDa|CBDA|CBD|THCa|THCA|Δ9-THC|∆9-THC|D9-THC|Δ8-THC|∆8-THC|D8-THC)\s+(?<loq><\s*LOQ|ND|NR|NT|Not\s+Detected|\d{1,6}(?:\.\d+)?)\s+(?<mass><\s*LOQ|ND|NR|NT|Not\s+Detected|\d{1,6}(?:\.\d+)?)\s+(?<mgg><\s*LOQ|ND|NR|NT|Not\s+Detected|\d{1,6}(?:\.\d+)?)\s*$",
+        RegexOptions.IgnoreCase | RegexOptions.Compiled);
+
     protected override string[] DetectionTerms =>
     [
         "KAYCHA",
@@ -32,6 +36,10 @@ public class KaychaLabsAdapter : BaseLabAdapter
         if (TryParseKaychaCannabinoids(text, out var cannabinoids))
         {
             CannabinoidCalculator.CalculateTotals(cannabinoids);
+            result.Cannabinoids = cannabinoids;
+        }
+        else if (TryParseKaychaEdibleCannabinoids(text, out cannabinoids))
+        {
             result.Cannabinoids = cannabinoids;
         }
 
@@ -135,6 +143,78 @@ public class KaychaLabsAdapter : BaseLabAdapter
         return false;
     }
 
+    private static bool TryParseKaychaEdibleCannabinoids(string text, out CannabinoidProfile profile)
+    {
+        profile = new CannabinoidProfile
+        {
+            THC = Empty("THC"),
+            THCA = Empty("THCA"),
+            CBD = Empty("CBD"),
+            CBDA = Empty("CBDA")
+        };
+
+        if (!HasKaychaEdibleContext(text))
+            return false;
+
+        var rows = NormalizeRows(text);
+        var tableStartIndex = rows.FindIndex(row =>
+            row.Contains("Cannabinoid Relative Concentration", StringComparison.OrdinalIgnoreCase));
+
+        if (tableStartIndex < 0)
+            return false;
+
+        var parsedAny = false;
+        var delta8 = 0m;
+
+        for (var i = tableStartIndex + 1; i < rows.Count; i++)
+        {
+            var row = rows[i];
+
+            if (IsBlockedKaychaEdibleCannabinoidRow(row))
+                continue;
+
+            var match = EdibleCannabinoidRowRegex.Match(row);
+
+            if (!match.Success)
+                continue;
+
+            var fieldName = NormalizeEdibleCannabinoidName(match.Groups["name"].Value);
+
+            if (fieldName is null)
+                continue;
+
+            var field = CreateEdibleCannabinoidField(fieldName, match.Groups["mass"].Value, row);
+            parsedAny = true;
+
+            switch (fieldName)
+            {
+                case "THC":
+                    profile.THC = field;
+                    break;
+                case "THCA":
+                    profile.THCA = field;
+                    break;
+                case "CBD":
+                    profile.CBD = field;
+                    break;
+                case "CBDA":
+                    profile.CBDA = field;
+                    break;
+                case "D8-THC":
+                    delta8 = field.Value;
+                    break;
+            }
+        }
+
+        if (!parsedAny)
+            return false;
+
+        profile.TotalTHC = profile.THC.Value + (profile.THCA.Value * 0.877m) + delta8;
+        profile.TotalCBD = profile.CBD.Value + (profile.CBDA.Value * 0.877m);
+
+        return true;
+    }
+
     private static bool TryParseKaychaTotalTerpenes(string text, out decimal totalTerpenes)
     {
         totalTerpenes = 0m;
@@ -226,6 +306,76 @@ public class KaychaLabsAdapter : BaseLabAdapter
             "D9-THC" or "Δ9-THC" or "∆9-THC" => "THC",
             _ => null
         };
+    }
+
+    private static bool HasKaychaEdibleContext(string text)
+    {
+        return text.Contains("Kaycha Labs", StringComparison.OrdinalIgnoreCase) &&
+               (text.Contains("Ingestible", StringComparison.OrdinalIgnoreCase) ||
+                text.Contains("Soft Chew", StringComparison.OrdinalIgnoreCase) ||
+                text.Contains("Gummy", StringComparison.OrdinalIgnoreCase));
+    }
+
+    private static bool IsBlockedKaychaEdibleCannabinoidRow(string row)
+    {
+        return row.Contains("Strain:", StringComparison.OrdinalIgnoreCase) ||
+               row.Contains("Gummy", StringComparison.OrdinalIgnoreCase) ||
+               row.Contains("Aw:", StringComparison.OrdinalIgnoreCase) ||
+               row.Contains("Water Activity", StringComparison.OrdinalIgnoreCase) ||
+               row.Contains("∆9-THC + ∆8-THC", StringComparison.OrdinalIgnoreCase) ||
+               row.Contains("Δ9-THC + Δ8-THC", StringComparison.OrdinalIgnoreCase);
+    }
+
+    private static string? NormalizeEdibleCannabinoidName(string name)
+    {
+        return name.ToUpperInvariant() switch
+        {
+            "CBD" => "CBD",
+            "CBDA" => "CBDA",
+            "THCA" => "THCA",
+            "D9-THC" or "Δ9-THC" or "∆9-THC" => "THC",
+            "D8-THC" or "Δ8-THC" or "∆8-THC" => "D8-THC",
+            _ => null
+        };
+    }
+
+    private static ParsedField<decimal> CreateEdibleCannabinoidField(string fieldName, string rawMass, string sourceText)
+    {
+        if (!TryParseEdibleResultValue(rawMass, out var value))
+        {
+            return new ParsedField<decimal>
+            {
+                FieldName = fieldName,
+                Value = 0m,
+                SourceText = sourceText,
+                Confidence = 0m
+            };
+        }
+
+        return new ParsedField<decimal>
+        {
+            FieldName = fieldName,
+            Value = value,
+            SourceText = sourceText,
+            Confidence = 0.95m
+        };
+    }
+
+    private static bool TryParseEdibleResultValue(string raw, out decimal value)
+    {
+        value = 0m;
+        var normalized = Regex.Replace(raw.Trim(), @"\s+", " ");
+
+        if (normalized.StartsWith("<", StringComparison.OrdinalIgnoreCase) ||
+            normalized.Equals("ND", StringComparison.OrdinalIgnoreCase) ||
+            normalized.Equals("NR", StringComparison.OrdinalIgnoreCase) ||
+            normalized.Equals("NT", StringComparison.OrdinalIgnoreCase) ||
+            normalized.Equals("Not Detected", StringComparison.OrdinalIgnoreCase))
+        {
+            return false;
+        }
+
+        return decimal.TryParse(normalized, NumberStyles.Number, CultureInfo.InvariantCulture, out value);
     }
 
     private static bool TryParseResultValue(string raw, out decimal value)

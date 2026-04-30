@@ -2,6 +2,7 @@ using System.Globalization;
 using System.Text;
 using System.Text.RegularExpressions;
 using CannabisCOA.Parser.Core.Calculators;
+using CannabisCOA.Parser.Core.Enums;
 using CannabisCOA.Parser.Core.Mappers;
 using CannabisCOA.Parser.Core.Models;
 using CannabisCOA.Parser.Core.Parsers;
@@ -41,12 +42,13 @@ public static class DigipathFlowerParser
     ];
 
     private static readonly Regex ResultTokenRegex = new(
-        @"<\s*LOQ|ND|NR|(?<prefix><)?\s*(?<value>\d{1,4}(?:\.\d+)?|\.\d+)\s*(?<unit>%|mg\s*/\s*g|mg/g|mg\/g)?",
+        @"<\s*LOQ|ND|NR|NT|Not\s+Detected|(?<prefix><)?\s*(?<value>\d{1,4}(?:\.\d+)?|\.\d+)\s*(?<unit>%|mg\s*/\s*g|mg/g|mg\/g)?",
         RegexOptions.IgnoreCase | RegexOptions.Compiled);
 
     private static readonly AnalyteDefinition[] AnalyteDefinitions =
     [
         new("THC", AnalyteKind.Cannabinoid, ["Δ9-THC", "D9-THC", "Delta-9 THC", "Delta 9 THC"]),
+        new("D8-THC", AnalyteKind.Cannabinoid, ["Δ8-THC", "D8-THC", "Delta-8 THC", "Delta 8 THC"]),
         new("THCA", AnalyteKind.Cannabinoid, ["THCa", "THCA"]),
         new("CBDA", AnalyteKind.Cannabinoid, ["CBDa", "CBDA"]),
         new("CBD", AnalyteKind.Cannabinoid, ["CBD"]),
@@ -154,7 +156,7 @@ public static class DigipathFlowerParser
     };
 
     private static readonly Regex ResultWindowTokenRegex = new(
-        @"(?<![\p{L}\p{N}.-])(?<raw><\s*LOQ|ND|NR|\d{1,4}(?:\.\d+)?|\.\d+)(?![\p{L}\p{N}.-])",
+        @"(?<![\p{L}\p{N}.-])(?<raw><\s*LOQ|ND|NR|NT|Not\s+Detected|\d{1,4}(?:\.\d+)?|\.\d+)(?![\p{L}\p{N}.-])",
         RegexOptions.IgnoreCase | RegexOptions.Compiled);
 
     private static readonly Regex PesticideColumnRegex = new(
@@ -198,8 +200,7 @@ public static class DigipathFlowerParser
     {
         var productType = ProductTypeDetector.Detect(text);
 
-        var cannabinoids = ParseDigipathCannabinoidsOrFallback(text);
-        CannabinoidCalculator.CalculateTotals(cannabinoids);
+        var cannabinoids = ParseDigipathCannabinoidsOrFallback(text, productType);
 
         var testDate = GenericDateParser.ExtractTestDate(text);
         var freshness = FreshnessCalculator.Calculate(testDate);
@@ -233,12 +234,17 @@ public static class DigipathFlowerParser
             parserName: nameof(DigipathFlowerParser));
     }
 
-    private static CannabinoidProfile ParseDigipathCannabinoidsOrFallback(string text)
+    private static CannabinoidProfile ParseDigipathCannabinoidsOrFallback(string text, ProductType productType)
     {
-        if (TryParseDigipathCannabinoidTable(text, out var profile))
+        if (TryParseDigipathCannabinoidTable(text, productType, out var profile))
             return profile;
 
-        return GenericCannabinoidTextParser.Parse(text);
+        if (HasDigipathCannabinoidTableContext(NormalizeRows(text)))
+            return profile;
+
+        var generic = GenericCannabinoidTextParser.Parse(text);
+        CannabinoidCalculator.CalculateTotals(generic);
+        return generic;
     }
 
     private static TerpeneProfile ParseDigipathTerpenesOrFallback(string text)
@@ -1562,11 +1568,14 @@ public static class DigipathFlowerParser
         return true;
     }
 
-    private static bool TryParseDigipathCannabinoidTable(string text, out CannabinoidProfile profile)
+    private static bool TryParseDigipathCannabinoidTable(string text, ProductType productType, out CannabinoidProfile profile)
     {
         profile = CreateEmptyProfile();
 
-        var rows = NormalizeRows(text);
+        var rows = ExtractCannabinoidSectionRows(text);
+
+        if (rows.Count == 0)
+            rows = NormalizeRows(text);
 
         if (rows.Count == 0)
             return false;
@@ -1576,9 +1585,14 @@ public static class DigipathFlowerParser
         if (!hasTableContext)
             return false;
 
+        var context = DetectTableContext(rows);
+        var useMgPerGram = ShouldStoreCannabinoidsAsMgPerGram(productType);
+        var parsedAny = false;
+        var delta8 = 0m;
+
         foreach (var row in rows)
         {
-            foreach (var parsedRow in ParseCannabinoidRows(row))
+            foreach (var parsedRow in ParseCannabinoidRows(row, context, useMgPerGram))
             {
                 var field = new ParsedField<decimal>
                 {
@@ -1592,24 +1606,41 @@ public static class DigipathFlowerParser
                 {
                     case "THC" when profile.THC.Confidence == 0m:
                         profile.THC = field;
+                        parsedAny = true;
                         break;
                     case "THCA" when profile.THCA.Confidence == 0m:
                         profile.THCA = field;
+                        parsedAny = true;
                         break;
                     case "CBD" when profile.CBD.Confidence == 0m:
                         profile.CBD = field;
+                        parsedAny = true;
                         break;
                     case "CBDA" when profile.CBDA.Confidence == 0m:
                         profile.CBDA = field;
+                        parsedAny = true;
+                        break;
+                    case "D8-THC":
+                        delta8 = parsedRow.Value;
+                        parsedAny = true;
                         break;
                 }
             }
         }
 
+        if (!parsedAny)
+            return false;
+
+        profile.TotalTHC = profile.THC.Value + (profile.THCA.Value * 0.877m) + delta8;
+        profile.TotalCBD = profile.CBD.Value + (profile.CBDA.Value * 0.877m);
+
         return true;
     }
 
-    private static IEnumerable<ParsedDigipathCannabinoidRow> ParseCannabinoidRows(string row)
+    private static IEnumerable<ParsedDigipathCannabinoidRow> ParseCannabinoidRows(
+        string row,
+        DigipathTableContext context,
+        bool useMgPerGram)
     {
         if (!LooksLikeSafeAnalyteRow(row))
             yield break;
@@ -1625,14 +1656,14 @@ public static class DigipathFlowerParser
 
             var nextAnchor = i + 1 < anchors.Count ? anchors[i + 1] : null;
 
-            if (TryParseCannabinoidAnchorWindow(row, anchor, nextAnchor, out var parsedRow))
+            if (TryParseCannabinoidAnchorWindow(row, anchor, nextAnchor, context, useMgPerGram, out var parsedRow))
                 yield return parsedRow;
         }
     }
 
     private static bool TryParseCannabinoidSideRow(string row, out ParsedDigipathCannabinoidRow parsedRow)
     {
-        parsedRow = ParseCannabinoidRows(row).FirstOrDefault()
+        parsedRow = ParseCannabinoidRows(row, new DigipathTableContext(true, "%", false), useMgPerGram: false).FirstOrDefault()
             ?? new ParsedDigipathCannabinoidRow(string.Empty, 0m, string.Empty, 0m);
 
         return !string.IsNullOrWhiteSpace(parsedRow.FieldName);
@@ -1675,6 +1706,8 @@ public static class DigipathFlowerParser
         string row,
         AnalyteAnchor anchor,
         AnalyteAnchor? nextAnchor,
+        DigipathTableContext context,
+        bool useMgPerGram,
         out ParsedDigipathCannabinoidRow parsedRow)
     {
         parsedRow = new ParsedDigipathCannabinoidRow(string.Empty, 0m, string.Empty, 0m);
@@ -1690,12 +1723,13 @@ public static class DigipathFlowerParser
         var segment = row[anchor.EndIndex..segmentEnd];
         var tokens = ExtractBoundedResultTokens(segment, 4);
 
-        if (!TryParseDigipathResultTriple(tokens, out var percent, out _, out var isLoq))
+        if (!TryParseDigipathResultTriple(tokens, context, out var percent, out var mgPerGram, out var isLoq))
             return false;
 
         var confidence = isLoq ? 0m : 0.95m;
+        var value = useMgPerGram ? mgPerGram : percent;
 
-        parsedRow = new ParsedDigipathCannabinoidRow(anchor.CanonicalName, percent, row, confidence);
+        parsedRow = new ParsedDigipathCannabinoidRow(anchor.CanonicalName, value, row, confidence);
         return true;
     }
 
@@ -1717,6 +1751,21 @@ public static class DigipathFlowerParser
         out decimal mgPerGram,
         out bool isLoq)
     {
+        return TryParseDigipathResultTriple(
+            tokens,
+            new DigipathTableContext(true, "%", false),
+            out percent,
+            out mgPerGram,
+            out isLoq);
+    }
+
+    private static bool TryParseDigipathResultTriple(
+        IReadOnlyList<ResultToken> tokens,
+        DigipathTableContext context,
+        out decimal percent,
+        out decimal mgPerGram,
+        out bool isLoq)
+    {
         percent = 0m;
         mgPerGram = 0m;
         isLoq = false;
@@ -1724,8 +1773,8 @@ public static class DigipathFlowerParser
         if (tokens.Count < 3)
             return false;
 
-        var percentToken = tokens[1];
-        var mgPerGramToken = tokens[2];
+        var percentToken = context.HasMgPerGramBeforePercent ? tokens[2] : tokens[1];
+        var mgPerGramToken = context.HasMgPerGramBeforePercent ? tokens[1] : tokens[2];
 
         if (percentToken.IsNonDetect)
         {
@@ -2085,6 +2134,8 @@ public static class DigipathFlowerParser
     {
         return token.Equals("ND", StringComparison.OrdinalIgnoreCase) ||
                token.Equals("NR", StringComparison.OrdinalIgnoreCase) ||
+               token.Equals("NT", StringComparison.OrdinalIgnoreCase) ||
+               token.Equals("Not Detected", StringComparison.OrdinalIgnoreCase) ||
                Regex.IsMatch(token, @"^<\s*LOQ$", RegexOptions.IgnoreCase);
     }
 
@@ -2220,6 +2271,8 @@ public static class DigipathFlowerParser
 
         if (raw.Equals("ND", StringComparison.OrdinalIgnoreCase) ||
             raw.Equals("NR", StringComparison.OrdinalIgnoreCase) ||
+            raw.Equals("NT", StringComparison.OrdinalIgnoreCase) ||
+            raw.Equals("Not Detected", StringComparison.OrdinalIgnoreCase) ||
             Regex.IsMatch(raw, @"^<\s*LOQ$", RegexOptions.IgnoreCase))
         {
             return new DigipathResultToken(0m, string.Empty, IsLessThan: false, IsNonDetect: true);
@@ -2258,14 +2311,20 @@ public static class DigipathFlowerParser
                 .Select(match => NormalizeUnit(match.Value))
                 .ToList();
 
+            if (hasLoqColumn && units.Count >= 3)
+                return new DigipathTableContext(
+                    hasLoqColumn,
+                    units[1],
+                    units[1] == "MG/G" && units[2] == "%");
+
             if (hasLoqColumn && units.Count >= 2)
-                return new DigipathTableContext(hasLoqColumn, units[1]);
+                return new DigipathTableContext(hasLoqColumn, units[1], false);
 
             if (units.Count >= 1)
-                return new DigipathTableContext(hasLoqColumn, units[0]);
+                return new DigipathTableContext(hasLoqColumn, units[0], false);
         }
 
-        return new DigipathTableContext(hasLoqColumn, string.Empty);
+        return new DigipathTableContext(hasLoqColumn, string.Empty, false);
     }
 
     private static List<string> ExtractCannabinoidSectionRows(string text)
@@ -2293,7 +2352,8 @@ public static class DigipathFlowerParser
 
     private static bool IsCannabinoidSectionStart(string row)
     {
-        return row.Contains("Cannabinoid Test Results", StringComparison.OrdinalIgnoreCase);
+        return row.Contains("Cannabinoid Test Results", StringComparison.OrdinalIgnoreCase) ||
+               row.Contains("Potency Test Results", StringComparison.OrdinalIgnoreCase);
     }
 
     private static bool IsCannabinoidSectionEnd(string row)
@@ -2386,6 +2446,11 @@ public static class DigipathFlowerParser
             || text.Contains("MG PER G", StringComparison.OrdinalIgnoreCase);
     }
 
+    private static bool ShouldStoreCannabinoidsAsMgPerGram(ProductType productType)
+    {
+        return productType is not ProductType.Flower and not ProductType.PreRoll and not ProductType.Unknown;
+    }
+
     private static List<string> NormalizeRows(string text)
     {
         return text
@@ -2408,7 +2473,10 @@ public static class DigipathFlowerParser
         };
     }
 
-    private sealed record DigipathTableContext(bool HasLoqColumn, string PrimaryResultUnit);
+    private sealed record DigipathTableContext(
+        bool HasLoqColumn,
+        string PrimaryResultUnit,
+        bool HasMgPerGramBeforePercent);
 
     private sealed record DigipathResultToken(
         decimal Value,

@@ -1,0 +1,7946 @@
+{
+  "Coa": {
+    "ProductType": "Flower",
+    "IsAmended": false,
+    "LabName": "MA Analytics",
+    "ProductName": "",
+    "BatchId": "",
+    "HarvestDate": "2026-03-09T00:00:00",
+    "TestDate": "2026-03-26T00:00:00",
+    "PackageDate": null,
+    "Cannabinoids": {
+      "THC": {
+        "FieldName": "THC",
+        "Value": 0.413,
+        "SourceText": "\u03949-THC 0.160 0.413 4.13 \u03B1-Bisabolol 0.0125 \u003C0.0125 \u003C0.00125",
+        "Confidence": 0.95
+      },
+      "THCA": {
+        "FieldName": "THCA",
+        "Value": 24.476,
+        "SourceText": "THCa 0.160 24.476 244.76 \u03B1-Pinene 0.0125 0.4190 0.04190",
+        "Confidence": 0.95
+      },
+      "CBD": {
+        "FieldName": "CBD",
+        "Value": 0,
+        "SourceText": "CBD 0.640 ND ND",
+        "Confidence": 0
+      },
+      "CBDA": {
+        "FieldName": "CBDA",
+        "Value": 0,
+        "SourceText": "CBDa 0.160 ND ND Caryophyllene Oxide 0.0125 \u003C0.0125 \u003C0.00125",
+        "Confidence": 0
+      },
+      "TotalTHC": 21.88,
+      "TotalCBD": 0.00
+    },
+    "Terpenes": {
+      "Terpenes": {
+        "\u03B2-Myrcene": 1.24131,
+        "Linalool": 0.23420,
+        "\u03B2-Caryophyllene": 0.22363,
+        "\u03B4-Limonene": 0.12404,
+        "\u03B1-Humulene": 0.09230,
+        "\u03B1-Pinene": 0.04190
+      },
+      "TotalTerpenes": 2.32
+    },
+    "Compliance": {
+      "Passed": true,
+      "ContaminantsPassed": true,
+      "Status": "pass"
+    },
+    "Freshness": {
+      "DaysSinceTest": 35,
+      "Score": 85,
+      "Band": "Good"
+    }
+  },
+  "Validation": {
+    "IsValid": false,
+    "Warnings": [
+      {
+        "Code": "TERPENE_TOTAL_MISMATCH",
+        "Message": "Total terpenes does not match sum of individual terpenes.",
+        "Severity": "warning"
+      }
+    ]
+  },
+  "Score": {
+    "Score": 75,
+    "Tier": "Solid",
+    "Breakdown": {
+      "Potency": 30,
+      "Terpenes": 15,
+      "Freshness": 20,
+      "Compliance": 10
+    }
+  },
+  "Profile": {
+    "DominantTerpene": "\u03B2-Myrcene",
+    "TopTerpenes": [
+      "\u03B2-Myrcene",
+      "Linalool",
+      "\u03B2-Caryophyllene"
+    ],
+    "ProfileType": "Floral",
+    "Lean": "Unknown"
+  }
+}
+{
+  "Coa": {
+    "ProductType": "Flower",
+    "IsAmended": false,
+    "LabName": "MA Analytics",
+    "ProductName": "",
+    "BatchId": "",
+    "HarvestDate": "2026-01-20T00:00:00",
+    "TestDate": "2026-02-13T00:00:00",
+    "PackageDate": null,
+    "Cannabinoids": {
+      "THC": {
+        "FieldName": "THC",
+        "Value": 0.421,
+        "SourceText": "\u03949-THC 0.160 0.421 4.21 Terpinolene 0.0125 0.2413 0.02413",
+        "Confidence": 0.95
+      },
+      "THCA": {
+        "FieldName": "THCA",
+        "Value": 23.861,
+        "SourceText": "THCa 0.160 23.861 238.61 \u03B1-Pinene 0.0125 0.7289 0.07289",
+        "Confidence": 0.95
+      },
+      "CBD": {
+        "FieldName": "CBD",
+        "Value": 0,
+        "SourceText": "CBD 0.640 ND ND",
+        "Confidence": 0
+      },
+      "CBDA": {
+        "FieldName": "CBDA",
+        "Value": 0,
+        "SourceText": "CBDa 0.160 ND ND \u03B2-Ocimene 0.0125 \u003C0.0125 \u003C0.00125",
+        "Confidence": 0
+      },
+      "TotalTHC": 21.35,
+      "TotalCBD": 0.00
+    },
+    "Terpenes": {
+      "Terpenes": {
+        "\u03B4-Limonene": 0.91390,
+        "\u03B2-Caryophyllene": 0.55367,
+        "Linalool": 0.34174,
+        "\u03B2-Myrcene": 0.20816,
+        "\u03B1-Humulene": 0.15923,
+        "\u03B2-Pinene": 0.11338,
+        "\u03B1-Pinene": 0.07289,
+        "\u03B1-Bisabolol": 0.00912
+      },
+      "TotalTerpenes": 2.99
+    },
+    "Compliance": {
+      "Passed": true,
+      "ContaminantsPassed": true,
+      "Status": "pass"
+    },
+    "Freshness": {
+      "DaysSinceTest": 76,
+      "Score": 70,
+      "Band": "Good"
+    }
+  },
+  "Validation": {
+    "IsValid": false,
+    "Warnings": [
+      {
+        "Code": "TERPENE_TOTAL_MISMATCH",
+        "Message": "Total terpenes does not match sum of individual terpenes.",
+        "Severity": "warning"
+      }
+    ]
+  },
+  "Score": {
+    "Score": 80,
+    "Tier": "Fire",
+    "Breakdown": {
+      "Potency": 30,
+      "Terpenes": 20,
+      "Freshness": 20,
+      "Compliance": 10
+    }
+  },
+  "Profile": {
+    "DominantTerpene": "\u03B4-Limonene",
+    "TopTerpenes": [
+      "\u03B4-Limonene",
+      "\u03B2-Caryophyllene",
+      "Linalool"
+    ],
+    "ProfileType": "Floral",
+    "Lean": "Unknown"
+  }
+}
+{
+  "Coa": {
+    "ProductType": "Flower",
+    "IsAmended": false,
+    "LabName": "NV Cann Labs",
+    "ProductName": "",
+    "BatchId": "",
+    "HarvestDate": "2025-10-27T00:00:00",
+    "TestDate": "2025-12-10T00:00:00",
+    "PackageDate": null,
+    "Cannabinoids": {
+      "THC": {
+        "FieldName": "THC",
+        "Value": 1.032,
+        "SourceText": "\u03949-THC 0.083 1.032 10.32",
+        "Confidence": 0.85
+      },
+      "THCA": {
+        "FieldName": "THCA",
+        "Value": 31.131,
+        "SourceText": "THCa 0.083 31.131 311.31",
+        "Confidence": 0.85
+      },
+      "CBD": {
+        "FieldName": "CBD",
+        "Value": 0,
+        "SourceText": "CBD 0.083 \u003CLOQ \u003CLOQ",
+        "Confidence": 0
+      },
+      "CBDA": {
+        "FieldName": "CBDA",
+        "Value": 0,
+        "SourceText": "CBDa 0.083 \u003CLOQ \u003CLOQ Camphene 0.083 \u003CLOQ \u003CLOQ",
+        "Confidence": 0
+      },
+      "TotalTHC": 28.33,
+      "TotalCBD": 0.00
+    },
+    "Terpenes": {
+      "Terpenes": {
+        "Linalool": 0.4869,
+        "\u03B4-Limonene": 0.4516,
+        "\u03B2-Caryophyllene": 0.4077,
+        "Farnesene": 0.1819,
+        "\u03B1-Humulene": 0.1093,
+        "\u03B1-Bisabolol": 0.1045,
+        "\u03B2-Myrcene": 0.0988,
+        "\u03B2-Pinene": 0.0784,
+        "\u03B1-Terpineol": 0.0652,
+        "\u03B1-Pinene": 0.0528,
+        "Nerolidol": 0.0472
+      },
+      "TotalTerpenes": 2.08
+    },
+    "Compliance": {
+      "Passed": true,
+      "ContaminantsPassed": true,
+      "Status": "pass"
+    },
+    "Freshness": {
+      "DaysSinceTest": 141,
+      "Score": 30,
+      "Band": "Aging"
+    }
+  },
+  "Validation": {
+    "IsValid": true,
+    "Warnings": []
+  },
+  "Score": {
+    "Score": 70,
+    "Tier": "Solid",
+    "Breakdown": {
+      "Potency": 35,
+      "Terpenes": 15,
+      "Freshness": 10,
+      "Compliance": 10
+    }
+  },
+  "Profile": {
+    "DominantTerpene": "Linalool",
+    "TopTerpenes": [
+      "Linalool",
+      "\u03B4-Limonene",
+      "\u03B2-Caryophyllene"
+    ],
+    "ProfileType": "Floral",
+    "Lean": "Indica-Leaning"
+  }
+}
+{
+  "Coa": {
+    "ProductType": "Concentrate",
+    "IsAmended": false,
+    "LabName": "NV Cann Labs",
+    "ProductName": "",
+    "BatchId": "",
+    "HarvestDate": null,
+    "TestDate": "2026-01-15T00:00:00",
+    "PackageDate": null,
+    "Cannabinoids": {
+      "THC": {
+        "FieldName": "THC",
+        "Value": 0,
+        "SourceText": "\u03949-THC 0.106 10.125 1.420 Caryophyllene Oxide 0.015 \u003CLOQ \u003CLOQ",
+        "Confidence": 0
+      },
+      "THCA": {
+        "FieldName": "THCA",
+        "Value": 0,
+        "SourceText": "THCa 0.106 \u003CLOQ \u003CLOQ Camphene 0.015 \u003CLOQ \u003CLOQ",
+        "Confidence": 0
+      },
+      "CBD": {
+        "FieldName": "CBD",
+        "Value": 0,
+        "SourceText": "CBD 0.106 \u003CLOQ \u003CLOQ 3-Carene 0.015 \u003CLOQ \u003CLOQ",
+        "Confidence": 0
+      },
+      "CBDA": {
+        "FieldName": "CBDA",
+        "Value": 0,
+        "SourceText": "CBDa 0.106 \u003CLOQ \u003CLOQ \u03B4 -Limonene 0.015 \u003CLOQ \u003CLOQ",
+        "Confidence": 0
+      },
+      "TotalTHC": 0.00,
+      "TotalCBD": 0.00
+    },
+    "Terpenes": {
+      "Terpenes": {
+        "\u03B1-Bisabolol": 0.0028
+      },
+      "TotalTerpenes": 0
+    },
+    "Compliance": {
+      "Passed": true,
+      "ContaminantsPassed": true,
+      "Status": "pass"
+    },
+    "Freshness": {
+      "DaysSinceTest": 105,
+      "Score": 50,
+      "Band": "Aging"
+    }
+  },
+  "Validation": {
+    "IsValid": false,
+    "Warnings": [
+      {
+        "Code": "MISSING_THC_VALUES",
+        "Message": "THC and THCA values were not found.",
+        "Severity": "warning"
+      }
+    ]
+  },
+  "Score": {
+    "Score": 35,
+    "Tier": "Skip",
+    "Breakdown": {
+      "Potency": 5,
+      "Terpenes": 5,
+      "Freshness": 15,
+      "Compliance": 10
+    }
+  },
+  "Profile": {
+    "DominantTerpene": "\u03B1-Bisabolol",
+    "TopTerpenes": [
+      "\u03B1-Bisabolol"
+    ],
+    "ProfileType": "Mixed",
+    "Lean": "Unknown"
+  }
+}
+{
+  "Coa": {
+    "ProductType": "Concentrate",
+    "IsAmended": false,
+    "LabName": "NV Cann Labs",
+    "ProductName": "",
+    "BatchId": "",
+    "HarvestDate": null,
+    "TestDate": "2026-01-15T00:00:00",
+    "PackageDate": null,
+    "Cannabinoids": {
+      "THC": {
+        "FieldName": "THC",
+        "Value": 0,
+        "SourceText": "\u03949-THC 0.106 10.125 1.420 Caryophyllene Oxide 0.015 \u003CLOQ \u003CLOQ",
+        "Confidence": 0
+      },
+      "THCA": {
+        "FieldName": "THCA",
+        "Value": 0,
+        "SourceText": "THCa 0.106 \u003CLOQ \u003CLOQ Camphene 0.015 \u003CLOQ \u003CLOQ",
+        "Confidence": 0
+      },
+      "CBD": {
+        "FieldName": "CBD",
+        "Value": 0,
+        "SourceText": "CBD 0.106 \u003CLOQ \u003CLOQ 3-Carene 0.015 \u003CLOQ \u003CLOQ",
+        "Confidence": 0
+      },
+      "CBDA": {
+        "FieldName": "CBDA",
+        "Value": 0,
+        "SourceText": "CBDa 0.106 \u003CLOQ \u003CLOQ \u03B4 -Limonene 0.015 \u003CLOQ \u003CLOQ",
+        "Confidence": 0
+      },
+      "TotalTHC": 0.00,
+      "TotalCBD": 0.00
+    },
+    "Terpenes": {
+      "Terpenes": {
+        "\u03B1-Bisabolol": 0.0028
+      },
+      "TotalTerpenes": 0
+    },
+    "Compliance": {
+      "Passed": true,
+      "ContaminantsPassed": true,
+      "Status": "pass"
+    },
+    "Freshness": {
+      "DaysSinceTest": 105,
+      "Score": 50,
+      "Band": "Aging"
+    }
+  },
+  "Validation": {
+    "IsValid": false,
+    "Warnings": [
+      {
+        "Code": "MISSING_THC_VALUES",
+        "Message": "THC and THCA values were not found.",
+        "Severity": "warning"
+      }
+    ]
+  },
+  "Score": {
+    "Score": 35,
+    "Tier": "Skip",
+    "Breakdown": {
+      "Potency": 5,
+      "Terpenes": 5,
+      "Freshness": 15,
+      "Compliance": 10
+    }
+  },
+  "Profile": {
+    "DominantTerpene": "\u03B1-Bisabolol",
+    "TopTerpenes": [
+      "\u03B1-Bisabolol"
+    ],
+    "ProfileType": "Mixed",
+    "Lean": "Unknown"
+  }
+}
+{
+  "Coa": {
+    "ProductType": "Concentrate",
+    "IsAmended": false,
+    "LabName": "NV Cann Labs",
+    "ProductName": "",
+    "BatchId": "",
+    "HarvestDate": null,
+    "TestDate": "2026-01-15T00:00:00",
+    "PackageDate": null,
+    "Cannabinoids": {
+      "THC": {
+        "FieldName": "THC",
+        "Value": 0,
+        "SourceText": "\u03949-THC 0.106 10.125 1.420 Caryophyllene Oxide 0.015 \u003CLOQ \u003CLOQ",
+        "Confidence": 0
+      },
+      "THCA": {
+        "FieldName": "THCA",
+        "Value": 0,
+        "SourceText": "THCa 0.106 \u003CLOQ \u003CLOQ Camphene 0.015 \u003CLOQ \u003CLOQ",
+        "Confidence": 0
+      },
+      "CBD": {
+        "FieldName": "CBD",
+        "Value": 0,
+        "SourceText": "CBD 0.106 \u003CLOQ \u003CLOQ 3-Carene 0.015 \u003CLOQ \u003CLOQ",
+        "Confidence": 0
+      },
+      "CBDA": {
+        "FieldName": "CBDA",
+        "Value": 0,
+        "SourceText": "CBDa 0.106 \u003CLOQ \u003CLOQ \u03B4 -Limonene 0.015 \u003CLOQ \u003CLOQ",
+        "Confidence": 0
+      },
+      "TotalTHC": 0.00,
+      "TotalCBD": 0.00
+    },
+    "Terpenes": {
+      "Terpenes": {
+        "\u03B1-Bisabolol": 0.0028
+      },
+      "TotalTerpenes": 0
+    },
+    "Compliance": {
+      "Passed": true,
+      "ContaminantsPassed": true,
+      "Status": "pass"
+    },
+    "Freshness": {
+      "DaysSinceTest": 105,
+      "Score": 50,
+      "Band": "Aging"
+    }
+  },
+  "Validation": {
+    "IsValid": false,
+    "Warnings": [
+      {
+        "Code": "MISSING_THC_VALUES",
+        "Message": "THC and THCA values were not found.",
+        "Severity": "warning"
+      }
+    ]
+  },
+  "Score": {
+    "Score": 35,
+    "Tier": "Skip",
+    "Breakdown": {
+      "Potency": 5,
+      "Terpenes": 5,
+      "Freshness": 15,
+      "Compliance": 10
+    }
+  },
+  "Profile": {
+    "DominantTerpene": "\u03B1-Bisabolol",
+    "TopTerpenes": [
+      "\u03B1-Bisabolol"
+    ],
+    "ProfileType": "Mixed",
+    "Lean": "Unknown"
+  }
+}
+{
+  "Coa": {
+    "ProductType": "Edible",
+    "IsAmended": false,
+    "LabName": "374 Labs",
+    "ProductName": "",
+    "BatchId": "",
+    "HarvestDate": null,
+    "TestDate": "2026-02-06T00:00:00",
+    "PackageDate": null,
+    "Cannabinoids": {
+      "THC": {
+        "FieldName": "THC",
+        "Value": 10.34,
+        "SourceText": "\u03949-THC 0.40 10.34 2.61",
+        "Confidence": 0.95
+      },
+      "THCA": {
+        "FieldName": "THCA",
+        "Value": 0,
+        "SourceText": "THCa 0.40 \u003CLOQ \u003CLOQ \u03B1-Bisabolol 0.05 \u003CLOQ \u003CLOQ",
+        "Confidence": 0
+      },
+      "CBD": {
+        "FieldName": "CBD",
+        "Value": 9.39,
+        "SourceText": "CBD 0.40 9.39 2.37 \u03B2-Myrcene 0.05 \u003CLOQ \u003CLOQ",
+        "Confidence": 0.95
+      },
+      "CBDA": {
+        "FieldName": "CBDA",
+        "Value": 0,
+        "SourceText": "CBDa 0.40 \u003CLOQ \u003CLOQ \u03B2-Pinene 0.05 \u003CLOQ \u003CLOQ",
+        "Confidence": 0
+      },
+      "TotalTHC": 10.34,
+      "TotalCBD": 9.39
+    },
+    "Terpenes": {
+      "Terpenes": {},
+      "TotalTerpenes": 0
+    },
+    "Compliance": {
+      "Passed": false,
+      "ContaminantsPassed": null,
+      "Status": "unknown"
+    },
+    "Freshness": {
+      "DaysSinceTest": 83,
+      "Score": 70,
+      "Band": "Good"
+    }
+  },
+  "Validation": {
+    "IsValid": true,
+    "Warnings": []
+  },
+  "Score": {
+    "Score": 35,
+    "Tier": "Skip",
+    "Breakdown": {
+      "Potency": 10,
+      "Terpenes": 5,
+      "Freshness": 20,
+      "Compliance": 0
+    }
+  },
+  "Profile": {
+    "DominantTerpene": "",
+    "TopTerpenes": [],
+    "ProfileType": "Unknown",
+    "Lean": "Unknown"
+  }
+}
+{
+  "Coa": {
+    "ProductType": "Edible",
+    "IsAmended": false,
+    "LabName": "374 Labs",
+    "ProductName": "",
+    "BatchId": "",
+    "HarvestDate": null,
+    "TestDate": "2026-01-14T00:00:00",
+    "PackageDate": null,
+    "Cannabinoids": {
+      "THC": {
+        "FieldName": "THC",
+        "Value": 10.20,
+        "SourceText": "\u03949-THC 0.42 10.20 2.44",
+        "Confidence": 0.95
+      },
+      "THCA": {
+        "FieldName": "THCA",
+        "Value": 0,
+        "SourceText": "THCa 0.42 \u003CLOQ \u003CLOQ \u03B1-Bisabolol 0.05 \u003CLOQ \u003CLOQ",
+        "Confidence": 0
+      },
+      "CBD": {
+        "FieldName": "CBD",
+        "Value": 9.95,
+        "SourceText": "CBD 0.42 9.95 2.38 \u03B2-Myrcene 0.05 \u003CLOQ \u003CLOQ",
+        "Confidence": 0.95
+      },
+      "CBDA": {
+        "FieldName": "CBDA",
+        "Value": 0,
+        "SourceText": "CBDa 0.42 \u003CLOQ \u003CLOQ \u03B2-Pinene 0.05 \u003CLOQ \u003CLOQ",
+        "Confidence": 0
+      },
+      "TotalTHC": 10.20,
+      "TotalCBD": 9.95
+    },
+    "Terpenes": {
+      "Terpenes": {},
+      "TotalTerpenes": 0
+    },
+    "Compliance": {
+      "Passed": false,
+      "ContaminantsPassed": null,
+      "Status": "unknown"
+    },
+    "Freshness": {
+      "DaysSinceTest": 106,
+      "Score": 50,
+      "Band": "Aging"
+    }
+  },
+  "Validation": {
+    "IsValid": true,
+    "Warnings": []
+  },
+  "Score": {
+    "Score": 30,
+    "Tier": "Skip",
+    "Breakdown": {
+      "Potency": 10,
+      "Terpenes": 5,
+      "Freshness": 15,
+      "Compliance": 0
+    }
+  },
+  "Profile": {
+    "DominantTerpene": "",
+    "TopTerpenes": [],
+    "ProfileType": "Unknown",
+    "Lean": "Unknown"
+  }
+}
+{
+  "Coa": {
+    "ProductType": "Edible",
+    "IsAmended": false,
+    "LabName": "374 Labs",
+    "ProductName": "",
+    "BatchId": "",
+    "HarvestDate": null,
+    "TestDate": "2026-03-02T00:00:00",
+    "PackageDate": null,
+    "Cannabinoids": {
+      "THC": {
+        "FieldName": "THC",
+        "Value": 10.57,
+        "SourceText": "\u03949-THC 0.42 10.57 2.54",
+        "Confidence": 0.95
+      },
+      "THCA": {
+        "FieldName": "THCA",
+        "Value": 0,
+        "SourceText": "THCa 0.42 \u003CLOQ \u003CLOQ \u03B1-Bisabolol 0.05 NR NR",
+        "Confidence": 0
+      },
+      "CBD": {
+        "FieldName": "CBD",
+        "Value": 10.37,
+        "SourceText": "CBD 0.42 10.37 2.49 \u03B2-Myrcene 0.05 NR NR",
+        "Confidence": 0.95
+      },
+      "CBDA": {
+        "FieldName": "CBDA",
+        "Value": 0,
+        "SourceText": "CBDa 0.42 \u003CLOQ \u003CLOQ \u03B2-Pinene 0.05 NR NR",
+        "Confidence": 0
+      },
+      "TotalTHC": 10.57,
+      "TotalCBD": 10.37
+    },
+    "Terpenes": {
+      "Terpenes": {},
+      "TotalTerpenes": 0
+    },
+    "Compliance": {
+      "Passed": false,
+      "ContaminantsPassed": null,
+      "Status": "unknown"
+    },
+    "Freshness": {
+      "DaysSinceTest": 59,
+      "Score": 85,
+      "Band": "Good"
+    }
+  },
+  "Validation": {
+    "IsValid": true,
+    "Warnings": []
+  },
+  "Score": {
+    "Score": 35,
+    "Tier": "Skip",
+    "Breakdown": {
+      "Potency": 10,
+      "Terpenes": 5,
+      "Freshness": 20,
+      "Compliance": 0
+    }
+  },
+  "Profile": {
+    "DominantTerpene": "",
+    "TopTerpenes": [],
+    "ProfileType": "Unknown",
+    "Lean": "Unknown"
+  }
+}
+{
+  "Coa": {
+    "ProductType": "Edible",
+    "IsAmended": false,
+    "LabName": "374 Labs",
+    "ProductName": "",
+    "BatchId": "",
+    "HarvestDate": null,
+    "TestDate": "2026-03-02T00:00:00",
+    "PackageDate": null,
+    "Cannabinoids": {
+      "THC": {
+        "FieldName": "THC",
+        "Value": 10.57,
+        "SourceText": "\u03949-THC 0.42 10.57 2.54",
+        "Confidence": 0.95
+      },
+      "THCA": {
+        "FieldName": "THCA",
+        "Value": 0,
+        "SourceText": "THCa 0.42 \u003CLOQ \u003CLOQ \u03B1-Bisabolol 0.05 NR NR",
+        "Confidence": 0
+      },
+      "CBD": {
+        "FieldName": "CBD",
+        "Value": 10.37,
+        "SourceText": "CBD 0.42 10.37 2.49 \u03B2-Myrcene 0.05 NR NR",
+        "Confidence": 0.95
+      },
+      "CBDA": {
+        "FieldName": "CBDA",
+        "Value": 0,
+        "SourceText": "CBDa 0.42 \u003CLOQ \u003CLOQ \u03B2-Pinene 0.05 NR NR",
+        "Confidence": 0
+      },
+      "TotalTHC": 10.57,
+      "TotalCBD": 10.37
+    },
+    "Terpenes": {
+      "Terpenes": {},
+      "TotalTerpenes": 0
+    },
+    "Compliance": {
+      "Passed": false,
+      "ContaminantsPassed": null,
+      "Status": "unknown"
+    },
+    "Freshness": {
+      "DaysSinceTest": 59,
+      "Score": 85,
+      "Band": "Good"
+    }
+  },
+  "Validation": {
+    "IsValid": true,
+    "Warnings": []
+  },
+  "Score": {
+    "Score": 35,
+    "Tier": "Skip",
+    "Breakdown": {
+      "Potency": 10,
+      "Terpenes": 5,
+      "Freshness": 20,
+      "Compliance": 0
+    }
+  },
+  "Profile": {
+    "DominantTerpene": "",
+    "TopTerpenes": [],
+    "ProfileType": "Unknown",
+    "Lean": "Unknown"
+  }
+}
+{
+  "Coa": {
+    "ProductType": "Edible",
+    "IsAmended": false,
+    "LabName": "374 Labs",
+    "ProductName": "",
+    "BatchId": "",
+    "HarvestDate": null,
+    "TestDate": "2026-02-23T00:00:00",
+    "PackageDate": null,
+    "Cannabinoids": {
+      "THC": {
+        "FieldName": "THC",
+        "Value": 10.30,
+        "SourceText": "\u03949-THC 0.42 10.30 2.46",
+        "Confidence": 0.95
+      },
+      "THCA": {
+        "FieldName": "THCA",
+        "Value": 0,
+        "SourceText": "THCa 0.42 \u003CLOQ \u003CLOQ \u03B1-Bisabolol 0.05 \u003CLOQ \u003CLOQ",
+        "Confidence": 0
+      },
+      "CBD": {
+        "FieldName": "CBD",
+        "Value": 9.84,
+        "SourceText": "CBD 0.42 9.84 2.35 \u03B2-Myrcene 0.05 \u003CLOQ \u003CLOQ",
+        "Confidence": 0.95
+      },
+      "CBDA": {
+        "FieldName": "CBDA",
+        "Value": 0,
+        "SourceText": "CBDa 0.42 \u003CLOQ \u003CLOQ \u03B2-Pinene 0.05 \u003CLOQ \u003CLOQ",
+        "Confidence": 0
+      },
+      "TotalTHC": 10.30,
+      "TotalCBD": 9.84
+    },
+    "Terpenes": {
+      "Terpenes": {},
+      "TotalTerpenes": 0
+    },
+    "Compliance": {
+      "Passed": false,
+      "ContaminantsPassed": null,
+      "Status": "unknown"
+    },
+    "Freshness": {
+      "DaysSinceTest": 66,
+      "Score": 70,
+      "Band": "Good"
+    }
+  },
+  "Validation": {
+    "IsValid": true,
+    "Warnings": []
+  },
+  "Score": {
+    "Score": 35,
+    "Tier": "Skip",
+    "Breakdown": {
+      "Potency": 10,
+      "Terpenes": 5,
+      "Freshness": 20,
+      "Compliance": 0
+    }
+  },
+  "Profile": {
+    "DominantTerpene": "",
+    "TopTerpenes": [],
+    "ProfileType": "Unknown",
+    "Lean": "Unknown"
+  }
+}
+{
+  "Coa": {
+    "ProductType": "Edible",
+    "IsAmended": false,
+    "LabName": "374 Labs",
+    "ProductName": "",
+    "BatchId": "",
+    "HarvestDate": null,
+    "TestDate": "2026-03-02T00:00:00",
+    "PackageDate": null,
+    "Cannabinoids": {
+      "THC": {
+        "FieldName": "THC",
+        "Value": 10.46,
+        "SourceText": "\u03949-THC 0.42 10.46 2.47",
+        "Confidence": 0.95
+      },
+      "THCA": {
+        "FieldName": "THCA",
+        "Value": 0,
+        "SourceText": "THCa 0.42 \u003CLOQ \u003CLOQ \u03B1-Bisabolol 0.05 NR NR",
+        "Confidence": 0
+      },
+      "CBD": {
+        "FieldName": "CBD",
+        "Value": 10.34,
+        "SourceText": "CBD 0.42 10.34 2.44 \u03B2-Myrcene 0.05 NR NR",
+        "Confidence": 0.95
+      },
+      "CBDA": {
+        "FieldName": "CBDA",
+        "Value": 0,
+        "SourceText": "CBDa 0.42 \u003CLOQ \u003CLOQ \u03B2-Pinene 0.05 NR NR",
+        "Confidence": 0
+      },
+      "TotalTHC": 10.46,
+      "TotalCBD": 10.34
+    },
+    "Terpenes": {
+      "Terpenes": {},
+      "TotalTerpenes": 0
+    },
+    "Compliance": {
+      "Passed": false,
+      "ContaminantsPassed": null,
+      "Status": "unknown"
+    },
+    "Freshness": {
+      "DaysSinceTest": 59,
+      "Score": 85,
+      "Band": "Good"
+    }
+  },
+  "Validation": {
+    "IsValid": true,
+    "Warnings": []
+  },
+  "Score": {
+    "Score": 35,
+    "Tier": "Skip",
+    "Breakdown": {
+      "Potency": 10,
+      "Terpenes": 5,
+      "Freshness": 20,
+      "Compliance": 0
+    }
+  },
+  "Profile": {
+    "DominantTerpene": "",
+    "TopTerpenes": [],
+    "ProfileType": "Unknown",
+    "Lean": "Unknown"
+  }
+}
+{
+  "Coa": {
+    "ProductType": "Edible",
+    "IsAmended": false,
+    "LabName": "374 Labs",
+    "ProductName": "",
+    "BatchId": "",
+    "HarvestDate": null,
+    "TestDate": "2026-03-12T00:00:00",
+    "PackageDate": null,
+    "Cannabinoids": {
+      "THC": {
+        "FieldName": "THC",
+        "Value": 10.83,
+        "SourceText": "\u03949-THC 0.43 10.83 2.53",
+        "Confidence": 0.95
+      },
+      "THCA": {
+        "FieldName": "THCA",
+        "Value": 0,
+        "SourceText": "THCa 0.43 \u003CLOQ \u003CLOQ \u03B1-Bisabolol 0.05 NR NR",
+        "Confidence": 0
+      },
+      "CBD": {
+        "FieldName": "CBD",
+        "Value": 10.27,
+        "SourceText": "CBD 0.43 10.27 2.40 \u03B2-Myrcene 0.05 NR NR",
+        "Confidence": 0.95
+      },
+      "CBDA": {
+        "FieldName": "CBDA",
+        "Value": 0,
+        "SourceText": "CBDa 0.43 \u003CLOQ \u003CLOQ \u03B2-Pinene 0.05 NR NR",
+        "Confidence": 0
+      },
+      "TotalTHC": 10.83,
+      "TotalCBD": 10.27
+    },
+    "Terpenes": {
+      "Terpenes": {},
+      "TotalTerpenes": 0
+    },
+    "Compliance": {
+      "Passed": false,
+      "ContaminantsPassed": null,
+      "Status": "unknown"
+    },
+    "Freshness": {
+      "DaysSinceTest": 49,
+      "Score": 85,
+      "Band": "Good"
+    }
+  },
+  "Validation": {
+    "IsValid": true,
+    "Warnings": []
+  },
+  "Score": {
+    "Score": 35,
+    "Tier": "Skip",
+    "Breakdown": {
+      "Potency": 10,
+      "Terpenes": 5,
+      "Freshness": 20,
+      "Compliance": 0
+    }
+  },
+  "Profile": {
+    "DominantTerpene": "",
+    "TopTerpenes": [],
+    "ProfileType": "Unknown",
+    "Lean": "Unknown"
+  }
+}
+{
+  "Coa": {
+    "ProductType": "Edible",
+    "IsAmended": false,
+    "LabName": "374 Labs",
+    "ProductName": "",
+    "BatchId": "",
+    "HarvestDate": null,
+    "TestDate": "2026-03-12T00:00:00",
+    "PackageDate": null,
+    "Cannabinoids": {
+      "THC": {
+        "FieldName": "THC",
+        "Value": 10.83,
+        "SourceText": "\u03949-THC 0.43 10.83 2.53",
+        "Confidence": 0.95
+      },
+      "THCA": {
+        "FieldName": "THCA",
+        "Value": 0,
+        "SourceText": "THCa 0.43 \u003CLOQ \u003CLOQ \u03B1-Bisabolol 0.05 NR NR",
+        "Confidence": 0
+      },
+      "CBD": {
+        "FieldName": "CBD",
+        "Value": 10.27,
+        "SourceText": "CBD 0.43 10.27 2.40 \u03B2-Myrcene 0.05 NR NR",
+        "Confidence": 0.95
+      },
+      "CBDA": {
+        "FieldName": "CBDA",
+        "Value": 0,
+        "SourceText": "CBDa 0.43 \u003CLOQ \u003CLOQ \u03B2-Pinene 0.05 NR NR",
+        "Confidence": 0
+      },
+      "TotalTHC": 10.83,
+      "TotalCBD": 10.27
+    },
+    "Terpenes": {
+      "Terpenes": {},
+      "TotalTerpenes": 0
+    },
+    "Compliance": {
+      "Passed": false,
+      "ContaminantsPassed": null,
+      "Status": "unknown"
+    },
+    "Freshness": {
+      "DaysSinceTest": 49,
+      "Score": 85,
+      "Band": "Good"
+    }
+  },
+  "Validation": {
+    "IsValid": true,
+    "Warnings": []
+  },
+  "Score": {
+    "Score": 35,
+    "Tier": "Skip",
+    "Breakdown": {
+      "Potency": 10,
+      "Terpenes": 5,
+      "Freshness": 20,
+      "Compliance": 0
+    }
+  },
+  "Profile": {
+    "DominantTerpene": "",
+    "TopTerpenes": [],
+    "ProfileType": "Unknown",
+    "Lean": "Unknown"
+  }
+}
+{
+  "Coa": {
+    "ProductType": "Edible",
+    "IsAmended": false,
+    "LabName": "374 Labs",
+    "ProductName": "",
+    "BatchId": "",
+    "HarvestDate": null,
+    "TestDate": "2026-04-03T00:00:00",
+    "PackageDate": null,
+    "Cannabinoids": {
+      "THC": {
+        "FieldName": "THC",
+        "Value": 9.95,
+        "SourceText": "\u03949-THC 0.41 9.95 2.41",
+        "Confidence": 0.95
+      },
+      "THCA": {
+        "FieldName": "THCA",
+        "Value": 0,
+        "SourceText": "THCa 0.41 \u003CLOQ \u003CLOQ",
+        "Confidence": 0
+      },
+      "CBD": {
+        "FieldName": "CBD",
+        "Value": 10.23,
+        "SourceText": "CBD 0.41 10.23 2.48",
+        "Confidence": 0.95
+      },
+      "CBDA": {
+        "FieldName": "CBDA",
+        "Value": 0,
+        "SourceText": "CBDa 0.41 \u003CLOQ \u003CLOQ",
+        "Confidence": 0
+      },
+      "TotalTHC": 9.95,
+      "TotalCBD": 10.23
+    },
+    "Terpenes": {
+      "Terpenes": {},
+      "TotalTerpenes": 0
+    },
+    "Compliance": {
+      "Passed": false,
+      "ContaminantsPassed": null,
+      "Status": "unknown"
+    },
+    "Freshness": {
+      "DaysSinceTest": 27,
+      "Score": 100,
+      "Band": "Excellent"
+    }
+  },
+  "Validation": {
+    "IsValid": true,
+    "Warnings": []
+  },
+  "Score": {
+    "Score": 35,
+    "Tier": "Skip",
+    "Breakdown": {
+      "Potency": 5,
+      "Terpenes": 5,
+      "Freshness": 25,
+      "Compliance": 0
+    }
+  },
+  "Profile": {
+    "DominantTerpene": "",
+    "TopTerpenes": [],
+    "ProfileType": "Unknown",
+    "Lean": "Unknown"
+  }
+}
+{
+  "Coa": {
+    "ProductType": "Edible",
+    "IsAmended": false,
+    "LabName": "374 Labs",
+    "ProductName": "",
+    "BatchId": "",
+    "HarvestDate": null,
+    "TestDate": "2026-04-03T00:00:00",
+    "PackageDate": null,
+    "Cannabinoids": {
+      "THC": {
+        "FieldName": "THC",
+        "Value": 9.74,
+        "SourceText": "\u03949-THC 0.42 9.74 2.32",
+        "Confidence": 0.95
+      },
+      "THCA": {
+        "FieldName": "THCA",
+        "Value": 0,
+        "SourceText": "THCa 0.42 \u003CLOQ \u003CLOQ",
+        "Confidence": 0
+      },
+      "CBD": {
+        "FieldName": "CBD",
+        "Value": 10.16,
+        "SourceText": "CBD 0.42 10.16 2.42",
+        "Confidence": 0.95
+      },
+      "CBDA": {
+        "FieldName": "CBDA",
+        "Value": 0,
+        "SourceText": "CBDa 0.42 \u003CLOQ \u003CLOQ",
+        "Confidence": 0
+      },
+      "TotalTHC": 9.74,
+      "TotalCBD": 10.16
+    },
+    "Terpenes": {
+      "Terpenes": {},
+      "TotalTerpenes": 0
+    },
+    "Compliance": {
+      "Passed": false,
+      "ContaminantsPassed": null,
+      "Status": "unknown"
+    },
+    "Freshness": {
+      "DaysSinceTest": 27,
+      "Score": 100,
+      "Band": "Excellent"
+    }
+  },
+  "Validation": {
+    "IsValid": true,
+    "Warnings": []
+  },
+  "Score": {
+    "Score": 35,
+    "Tier": "Skip",
+    "Breakdown": {
+      "Potency": 5,
+      "Terpenes": 5,
+      "Freshness": 25,
+      "Compliance": 0
+    }
+  },
+  "Profile": {
+    "DominantTerpene": "",
+    "TopTerpenes": [],
+    "ProfileType": "Unknown",
+    "Lean": "Unknown"
+  }
+}
+{
+  "Coa": {
+    "ProductType": "Edible",
+    "IsAmended": false,
+    "LabName": "Kaycha Labs",
+    "ProductName": "",
+    "BatchId": "",
+    "HarvestDate": null,
+    "TestDate": "2026-01-30T00:00:00",
+    "PackageDate": null,
+    "Cannabinoids": {
+      "THC": {
+        "FieldName": "THC",
+        "Value": 0,
+        "SourceText": "(760) 791-2108 Strain: WIP KANHA NANO Indica Passionfruit Paradise 100mg THC Gummy",
+        "Confidence": 0
+      },
+      "THCA": {
+        "FieldName": "THCA",
+        "Value": 0,
+        "SourceText": "THCa 0.4001 \u003CLOQ \u003CLOQ",
+        "Confidence": 0
+      },
+      "CBD": {
+        "FieldName": "CBD",
+        "Value": 0.761,
+        "SourceText": "\u22069-THC \u002B \u22068-THC CBD Aw: 0.761",
+        "Confidence": 0.9
+      },
+      "CBDA": {
+        "FieldName": "CBDA",
+        "Value": 0,
+        "SourceText": "CBDa 0.4001 \u003CLOQ \u003CLOQ",
+        "Confidence": 0
+      },
+      "TotalTHC": 0.00,
+      "TotalCBD": 0.76
+    },
+    "Terpenes": {
+      "Terpenes": {},
+      "TotalTerpenes": 0
+    },
+    "Compliance": {
+      "Passed": true,
+      "ContaminantsPassed": true,
+      "Status": "pass"
+    },
+    "Freshness": {
+      "DaysSinceTest": 90,
+      "Score": 70,
+      "Band": "Good"
+    }
+  },
+  "Validation": {
+    "IsValid": false,
+    "Warnings": [
+      {
+        "Code": "MISSING_THC_VALUES",
+        "Message": "THC and THCA values were not found.",
+        "Severity": "warning"
+      }
+    ]
+  },
+  "Score": {
+    "Score": 40,
+    "Tier": "Skip",
+    "Breakdown": {
+      "Potency": 5,
+      "Terpenes": 5,
+      "Freshness": 20,
+      "Compliance": 10
+    }
+  },
+  "Profile": {
+    "DominantTerpene": "",
+    "TopTerpenes": [],
+    "ProfileType": "Unknown",
+    "Lean": "Unknown"
+  }
+}
+{
+  "Coa": {
+    "ProductType": "Edible",
+    "IsAmended": false,
+    "LabName": "Kaycha Labs",
+    "ProductName": "",
+    "BatchId": "",
+    "HarvestDate": null,
+    "TestDate": "2025-12-22T00:00:00",
+    "PackageDate": null,
+    "Cannabinoids": {
+      "THC": {
+        "FieldName": "THC",
+        "Value": 0,
+        "SourceText": "(760) 791-2108 Strain: WIP KANHA NANO Indica Passionfruit Paradise 100mg THC Gummy",
+        "Confidence": 0
+      },
+      "THCA": {
+        "FieldName": "THCA",
+        "Value": 0,
+        "SourceText": "THCa 0.3944 \u003CLOQ \u003CLOQ",
+        "Confidence": 0
+      },
+      "CBD": {
+        "FieldName": "CBD",
+        "Value": 0.742,
+        "SourceText": "\u22069-THC \u002B \u22068-THC CBD Aw: 0.742",
+        "Confidence": 0.9
+      },
+      "CBDA": {
+        "FieldName": "CBDA",
+        "Value": 0,
+        "SourceText": "CBDa 0.3944 \u003CLOQ \u003CLOQ",
+        "Confidence": 0
+      },
+      "TotalTHC": 0.00,
+      "TotalCBD": 0.74
+    },
+    "Terpenes": {
+      "Terpenes": {},
+      "TotalTerpenes": 0
+    },
+    "Compliance": {
+      "Passed": true,
+      "ContaminantsPassed": true,
+      "Status": "pass"
+    },
+    "Freshness": {
+      "DaysSinceTest": 129,
+      "Score": 30,
+      "Band": "Aging"
+    }
+  },
+  "Validation": {
+    "IsValid": false,
+    "Warnings": [
+      {
+        "Code": "MISSING_THC_VALUES",
+        "Message": "THC and THCA values were not found.",
+        "Severity": "warning"
+      }
+    ]
+  },
+  "Score": {
+    "Score": 30,
+    "Tier": "Skip",
+    "Breakdown": {
+      "Potency": 5,
+      "Terpenes": 5,
+      "Freshness": 10,
+      "Compliance": 10
+    }
+  },
+  "Profile": {
+    "DominantTerpene": "",
+    "TopTerpenes": [],
+    "ProfileType": "Unknown",
+    "Lean": "Unknown"
+  }
+}
+{
+  "Coa": {
+    "ProductType": "Edible",
+    "IsAmended": false,
+    "LabName": "Kaycha Labs",
+    "ProductName": "",
+    "BatchId": "",
+    "HarvestDate": null,
+    "TestDate": "2025-12-22T00:00:00",
+    "PackageDate": null,
+    "Cannabinoids": {
+      "THC": {
+        "FieldName": "THC",
+        "Value": 0,
+        "SourceText": "(760) 791-2108 Strain: WIP KANHA NANO Indica Passionfruit Paradise 100mg THC Gummy",
+        "Confidence": 0
+      },
+      "THCA": {
+        "FieldName": "THCA",
+        "Value": 0,
+        "SourceText": "THCa 0.3944 \u003CLOQ \u003CLOQ",
+        "Confidence": 0
+      },
+      "CBD": {
+        "FieldName": "CBD",
+        "Value": 0.742,
+        "SourceText": "\u22069-THC \u002B \u22068-THC CBD Aw: 0.742",
+        "Confidence": 0.9
+      },
+      "CBDA": {
+        "FieldName": "CBDA",
+        "Value": 0,
+        "SourceText": "CBDa 0.3944 \u003CLOQ \u003CLOQ",
+        "Confidence": 0
+      },
+      "TotalTHC": 0.00,
+      "TotalCBD": 0.74
+    },
+    "Terpenes": {
+      "Terpenes": {},
+      "TotalTerpenes": 0
+    },
+    "Compliance": {
+      "Passed": true,
+      "ContaminantsPassed": true,
+      "Status": "pass"
+    },
+    "Freshness": {
+      "DaysSinceTest": 129,
+      "Score": 30,
+      "Band": "Aging"
+    }
+  },
+  "Validation": {
+    "IsValid": false,
+    "Warnings": [
+      {
+        "Code": "MISSING_THC_VALUES",
+        "Message": "THC and THCA values were not found.",
+        "Severity": "warning"
+      }
+    ]
+  },
+  "Score": {
+    "Score": 30,
+    "Tier": "Skip",
+    "Breakdown": {
+      "Potency": 5,
+      "Terpenes": 5,
+      "Freshness": 10,
+      "Compliance": 10
+    }
+  },
+  "Profile": {
+    "DominantTerpene": "",
+    "TopTerpenes": [],
+    "ProfileType": "Unknown",
+    "Lean": "Unknown"
+  }
+}
+{
+  "Coa": {
+    "ProductType": "Edible",
+    "IsAmended": false,
+    "LabName": "Kaycha Labs",
+    "ProductName": "",
+    "BatchId": "",
+    "HarvestDate": null,
+    "TestDate": "2025-12-22T00:00:00",
+    "PackageDate": null,
+    "Cannabinoids": {
+      "THC": {
+        "FieldName": "THC",
+        "Value": 0,
+        "SourceText": "(760) 791-2108 Strain: WIP KANHA NANO Indica Passionfruit Paradise 100mg THC Gummy",
+        "Confidence": 0
+      },
+      "THCA": {
+        "FieldName": "THCA",
+        "Value": 0,
+        "SourceText": "THCa 0.3944 \u003CLOQ \u003CLOQ",
+        "Confidence": 0
+      },
+      "CBD": {
+        "FieldName": "CBD",
+        "Value": 0.742,
+        "SourceText": "\u22069-THC \u002B \u22068-THC CBD Aw: 0.742",
+        "Confidence": 0.9
+      },
+      "CBDA": {
+        "FieldName": "CBDA",
+        "Value": 0,
+        "SourceText": "CBDa 0.3944 \u003CLOQ \u003CLOQ",
+        "Confidence": 0
+      },
+      "TotalTHC": 0.00,
+      "TotalCBD": 0.74
+    },
+    "Terpenes": {
+      "Terpenes": {},
+      "TotalTerpenes": 0
+    },
+    "Compliance": {
+      "Passed": true,
+      "ContaminantsPassed": true,
+      "Status": "pass"
+    },
+    "Freshness": {
+      "DaysSinceTest": 129,
+      "Score": 30,
+      "Band": "Aging"
+    }
+  },
+  "Validation": {
+    "IsValid": false,
+    "Warnings": [
+      {
+        "Code": "MISSING_THC_VALUES",
+        "Message": "THC and THCA values were not found.",
+        "Severity": "warning"
+      }
+    ]
+  },
+  "Score": {
+    "Score": 30,
+    "Tier": "Skip",
+    "Breakdown": {
+      "Potency": 5,
+      "Terpenes": 5,
+      "Freshness": 10,
+      "Compliance": 10
+    }
+  },
+  "Profile": {
+    "DominantTerpene": "",
+    "TopTerpenes": [],
+    "ProfileType": "Unknown",
+    "Lean": "Unknown"
+  }
+}
+{
+  "Coa": {
+    "ProductType": "Edible",
+    "IsAmended": false,
+    "LabName": "Kaycha Labs",
+    "ProductName": "",
+    "BatchId": "",
+    "HarvestDate": null,
+    "TestDate": "2025-12-22T00:00:00",
+    "PackageDate": null,
+    "Cannabinoids": {
+      "THC": {
+        "FieldName": "THC",
+        "Value": 0,
+        "SourceText": "(760) 791-2108 Strain: WIP KANHA NANO Indica Passionfruit Paradise 100mg THC Gummy",
+        "Confidence": 0
+      },
+      "THCA": {
+        "FieldName": "THCA",
+        "Value": 0,
+        "SourceText": "THCa 0.3944 \u003CLOQ \u003CLOQ",
+        "Confidence": 0
+      },
+      "CBD": {
+        "FieldName": "CBD",
+        "Value": 0.742,
+        "SourceText": "\u22069-THC \u002B \u22068-THC CBD Aw: 0.742",
+        "Confidence": 0.9
+      },
+      "CBDA": {
+        "FieldName": "CBDA",
+        "Value": 0,
+        "SourceText": "CBDa 0.3944 \u003CLOQ \u003CLOQ",
+        "Confidence": 0
+      },
+      "TotalTHC": 0.00,
+      "TotalCBD": 0.74
+    },
+    "Terpenes": {
+      "Terpenes": {},
+      "TotalTerpenes": 0
+    },
+    "Compliance": {
+      "Passed": true,
+      "ContaminantsPassed": true,
+      "Status": "pass"
+    },
+    "Freshness": {
+      "DaysSinceTest": 129,
+      "Score": 30,
+      "Band": "Aging"
+    }
+  },
+  "Validation": {
+    "IsValid": false,
+    "Warnings": [
+      {
+        "Code": "MISSING_THC_VALUES",
+        "Message": "THC and THCA values were not found.",
+        "Severity": "warning"
+      }
+    ]
+  },
+  "Score": {
+    "Score": 30,
+    "Tier": "Skip",
+    "Breakdown": {
+      "Potency": 5,
+      "Terpenes": 5,
+      "Freshness": 10,
+      "Compliance": 10
+    }
+  },
+  "Profile": {
+    "DominantTerpene": "",
+    "TopTerpenes": [],
+    "ProfileType": "Unknown",
+    "Lean": "Unknown"
+  }
+}
+{
+  "Coa": {
+    "ProductType": "Edible",
+    "IsAmended": false,
+    "LabName": "Kaycha Labs",
+    "ProductName": "",
+    "BatchId": "",
+    "HarvestDate": null,
+    "TestDate": "2025-12-22T00:00:00",
+    "PackageDate": null,
+    "Cannabinoids": {
+      "THC": {
+        "FieldName": "THC",
+        "Value": 0,
+        "SourceText": "(760) 791-2108 Strain: WIP KANHA NANO Indica Passionfruit Paradise 100mg THC Gummy",
+        "Confidence": 0
+      },
+      "THCA": {
+        "FieldName": "THCA",
+        "Value": 0,
+        "SourceText": "THCa 0.3944 \u003CLOQ \u003CLOQ",
+        "Confidence": 0
+      },
+      "CBD": {
+        "FieldName": "CBD",
+        "Value": 0.742,
+        "SourceText": "\u22069-THC \u002B \u22068-THC CBD Aw: 0.742",
+        "Confidence": 0.9
+      },
+      "CBDA": {
+        "FieldName": "CBDA",
+        "Value": 0,
+        "SourceText": "CBDa 0.3944 \u003CLOQ \u003CLOQ",
+        "Confidence": 0
+      },
+      "TotalTHC": 0.00,
+      "TotalCBD": 0.74
+    },
+    "Terpenes": {
+      "Terpenes": {},
+      "TotalTerpenes": 0
+    },
+    "Compliance": {
+      "Passed": true,
+      "ContaminantsPassed": true,
+      "Status": "pass"
+    },
+    "Freshness": {
+      "DaysSinceTest": 129,
+      "Score": 30,
+      "Band": "Aging"
+    }
+  },
+  "Validation": {
+    "IsValid": false,
+    "Warnings": [
+      {
+        "Code": "MISSING_THC_VALUES",
+        "Message": "THC and THCA values were not found.",
+        "Severity": "warning"
+      }
+    ]
+  },
+  "Score": {
+    "Score": 30,
+    "Tier": "Skip",
+    "Breakdown": {
+      "Potency": 5,
+      "Terpenes": 5,
+      "Freshness": 10,
+      "Compliance": 10
+    }
+  },
+  "Profile": {
+    "DominantTerpene": "",
+    "TopTerpenes": [],
+    "ProfileType": "Unknown",
+    "Lean": "Unknown"
+  }
+}
+{
+  "Coa": {
+    "ProductType": "Edible",
+    "IsAmended": false,
+    "LabName": "Kaycha Labs",
+    "ProductName": "",
+    "BatchId": "",
+    "HarvestDate": null,
+    "TestDate": "2025-12-22T00:00:00",
+    "PackageDate": null,
+    "Cannabinoids": {
+      "THC": {
+        "FieldName": "THC",
+        "Value": 0,
+        "SourceText": "(760) 791-2108 Strain: WIP KANHA NANO Indica Passionfruit Paradise 100mg THC Gummy",
+        "Confidence": 0
+      },
+      "THCA": {
+        "FieldName": "THCA",
+        "Value": 0,
+        "SourceText": "THCa 0.3944 \u003CLOQ \u003CLOQ",
+        "Confidence": 0
+      },
+      "CBD": {
+        "FieldName": "CBD",
+        "Value": 0.742,
+        "SourceText": "\u22069-THC \u002B \u22068-THC CBD Aw: 0.742",
+        "Confidence": 0.9
+      },
+      "CBDA": {
+        "FieldName": "CBDA",
+        "Value": 0,
+        "SourceText": "CBDa 0.3944 \u003CLOQ \u003CLOQ",
+        "Confidence": 0
+      },
+      "TotalTHC": 0.00,
+      "TotalCBD": 0.74
+    },
+    "Terpenes": {
+      "Terpenes": {},
+      "TotalTerpenes": 0
+    },
+    "Compliance": {
+      "Passed": true,
+      "ContaminantsPassed": true,
+      "Status": "pass"
+    },
+    "Freshness": {
+      "DaysSinceTest": 129,
+      "Score": 30,
+      "Band": "Aging"
+    }
+  },
+  "Validation": {
+    "IsValid": false,
+    "Warnings": [
+      {
+        "Code": "MISSING_THC_VALUES",
+        "Message": "THC and THCA values were not found.",
+        "Severity": "warning"
+      }
+    ]
+  },
+  "Score": {
+    "Score": 30,
+    "Tier": "Skip",
+    "Breakdown": {
+      "Potency": 5,
+      "Terpenes": 5,
+      "Freshness": 10,
+      "Compliance": 10
+    }
+  },
+  "Profile": {
+    "DominantTerpene": "",
+    "TopTerpenes": [],
+    "ProfileType": "Unknown",
+    "Lean": "Unknown"
+  }
+}
+{
+  "Coa": {
+    "ProductType": "Edible",
+    "IsAmended": false,
+    "LabName": "Kaycha Labs",
+    "ProductName": "",
+    "BatchId": "",
+    "HarvestDate": null,
+    "TestDate": "2025-12-22T00:00:00",
+    "PackageDate": null,
+    "Cannabinoids": {
+      "THC": {
+        "FieldName": "THC",
+        "Value": 0,
+        "SourceText": "(760) 791-2108 Strain: WIP KANHA NANO Indica Passionfruit Paradise 100mg THC Gummy",
+        "Confidence": 0
+      },
+      "THCA": {
+        "FieldName": "THCA",
+        "Value": 0,
+        "SourceText": "THCa 0.3944 \u003CLOQ \u003CLOQ",
+        "Confidence": 0
+      },
+      "CBD": {
+        "FieldName": "CBD",
+        "Value": 0.742,
+        "SourceText": "\u22069-THC \u002B \u22068-THC CBD Aw: 0.742",
+        "Confidence": 0.9
+      },
+      "CBDA": {
+        "FieldName": "CBDA",
+        "Value": 0,
+        "SourceText": "CBDa 0.3944 \u003CLOQ \u003CLOQ",
+        "Confidence": 0
+      },
+      "TotalTHC": 0.00,
+      "TotalCBD": 0.74
+    },
+    "Terpenes": {
+      "Terpenes": {},
+      "TotalTerpenes": 0
+    },
+    "Compliance": {
+      "Passed": true,
+      "ContaminantsPassed": true,
+      "Status": "pass"
+    },
+    "Freshness": {
+      "DaysSinceTest": 129,
+      "Score": 30,
+      "Band": "Aging"
+    }
+  },
+  "Validation": {
+    "IsValid": false,
+    "Warnings": [
+      {
+        "Code": "MISSING_THC_VALUES",
+        "Message": "THC and THCA values were not found.",
+        "Severity": "warning"
+      }
+    ]
+  },
+  "Score": {
+    "Score": 30,
+    "Tier": "Skip",
+    "Breakdown": {
+      "Potency": 5,
+      "Terpenes": 5,
+      "Freshness": 10,
+      "Compliance": 10
+    }
+  },
+  "Profile": {
+    "DominantTerpene": "",
+    "TopTerpenes": [],
+    "ProfileType": "Unknown",
+    "Lean": "Unknown"
+  }
+}
+{
+  "Coa": {
+    "ProductType": "Edible",
+    "IsAmended": false,
+    "LabName": "Kaycha Labs",
+    "ProductName": "",
+    "BatchId": "",
+    "HarvestDate": null,
+    "TestDate": "2026-01-30T00:00:00",
+    "PackageDate": null,
+    "Cannabinoids": {
+      "THC": {
+        "FieldName": "THC",
+        "Value": 0,
+        "SourceText": "(760) 791-2108 Strain: WIP KANHA NANO Indica Passionfruit Paradise 100mg THC Gummy",
+        "Confidence": 0
+      },
+      "THCA": {
+        "FieldName": "THCA",
+        "Value": 0,
+        "SourceText": "THCa 0.4001 \u003CLOQ \u003CLOQ",
+        "Confidence": 0
+      },
+      "CBD": {
+        "FieldName": "CBD",
+        "Value": 0.761,
+        "SourceText": "\u22069-THC \u002B \u22068-THC CBD Aw: 0.761",
+        "Confidence": 0.9
+      },
+      "CBDA": {
+        "FieldName": "CBDA",
+        "Value": 0,
+        "SourceText": "CBDa 0.4001 \u003CLOQ \u003CLOQ",
+        "Confidence": 0
+      },
+      "TotalTHC": 0.00,
+      "TotalCBD": 0.76
+    },
+    "Terpenes": {
+      "Terpenes": {},
+      "TotalTerpenes": 0
+    },
+    "Compliance": {
+      "Passed": true,
+      "ContaminantsPassed": true,
+      "Status": "pass"
+    },
+    "Freshness": {
+      "DaysSinceTest": 90,
+      "Score": 70,
+      "Band": "Good"
+    }
+  },
+  "Validation": {
+    "IsValid": false,
+    "Warnings": [
+      {
+        "Code": "MISSING_THC_VALUES",
+        "Message": "THC and THCA values were not found.",
+        "Severity": "warning"
+      }
+    ]
+  },
+  "Score": {
+    "Score": 40,
+    "Tier": "Skip",
+    "Breakdown": {
+      "Potency": 5,
+      "Terpenes": 5,
+      "Freshness": 20,
+      "Compliance": 10
+    }
+  },
+  "Profile": {
+    "DominantTerpene": "",
+    "TopTerpenes": [],
+    "ProfileType": "Unknown",
+    "Lean": "Unknown"
+  }
+}
+{
+  "Coa": {
+    "ProductType": "Edible",
+    "IsAmended": false,
+    "LabName": "Kaycha Labs",
+    "ProductName": "",
+    "BatchId": "",
+    "HarvestDate": null,
+    "TestDate": "2026-01-30T00:00:00",
+    "PackageDate": null,
+    "Cannabinoids": {
+      "THC": {
+        "FieldName": "THC",
+        "Value": 0,
+        "SourceText": "(760) 791-2108 Strain: WIP KANHA NANO Indica Passionfruit Paradise 100mg THC Gummy",
+        "Confidence": 0
+      },
+      "THCA": {
+        "FieldName": "THCA",
+        "Value": 0,
+        "SourceText": "THCa 0.4001 \u003CLOQ \u003CLOQ",
+        "Confidence": 0
+      },
+      "CBD": {
+        "FieldName": "CBD",
+        "Value": 0.761,
+        "SourceText": "\u22069-THC \u002B \u22068-THC CBD Aw: 0.761",
+        "Confidence": 0.9
+      },
+      "CBDA": {
+        "FieldName": "CBDA",
+        "Value": 0,
+        "SourceText": "CBDa 0.4001 \u003CLOQ \u003CLOQ",
+        "Confidence": 0
+      },
+      "TotalTHC": 0.00,
+      "TotalCBD": 0.76
+    },
+    "Terpenes": {
+      "Terpenes": {},
+      "TotalTerpenes": 0
+    },
+    "Compliance": {
+      "Passed": true,
+      "ContaminantsPassed": true,
+      "Status": "pass"
+    },
+    "Freshness": {
+      "DaysSinceTest": 90,
+      "Score": 70,
+      "Band": "Good"
+    }
+  },
+  "Validation": {
+    "IsValid": false,
+    "Warnings": [
+      {
+        "Code": "MISSING_THC_VALUES",
+        "Message": "THC and THCA values were not found.",
+        "Severity": "warning"
+      }
+    ]
+  },
+  "Score": {
+    "Score": 40,
+    "Tier": "Skip",
+    "Breakdown": {
+      "Potency": 5,
+      "Terpenes": 5,
+      "Freshness": 20,
+      "Compliance": 10
+    }
+  },
+  "Profile": {
+    "DominantTerpene": "",
+    "TopTerpenes": [],
+    "ProfileType": "Unknown",
+    "Lean": "Unknown"
+  }
+}
+{
+  "Coa": {
+    "ProductType": "Edible",
+    "IsAmended": false,
+    "LabName": "Kaycha Labs",
+    "ProductName": "",
+    "BatchId": "",
+    "HarvestDate": null,
+    "TestDate": "2026-01-30T00:00:00",
+    "PackageDate": null,
+    "Cannabinoids": {
+      "THC": {
+        "FieldName": "THC",
+        "Value": 0,
+        "SourceText": "(760) 791-2108 Strain: WIP KANHA NANO Indica Passionfruit Paradise 100mg THC Gummy",
+        "Confidence": 0
+      },
+      "THCA": {
+        "FieldName": "THCA",
+        "Value": 0,
+        "SourceText": "THCa 0.4001 \u003CLOQ \u003CLOQ",
+        "Confidence": 0
+      },
+      "CBD": {
+        "FieldName": "CBD",
+        "Value": 0.761,
+        "SourceText": "\u22069-THC \u002B \u22068-THC CBD Aw: 0.761",
+        "Confidence": 0.9
+      },
+      "CBDA": {
+        "FieldName": "CBDA",
+        "Value": 0,
+        "SourceText": "CBDa 0.4001 \u003CLOQ \u003CLOQ",
+        "Confidence": 0
+      },
+      "TotalTHC": 0.00,
+      "TotalCBD": 0.76
+    },
+    "Terpenes": {
+      "Terpenes": {},
+      "TotalTerpenes": 0
+    },
+    "Compliance": {
+      "Passed": true,
+      "ContaminantsPassed": true,
+      "Status": "pass"
+    },
+    "Freshness": {
+      "DaysSinceTest": 90,
+      "Score": 70,
+      "Band": "Good"
+    }
+  },
+  "Validation": {
+    "IsValid": false,
+    "Warnings": [
+      {
+        "Code": "MISSING_THC_VALUES",
+        "Message": "THC and THCA values were not found.",
+        "Severity": "warning"
+      }
+    ]
+  },
+  "Score": {
+    "Score": 40,
+    "Tier": "Skip",
+    "Breakdown": {
+      "Potency": 5,
+      "Terpenes": 5,
+      "Freshness": 20,
+      "Compliance": 10
+    }
+  },
+  "Profile": {
+    "DominantTerpene": "",
+    "TopTerpenes": [],
+    "ProfileType": "Unknown",
+    "Lean": "Unknown"
+  }
+}
+{
+  "Coa": {
+    "ProductType": "Edible",
+    "IsAmended": false,
+    "LabName": "Kaycha Labs",
+    "ProductName": "",
+    "BatchId": "",
+    "HarvestDate": null,
+    "TestDate": "2026-01-30T00:00:00",
+    "PackageDate": null,
+    "Cannabinoids": {
+      "THC": {
+        "FieldName": "THC",
+        "Value": 0,
+        "SourceText": "(760) 791-2108 Strain: WIP KANHA NANO Indica Passionfruit Paradise 100mg THC Gummy",
+        "Confidence": 0
+      },
+      "THCA": {
+        "FieldName": "THCA",
+        "Value": 0,
+        "SourceText": "THCa 0.4001 \u003CLOQ \u003CLOQ",
+        "Confidence": 0
+      },
+      "CBD": {
+        "FieldName": "CBD",
+        "Value": 0.761,
+        "SourceText": "\u22069-THC \u002B \u22068-THC CBD Aw: 0.761",
+        "Confidence": 0.9
+      },
+      "CBDA": {
+        "FieldName": "CBDA",
+        "Value": 0,
+        "SourceText": "CBDa 0.4001 \u003CLOQ \u003CLOQ",
+        "Confidence": 0
+      },
+      "TotalTHC": 0.00,
+      "TotalCBD": 0.76
+    },
+    "Terpenes": {
+      "Terpenes": {},
+      "TotalTerpenes": 0
+    },
+    "Compliance": {
+      "Passed": true,
+      "ContaminantsPassed": true,
+      "Status": "pass"
+    },
+    "Freshness": {
+      "DaysSinceTest": 90,
+      "Score": 70,
+      "Band": "Good"
+    }
+  },
+  "Validation": {
+    "IsValid": false,
+    "Warnings": [
+      {
+        "Code": "MISSING_THC_VALUES",
+        "Message": "THC and THCA values were not found.",
+        "Severity": "warning"
+      }
+    ]
+  },
+  "Score": {
+    "Score": 40,
+    "Tier": "Skip",
+    "Breakdown": {
+      "Potency": 5,
+      "Terpenes": 5,
+      "Freshness": 20,
+      "Compliance": 10
+    }
+  },
+  "Profile": {
+    "DominantTerpene": "",
+    "TopTerpenes": [],
+    "ProfileType": "Unknown",
+    "Lean": "Unknown"
+  }
+}
+{
+  "Coa": {
+    "ProductType": "Edible",
+    "IsAmended": false,
+    "LabName": "Kaycha Labs",
+    "ProductName": "",
+    "BatchId": "",
+    "HarvestDate": null,
+    "TestDate": "2026-01-30T00:00:00",
+    "PackageDate": null,
+    "Cannabinoids": {
+      "THC": {
+        "FieldName": "THC",
+        "Value": 0,
+        "SourceText": "(760) 791-2108 Strain: WIP KANHA NANO Indica Passionfruit Paradise 100mg THC Gummy",
+        "Confidence": 0
+      },
+      "THCA": {
+        "FieldName": "THCA",
+        "Value": 0,
+        "SourceText": "THCa 0.4001 \u003CLOQ \u003CLOQ",
+        "Confidence": 0
+      },
+      "CBD": {
+        "FieldName": "CBD",
+        "Value": 0.761,
+        "SourceText": "\u22069-THC \u002B \u22068-THC CBD Aw: 0.761",
+        "Confidence": 0.9
+      },
+      "CBDA": {
+        "FieldName": "CBDA",
+        "Value": 0,
+        "SourceText": "CBDa 0.4001 \u003CLOQ \u003CLOQ",
+        "Confidence": 0
+      },
+      "TotalTHC": 0.00,
+      "TotalCBD": 0.76
+    },
+    "Terpenes": {
+      "Terpenes": {},
+      "TotalTerpenes": 0
+    },
+    "Compliance": {
+      "Passed": true,
+      "ContaminantsPassed": true,
+      "Status": "pass"
+    },
+    "Freshness": {
+      "DaysSinceTest": 90,
+      "Score": 70,
+      "Band": "Good"
+    }
+  },
+  "Validation": {
+    "IsValid": false,
+    "Warnings": [
+      {
+        "Code": "MISSING_THC_VALUES",
+        "Message": "THC and THCA values were not found.",
+        "Severity": "warning"
+      }
+    ]
+  },
+  "Score": {
+    "Score": 40,
+    "Tier": "Skip",
+    "Breakdown": {
+      "Potency": 5,
+      "Terpenes": 5,
+      "Freshness": 20,
+      "Compliance": 10
+    }
+  },
+  "Profile": {
+    "DominantTerpene": "",
+    "TopTerpenes": [],
+    "ProfileType": "Unknown",
+    "Lean": "Unknown"
+  }
+}
+{
+  "Coa": {
+    "ProductType": "Edible",
+    "IsAmended": false,
+    "LabName": "Kaycha Labs",
+    "ProductName": "",
+    "BatchId": "",
+    "HarvestDate": null,
+    "TestDate": "2026-01-30T00:00:00",
+    "PackageDate": null,
+    "Cannabinoids": {
+      "THC": {
+        "FieldName": "THC",
+        "Value": 0,
+        "SourceText": "(760) 791-2108 Strain: WIP KANHA NANO Indica Passionfruit Paradise 100mg THC Gummy",
+        "Confidence": 0
+      },
+      "THCA": {
+        "FieldName": "THCA",
+        "Value": 0,
+        "SourceText": "THCa 0.4001 \u003CLOQ \u003CLOQ",
+        "Confidence": 0
+      },
+      "CBD": {
+        "FieldName": "CBD",
+        "Value": 0.761,
+        "SourceText": "\u22069-THC \u002B \u22068-THC CBD Aw: 0.761",
+        "Confidence": 0.9
+      },
+      "CBDA": {
+        "FieldName": "CBDA",
+        "Value": 0,
+        "SourceText": "CBDa 0.4001 \u003CLOQ \u003CLOQ",
+        "Confidence": 0
+      },
+      "TotalTHC": 0.00,
+      "TotalCBD": 0.76
+    },
+    "Terpenes": {
+      "Terpenes": {},
+      "TotalTerpenes": 0
+    },
+    "Compliance": {
+      "Passed": true,
+      "ContaminantsPassed": true,
+      "Status": "pass"
+    },
+    "Freshness": {
+      "DaysSinceTest": 90,
+      "Score": 70,
+      "Band": "Good"
+    }
+  },
+  "Validation": {
+    "IsValid": false,
+    "Warnings": [
+      {
+        "Code": "MISSING_THC_VALUES",
+        "Message": "THC and THCA values were not found.",
+        "Severity": "warning"
+      }
+    ]
+  },
+  "Score": {
+    "Score": 40,
+    "Tier": "Skip",
+    "Breakdown": {
+      "Potency": 5,
+      "Terpenes": 5,
+      "Freshness": 20,
+      "Compliance": 10
+    }
+  },
+  "Profile": {
+    "DominantTerpene": "",
+    "TopTerpenes": [],
+    "ProfileType": "Unknown",
+    "Lean": "Unknown"
+  }
+}
+{
+  "Coa": {
+    "ProductType": "PreRoll",
+    "IsAmended": false,
+    "LabName": "NV Cann Labs",
+    "ProductName": "",
+    "BatchId": "",
+    "HarvestDate": "2026-02-03T00:00:00",
+    "TestDate": "2026-02-11T00:00:00",
+    "PackageDate": null,
+    "Cannabinoids": {
+      "THC": {
+        "FieldName": "THC",
+        "Value": 24.495,
+        "SourceText": "\u03949-THC 0.200 24.495 244.95",
+        "Confidence": 0.85
+      },
+      "THCA": {
+        "FieldName": "THCA",
+        "Value": 15.067,
+        "SourceText": "THCa 0.200 15.067 150.67",
+        "Confidence": 0.85
+      },
+      "CBD": {
+        "FieldName": "CBD",
+        "Value": 0,
+        "SourceText": "CBD 0.200 \u003CLOQ \u003CLOQ",
+        "Confidence": 0
+      },
+      "CBDA": {
+        "FieldName": "CBDA",
+        "Value": 0,
+        "SourceText": "CBDa 0.200 \u003CLOQ \u003CLOQ Citronellol 0.083 0.350 0.0350",
+        "Confidence": 0
+      },
+      "TotalTHC": 37.71,
+      "TotalCBD": 0.00
+    },
+    "Terpenes": {
+      "Terpenes": {
+        "\u03B2-Caryophyllene": 1.9382,
+        "Linalool": 1.0885,
+        "\u03B4-Limonene": 0.6587,
+        "\u03B1-Humulene": 0.4255,
+        "Farnesene": 0.2943,
+        "\u03B1-Terpineol": 0.2205,
+        "Nerolidol": 0.1950,
+        "\u03B2-Myrcene": 0.1511,
+        "Caryophyllene Oxide": 0.0973,
+        "\u03B1-Bisabolol": 0.0972,
+        "\u03B2-Pinene": 0.0554,
+        "Guaiol": 0.0395,
+        "\u03B1-Pinene": 0.0268
+      },
+      "TotalTerpenes": 5.36
+    },
+    "Compliance": {
+      "Passed": true,
+      "ContaminantsPassed": true,
+      "Status": "pass"
+    },
+    "Freshness": {
+      "DaysSinceTest": 78,
+      "Score": 70,
+      "Band": "Good"
+    }
+  },
+  "Validation": {
+    "IsValid": true,
+    "Warnings": []
+  },
+  "Score": {
+    "Score": 95,
+    "Tier": "God Tier",
+    "Breakdown": {
+      "Potency": 40,
+      "Terpenes": 25,
+      "Freshness": 20,
+      "Compliance": 10
+    }
+  },
+  "Profile": {
+    "DominantTerpene": "\u03B2-Caryophyllene",
+    "TopTerpenes": [
+      "\u03B2-Caryophyllene",
+      "Linalool",
+      "\u03B4-Limonene"
+    ],
+    "ProfileType": "Floral",
+    "Lean": "Unknown"
+  }
+}
+{
+  "Coa": {
+    "ProductType": "PreRoll",
+    "IsAmended": false,
+    "LabName": "NV Cann Labs",
+    "ProductName": "",
+    "BatchId": "",
+    "HarvestDate": "2026-01-21T00:00:00",
+    "TestDate": "2026-01-27T00:00:00",
+    "PackageDate": null,
+    "Cannabinoids": {
+      "THC": {
+        "FieldName": "THC",
+        "Value": 21.566,
+        "SourceText": "\u03949-THC 0.200 21.566 215.66",
+        "Confidence": 0.85
+      },
+      "THCA": {
+        "FieldName": "THCA",
+        "Value": 13.982,
+        "SourceText": "THCa 0.200 13.982 139.82",
+        "Confidence": 0.85
+      },
+      "CBD": {
+        "FieldName": "CBD",
+        "Value": 0,
+        "SourceText": "CBD 0.200 \u003CLOQ \u003CLOQ",
+        "Confidence": 0
+      },
+      "CBDA": {
+        "FieldName": "CBDA",
+        "Value": 0,
+        "SourceText": "CBDa 0.200 \u003CLOQ \u003CLOQ 3-Carene 0.083 0.309 0.0309",
+        "Confidence": 0
+      },
+      "TotalTHC": 33.83,
+      "TotalCBD": 0.00
+    },
+    "Terpenes": {
+      "Terpenes": {
+        "\u03B4-Limonene": 1.4944,
+        "\u03B2-Caryophyllene": 0.6207,
+        "Linalool": 0.5246,
+        "Caryophyllene Oxide": 0.2619,
+        "Farnesene": 0.2140,
+        "\u03B2-Myrcene": 0.1853,
+        "\u03B1-Humulene": 0.1259,
+        "\u03B1-Terpineol": 0.0849,
+        "Nerolidol": 0.0811,
+        "\u03B2-Pinene": 0.0567,
+        "\u03B1-Bisabolol": 0.0494,
+        "Guaiol": 0.0205,
+        "\u03B1-Pinene": 0.0197
+      },
+      "TotalTerpenes": 3.85
+    },
+    "Compliance": {
+      "Passed": true,
+      "ContaminantsPassed": true,
+      "Status": "pass"
+    },
+    "Freshness": {
+      "DaysSinceTest": 93,
+      "Score": 50,
+      "Band": "Aging"
+    }
+  },
+  "Validation": {
+    "IsValid": true,
+    "Warnings": []
+  },
+  "Score": {
+    "Score": 90,
+    "Tier": "God Tier",
+    "Breakdown": {
+      "Potency": 40,
+      "Terpenes": 25,
+      "Freshness": 15,
+      "Compliance": 10
+    }
+  },
+  "Profile": {
+    "DominantTerpene": "\u03B4-Limonene",
+    "TopTerpenes": [
+      "\u03B4-Limonene",
+      "\u03B2-Caryophyllene",
+      "Linalool"
+    ],
+    "ProfileType": "Floral",
+    "Lean": "Unknown"
+  }
+}
+{
+  "Coa": {
+    "ProductType": "PreRoll",
+    "IsAmended": false,
+    "LabName": "NV Cann Labs",
+    "ProductName": "",
+    "BatchId": "",
+    "HarvestDate": "2026-02-03T00:00:00",
+    "TestDate": "2026-02-11T00:00:00",
+    "PackageDate": null,
+    "Cannabinoids": {
+      "THC": {
+        "FieldName": "THC",
+        "Value": 24.495,
+        "SourceText": "\u03949-THC 0.200 24.495 244.95",
+        "Confidence": 0.85
+      },
+      "THCA": {
+        "FieldName": "THCA",
+        "Value": 15.067,
+        "SourceText": "THCa 0.200 15.067 150.67",
+        "Confidence": 0.85
+      },
+      "CBD": {
+        "FieldName": "CBD",
+        "Value": 0,
+        "SourceText": "CBD 0.200 \u003CLOQ \u003CLOQ",
+        "Confidence": 0
+      },
+      "CBDA": {
+        "FieldName": "CBDA",
+        "Value": 0,
+        "SourceText": "CBDa 0.200 \u003CLOQ \u003CLOQ Citronellol 0.083 0.350 0.0350",
+        "Confidence": 0
+      },
+      "TotalTHC": 37.71,
+      "TotalCBD": 0.00
+    },
+    "Terpenes": {
+      "Terpenes": {
+        "\u03B2-Caryophyllene": 1.9382,
+        "Linalool": 1.0885,
+        "\u03B4-Limonene": 0.6587,
+        "\u03B1-Humulene": 0.4255,
+        "Farnesene": 0.2943,
+        "\u03B1-Terpineol": 0.2205,
+        "Nerolidol": 0.1950,
+        "\u03B2-Myrcene": 0.1511,
+        "Caryophyllene Oxide": 0.0973,
+        "\u03B1-Bisabolol": 0.0972,
+        "\u03B2-Pinene": 0.0554,
+        "Guaiol": 0.0395,
+        "\u03B1-Pinene": 0.0268
+      },
+      "TotalTerpenes": 5.36
+    },
+    "Compliance": {
+      "Passed": true,
+      "ContaminantsPassed": true,
+      "Status": "pass"
+    },
+    "Freshness": {
+      "DaysSinceTest": 78,
+      "Score": 70,
+      "Band": "Good"
+    }
+  },
+  "Validation": {
+    "IsValid": true,
+    "Warnings": []
+  },
+  "Score": {
+    "Score": 95,
+    "Tier": "God Tier",
+    "Breakdown": {
+      "Potency": 40,
+      "Terpenes": 25,
+      "Freshness": 20,
+      "Compliance": 10
+    }
+  },
+  "Profile": {
+    "DominantTerpene": "\u03B2-Caryophyllene",
+    "TopTerpenes": [
+      "\u03B2-Caryophyllene",
+      "Linalool",
+      "\u03B4-Limonene"
+    ],
+    "ProfileType": "Floral",
+    "Lean": "Unknown"
+  }
+}
+{
+  "Coa": {
+    "ProductType": "PreRoll",
+    "IsAmended": false,
+    "LabName": "NV Cann Labs",
+    "ProductName": "",
+    "BatchId": "",
+    "HarvestDate": "2026-02-03T00:00:00",
+    "TestDate": "2026-02-11T00:00:00",
+    "PackageDate": null,
+    "Cannabinoids": {
+      "THC": {
+        "FieldName": "THC",
+        "Value": 24.495,
+        "SourceText": "\u03949-THC 0.200 24.495 244.95",
+        "Confidence": 0.85
+      },
+      "THCA": {
+        "FieldName": "THCA",
+        "Value": 15.067,
+        "SourceText": "THCa 0.200 15.067 150.67",
+        "Confidence": 0.85
+      },
+      "CBD": {
+        "FieldName": "CBD",
+        "Value": 0,
+        "SourceText": "CBD 0.200 \u003CLOQ \u003CLOQ",
+        "Confidence": 0
+      },
+      "CBDA": {
+        "FieldName": "CBDA",
+        "Value": 0,
+        "SourceText": "CBDa 0.200 \u003CLOQ \u003CLOQ Citronellol 0.083 0.350 0.0350",
+        "Confidence": 0
+      },
+      "TotalTHC": 37.71,
+      "TotalCBD": 0.00
+    },
+    "Terpenes": {
+      "Terpenes": {
+        "\u03B2-Caryophyllene": 1.9382,
+        "Linalool": 1.0885,
+        "\u03B4-Limonene": 0.6587,
+        "\u03B1-Humulene": 0.4255,
+        "Farnesene": 0.2943,
+        "\u03B1-Terpineol": 0.2205,
+        "Nerolidol": 0.1950,
+        "\u03B2-Myrcene": 0.1511,
+        "Caryophyllene Oxide": 0.0973,
+        "\u03B1-Bisabolol": 0.0972,
+        "\u03B2-Pinene": 0.0554,
+        "Guaiol": 0.0395,
+        "\u03B1-Pinene": 0.0268
+      },
+      "TotalTerpenes": 5.36
+    },
+    "Compliance": {
+      "Passed": true,
+      "ContaminantsPassed": true,
+      "Status": "pass"
+    },
+    "Freshness": {
+      "DaysSinceTest": 78,
+      "Score": 70,
+      "Band": "Good"
+    }
+  },
+  "Validation": {
+    "IsValid": true,
+    "Warnings": []
+  },
+  "Score": {
+    "Score": 95,
+    "Tier": "God Tier",
+    "Breakdown": {
+      "Potency": 40,
+      "Terpenes": 25,
+      "Freshness": 20,
+      "Compliance": 10
+    }
+  },
+  "Profile": {
+    "DominantTerpene": "\u03B2-Caryophyllene",
+    "TopTerpenes": [
+      "\u03B2-Caryophyllene",
+      "Linalool",
+      "\u03B4-Limonene"
+    ],
+    "ProfileType": "Floral",
+    "Lean": "Unknown"
+  }
+}
+{
+  "Coa": {
+    "ProductType": "PreRoll",
+    "IsAmended": false,
+    "LabName": "NV Cann Labs",
+    "ProductName": "",
+    "BatchId": "",
+    "HarvestDate": "2026-02-25T00:00:00",
+    "TestDate": "2026-03-02T00:00:00",
+    "PackageDate": null,
+    "Cannabinoids": {
+      "THC": {
+        "FieldName": "THC",
+        "Value": 27.466,
+        "SourceText": "\u03949-THC 0.200 27.466 274.66",
+        "Confidence": 0.85
+      },
+      "THCA": {
+        "FieldName": "THCA",
+        "Value": 12.608,
+        "SourceText": "THCa 0.200 12.608 126.08",
+        "Confidence": 0.85
+      },
+      "CBD": {
+        "FieldName": "CBD",
+        "Value": 0,
+        "SourceText": "CBD 0.200 \u003CLOQ \u003CLOQ",
+        "Confidence": 0
+      },
+      "CBDA": {
+        "FieldName": "CBDA",
+        "Value": 0,
+        "SourceText": "CBDa 0.200 \u003CLOQ \u003CLOQ \u03B2-Pinene 0.083 0.219 0.0219",
+        "Confidence": 0
+      },
+      "TotalTHC": 38.52,
+      "TotalCBD": 0.00
+    },
+    "Terpenes": {
+      "Terpenes": {
+        "\u03B2-Caryophyllene": 1.4983,
+        "\u03B1-Terpineol": 1.1907,
+        "\u03B4-Limonene": 0.4859,
+        "\u03B1-Humulene": 0.3510,
+        "Linalool": 0.1687,
+        "Terpinolene": 0.1420,
+        "Caryophyllene Oxide": 0.1015,
+        "\u03B1-Bisabolol": 0.0551,
+        "Farnesene": 0.0425,
+        "Nerolidol": 0.0302,
+        "\u03B2-Pinene": 0.0219,
+        "\u03B2-Myrcene": 0.0190,
+        "\u03B1-Pinene": 0.0099
+      },
+      "TotalTerpenes": 4.40
+    },
+    "Compliance": {
+      "Passed": true,
+      "ContaminantsPassed": true,
+      "Status": "pass"
+    },
+    "Freshness": {
+      "DaysSinceTest": 59,
+      "Score": 85,
+      "Band": "Good"
+    }
+  },
+  "Validation": {
+    "IsValid": false,
+    "Warnings": [
+      {
+        "Code": "TERPENE_TOTAL_MISMATCH",
+        "Message": "Total terpenes does not match sum of individual terpenes.",
+        "Severity": "warning"
+      }
+    ]
+  },
+  "Score": {
+    "Score": 95,
+    "Tier": "God Tier",
+    "Breakdown": {
+      "Potency": 40,
+      "Terpenes": 25,
+      "Freshness": 20,
+      "Compliance": 10
+    }
+  },
+  "Profile": {
+    "DominantTerpene": "\u03B2-Caryophyllene",
+    "TopTerpenes": [
+      "\u03B2-Caryophyllene",
+      "\u03B1-Terpineol",
+      "\u03B4-Limonene"
+    ],
+    "ProfileType": "Floral",
+    "Lean": "Unknown"
+  }
+}
+{
+  "Coa": {
+    "ProductType": "PreRoll",
+    "IsAmended": false,
+    "LabName": "NV Cann Labs",
+    "ProductName": "",
+    "BatchId": "",
+    "HarvestDate": "2026-02-25T00:00:00",
+    "TestDate": "2026-03-02T00:00:00",
+    "PackageDate": null,
+    "Cannabinoids": {
+      "THC": {
+        "FieldName": "THC",
+        "Value": 27.466,
+        "SourceText": "\u03949-THC 0.200 27.466 274.66",
+        "Confidence": 0.85
+      },
+      "THCA": {
+        "FieldName": "THCA",
+        "Value": 12.608,
+        "SourceText": "THCa 0.200 12.608 126.08",
+        "Confidence": 0.85
+      },
+      "CBD": {
+        "FieldName": "CBD",
+        "Value": 0,
+        "SourceText": "CBD 0.200 \u003CLOQ \u003CLOQ",
+        "Confidence": 0
+      },
+      "CBDA": {
+        "FieldName": "CBDA",
+        "Value": 0,
+        "SourceText": "CBDa 0.200 \u003CLOQ \u003CLOQ \u03B2-Pinene 0.083 0.219 0.0219",
+        "Confidence": 0
+      },
+      "TotalTHC": 38.52,
+      "TotalCBD": 0.00
+    },
+    "Terpenes": {
+      "Terpenes": {
+        "\u03B2-Caryophyllene": 1.4983,
+        "\u03B1-Terpineol": 1.1907,
+        "\u03B4-Limonene": 0.4859,
+        "\u03B1-Humulene": 0.3510,
+        "Linalool": 0.1687,
+        "Terpinolene": 0.1420,
+        "Caryophyllene Oxide": 0.1015,
+        "\u03B1-Bisabolol": 0.0551,
+        "Farnesene": 0.0425,
+        "Nerolidol": 0.0302,
+        "\u03B2-Pinene": 0.0219,
+        "\u03B2-Myrcene": 0.0190,
+        "\u03B1-Pinene": 0.0099
+      },
+      "TotalTerpenes": 4.40
+    },
+    "Compliance": {
+      "Passed": true,
+      "ContaminantsPassed": true,
+      "Status": "pass"
+    },
+    "Freshness": {
+      "DaysSinceTest": 59,
+      "Score": 85,
+      "Band": "Good"
+    }
+  },
+  "Validation": {
+    "IsValid": false,
+    "Warnings": [
+      {
+        "Code": "TERPENE_TOTAL_MISMATCH",
+        "Message": "Total terpenes does not match sum of individual terpenes.",
+        "Severity": "warning"
+      }
+    ]
+  },
+  "Score": {
+    "Score": 95,
+    "Tier": "God Tier",
+    "Breakdown": {
+      "Potency": 40,
+      "Terpenes": 25,
+      "Freshness": 20,
+      "Compliance": 10
+    }
+  },
+  "Profile": {
+    "DominantTerpene": "\u03B2-Caryophyllene",
+    "TopTerpenes": [
+      "\u03B2-Caryophyllene",
+      "\u03B1-Terpineol",
+      "\u03B4-Limonene"
+    ],
+    "ProfileType": "Floral",
+    "Lean": "Unknown"
+  }
+}
+{
+  "Coa": {
+    "ProductType": "PreRoll",
+    "IsAmended": false,
+    "LabName": "NV Cann Labs",
+    "ProductName": "",
+    "BatchId": "",
+    "HarvestDate": "2026-02-25T00:00:00",
+    "TestDate": "2026-03-02T00:00:00",
+    "PackageDate": null,
+    "Cannabinoids": {
+      "THC": {
+        "FieldName": "THC",
+        "Value": 27.466,
+        "SourceText": "\u03949-THC 0.200 27.466 274.66",
+        "Confidence": 0.85
+      },
+      "THCA": {
+        "FieldName": "THCA",
+        "Value": 12.608,
+        "SourceText": "THCa 0.200 12.608 126.08",
+        "Confidence": 0.85
+      },
+      "CBD": {
+        "FieldName": "CBD",
+        "Value": 0,
+        "SourceText": "CBD 0.200 \u003CLOQ \u003CLOQ",
+        "Confidence": 0
+      },
+      "CBDA": {
+        "FieldName": "CBDA",
+        "Value": 0,
+        "SourceText": "CBDa 0.200 \u003CLOQ \u003CLOQ \u03B2-Pinene 0.083 0.219 0.0219",
+        "Confidence": 0
+      },
+      "TotalTHC": 38.52,
+      "TotalCBD": 0.00
+    },
+    "Terpenes": {
+      "Terpenes": {
+        "\u03B2-Caryophyllene": 1.4983,
+        "\u03B1-Terpineol": 1.1907,
+        "\u03B4-Limonene": 0.4859,
+        "\u03B1-Humulene": 0.3510,
+        "Linalool": 0.1687,
+        "Terpinolene": 0.1420,
+        "Caryophyllene Oxide": 0.1015,
+        "\u03B1-Bisabolol": 0.0551,
+        "Farnesene": 0.0425,
+        "Nerolidol": 0.0302,
+        "\u03B2-Pinene": 0.0219,
+        "\u03B2-Myrcene": 0.0190,
+        "\u03B1-Pinene": 0.0099
+      },
+      "TotalTerpenes": 4.40
+    },
+    "Compliance": {
+      "Passed": true,
+      "ContaminantsPassed": true,
+      "Status": "pass"
+    },
+    "Freshness": {
+      "DaysSinceTest": 59,
+      "Score": 85,
+      "Band": "Good"
+    }
+  },
+  "Validation": {
+    "IsValid": false,
+    "Warnings": [
+      {
+        "Code": "TERPENE_TOTAL_MISMATCH",
+        "Message": "Total terpenes does not match sum of individual terpenes.",
+        "Severity": "warning"
+      }
+    ]
+  },
+  "Score": {
+    "Score": 95,
+    "Tier": "God Tier",
+    "Breakdown": {
+      "Potency": 40,
+      "Terpenes": 25,
+      "Freshness": 20,
+      "Compliance": 10
+    }
+  },
+  "Profile": {
+    "DominantTerpene": "\u03B2-Caryophyllene",
+    "TopTerpenes": [
+      "\u03B2-Caryophyllene",
+      "\u03B1-Terpineol",
+      "\u03B4-Limonene"
+    ],
+    "ProfileType": "Floral",
+    "Lean": "Unknown"
+  }
+}
+{
+  "Coa": {
+    "ProductType": "PreRoll",
+    "IsAmended": false,
+    "LabName": "NV Cann Labs",
+    "ProductName": "",
+    "BatchId": "",
+    "HarvestDate": "2026-01-21T00:00:00",
+    "TestDate": "2026-01-27T00:00:00",
+    "PackageDate": null,
+    "Cannabinoids": {
+      "THC": {
+        "FieldName": "THC",
+        "Value": 21.566,
+        "SourceText": "\u03949-THC 0.200 21.566 215.66",
+        "Confidence": 0.85
+      },
+      "THCA": {
+        "FieldName": "THCA",
+        "Value": 13.982,
+        "SourceText": "THCa 0.200 13.982 139.82",
+        "Confidence": 0.85
+      },
+      "CBD": {
+        "FieldName": "CBD",
+        "Value": 0,
+        "SourceText": "CBD 0.200 \u003CLOQ \u003CLOQ",
+        "Confidence": 0
+      },
+      "CBDA": {
+        "FieldName": "CBDA",
+        "Value": 0,
+        "SourceText": "CBDa 0.200 \u003CLOQ \u003CLOQ 3-Carene 0.083 0.309 0.0309",
+        "Confidence": 0
+      },
+      "TotalTHC": 33.83,
+      "TotalCBD": 0.00
+    },
+    "Terpenes": {
+      "Terpenes": {
+        "\u03B4-Limonene": 1.4944,
+        "\u03B2-Caryophyllene": 0.6207,
+        "Linalool": 0.5246,
+        "Caryophyllene Oxide": 0.2619,
+        "Farnesene": 0.2140,
+        "\u03B2-Myrcene": 0.1853,
+        "\u03B1-Humulene": 0.1259,
+        "\u03B1-Terpineol": 0.0849,
+        "Nerolidol": 0.0811,
+        "\u03B2-Pinene": 0.0567,
+        "\u03B1-Bisabolol": 0.0494,
+        "Guaiol": 0.0205,
+        "\u03B1-Pinene": 0.0197
+      },
+      "TotalTerpenes": 3.85
+    },
+    "Compliance": {
+      "Passed": true,
+      "ContaminantsPassed": true,
+      "Status": "pass"
+    },
+    "Freshness": {
+      "DaysSinceTest": 93,
+      "Score": 50,
+      "Band": "Aging"
+    }
+  },
+  "Validation": {
+    "IsValid": true,
+    "Warnings": []
+  },
+  "Score": {
+    "Score": 90,
+    "Tier": "God Tier",
+    "Breakdown": {
+      "Potency": 40,
+      "Terpenes": 25,
+      "Freshness": 15,
+      "Compliance": 10
+    }
+  },
+  "Profile": {
+    "DominantTerpene": "\u03B4-Limonene",
+    "TopTerpenes": [
+      "\u03B4-Limonene",
+      "\u03B2-Caryophyllene",
+      "Linalool"
+    ],
+    "ProfileType": "Floral",
+    "Lean": "Unknown"
+  }
+}
+{
+  "Coa": {
+    "ProductType": "PreRoll",
+    "IsAmended": false,
+    "LabName": "NV Cann Labs",
+    "ProductName": "",
+    "BatchId": "",
+    "HarvestDate": "2026-02-25T00:00:00",
+    "TestDate": "2026-03-02T00:00:00",
+    "PackageDate": null,
+    "Cannabinoids": {
+      "THC": {
+        "FieldName": "THC",
+        "Value": 27.466,
+        "SourceText": "\u03949-THC 0.200 27.466 274.66",
+        "Confidence": 0.85
+      },
+      "THCA": {
+        "FieldName": "THCA",
+        "Value": 12.608,
+        "SourceText": "THCa 0.200 12.608 126.08",
+        "Confidence": 0.85
+      },
+      "CBD": {
+        "FieldName": "CBD",
+        "Value": 0,
+        "SourceText": "CBD 0.200 \u003CLOQ \u003CLOQ",
+        "Confidence": 0
+      },
+      "CBDA": {
+        "FieldName": "CBDA",
+        "Value": 0,
+        "SourceText": "CBDa 0.200 \u003CLOQ \u003CLOQ \u03B2-Pinene 0.083 0.219 0.0219",
+        "Confidence": 0
+      },
+      "TotalTHC": 38.52,
+      "TotalCBD": 0.00
+    },
+    "Terpenes": {
+      "Terpenes": {
+        "\u03B2-Caryophyllene": 1.4983,
+        "\u03B1-Terpineol": 1.1907,
+        "\u03B4-Limonene": 0.4859,
+        "\u03B1-Humulene": 0.3510,
+        "Linalool": 0.1687,
+        "Terpinolene": 0.1420,
+        "Caryophyllene Oxide": 0.1015,
+        "\u03B1-Bisabolol": 0.0551,
+        "Farnesene": 0.0425,
+        "Nerolidol": 0.0302,
+        "\u03B2-Pinene": 0.0219,
+        "\u03B2-Myrcene": 0.0190,
+        "\u03B1-Pinene": 0.0099
+      },
+      "TotalTerpenes": 4.40
+    },
+    "Compliance": {
+      "Passed": true,
+      "ContaminantsPassed": true,
+      "Status": "pass"
+    },
+    "Freshness": {
+      "DaysSinceTest": 59,
+      "Score": 85,
+      "Band": "Good"
+    }
+  },
+  "Validation": {
+    "IsValid": false,
+    "Warnings": [
+      {
+        "Code": "TERPENE_TOTAL_MISMATCH",
+        "Message": "Total terpenes does not match sum of individual terpenes.",
+        "Severity": "warning"
+      }
+    ]
+  },
+  "Score": {
+    "Score": 95,
+    "Tier": "God Tier",
+    "Breakdown": {
+      "Potency": 40,
+      "Terpenes": 25,
+      "Freshness": 20,
+      "Compliance": 10
+    }
+  },
+  "Profile": {
+    "DominantTerpene": "\u03B2-Caryophyllene",
+    "TopTerpenes": [
+      "\u03B2-Caryophyllene",
+      "\u03B1-Terpineol",
+      "\u03B4-Limonene"
+    ],
+    "ProfileType": "Floral",
+    "Lean": "Unknown"
+  }
+}
+{
+  "Coa": {
+    "ProductType": "Edible",
+    "IsAmended": false,
+    "LabName": "374 Labs",
+    "ProductName": "",
+    "BatchId": "",
+    "HarvestDate": "2026-02-24T00:00:00",
+    "TestDate": "2026-03-02T00:00:00",
+    "PackageDate": null,
+    "Cannabinoids": {
+      "THC": {
+        "FieldName": "THC",
+        "Value": 10.37,
+        "SourceText": "\u03949-THC 0.26 10.37 4.01",
+        "Confidence": 0.95
+      },
+      "THCA": {
+        "FieldName": "THCA",
+        "Value": 0,
+        "SourceText": "THCa 0.26 \u003CLOQ \u003CLOQ \u03B1-Bisabolol 0.05 \u003CLOQ \u003CLOQ",
+        "Confidence": 0
+      },
+      "CBD": {
+        "FieldName": "CBD",
+        "Value": 0,
+        "SourceText": "CBD 0.26 \u003CLOQ \u003CLOQ \u03B2-Myrcene 0.05 \u003CLOQ \u003CLOQ",
+        "Confidence": 0
+      },
+      "CBDA": {
+        "FieldName": "CBDA",
+        "Value": 0,
+        "SourceText": "CBDa 0.26 \u003CLOQ \u003CLOQ \u03B2-Pinene 0.05 \u003CLOQ \u003CLOQ",
+        "Confidence": 0
+      },
+      "TotalTHC": 10.37,
+      "TotalCBD": 0.00
+    },
+    "Terpenes": {
+      "Terpenes": {},
+      "TotalTerpenes": 0
+    },
+    "Compliance": {
+      "Passed": false,
+      "ContaminantsPassed": null,
+      "Status": "unknown"
+    },
+    "Freshness": {
+      "DaysSinceTest": 59,
+      "Score": 85,
+      "Band": "Good"
+    }
+  },
+  "Validation": {
+    "IsValid": true,
+    "Warnings": []
+  },
+  "Score": {
+    "Score": 35,
+    "Tier": "Skip",
+    "Breakdown": {
+      "Potency": 10,
+      "Terpenes": 5,
+      "Freshness": 20,
+      "Compliance": 0
+    }
+  },
+  "Profile": {
+    "DominantTerpene": "",
+    "TopTerpenes": [],
+    "ProfileType": "Unknown",
+    "Lean": "Unknown"
+  }
+}
+{
+  "Coa": {
+    "ProductType": "PreRoll",
+    "IsAmended": false,
+    "LabName": "NV Cann Labs",
+    "ProductName": "",
+    "BatchId": "",
+    "HarvestDate": "2026-03-13T00:00:00",
+    "TestDate": "2026-03-18T00:00:00",
+    "PackageDate": null,
+    "Cannabinoids": {
+      "THC": {
+        "FieldName": "THC",
+        "Value": 24.122,
+        "SourceText": "\u03949-THC 0.200 24.122 241.22",
+        "Confidence": 0.85
+      },
+      "THCA": {
+        "FieldName": "THCA",
+        "Value": 13.030,
+        "SourceText": "THCa 0.200 13.030 130.30",
+        "Confidence": 0.85
+      },
+      "CBD": {
+        "FieldName": "CBD",
+        "Value": 0,
+        "SourceText": "CBD 0.200 \u003CLOQ \u003CLOQ",
+        "Confidence": 0
+      },
+      "CBDA": {
+        "FieldName": "CBDA",
+        "Value": 0,
+        "SourceText": "CBDa 0.200 \u003CLOQ \u003CLOQ \u03B2-Pinene 0.083 0.343 0.0343",
+        "Confidence": 0
+      },
+      "TotalTHC": 35.55,
+      "TotalCBD": 0.00
+    },
+    "Terpenes": {
+      "Terpenes": {
+        "\u03B2-Caryophyllene": 1.6732,
+        "Linalool": 0.8692,
+        "\u03B1-Humulene": 0.3638,
+        "\u03B4-Limonene": 0.3074,
+        "\u03B1-Terpineol": 0.1999,
+        "Farnesene": 0.1761,
+        "Nerolidol": 0.1648,
+        "Caryophyllene Oxide": 0.1071,
+        "\u03B1-Bisabolol": 0.0945,
+        "\u03B2-Myrcene": 0.0553,
+        "\u03B2-Pinene": 0.0343,
+        "\u03B1-Pinene": 0.0276
+      },
+      "TotalTerpenes": 4.15
+    },
+    "Compliance": {
+      "Passed": true,
+      "ContaminantsPassed": true,
+      "Status": "pass"
+    },
+    "Freshness": {
+      "DaysSinceTest": 43,
+      "Score": 85,
+      "Band": "Good"
+    }
+  },
+  "Validation": {
+    "IsValid": true,
+    "Warnings": []
+  },
+  "Score": {
+    "Score": 95,
+    "Tier": "God Tier",
+    "Breakdown": {
+      "Potency": 40,
+      "Terpenes": 25,
+      "Freshness": 20,
+      "Compliance": 10
+    }
+  },
+  "Profile": {
+    "DominantTerpene": "\u03B2-Caryophyllene",
+    "TopTerpenes": [
+      "\u03B2-Caryophyllene",
+      "Linalool",
+      "\u03B1-Humulene"
+    ],
+    "ProfileType": "Floral",
+    "Lean": "Unknown"
+  }
+}
+{
+  "Coa": {
+    "ProductType": "PreRoll",
+    "IsAmended": false,
+    "LabName": "NV Cann Labs",
+    "ProductName": "",
+    "BatchId": "",
+    "HarvestDate": "2026-03-13T00:00:00",
+    "TestDate": "2026-03-18T00:00:00",
+    "PackageDate": null,
+    "Cannabinoids": {
+      "THC": {
+        "FieldName": "THC",
+        "Value": 24.122,
+        "SourceText": "\u03949-THC 0.200 24.122 241.22",
+        "Confidence": 0.85
+      },
+      "THCA": {
+        "FieldName": "THCA",
+        "Value": 13.030,
+        "SourceText": "THCa 0.200 13.030 130.30",
+        "Confidence": 0.85
+      },
+      "CBD": {
+        "FieldName": "CBD",
+        "Value": 0,
+        "SourceText": "CBD 0.200 \u003CLOQ \u003CLOQ",
+        "Confidence": 0
+      },
+      "CBDA": {
+        "FieldName": "CBDA",
+        "Value": 0,
+        "SourceText": "CBDa 0.200 \u003CLOQ \u003CLOQ \u03B2-Pinene 0.083 0.343 0.0343",
+        "Confidence": 0
+      },
+      "TotalTHC": 35.55,
+      "TotalCBD": 0.00
+    },
+    "Terpenes": {
+      "Terpenes": {
+        "\u03B2-Caryophyllene": 1.6732,
+        "Linalool": 0.8692,
+        "\u03B1-Humulene": 0.3638,
+        "\u03B4-Limonene": 0.3074,
+        "\u03B1-Terpineol": 0.1999,
+        "Farnesene": 0.1761,
+        "Nerolidol": 0.1648,
+        "Caryophyllene Oxide": 0.1071,
+        "\u03B1-Bisabolol": 0.0945,
+        "\u03B2-Myrcene": 0.0553,
+        "\u03B2-Pinene": 0.0343,
+        "\u03B1-Pinene": 0.0276
+      },
+      "TotalTerpenes": 4.15
+    },
+    "Compliance": {
+      "Passed": true,
+      "ContaminantsPassed": true,
+      "Status": "pass"
+    },
+    "Freshness": {
+      "DaysSinceTest": 43,
+      "Score": 85,
+      "Band": "Good"
+    }
+  },
+  "Validation": {
+    "IsValid": true,
+    "Warnings": []
+  },
+  "Score": {
+    "Score": 95,
+    "Tier": "God Tier",
+    "Breakdown": {
+      "Potency": 40,
+      "Terpenes": 25,
+      "Freshness": 20,
+      "Compliance": 10
+    }
+  },
+  "Profile": {
+    "DominantTerpene": "\u03B2-Caryophyllene",
+    "TopTerpenes": [
+      "\u03B2-Caryophyllene",
+      "Linalool",
+      "\u03B1-Humulene"
+    ],
+    "ProfileType": "Floral",
+    "Lean": "Unknown"
+  }
+}
+{
+  "Coa": {
+    "ProductType": "PreRoll",
+    "IsAmended": false,
+    "LabName": "NV Cann Labs",
+    "ProductName": "",
+    "BatchId": "",
+    "HarvestDate": "2026-03-13T00:00:00",
+    "TestDate": "2026-03-18T00:00:00",
+    "PackageDate": null,
+    "Cannabinoids": {
+      "THC": {
+        "FieldName": "THC",
+        "Value": 24.122,
+        "SourceText": "\u03949-THC 0.200 24.122 241.22",
+        "Confidence": 0.85
+      },
+      "THCA": {
+        "FieldName": "THCA",
+        "Value": 13.030,
+        "SourceText": "THCa 0.200 13.030 130.30",
+        "Confidence": 0.85
+      },
+      "CBD": {
+        "FieldName": "CBD",
+        "Value": 0,
+        "SourceText": "CBD 0.200 \u003CLOQ \u003CLOQ",
+        "Confidence": 0
+      },
+      "CBDA": {
+        "FieldName": "CBDA",
+        "Value": 0,
+        "SourceText": "CBDa 0.200 \u003CLOQ \u003CLOQ \u03B2-Pinene 0.083 0.343 0.0343",
+        "Confidence": 0
+      },
+      "TotalTHC": 35.55,
+      "TotalCBD": 0.00
+    },
+    "Terpenes": {
+      "Terpenes": {
+        "\u03B2-Caryophyllene": 1.6732,
+        "Linalool": 0.8692,
+        "\u03B1-Humulene": 0.3638,
+        "\u03B4-Limonene": 0.3074,
+        "\u03B1-Terpineol": 0.1999,
+        "Farnesene": 0.1761,
+        "Nerolidol": 0.1648,
+        "Caryophyllene Oxide": 0.1071,
+        "\u03B1-Bisabolol": 0.0945,
+        "\u03B2-Myrcene": 0.0553,
+        "\u03B2-Pinene": 0.0343,
+        "\u03B1-Pinene": 0.0276
+      },
+      "TotalTerpenes": 4.15
+    },
+    "Compliance": {
+      "Passed": true,
+      "ContaminantsPassed": true,
+      "Status": "pass"
+    },
+    "Freshness": {
+      "DaysSinceTest": 43,
+      "Score": 85,
+      "Band": "Good"
+    }
+  },
+  "Validation": {
+    "IsValid": true,
+    "Warnings": []
+  },
+  "Score": {
+    "Score": 95,
+    "Tier": "God Tier",
+    "Breakdown": {
+      "Potency": 40,
+      "Terpenes": 25,
+      "Freshness": 20,
+      "Compliance": 10
+    }
+  },
+  "Profile": {
+    "DominantTerpene": "\u03B2-Caryophyllene",
+    "TopTerpenes": [
+      "\u03B2-Caryophyllene",
+      "Linalool",
+      "\u03B1-Humulene"
+    ],
+    "ProfileType": "Floral",
+    "Lean": "Unknown"
+  }
+}
+{
+  "Coa": {
+    "ProductType": "Edible",
+    "IsAmended": false,
+    "LabName": "374 Labs",
+    "ProductName": "",
+    "BatchId": "",
+    "HarvestDate": "2026-03-03T00:00:00",
+    "TestDate": "2026-03-09T00:00:00",
+    "PackageDate": null,
+    "Cannabinoids": {
+      "THC": {
+        "FieldName": "THC",
+        "Value": 10.50,
+        "SourceText": "\u03949-THC 0.25 10.50 4.21",
+        "Confidence": 0.95
+      },
+      "THCA": {
+        "FieldName": "THCA",
+        "Value": 0,
+        "SourceText": "THCa 0.25 \u003CLOQ \u003CLOQ \u03B1-Bisabolol 0.05 \u003CLOQ \u003CLOQ",
+        "Confidence": 0
+      },
+      "CBD": {
+        "FieldName": "CBD",
+        "Value": 0,
+        "SourceText": "CBD 0.25 \u003CLOQ \u003CLOQ \u03B2-Myrcene 0.05 \u003CLOQ \u003CLOQ",
+        "Confidence": 0
+      },
+      "CBDA": {
+        "FieldName": "CBDA",
+        "Value": 0,
+        "SourceText": "CBDa 0.25 \u003CLOQ \u003CLOQ \u03B2-Pinene 0.05 \u003CLOQ \u003CLOQ",
+        "Confidence": 0
+      },
+      "TotalTHC": 10.50,
+      "TotalCBD": 0.00
+    },
+    "Terpenes": {
+      "Terpenes": {},
+      "TotalTerpenes": 0
+    },
+    "Compliance": {
+      "Passed": false,
+      "ContaminantsPassed": null,
+      "Status": "unknown"
+    },
+    "Freshness": {
+      "DaysSinceTest": 52,
+      "Score": 85,
+      "Band": "Good"
+    }
+  },
+  "Validation": {
+    "IsValid": true,
+    "Warnings": []
+  },
+  "Score": {
+    "Score": 35,
+    "Tier": "Skip",
+    "Breakdown": {
+      "Potency": 10,
+      "Terpenes": 5,
+      "Freshness": 20,
+      "Compliance": 0
+    }
+  },
+  "Profile": {
+    "DominantTerpene": "",
+    "TopTerpenes": [],
+    "ProfileType": "Unknown",
+    "Lean": "Unknown"
+  }
+}
+{
+  "Coa": {
+    "ProductType": "PreRoll",
+    "IsAmended": false,
+    "LabName": "NV Cann Labs",
+    "ProductName": "",
+    "BatchId": "",
+    "HarvestDate": "2026-03-30T00:00:00",
+    "TestDate": "2026-04-03T00:00:00",
+    "PackageDate": null,
+    "Cannabinoids": {
+      "THC": {
+        "FieldName": "THC",
+        "Value": 22.019,
+        "SourceText": "\u03949-THC 0.200 22.019 220.19",
+        "Confidence": 0.85
+      },
+      "THCA": {
+        "FieldName": "THCA",
+        "Value": 14.864,
+        "SourceText": "THCa 0.200 14.864 148.64",
+        "Confidence": 0.85
+      },
+      "CBD": {
+        "FieldName": "CBD",
+        "Value": 0,
+        "SourceText": "CBD 0.200 \u003CLOQ \u003CLOQ",
+        "Confidence": 0
+      },
+      "CBDA": {
+        "FieldName": "CBDA",
+        "Value": 0,
+        "SourceText": "CBDa 0.200 \u003CLOQ \u003CLOQ \u03B1-Pinene 0.083 \u003CLOQ \u003CLOQ",
+        "Confidence": 0
+      },
+      "TotalTHC": 35.05,
+      "TotalCBD": 0.00
+    },
+    "Terpenes": {
+      "Terpenes": {
+        "\u03B2-Caryophyllene": 0.6141,
+        "Linalool": 0.4713,
+        "\u03B4-Limonene": 0.4193,
+        "Farnesene": 0.2143,
+        "\u03B1-Humulene": 0.1472,
+        "\u03B1-Terpineol": 0.0879,
+        "Nerolidol": 0.0804,
+        "\u03B1-Bisabolol": 0.0608,
+        "\u03B2-Myrcene": 0.0407,
+        "\u03B2-Pinene": 0.0149
+      },
+      "TotalTerpenes": 2.25
+    },
+    "Compliance": {
+      "Passed": true,
+      "ContaminantsPassed": true,
+      "Status": "pass"
+    },
+    "Freshness": {
+      "DaysSinceTest": 27,
+      "Score": 100,
+      "Band": "Excellent"
+    }
+  },
+  "Validation": {
+    "IsValid": true,
+    "Warnings": []
+  },
+  "Score": {
+    "Score": 90,
+    "Tier": "God Tier",
+    "Breakdown": {
+      "Potency": 40,
+      "Terpenes": 15,
+      "Freshness": 25,
+      "Compliance": 10
+    }
+  },
+  "Profile": {
+    "DominantTerpene": "\u03B2-Caryophyllene",
+    "TopTerpenes": [
+      "\u03B2-Caryophyllene",
+      "Linalool",
+      "\u03B4-Limonene"
+    ],
+    "ProfileType": "Floral",
+    "Lean": "Unknown"
+  }
+}
+{
+  "Coa": {
+    "ProductType": "PreRoll",
+    "IsAmended": false,
+    "LabName": "NV Cann Labs",
+    "ProductName": "",
+    "BatchId": "",
+    "HarvestDate": "2026-03-13T00:00:00",
+    "TestDate": "2026-03-18T00:00:00",
+    "PackageDate": null,
+    "Cannabinoids": {
+      "THC": {
+        "FieldName": "THC",
+        "Value": 24.122,
+        "SourceText": "\u03949-THC 0.200 24.122 241.22",
+        "Confidence": 0.85
+      },
+      "THCA": {
+        "FieldName": "THCA",
+        "Value": 13.030,
+        "SourceText": "THCa 0.200 13.030 130.30",
+        "Confidence": 0.85
+      },
+      "CBD": {
+        "FieldName": "CBD",
+        "Value": 0,
+        "SourceText": "CBD 0.200 \u003CLOQ \u003CLOQ",
+        "Confidence": 0
+      },
+      "CBDA": {
+        "FieldName": "CBDA",
+        "Value": 0,
+        "SourceText": "CBDa 0.200 \u003CLOQ \u003CLOQ \u03B2-Pinene 0.083 0.343 0.0343",
+        "Confidence": 0
+      },
+      "TotalTHC": 35.55,
+      "TotalCBD": 0.00
+    },
+    "Terpenes": {
+      "Terpenes": {
+        "\u03B2-Caryophyllene": 1.6732,
+        "Linalool": 0.8692,
+        "\u03B1-Humulene": 0.3638,
+        "\u03B4-Limonene": 0.3074,
+        "\u03B1-Terpineol": 0.1999,
+        "Farnesene": 0.1761,
+        "Nerolidol": 0.1648,
+        "Caryophyllene Oxide": 0.1071,
+        "\u03B1-Bisabolol": 0.0945,
+        "\u03B2-Myrcene": 0.0553,
+        "\u03B2-Pinene": 0.0343,
+        "\u03B1-Pinene": 0.0276
+      },
+      "TotalTerpenes": 4.15
+    },
+    "Compliance": {
+      "Passed": true,
+      "ContaminantsPassed": true,
+      "Status": "pass"
+    },
+    "Freshness": {
+      "DaysSinceTest": 43,
+      "Score": 85,
+      "Band": "Good"
+    }
+  },
+  "Validation": {
+    "IsValid": true,
+    "Warnings": []
+  },
+  "Score": {
+    "Score": 95,
+    "Tier": "God Tier",
+    "Breakdown": {
+      "Potency": 40,
+      "Terpenes": 25,
+      "Freshness": 20,
+      "Compliance": 10
+    }
+  },
+  "Profile": {
+    "DominantTerpene": "\u03B2-Caryophyllene",
+    "TopTerpenes": [
+      "\u03B2-Caryophyllene",
+      "Linalool",
+      "\u03B1-Humulene"
+    ],
+    "ProfileType": "Floral",
+    "Lean": "Unknown"
+  }
+}
+{
+  "Coa": {
+    "ProductType": "PreRoll",
+    "IsAmended": false,
+    "LabName": "NV Cann Labs",
+    "ProductName": "",
+    "BatchId": "",
+    "HarvestDate": "2026-03-13T00:00:00",
+    "TestDate": "2026-03-18T00:00:00",
+    "PackageDate": null,
+    "Cannabinoids": {
+      "THC": {
+        "FieldName": "THC",
+        "Value": 24.122,
+        "SourceText": "\u03949-THC 0.200 24.122 241.22",
+        "Confidence": 0.85
+      },
+      "THCA": {
+        "FieldName": "THCA",
+        "Value": 13.030,
+        "SourceText": "THCa 0.200 13.030 130.30",
+        "Confidence": 0.85
+      },
+      "CBD": {
+        "FieldName": "CBD",
+        "Value": 0,
+        "SourceText": "CBD 0.200 \u003CLOQ \u003CLOQ",
+        "Confidence": 0
+      },
+      "CBDA": {
+        "FieldName": "CBDA",
+        "Value": 0,
+        "SourceText": "CBDa 0.200 \u003CLOQ \u003CLOQ \u03B2-Pinene 0.083 0.343 0.0343",
+        "Confidence": 0
+      },
+      "TotalTHC": 35.55,
+      "TotalCBD": 0.00
+    },
+    "Terpenes": {
+      "Terpenes": {
+        "\u03B2-Caryophyllene": 1.6732,
+        "Linalool": 0.8692,
+        "\u03B1-Humulene": 0.3638,
+        "\u03B4-Limonene": 0.3074,
+        "\u03B1-Terpineol": 0.1999,
+        "Farnesene": 0.1761,
+        "Nerolidol": 0.1648,
+        "Caryophyllene Oxide": 0.1071,
+        "\u03B1-Bisabolol": 0.0945,
+        "\u03B2-Myrcene": 0.0553,
+        "\u03B2-Pinene": 0.0343,
+        "\u03B1-Pinene": 0.0276
+      },
+      "TotalTerpenes": 4.15
+    },
+    "Compliance": {
+      "Passed": true,
+      "ContaminantsPassed": true,
+      "Status": "pass"
+    },
+    "Freshness": {
+      "DaysSinceTest": 43,
+      "Score": 85,
+      "Band": "Good"
+    }
+  },
+  "Validation": {
+    "IsValid": true,
+    "Warnings": []
+  },
+  "Score": {
+    "Score": 95,
+    "Tier": "God Tier",
+    "Breakdown": {
+      "Potency": 40,
+      "Terpenes": 25,
+      "Freshness": 20,
+      "Compliance": 10
+    }
+  },
+  "Profile": {
+    "DominantTerpene": "\u03B2-Caryophyllene",
+    "TopTerpenes": [
+      "\u03B2-Caryophyllene",
+      "Linalool",
+      "\u03B1-Humulene"
+    ],
+    "ProfileType": "Floral",
+    "Lean": "Unknown"
+  }
+}
+{
+  "Coa": {
+    "ProductType": "PreRoll",
+    "IsAmended": false,
+    "LabName": "NV Cann Labs",
+    "ProductName": "",
+    "BatchId": "",
+    "HarvestDate": "2026-03-13T00:00:00",
+    "TestDate": "2026-03-18T00:00:00",
+    "PackageDate": null,
+    "Cannabinoids": {
+      "THC": {
+        "FieldName": "THC",
+        "Value": 24.122,
+        "SourceText": "\u03949-THC 0.200 24.122 241.22",
+        "Confidence": 0.85
+      },
+      "THCA": {
+        "FieldName": "THCA",
+        "Value": 13.030,
+        "SourceText": "THCa 0.200 13.030 130.30",
+        "Confidence": 0.85
+      },
+      "CBD": {
+        "FieldName": "CBD",
+        "Value": 0,
+        "SourceText": "CBD 0.200 \u003CLOQ \u003CLOQ",
+        "Confidence": 0
+      },
+      "CBDA": {
+        "FieldName": "CBDA",
+        "Value": 0,
+        "SourceText": "CBDa 0.200 \u003CLOQ \u003CLOQ \u03B2-Pinene 0.083 0.343 0.0343",
+        "Confidence": 0
+      },
+      "TotalTHC": 35.55,
+      "TotalCBD": 0.00
+    },
+    "Terpenes": {
+      "Terpenes": {
+        "\u03B2-Caryophyllene": 1.6732,
+        "Linalool": 0.8692,
+        "\u03B1-Humulene": 0.3638,
+        "\u03B4-Limonene": 0.3074,
+        "\u03B1-Terpineol": 0.1999,
+        "Farnesene": 0.1761,
+        "Nerolidol": 0.1648,
+        "Caryophyllene Oxide": 0.1071,
+        "\u03B1-Bisabolol": 0.0945,
+        "\u03B2-Myrcene": 0.0553,
+        "\u03B2-Pinene": 0.0343,
+        "\u03B1-Pinene": 0.0276
+      },
+      "TotalTerpenes": 4.15
+    },
+    "Compliance": {
+      "Passed": true,
+      "ContaminantsPassed": true,
+      "Status": "pass"
+    },
+    "Freshness": {
+      "DaysSinceTest": 43,
+      "Score": 85,
+      "Band": "Good"
+    }
+  },
+  "Validation": {
+    "IsValid": true,
+    "Warnings": []
+  },
+  "Score": {
+    "Score": 95,
+    "Tier": "God Tier",
+    "Breakdown": {
+      "Potency": 40,
+      "Terpenes": 25,
+      "Freshness": 20,
+      "Compliance": 10
+    }
+  },
+  "Profile": {
+    "DominantTerpene": "\u03B2-Caryophyllene",
+    "TopTerpenes": [
+      "\u03B2-Caryophyllene",
+      "Linalool",
+      "\u03B1-Humulene"
+    ],
+    "ProfileType": "Floral",
+    "Lean": "Unknown"
+  }
+}
+{
+  "Coa": {
+    "ProductType": "PreRoll",
+    "IsAmended": false,
+    "LabName": "NV Cann Labs",
+    "ProductName": "",
+    "BatchId": "",
+    "HarvestDate": "2026-03-13T00:00:00",
+    "TestDate": "2026-03-18T00:00:00",
+    "PackageDate": null,
+    "Cannabinoids": {
+      "THC": {
+        "FieldName": "THC",
+        "Value": 24.122,
+        "SourceText": "\u03949-THC 0.200 24.122 241.22",
+        "Confidence": 0.85
+      },
+      "THCA": {
+        "FieldName": "THCA",
+        "Value": 13.030,
+        "SourceText": "THCa 0.200 13.030 130.30",
+        "Confidence": 0.85
+      },
+      "CBD": {
+        "FieldName": "CBD",
+        "Value": 0,
+        "SourceText": "CBD 0.200 \u003CLOQ \u003CLOQ",
+        "Confidence": 0
+      },
+      "CBDA": {
+        "FieldName": "CBDA",
+        "Value": 0,
+        "SourceText": "CBDa 0.200 \u003CLOQ \u003CLOQ \u03B2-Pinene 0.083 0.343 0.0343",
+        "Confidence": 0
+      },
+      "TotalTHC": 35.55,
+      "TotalCBD": 0.00
+    },
+    "Terpenes": {
+      "Terpenes": {
+        "\u03B2-Caryophyllene": 1.6732,
+        "Linalool": 0.8692,
+        "\u03B1-Humulene": 0.3638,
+        "\u03B4-Limonene": 0.3074,
+        "\u03B1-Terpineol": 0.1999,
+        "Farnesene": 0.1761,
+        "Nerolidol": 0.1648,
+        "Caryophyllene Oxide": 0.1071,
+        "\u03B1-Bisabolol": 0.0945,
+        "\u03B2-Myrcene": 0.0553,
+        "\u03B2-Pinene": 0.0343,
+        "\u03B1-Pinene": 0.0276
+      },
+      "TotalTerpenes": 4.15
+    },
+    "Compliance": {
+      "Passed": true,
+      "ContaminantsPassed": true,
+      "Status": "pass"
+    },
+    "Freshness": {
+      "DaysSinceTest": 43,
+      "Score": 85,
+      "Band": "Good"
+    }
+  },
+  "Validation": {
+    "IsValid": true,
+    "Warnings": []
+  },
+  "Score": {
+    "Score": 95,
+    "Tier": "God Tier",
+    "Breakdown": {
+      "Potency": 40,
+      "Terpenes": 25,
+      "Freshness": 20,
+      "Compliance": 10
+    }
+  },
+  "Profile": {
+    "DominantTerpene": "\u03B2-Caryophyllene",
+    "TopTerpenes": [
+      "\u03B2-Caryophyllene",
+      "Linalool",
+      "\u03B1-Humulene"
+    ],
+    "ProfileType": "Floral",
+    "Lean": "Unknown"
+  }
+}
+{
+  "Coa": {
+    "ProductType": "PreRoll",
+    "IsAmended": false,
+    "LabName": "NV Cann Labs",
+    "ProductName": "",
+    "BatchId": "",
+    "HarvestDate": "2026-03-13T00:00:00",
+    "TestDate": "2026-03-18T00:00:00",
+    "PackageDate": null,
+    "Cannabinoids": {
+      "THC": {
+        "FieldName": "THC",
+        "Value": 24.122,
+        "SourceText": "\u03949-THC 0.200 24.122 241.22",
+        "Confidence": 0.85
+      },
+      "THCA": {
+        "FieldName": "THCA",
+        "Value": 13.030,
+        "SourceText": "THCa 0.200 13.030 130.30",
+        "Confidence": 0.85
+      },
+      "CBD": {
+        "FieldName": "CBD",
+        "Value": 0,
+        "SourceText": "CBD 0.200 \u003CLOQ \u003CLOQ",
+        "Confidence": 0
+      },
+      "CBDA": {
+        "FieldName": "CBDA",
+        "Value": 0,
+        "SourceText": "CBDa 0.200 \u003CLOQ \u003CLOQ \u03B2-Pinene 0.083 0.343 0.0343",
+        "Confidence": 0
+      },
+      "TotalTHC": 35.55,
+      "TotalCBD": 0.00
+    },
+    "Terpenes": {
+      "Terpenes": {
+        "\u03B2-Caryophyllene": 1.6732,
+        "Linalool": 0.8692,
+        "\u03B1-Humulene": 0.3638,
+        "\u03B4-Limonene": 0.3074,
+        "\u03B1-Terpineol": 0.1999,
+        "Farnesene": 0.1761,
+        "Nerolidol": 0.1648,
+        "Caryophyllene Oxide": 0.1071,
+        "\u03B1-Bisabolol": 0.0945,
+        "\u03B2-Myrcene": 0.0553,
+        "\u03B2-Pinene": 0.0343,
+        "\u03B1-Pinene": 0.0276
+      },
+      "TotalTerpenes": 4.15
+    },
+    "Compliance": {
+      "Passed": true,
+      "ContaminantsPassed": true,
+      "Status": "pass"
+    },
+    "Freshness": {
+      "DaysSinceTest": 43,
+      "Score": 85,
+      "Band": "Good"
+    }
+  },
+  "Validation": {
+    "IsValid": true,
+    "Warnings": []
+  },
+  "Score": {
+    "Score": 95,
+    "Tier": "God Tier",
+    "Breakdown": {
+      "Potency": 40,
+      "Terpenes": 25,
+      "Freshness": 20,
+      "Compliance": 10
+    }
+  },
+  "Profile": {
+    "DominantTerpene": "\u03B2-Caryophyllene",
+    "TopTerpenes": [
+      "\u03B2-Caryophyllene",
+      "Linalool",
+      "\u03B1-Humulene"
+    ],
+    "ProfileType": "Floral",
+    "Lean": "Unknown"
+  }
+}
+{
+  "Coa": {
+    "ProductType": "PreRoll",
+    "IsAmended": false,
+    "LabName": "NV Cann Labs",
+    "ProductName": "",
+    "BatchId": "",
+    "HarvestDate": "2026-02-25T00:00:00",
+    "TestDate": "2026-03-02T00:00:00",
+    "PackageDate": null,
+    "Cannabinoids": {
+      "THC": {
+        "FieldName": "THC",
+        "Value": 27.466,
+        "SourceText": "\u03949-THC 0.200 27.466 274.66",
+        "Confidence": 0.85
+      },
+      "THCA": {
+        "FieldName": "THCA",
+        "Value": 12.608,
+        "SourceText": "THCa 0.200 12.608 126.08",
+        "Confidence": 0.85
+      },
+      "CBD": {
+        "FieldName": "CBD",
+        "Value": 0,
+        "SourceText": "CBD 0.200 \u003CLOQ \u003CLOQ",
+        "Confidence": 0
+      },
+      "CBDA": {
+        "FieldName": "CBDA",
+        "Value": 0,
+        "SourceText": "CBDa 0.200 \u003CLOQ \u003CLOQ \u03B2-Pinene 0.083 0.219 0.0219",
+        "Confidence": 0
+      },
+      "TotalTHC": 38.52,
+      "TotalCBD": 0.00
+    },
+    "Terpenes": {
+      "Terpenes": {
+        "\u03B2-Caryophyllene": 1.4983,
+        "\u03B1-Terpineol": 1.1907,
+        "\u03B4-Limonene": 0.4859,
+        "\u03B1-Humulene": 0.3510,
+        "Linalool": 0.1687,
+        "Terpinolene": 0.1420,
+        "Caryophyllene Oxide": 0.1015,
+        "\u03B1-Bisabolol": 0.0551,
+        "Farnesene": 0.0425,
+        "Nerolidol": 0.0302,
+        "\u03B2-Pinene": 0.0219,
+        "\u03B2-Myrcene": 0.0190,
+        "\u03B1-Pinene": 0.0099
+      },
+      "TotalTerpenes": 4.40
+    },
+    "Compliance": {
+      "Passed": true,
+      "ContaminantsPassed": true,
+      "Status": "pass"
+    },
+    "Freshness": {
+      "DaysSinceTest": 59,
+      "Score": 85,
+      "Band": "Good"
+    }
+  },
+  "Validation": {
+    "IsValid": false,
+    "Warnings": [
+      {
+        "Code": "TERPENE_TOTAL_MISMATCH",
+        "Message": "Total terpenes does not match sum of individual terpenes.",
+        "Severity": "warning"
+      }
+    ]
+  },
+  "Score": {
+    "Score": 95,
+    "Tier": "God Tier",
+    "Breakdown": {
+      "Potency": 40,
+      "Terpenes": 25,
+      "Freshness": 20,
+      "Compliance": 10
+    }
+  },
+  "Profile": {
+    "DominantTerpene": "\u03B2-Caryophyllene",
+    "TopTerpenes": [
+      "\u03B2-Caryophyllene",
+      "\u03B1-Terpineol",
+      "\u03B4-Limonene"
+    ],
+    "ProfileType": "Floral",
+    "Lean": "Unknown"
+  }
+}
+{
+  "Coa": {
+    "ProductType": "PreRoll",
+    "IsAmended": false,
+    "LabName": "NV Cann Labs",
+    "ProductName": "",
+    "BatchId": "",
+    "HarvestDate": "2026-03-13T00:00:00",
+    "TestDate": "2026-03-18T00:00:00",
+    "PackageDate": null,
+    "Cannabinoids": {
+      "THC": {
+        "FieldName": "THC",
+        "Value": 24.122,
+        "SourceText": "\u03949-THC 0.200 24.122 241.22",
+        "Confidence": 0.85
+      },
+      "THCA": {
+        "FieldName": "THCA",
+        "Value": 13.030,
+        "SourceText": "THCa 0.200 13.030 130.30",
+        "Confidence": 0.85
+      },
+      "CBD": {
+        "FieldName": "CBD",
+        "Value": 0,
+        "SourceText": "CBD 0.200 \u003CLOQ \u003CLOQ",
+        "Confidence": 0
+      },
+      "CBDA": {
+        "FieldName": "CBDA",
+        "Value": 0,
+        "SourceText": "CBDa 0.200 \u003CLOQ \u003CLOQ \u03B2-Pinene 0.083 0.343 0.0343",
+        "Confidence": 0
+      },
+      "TotalTHC": 35.55,
+      "TotalCBD": 0.00
+    },
+    "Terpenes": {
+      "Terpenes": {
+        "\u03B2-Caryophyllene": 1.6732,
+        "Linalool": 0.8692,
+        "\u03B1-Humulene": 0.3638,
+        "\u03B4-Limonene": 0.3074,
+        "\u03B1-Terpineol": 0.1999,
+        "Farnesene": 0.1761,
+        "Nerolidol": 0.1648,
+        "Caryophyllene Oxide": 0.1071,
+        "\u03B1-Bisabolol": 0.0945,
+        "\u03B2-Myrcene": 0.0553,
+        "\u03B2-Pinene": 0.0343,
+        "\u03B1-Pinene": 0.0276
+      },
+      "TotalTerpenes": 4.15
+    },
+    "Compliance": {
+      "Passed": true,
+      "ContaminantsPassed": true,
+      "Status": "pass"
+    },
+    "Freshness": {
+      "DaysSinceTest": 43,
+      "Score": 85,
+      "Band": "Good"
+    }
+  },
+  "Validation": {
+    "IsValid": true,
+    "Warnings": []
+  },
+  "Score": {
+    "Score": 95,
+    "Tier": "God Tier",
+    "Breakdown": {
+      "Potency": 40,
+      "Terpenes": 25,
+      "Freshness": 20,
+      "Compliance": 10
+    }
+  },
+  "Profile": {
+    "DominantTerpene": "\u03B2-Caryophyllene",
+    "TopTerpenes": [
+      "\u03B2-Caryophyllene",
+      "Linalool",
+      "\u03B1-Humulene"
+    ],
+    "ProfileType": "Floral",
+    "Lean": "Unknown"
+  }
+}
+{
+  "Coa": {
+    "ProductType": "PreRoll",
+    "IsAmended": false,
+    "LabName": "NV Cann Labs",
+    "ProductName": "",
+    "BatchId": "",
+    "HarvestDate": "2026-03-13T00:00:00",
+    "TestDate": "2026-03-18T00:00:00",
+    "PackageDate": null,
+    "Cannabinoids": {
+      "THC": {
+        "FieldName": "THC",
+        "Value": 24.122,
+        "SourceText": "\u03949-THC 0.200 24.122 241.22",
+        "Confidence": 0.85
+      },
+      "THCA": {
+        "FieldName": "THCA",
+        "Value": 13.030,
+        "SourceText": "THCa 0.200 13.030 130.30",
+        "Confidence": 0.85
+      },
+      "CBD": {
+        "FieldName": "CBD",
+        "Value": 0,
+        "SourceText": "CBD 0.200 \u003CLOQ \u003CLOQ",
+        "Confidence": 0
+      },
+      "CBDA": {
+        "FieldName": "CBDA",
+        "Value": 0,
+        "SourceText": "CBDa 0.200 \u003CLOQ \u003CLOQ \u03B2-Pinene 0.083 0.343 0.0343",
+        "Confidence": 0
+      },
+      "TotalTHC": 35.55,
+      "TotalCBD": 0.00
+    },
+    "Terpenes": {
+      "Terpenes": {
+        "\u03B2-Caryophyllene": 1.6732,
+        "Linalool": 0.8692,
+        "\u03B1-Humulene": 0.3638,
+        "\u03B4-Limonene": 0.3074,
+        "\u03B1-Terpineol": 0.1999,
+        "Farnesene": 0.1761,
+        "Nerolidol": 0.1648,
+        "Caryophyllene Oxide": 0.1071,
+        "\u03B1-Bisabolol": 0.0945,
+        "\u03B2-Myrcene": 0.0553,
+        "\u03B2-Pinene": 0.0343,
+        "\u03B1-Pinene": 0.0276
+      },
+      "TotalTerpenes": 4.15
+    },
+    "Compliance": {
+      "Passed": true,
+      "ContaminantsPassed": true,
+      "Status": "pass"
+    },
+    "Freshness": {
+      "DaysSinceTest": 43,
+      "Score": 85,
+      "Band": "Good"
+    }
+  },
+  "Validation": {
+    "IsValid": true,
+    "Warnings": []
+  },
+  "Score": {
+    "Score": 95,
+    "Tier": "God Tier",
+    "Breakdown": {
+      "Potency": 40,
+      "Terpenes": 25,
+      "Freshness": 20,
+      "Compliance": 10
+    }
+  },
+  "Profile": {
+    "DominantTerpene": "\u03B2-Caryophyllene",
+    "TopTerpenes": [
+      "\u03B2-Caryophyllene",
+      "Linalool",
+      "\u03B1-Humulene"
+    ],
+    "ProfileType": "Floral",
+    "Lean": "Unknown"
+  }
+}
+{
+  "Coa": {
+    "ProductType": "PreRoll",
+    "IsAmended": false,
+    "LabName": "NV Cann Labs",
+    "ProductName": "",
+    "BatchId": "",
+    "HarvestDate": "2026-03-13T00:00:00",
+    "TestDate": "2026-03-18T00:00:00",
+    "PackageDate": null,
+    "Cannabinoids": {
+      "THC": {
+        "FieldName": "THC",
+        "Value": 24.122,
+        "SourceText": "\u03949-THC 0.200 24.122 241.22",
+        "Confidence": 0.85
+      },
+      "THCA": {
+        "FieldName": "THCA",
+        "Value": 13.030,
+        "SourceText": "THCa 0.200 13.030 130.30",
+        "Confidence": 0.85
+      },
+      "CBD": {
+        "FieldName": "CBD",
+        "Value": 0,
+        "SourceText": "CBD 0.200 \u003CLOQ \u003CLOQ",
+        "Confidence": 0
+      },
+      "CBDA": {
+        "FieldName": "CBDA",
+        "Value": 0,
+        "SourceText": "CBDa 0.200 \u003CLOQ \u003CLOQ \u03B2-Pinene 0.083 0.343 0.0343",
+        "Confidence": 0
+      },
+      "TotalTHC": 35.55,
+      "TotalCBD": 0.00
+    },
+    "Terpenes": {
+      "Terpenes": {
+        "\u03B2-Caryophyllene": 1.6732,
+        "Linalool": 0.8692,
+        "\u03B1-Humulene": 0.3638,
+        "\u03B4-Limonene": 0.3074,
+        "\u03B1-Terpineol": 0.1999,
+        "Farnesene": 0.1761,
+        "Nerolidol": 0.1648,
+        "Caryophyllene Oxide": 0.1071,
+        "\u03B1-Bisabolol": 0.0945,
+        "\u03B2-Myrcene": 0.0553,
+        "\u03B2-Pinene": 0.0343,
+        "\u03B1-Pinene": 0.0276
+      },
+      "TotalTerpenes": 4.15
+    },
+    "Compliance": {
+      "Passed": true,
+      "ContaminantsPassed": true,
+      "Status": "pass"
+    },
+    "Freshness": {
+      "DaysSinceTest": 43,
+      "Score": 85,
+      "Band": "Good"
+    }
+  },
+  "Validation": {
+    "IsValid": true,
+    "Warnings": []
+  },
+  "Score": {
+    "Score": 95,
+    "Tier": "God Tier",
+    "Breakdown": {
+      "Potency": 40,
+      "Terpenes": 25,
+      "Freshness": 20,
+      "Compliance": 10
+    }
+  },
+  "Profile": {
+    "DominantTerpene": "\u03B2-Caryophyllene",
+    "TopTerpenes": [
+      "\u03B2-Caryophyllene",
+      "Linalool",
+      "\u03B1-Humulene"
+    ],
+    "ProfileType": "Floral",
+    "Lean": "Unknown"
+  }
+}
+{
+  "Coa": {
+    "ProductType": "PreRoll",
+    "IsAmended": false,
+    "LabName": "NV Cann Labs",
+    "ProductName": "",
+    "BatchId": "",
+    "HarvestDate": "2026-03-30T00:00:00",
+    "TestDate": "2026-04-03T00:00:00",
+    "PackageDate": null,
+    "Cannabinoids": {
+      "THC": {
+        "FieldName": "THC",
+        "Value": 22.019,
+        "SourceText": "\u03949-THC 0.200 22.019 220.19",
+        "Confidence": 0.85
+      },
+      "THCA": {
+        "FieldName": "THCA",
+        "Value": 14.864,
+        "SourceText": "THCa 0.200 14.864 148.64",
+        "Confidence": 0.85
+      },
+      "CBD": {
+        "FieldName": "CBD",
+        "Value": 0,
+        "SourceText": "CBD 0.200 \u003CLOQ \u003CLOQ",
+        "Confidence": 0
+      },
+      "CBDA": {
+        "FieldName": "CBDA",
+        "Value": 0,
+        "SourceText": "CBDa 0.200 \u003CLOQ \u003CLOQ \u03B1-Pinene 0.083 \u003CLOQ \u003CLOQ",
+        "Confidence": 0
+      },
+      "TotalTHC": 35.05,
+      "TotalCBD": 0.00
+    },
+    "Terpenes": {
+      "Terpenes": {
+        "\u03B2-Caryophyllene": 0.6141,
+        "Linalool": 0.4713,
+        "\u03B4-Limonene": 0.4193,
+        "Farnesene": 0.2143,
+        "\u03B1-Humulene": 0.1472,
+        "\u03B1-Terpineol": 0.0879,
+        "Nerolidol": 0.0804,
+        "\u03B1-Bisabolol": 0.0608,
+        "\u03B2-Myrcene": 0.0407,
+        "\u03B2-Pinene": 0.0149
+      },
+      "TotalTerpenes": 2.25
+    },
+    "Compliance": {
+      "Passed": true,
+      "ContaminantsPassed": true,
+      "Status": "pass"
+    },
+    "Freshness": {
+      "DaysSinceTest": 27,
+      "Score": 100,
+      "Band": "Excellent"
+    }
+  },
+  "Validation": {
+    "IsValid": true,
+    "Warnings": []
+  },
+  "Score": {
+    "Score": 90,
+    "Tier": "God Tier",
+    "Breakdown": {
+      "Potency": 40,
+      "Terpenes": 15,
+      "Freshness": 25,
+      "Compliance": 10
+    }
+  },
+  "Profile": {
+    "DominantTerpene": "\u03B2-Caryophyllene",
+    "TopTerpenes": [
+      "\u03B2-Caryophyllene",
+      "Linalool",
+      "\u03B4-Limonene"
+    ],
+    "ProfileType": "Floral",
+    "Lean": "Unknown"
+  }
+}
+{
+  "Coa": {
+    "ProductType": "PreRoll",
+    "IsAmended": false,
+    "LabName": "NV Cann Labs",
+    "ProductName": "",
+    "BatchId": "",
+    "HarvestDate": "2026-03-13T00:00:00",
+    "TestDate": "2026-03-18T00:00:00",
+    "PackageDate": null,
+    "Cannabinoids": {
+      "THC": {
+        "FieldName": "THC",
+        "Value": 24.122,
+        "SourceText": "\u03949-THC 0.200 24.122 241.22",
+        "Confidence": 0.85
+      },
+      "THCA": {
+        "FieldName": "THCA",
+        "Value": 13.030,
+        "SourceText": "THCa 0.200 13.030 130.30",
+        "Confidence": 0.85
+      },
+      "CBD": {
+        "FieldName": "CBD",
+        "Value": 0,
+        "SourceText": "CBD 0.200 \u003CLOQ \u003CLOQ",
+        "Confidence": 0
+      },
+      "CBDA": {
+        "FieldName": "CBDA",
+        "Value": 0,
+        "SourceText": "CBDa 0.200 \u003CLOQ \u003CLOQ \u03B2-Pinene 0.083 0.343 0.0343",
+        "Confidence": 0
+      },
+      "TotalTHC": 35.55,
+      "TotalCBD": 0.00
+    },
+    "Terpenes": {
+      "Terpenes": {
+        "\u03B2-Caryophyllene": 1.6732,
+        "Linalool": 0.8692,
+        "\u03B1-Humulene": 0.3638,
+        "\u03B4-Limonene": 0.3074,
+        "\u03B1-Terpineol": 0.1999,
+        "Farnesene": 0.1761,
+        "Nerolidol": 0.1648,
+        "Caryophyllene Oxide": 0.1071,
+        "\u03B1-Bisabolol": 0.0945,
+        "\u03B2-Myrcene": 0.0553,
+        "\u03B2-Pinene": 0.0343,
+        "\u03B1-Pinene": 0.0276
+      },
+      "TotalTerpenes": 4.15
+    },
+    "Compliance": {
+      "Passed": true,
+      "ContaminantsPassed": true,
+      "Status": "pass"
+    },
+    "Freshness": {
+      "DaysSinceTest": 43,
+      "Score": 85,
+      "Band": "Good"
+    }
+  },
+  "Validation": {
+    "IsValid": true,
+    "Warnings": []
+  },
+  "Score": {
+    "Score": 95,
+    "Tier": "God Tier",
+    "Breakdown": {
+      "Potency": 40,
+      "Terpenes": 25,
+      "Freshness": 20,
+      "Compliance": 10
+    }
+  },
+  "Profile": {
+    "DominantTerpene": "\u03B2-Caryophyllene",
+    "TopTerpenes": [
+      "\u03B2-Caryophyllene",
+      "Linalool",
+      "\u03B1-Humulene"
+    ],
+    "ProfileType": "Floral",
+    "Lean": "Unknown"
+  }
+}
+{
+  "Coa": {
+    "ProductType": "PreRoll",
+    "IsAmended": false,
+    "LabName": "NV Cann Labs",
+    "ProductName": "",
+    "BatchId": "",
+    "HarvestDate": "2026-03-13T00:00:00",
+    "TestDate": "2026-03-18T00:00:00",
+    "PackageDate": null,
+    "Cannabinoids": {
+      "THC": {
+        "FieldName": "THC",
+        "Value": 24.122,
+        "SourceText": "\u03949-THC 0.200 24.122 241.22",
+        "Confidence": 0.85
+      },
+      "THCA": {
+        "FieldName": "THCA",
+        "Value": 13.030,
+        "SourceText": "THCa 0.200 13.030 130.30",
+        "Confidence": 0.85
+      },
+      "CBD": {
+        "FieldName": "CBD",
+        "Value": 0,
+        "SourceText": "CBD 0.200 \u003CLOQ \u003CLOQ",
+        "Confidence": 0
+      },
+      "CBDA": {
+        "FieldName": "CBDA",
+        "Value": 0,
+        "SourceText": "CBDa 0.200 \u003CLOQ \u003CLOQ \u03B2-Pinene 0.083 0.343 0.0343",
+        "Confidence": 0
+      },
+      "TotalTHC": 35.55,
+      "TotalCBD": 0.00
+    },
+    "Terpenes": {
+      "Terpenes": {
+        "\u03B2-Caryophyllene": 1.6732,
+        "Linalool": 0.8692,
+        "\u03B1-Humulene": 0.3638,
+        "\u03B4-Limonene": 0.3074,
+        "\u03B1-Terpineol": 0.1999,
+        "Farnesene": 0.1761,
+        "Nerolidol": 0.1648,
+        "Caryophyllene Oxide": 0.1071,
+        "\u03B1-Bisabolol": 0.0945,
+        "\u03B2-Myrcene": 0.0553,
+        "\u03B2-Pinene": 0.0343,
+        "\u03B1-Pinene": 0.0276
+      },
+      "TotalTerpenes": 4.15
+    },
+    "Compliance": {
+      "Passed": true,
+      "ContaminantsPassed": true,
+      "Status": "pass"
+    },
+    "Freshness": {
+      "DaysSinceTest": 43,
+      "Score": 85,
+      "Band": "Good"
+    }
+  },
+  "Validation": {
+    "IsValid": true,
+    "Warnings": []
+  },
+  "Score": {
+    "Score": 95,
+    "Tier": "God Tier",
+    "Breakdown": {
+      "Potency": 40,
+      "Terpenes": 25,
+      "Freshness": 20,
+      "Compliance": 10
+    }
+  },
+  "Profile": {
+    "DominantTerpene": "\u03B2-Caryophyllene",
+    "TopTerpenes": [
+      "\u03B2-Caryophyllene",
+      "Linalool",
+      "\u03B1-Humulene"
+    ],
+    "ProfileType": "Floral",
+    "Lean": "Unknown"
+  }
+}
+{
+  "Coa": {
+    "ProductType": "PreRoll",
+    "IsAmended": false,
+    "LabName": "NV Cann Labs",
+    "ProductName": "",
+    "BatchId": "",
+    "HarvestDate": "2026-03-30T00:00:00",
+    "TestDate": "2026-04-03T00:00:00",
+    "PackageDate": null,
+    "Cannabinoids": {
+      "THC": {
+        "FieldName": "THC",
+        "Value": 22.019,
+        "SourceText": "\u03949-THC 0.200 22.019 220.19",
+        "Confidence": 0.85
+      },
+      "THCA": {
+        "FieldName": "THCA",
+        "Value": 14.864,
+        "SourceText": "THCa 0.200 14.864 148.64",
+        "Confidence": 0.85
+      },
+      "CBD": {
+        "FieldName": "CBD",
+        "Value": 0,
+        "SourceText": "CBD 0.200 \u003CLOQ \u003CLOQ",
+        "Confidence": 0
+      },
+      "CBDA": {
+        "FieldName": "CBDA",
+        "Value": 0,
+        "SourceText": "CBDa 0.200 \u003CLOQ \u003CLOQ \u03B1-Pinene 0.083 \u003CLOQ \u003CLOQ",
+        "Confidence": 0
+      },
+      "TotalTHC": 35.05,
+      "TotalCBD": 0.00
+    },
+    "Terpenes": {
+      "Terpenes": {
+        "\u03B2-Caryophyllene": 0.6141,
+        "Linalool": 0.4713,
+        "\u03B4-Limonene": 0.4193,
+        "Farnesene": 0.2143,
+        "\u03B1-Humulene": 0.1472,
+        "\u03B1-Terpineol": 0.0879,
+        "Nerolidol": 0.0804,
+        "\u03B1-Bisabolol": 0.0608,
+        "\u03B2-Myrcene": 0.0407,
+        "\u03B2-Pinene": 0.0149
+      },
+      "TotalTerpenes": 2.25
+    },
+    "Compliance": {
+      "Passed": true,
+      "ContaminantsPassed": true,
+      "Status": "pass"
+    },
+    "Freshness": {
+      "DaysSinceTest": 27,
+      "Score": 100,
+      "Band": "Excellent"
+    }
+  },
+  "Validation": {
+    "IsValid": true,
+    "Warnings": []
+  },
+  "Score": {
+    "Score": 90,
+    "Tier": "God Tier",
+    "Breakdown": {
+      "Potency": 40,
+      "Terpenes": 15,
+      "Freshness": 25,
+      "Compliance": 10
+    }
+  },
+  "Profile": {
+    "DominantTerpene": "\u03B2-Caryophyllene",
+    "TopTerpenes": [
+      "\u03B2-Caryophyllene",
+      "Linalool",
+      "\u03B4-Limonene"
+    ],
+    "ProfileType": "Floral",
+    "Lean": "Unknown"
+  }
+}
+{
+  "Coa": {
+    "ProductType": "PreRoll",
+    "IsAmended": false,
+    "LabName": "NV Cann Labs",
+    "ProductName": "",
+    "BatchId": "",
+    "HarvestDate": "2026-03-13T00:00:00",
+    "TestDate": "2026-03-18T00:00:00",
+    "PackageDate": null,
+    "Cannabinoids": {
+      "THC": {
+        "FieldName": "THC",
+        "Value": 24.122,
+        "SourceText": "\u03949-THC 0.200 24.122 241.22",
+        "Confidence": 0.85
+      },
+      "THCA": {
+        "FieldName": "THCA",
+        "Value": 13.030,
+        "SourceText": "THCa 0.200 13.030 130.30",
+        "Confidence": 0.85
+      },
+      "CBD": {
+        "FieldName": "CBD",
+        "Value": 0,
+        "SourceText": "CBD 0.200 \u003CLOQ \u003CLOQ",
+        "Confidence": 0
+      },
+      "CBDA": {
+        "FieldName": "CBDA",
+        "Value": 0,
+        "SourceText": "CBDa 0.200 \u003CLOQ \u003CLOQ \u03B2-Pinene 0.083 0.343 0.0343",
+        "Confidence": 0
+      },
+      "TotalTHC": 35.55,
+      "TotalCBD": 0.00
+    },
+    "Terpenes": {
+      "Terpenes": {
+        "\u03B2-Caryophyllene": 1.6732,
+        "Linalool": 0.8692,
+        "\u03B1-Humulene": 0.3638,
+        "\u03B4-Limonene": 0.3074,
+        "\u03B1-Terpineol": 0.1999,
+        "Farnesene": 0.1761,
+        "Nerolidol": 0.1648,
+        "Caryophyllene Oxide": 0.1071,
+        "\u03B1-Bisabolol": 0.0945,
+        "\u03B2-Myrcene": 0.0553,
+        "\u03B2-Pinene": 0.0343,
+        "\u03B1-Pinene": 0.0276
+      },
+      "TotalTerpenes": 4.15
+    },
+    "Compliance": {
+      "Passed": true,
+      "ContaminantsPassed": true,
+      "Status": "pass"
+    },
+    "Freshness": {
+      "DaysSinceTest": 43,
+      "Score": 85,
+      "Band": "Good"
+    }
+  },
+  "Validation": {
+    "IsValid": true,
+    "Warnings": []
+  },
+  "Score": {
+    "Score": 95,
+    "Tier": "God Tier",
+    "Breakdown": {
+      "Potency": 40,
+      "Terpenes": 25,
+      "Freshness": 20,
+      "Compliance": 10
+    }
+  },
+  "Profile": {
+    "DominantTerpene": "\u03B2-Caryophyllene",
+    "TopTerpenes": [
+      "\u03B2-Caryophyllene",
+      "Linalool",
+      "\u03B1-Humulene"
+    ],
+    "ProfileType": "Floral",
+    "Lean": "Unknown"
+  }
+}
+{
+  "Coa": {
+    "ProductType": "PreRoll",
+    "IsAmended": false,
+    "LabName": "NV Cann Labs",
+    "ProductName": "",
+    "BatchId": "",
+    "HarvestDate": "2026-03-30T00:00:00",
+    "TestDate": "2026-04-03T00:00:00",
+    "PackageDate": null,
+    "Cannabinoids": {
+      "THC": {
+        "FieldName": "THC",
+        "Value": 22.019,
+        "SourceText": "\u03949-THC 0.200 22.019 220.19",
+        "Confidence": 0.85
+      },
+      "THCA": {
+        "FieldName": "THCA",
+        "Value": 14.864,
+        "SourceText": "THCa 0.200 14.864 148.64",
+        "Confidence": 0.85
+      },
+      "CBD": {
+        "FieldName": "CBD",
+        "Value": 0,
+        "SourceText": "CBD 0.200 \u003CLOQ \u003CLOQ",
+        "Confidence": 0
+      },
+      "CBDA": {
+        "FieldName": "CBDA",
+        "Value": 0,
+        "SourceText": "CBDa 0.200 \u003CLOQ \u003CLOQ \u03B1-Pinene 0.083 \u003CLOQ \u003CLOQ",
+        "Confidence": 0
+      },
+      "TotalTHC": 35.05,
+      "TotalCBD": 0.00
+    },
+    "Terpenes": {
+      "Terpenes": {
+        "\u03B2-Caryophyllene": 0.6141,
+        "Linalool": 0.4713,
+        "\u03B4-Limonene": 0.4193,
+        "Farnesene": 0.2143,
+        "\u03B1-Humulene": 0.1472,
+        "\u03B1-Terpineol": 0.0879,
+        "Nerolidol": 0.0804,
+        "\u03B1-Bisabolol": 0.0608,
+        "\u03B2-Myrcene": 0.0407,
+        "\u03B2-Pinene": 0.0149
+      },
+      "TotalTerpenes": 2.25
+    },
+    "Compliance": {
+      "Passed": true,
+      "ContaminantsPassed": true,
+      "Status": "pass"
+    },
+    "Freshness": {
+      "DaysSinceTest": 27,
+      "Score": 100,
+      "Band": "Excellent"
+    }
+  },
+  "Validation": {
+    "IsValid": true,
+    "Warnings": []
+  },
+  "Score": {
+    "Score": 90,
+    "Tier": "God Tier",
+    "Breakdown": {
+      "Potency": 40,
+      "Terpenes": 15,
+      "Freshness": 25,
+      "Compliance": 10
+    }
+  },
+  "Profile": {
+    "DominantTerpene": "\u03B2-Caryophyllene",
+    "TopTerpenes": [
+      "\u03B2-Caryophyllene",
+      "Linalool",
+      "\u03B4-Limonene"
+    ],
+    "ProfileType": "Floral",
+    "Lean": "Unknown"
+  }
+}
+{
+  "Coa": {
+    "ProductType": "PreRoll",
+    "IsAmended": false,
+    "LabName": "NV Cann Labs",
+    "ProductName": "",
+    "BatchId": "",
+    "HarvestDate": "2026-03-30T00:00:00",
+    "TestDate": "2026-04-03T00:00:00",
+    "PackageDate": null,
+    "Cannabinoids": {
+      "THC": {
+        "FieldName": "THC",
+        "Value": 22.019,
+        "SourceText": "\u03949-THC 0.200 22.019 220.19",
+        "Confidence": 0.85
+      },
+      "THCA": {
+        "FieldName": "THCA",
+        "Value": 14.864,
+        "SourceText": "THCa 0.200 14.864 148.64",
+        "Confidence": 0.85
+      },
+      "CBD": {
+        "FieldName": "CBD",
+        "Value": 0,
+        "SourceText": "CBD 0.200 \u003CLOQ \u003CLOQ",
+        "Confidence": 0
+      },
+      "CBDA": {
+        "FieldName": "CBDA",
+        "Value": 0,
+        "SourceText": "CBDa 0.200 \u003CLOQ \u003CLOQ \u03B1-Pinene 0.083 \u003CLOQ \u003CLOQ",
+        "Confidence": 0
+      },
+      "TotalTHC": 35.05,
+      "TotalCBD": 0.00
+    },
+    "Terpenes": {
+      "Terpenes": {
+        "\u03B2-Caryophyllene": 0.6141,
+        "Linalool": 0.4713,
+        "\u03B4-Limonene": 0.4193,
+        "Farnesene": 0.2143,
+        "\u03B1-Humulene": 0.1472,
+        "\u03B1-Terpineol": 0.0879,
+        "Nerolidol": 0.0804,
+        "\u03B1-Bisabolol": 0.0608,
+        "\u03B2-Myrcene": 0.0407,
+        "\u03B2-Pinene": 0.0149
+      },
+      "TotalTerpenes": 2.25
+    },
+    "Compliance": {
+      "Passed": true,
+      "ContaminantsPassed": true,
+      "Status": "pass"
+    },
+    "Freshness": {
+      "DaysSinceTest": 27,
+      "Score": 100,
+      "Band": "Excellent"
+    }
+  },
+  "Validation": {
+    "IsValid": true,
+    "Warnings": []
+  },
+  "Score": {
+    "Score": 90,
+    "Tier": "God Tier",
+    "Breakdown": {
+      "Potency": 40,
+      "Terpenes": 15,
+      "Freshness": 25,
+      "Compliance": 10
+    }
+  },
+  "Profile": {
+    "DominantTerpene": "\u03B2-Caryophyllene",
+    "TopTerpenes": [
+      "\u03B2-Caryophyllene",
+      "Linalool",
+      "\u03B4-Limonene"
+    ],
+    "ProfileType": "Floral",
+    "Lean": "Unknown"
+  }
+}
+{
+  "Coa": {
+    "ProductType": "PreRoll",
+    "IsAmended": false,
+    "LabName": "NV Cann Labs",
+    "ProductName": "",
+    "BatchId": "",
+    "HarvestDate": "2026-03-30T00:00:00",
+    "TestDate": "2026-04-03T00:00:00",
+    "PackageDate": null,
+    "Cannabinoids": {
+      "THC": {
+        "FieldName": "THC",
+        "Value": 22.019,
+        "SourceText": "\u03949-THC 0.200 22.019 220.19",
+        "Confidence": 0.85
+      },
+      "THCA": {
+        "FieldName": "THCA",
+        "Value": 14.864,
+        "SourceText": "THCa 0.200 14.864 148.64",
+        "Confidence": 0.85
+      },
+      "CBD": {
+        "FieldName": "CBD",
+        "Value": 0,
+        "SourceText": "CBD 0.200 \u003CLOQ \u003CLOQ",
+        "Confidence": 0
+      },
+      "CBDA": {
+        "FieldName": "CBDA",
+        "Value": 0,
+        "SourceText": "CBDa 0.200 \u003CLOQ \u003CLOQ \u03B1-Pinene 0.083 \u003CLOQ \u003CLOQ",
+        "Confidence": 0
+      },
+      "TotalTHC": 35.05,
+      "TotalCBD": 0.00
+    },
+    "Terpenes": {
+      "Terpenes": {
+        "\u03B2-Caryophyllene": 0.6141,
+        "Linalool": 0.4713,
+        "\u03B4-Limonene": 0.4193,
+        "Farnesene": 0.2143,
+        "\u03B1-Humulene": 0.1472,
+        "\u03B1-Terpineol": 0.0879,
+        "Nerolidol": 0.0804,
+        "\u03B1-Bisabolol": 0.0608,
+        "\u03B2-Myrcene": 0.0407,
+        "\u03B2-Pinene": 0.0149
+      },
+      "TotalTerpenes": 2.25
+    },
+    "Compliance": {
+      "Passed": true,
+      "ContaminantsPassed": true,
+      "Status": "pass"
+    },
+    "Freshness": {
+      "DaysSinceTest": 27,
+      "Score": 100,
+      "Band": "Excellent"
+    }
+  },
+  "Validation": {
+    "IsValid": true,
+    "Warnings": []
+  },
+  "Score": {
+    "Score": 90,
+    "Tier": "God Tier",
+    "Breakdown": {
+      "Potency": 40,
+      "Terpenes": 15,
+      "Freshness": 25,
+      "Compliance": 10
+    }
+  },
+  "Profile": {
+    "DominantTerpene": "\u03B2-Caryophyllene",
+    "TopTerpenes": [
+      "\u03B2-Caryophyllene",
+      "Linalool",
+      "\u03B4-Limonene"
+    ],
+    "ProfileType": "Floral",
+    "Lean": "Unknown"
+  }
+}
+{
+  "Coa": {
+    "ProductType": "Flower",
+    "IsAmended": true,
+    "LabName": "Kaycha Labs",
+    "ProductName": "",
+    "BatchId": "",
+    "HarvestDate": "2025-11-04T00:00:00",
+    "TestDate": "2025-12-11T00:00:00",
+    "PackageDate": null,
+    "Cannabinoids": {
+      "THC": {
+        "FieldName": "THC",
+        "Value": 0.3740,
+        "SourceText": "% 32.0060 \u003CLOQ 0.0390 2.0030 0.0330 \u003CLOQ \u003CLOQ \u003CLOQ 0.3740 \u003CLOQ \u003CLOQ 29.5570",
+        "Confidence": 0.95
+      },
+      "THCA": {
+        "FieldName": "THCA",
+        "Value": 29.5570,
+        "SourceText": "% 32.0060 \u003CLOQ 0.0390 2.0030 0.0330 \u003CLOQ \u003CLOQ \u003CLOQ 0.3740 \u003CLOQ \u003CLOQ 29.5570",
+        "Confidence": 0.95
+      },
+      "CBD": {
+        "FieldName": "CBD",
+        "Value": 0,
+        "SourceText": "",
+        "Confidence": 0
+      },
+      "CBDA": {
+        "FieldName": "CBDA",
+        "Value": 0.0390,
+        "SourceText": "% 32.0060 \u003CLOQ 0.0390 2.0030 0.0330 \u003CLOQ \u003CLOQ \u003CLOQ 0.3740 \u003CLOQ \u003CLOQ 29.5570",
+        "Confidence": 0.95
+      },
+      "TotalTHC": 26.30,
+      "TotalCBD": 0.03
+    },
+    "Terpenes": {
+      "Terpenes": {
+        "BETA-CARYOPHYLLENE": 0.7640,
+        "D-LIMONENE": 0.4219,
+        "LINALOOL": 0.2644,
+        "ALPHA-HUMULENE": 0.2500,
+        "GUAIOL": 0.1508,
+        "BETA-MYRCENE": 0.1400,
+        "FARNESENE": 0.1222,
+        "BETA-PINENE": 0.0737,
+        "FENCHOL": 0.0563,
+        "ALPHA-TERPINEOL": 0.0554,
+        "ALPHA-PINENE": 0.0500,
+        "BORNEOL": 0.0484,
+        "VALENCENE": 0.0331,
+        "CARYOPHYLLENE OXIDE": 0.0324,
+        "TERPINOLENE": 0.0268,
+        "CAMPHENE": 0.0255
+      },
+      "TotalTerpenes": 2.48
+    },
+    "Compliance": {
+      "Passed": true,
+      "ContaminantsPassed": true,
+      "Status": "pass"
+    },
+    "Freshness": {
+      "DaysSinceTest": 140,
+      "Score": 30,
+      "Band": "Aging"
+    }
+  },
+  "Validation": {
+    "IsValid": false,
+    "Warnings": [
+      {
+        "Code": "AMENDED_COA",
+        "Message": "COA is marked as amended, revised, or corrected.",
+        "Severity": "warning"
+      }
+    ]
+  },
+  "Score": {
+    "Score": 70,
+    "Tier": "Solid",
+    "Breakdown": {
+      "Potency": 35,
+      "Terpenes": 15,
+      "Freshness": 10,
+      "Compliance": 10
+    }
+  },
+  "Profile": {
+    "DominantTerpene": "BETA-CARYOPHYLLENE",
+    "TopTerpenes": [
+      "BETA-CARYOPHYLLENE",
+      "D-LIMONENE",
+      "LINALOOL"
+    ],
+    "ProfileType": "Mixed",
+    "Lean": "Unknown"
+  }
+}
+{
+  "Coa": {
+    "ProductType": "Flower",
+    "IsAmended": true,
+    "LabName": "Kaycha Labs",
+    "ProductName": "",
+    "BatchId": "",
+    "HarvestDate": "2026-01-02T00:00:00",
+    "TestDate": "2026-02-03T00:00:00",
+    "PackageDate": null,
+    "Cannabinoids": {
+      "THC": {
+        "FieldName": "THC",
+        "Value": 0.6940,
+        "SourceText": "% 27.1750 \u003CLOQ \u003CLOQ 1.3030 \u003CLOQ \u003CLOQ \u003CLOQ \u003CLOQ 0.6940 \u003CLOQ \u003CLOQ 25.1780",
+        "Confidence": 0.95
+      },
+      "THCA": {
+        "FieldName": "THCA",
+        "Value": 25.1780,
+        "SourceText": "% 27.1750 \u003CLOQ \u003CLOQ 1.3030 \u003CLOQ \u003CLOQ \u003CLOQ \u003CLOQ 0.6940 \u003CLOQ \u003CLOQ 25.1780",
+        "Confidence": 0.95
+      },
+      "CBD": {
+        "FieldName": "CBD",
+        "Value": 0,
+        "SourceText": "",
+        "Confidence": 0
+      },
+      "CBDA": {
+        "FieldName": "CBDA",
+        "Value": 0,
+        "SourceText": "",
+        "Confidence": 0
+      },
+      "TotalTHC": 22.78,
+      "TotalCBD": 0.00
+    },
+    "Terpenes": {
+      "Terpenes": {
+        "BETA-CARYOPHYLLENE": 0.7219,
+        "D-LIMONENE": 0.4169,
+        "LINALOOL": 0.2676,
+        "ALPHA-HUMULENE": 0.2217,
+        "BETA-MYRCENE": 0.1910,
+        "GUAIOL": 0.1453,
+        "FARNESENE": 0.1095,
+        "BETA-PINENE": 0.0617,
+        "FENCHOL": 0.0489,
+        "ALPHA-TERPINEOL": 0.0462,
+        "ALPHA-PINENE": 0.0373,
+        "BORNEOL": 0.0370,
+        "TERPINOLENE": 0.0209
+      },
+      "TotalTerpenes": 2.33
+    },
+    "Compliance": {
+      "Passed": true,
+      "ContaminantsPassed": true,
+      "Status": "pass"
+    },
+    "Freshness": {
+      "DaysSinceTest": 86,
+      "Score": 70,
+      "Band": "Good"
+    }
+  },
+  "Validation": {
+    "IsValid": false,
+    "Warnings": [
+      {
+        "Code": "AMENDED_COA",
+        "Message": "COA is marked as amended, revised, or corrected.",
+        "Severity": "warning"
+      }
+    ]
+  },
+  "Score": {
+    "Score": 75,
+    "Tier": "Solid",
+    "Breakdown": {
+      "Potency": 30,
+      "Terpenes": 15,
+      "Freshness": 20,
+      "Compliance": 10
+    }
+  },
+  "Profile": {
+    "DominantTerpene": "BETA-CARYOPHYLLENE",
+    "TopTerpenes": [
+      "BETA-CARYOPHYLLENE",
+      "D-LIMONENE",
+      "LINALOOL"
+    ],
+    "ProfileType": "Mixed",
+    "Lean": "Unknown"
+  }
+}
+{
+  "Coa": {
+    "ProductType": "Flower",
+    "IsAmended": false,
+    "LabName": "Kaycha Labs",
+    "ProductName": "",
+    "BatchId": "",
+    "HarvestDate": "2026-02-02T00:00:00",
+    "TestDate": "2026-02-24T00:00:00",
+    "PackageDate": null,
+    "Cannabinoids": {
+      "THC": {
+        "FieldName": "THC",
+        "Value": 0.6270,
+        "SourceText": "% 32.5050 \u003CLOQ 0.0940 1.5430 0.1620 \u003CLOQ \u003CLOQ \u003CLOQ 0.6270 \u003CLOQ \u003CLOQ 30.0790",
+        "Confidence": 0.95
+      },
+      "THCA": {
+        "FieldName": "THCA",
+        "Value": 30.0790,
+        "SourceText": "% 32.5050 \u003CLOQ 0.0940 1.5430 0.1620 \u003CLOQ \u003CLOQ \u003CLOQ 0.6270 \u003CLOQ \u003CLOQ 30.0790",
+        "Confidence": 0.95
+      },
+      "CBD": {
+        "FieldName": "CBD",
+        "Value": 0,
+        "SourceText": "",
+        "Confidence": 0
+      },
+      "CBDA": {
+        "FieldName": "CBDA",
+        "Value": 0.0940,
+        "SourceText": "% 32.5050 \u003CLOQ 0.0940 1.5430 0.1620 \u003CLOQ \u003CLOQ \u003CLOQ 0.6270 \u003CLOQ \u003CLOQ 30.0790",
+        "Confidence": 0.95
+      },
+      "TotalTHC": 27.01,
+      "TotalCBD": 0.08
+    },
+    "Terpenes": {
+      "Terpenes": {
+        "BETA-CARYOPHYLLENE": 0.5263,
+        "D-LIMONENE": 0.4684,
+        "LINALOOL": 0.2734,
+        "BETA-MYRCENE": 0.2073,
+        "ALPHA-HUMULENE": 0.1620,
+        "GUAIOL": 0.1336,
+        "FARNESENE": 0.0942,
+        "BETA-PINENE": 0.0717,
+        "FENCHOL": 0.0547,
+        "ALPHA-TERPINEOL": 0.0532,
+        "ALPHA-PINENE": 0.0404,
+        "BORNEOL": 0.0356,
+        "ALPHA-BISABOLOL": 0.0291,
+        "TERPINOLENE": 0.0202
+      },
+      "TotalTerpenes": 2.17
+    },
+    "Compliance": {
+      "Passed": true,
+      "ContaminantsPassed": true,
+      "Status": "pass"
+    },
+    "Freshness": {
+      "DaysSinceTest": 65,
+      "Score": 70,
+      "Band": "Good"
+    }
+  },
+  "Validation": {
+    "IsValid": true,
+    "Warnings": []
+  },
+  "Score": {
+    "Score": 80,
+    "Tier": "Fire",
+    "Breakdown": {
+      "Potency": 35,
+      "Terpenes": 15,
+      "Freshness": 20,
+      "Compliance": 10
+    }
+  },
+  "Profile": {
+    "DominantTerpene": "BETA-CARYOPHYLLENE",
+    "TopTerpenes": [
+      "BETA-CARYOPHYLLENE",
+      "D-LIMONENE",
+      "LINALOOL"
+    ],
+    "ProfileType": "Mixed",
+    "Lean": "Unknown"
+  }
+}
+{
+  "Coa": {
+    "ProductType": "Flower",
+    "IsAmended": false,
+    "LabName": "Kaycha Labs",
+    "ProductName": "",
+    "BatchId": "",
+    "HarvestDate": "2026-02-02T00:00:00",
+    "TestDate": "2026-02-24T00:00:00",
+    "PackageDate": null,
+    "Cannabinoids": {
+      "THC": {
+        "FieldName": "THC",
+        "Value": 0.6270,
+        "SourceText": "% 32.5050 \u003CLOQ 0.0940 1.5430 0.1620 \u003CLOQ \u003CLOQ \u003CLOQ 0.6270 \u003CLOQ \u003CLOQ 30.0790",
+        "Confidence": 0.95
+      },
+      "THCA": {
+        "FieldName": "THCA",
+        "Value": 30.0790,
+        "SourceText": "% 32.5050 \u003CLOQ 0.0940 1.5430 0.1620 \u003CLOQ \u003CLOQ \u003CLOQ 0.6270 \u003CLOQ \u003CLOQ 30.0790",
+        "Confidence": 0.95
+      },
+      "CBD": {
+        "FieldName": "CBD",
+        "Value": 0,
+        "SourceText": "",
+        "Confidence": 0
+      },
+      "CBDA": {
+        "FieldName": "CBDA",
+        "Value": 0.0940,
+        "SourceText": "% 32.5050 \u003CLOQ 0.0940 1.5430 0.1620 \u003CLOQ \u003CLOQ \u003CLOQ 0.6270 \u003CLOQ \u003CLOQ 30.0790",
+        "Confidence": 0.95
+      },
+      "TotalTHC": 27.01,
+      "TotalCBD": 0.08
+    },
+    "Terpenes": {
+      "Terpenes": {
+        "BETA-CARYOPHYLLENE": 0.5263,
+        "D-LIMONENE": 0.4684,
+        "LINALOOL": 0.2734,
+        "BETA-MYRCENE": 0.2073,
+        "ALPHA-HUMULENE": 0.1620,
+        "GUAIOL": 0.1336,
+        "FARNESENE": 0.0942,
+        "BETA-PINENE": 0.0717,
+        "FENCHOL": 0.0547,
+        "ALPHA-TERPINEOL": 0.0532,
+        "ALPHA-PINENE": 0.0404,
+        "BORNEOL": 0.0356,
+        "ALPHA-BISABOLOL": 0.0291,
+        "TERPINOLENE": 0.0202
+      },
+      "TotalTerpenes": 2.17
+    },
+    "Compliance": {
+      "Passed": true,
+      "ContaminantsPassed": true,
+      "Status": "pass"
+    },
+    "Freshness": {
+      "DaysSinceTest": 65,
+      "Score": 70,
+      "Band": "Good"
+    }
+  },
+  "Validation": {
+    "IsValid": true,
+    "Warnings": []
+  },
+  "Score": {
+    "Score": 80,
+    "Tier": "Fire",
+    "Breakdown": {
+      "Potency": 35,
+      "Terpenes": 15,
+      "Freshness": 20,
+      "Compliance": 10
+    }
+  },
+  "Profile": {
+    "DominantTerpene": "BETA-CARYOPHYLLENE",
+    "TopTerpenes": [
+      "BETA-CARYOPHYLLENE",
+      "D-LIMONENE",
+      "LINALOOL"
+    ],
+    "ProfileType": "Mixed",
+    "Lean": "Unknown"
+  }
+}
+{
+  "Coa": {
+    "ProductType": "Flower",
+    "IsAmended": false,
+    "LabName": "Kaycha Labs",
+    "ProductName": "",
+    "BatchId": "",
+    "HarvestDate": "2026-02-02T00:00:00",
+    "TestDate": "2026-02-24T00:00:00",
+    "PackageDate": null,
+    "Cannabinoids": {
+      "THC": {
+        "FieldName": "THC",
+        "Value": 0.3330,
+        "SourceText": "% 30.2400 \u003CLOQ 0.0960 1.3770 0.1540 \u003CLOQ \u003CLOQ \u003CLOQ 0.3330 \u003CLOQ \u003CLOQ 28.2800",
+        "Confidence": 0.95
+      },
+      "THCA": {
+        "FieldName": "THCA",
+        "Value": 28.2800,
+        "SourceText": "% 30.2400 \u003CLOQ 0.0960 1.3770 0.1540 \u003CLOQ \u003CLOQ \u003CLOQ 0.3330 \u003CLOQ \u003CLOQ 28.2800",
+        "Confidence": 0.95
+      },
+      "CBD": {
+        "FieldName": "CBD",
+        "Value": 0,
+        "SourceText": "",
+        "Confidence": 0
+      },
+      "CBDA": {
+        "FieldName": "CBDA",
+        "Value": 0.0960,
+        "SourceText": "% 30.2400 \u003CLOQ 0.0960 1.3770 0.1540 \u003CLOQ \u003CLOQ \u003CLOQ 0.3330 \u003CLOQ \u003CLOQ 28.2800",
+        "Confidence": 0.95
+      },
+      "TotalTHC": 25.13,
+      "TotalCBD": 0.08
+    },
+    "Terpenes": {
+      "Terpenes": {
+        "BETA-CARYOPHYLLENE": 0.5701,
+        "D-LIMONENE": 0.5377,
+        "LINALOOL": 0.2971,
+        "BETA-MYRCENE": 0.2029,
+        "ALPHA-HUMULENE": 0.1755,
+        "GUAIOL": 0.1457,
+        "FARNESENE": 0.1062,
+        "BETA-PINENE": 0.0800,
+        "FENCHOL": 0.0613,
+        "ALPHA-TERPINEOL": 0.0572,
+        "ALPHA-PINENE": 0.0482,
+        "BORNEOL": 0.0370,
+        "ALPHA-BISABOLOL": 0.0315,
+        "TERPINOLENE": 0.0213
+      },
+      "TotalTerpenes": 2.37
+    },
+    "Compliance": {
+      "Passed": true,
+      "ContaminantsPassed": true,
+      "Status": "pass"
+    },
+    "Freshness": {
+      "DaysSinceTest": 65,
+      "Score": 70,
+      "Band": "Good"
+    }
+  },
+  "Validation": {
+    "IsValid": true,
+    "Warnings": []
+  },
+  "Score": {
+    "Score": 80,
+    "Tier": "Fire",
+    "Breakdown": {
+      "Potency": 35,
+      "Terpenes": 15,
+      "Freshness": 20,
+      "Compliance": 10
+    }
+  },
+  "Profile": {
+    "DominantTerpene": "BETA-CARYOPHYLLENE",
+    "TopTerpenes": [
+      "BETA-CARYOPHYLLENE",
+      "D-LIMONENE",
+      "LINALOOL"
+    ],
+    "ProfileType": "Mixed",
+    "Lean": "Unknown"
+  }
+}
+{
+  "Coa": {
+    "ProductType": "Flower",
+    "IsAmended": false,
+    "LabName": "Kaycha Labs",
+    "ProductName": "",
+    "BatchId": "",
+    "HarvestDate": "2026-02-02T00:00:00",
+    "TestDate": "2026-02-24T00:00:00",
+    "PackageDate": null,
+    "Cannabinoids": {
+      "THC": {
+        "FieldName": "THC",
+        "Value": 0.3330,
+        "SourceText": "% 30.2400 \u003CLOQ 0.0960 1.3770 0.1540 \u003CLOQ \u003CLOQ \u003CLOQ 0.3330 \u003CLOQ \u003CLOQ 28.2800",
+        "Confidence": 0.95
+      },
+      "THCA": {
+        "FieldName": "THCA",
+        "Value": 28.2800,
+        "SourceText": "% 30.2400 \u003CLOQ 0.0960 1.3770 0.1540 \u003CLOQ \u003CLOQ \u003CLOQ 0.3330 \u003CLOQ \u003CLOQ 28.2800",
+        "Confidence": 0.95
+      },
+      "CBD": {
+        "FieldName": "CBD",
+        "Value": 0,
+        "SourceText": "",
+        "Confidence": 0
+      },
+      "CBDA": {
+        "FieldName": "CBDA",
+        "Value": 0.0960,
+        "SourceText": "% 30.2400 \u003CLOQ 0.0960 1.3770 0.1540 \u003CLOQ \u003CLOQ \u003CLOQ 0.3330 \u003CLOQ \u003CLOQ 28.2800",
+        "Confidence": 0.95
+      },
+      "TotalTHC": 25.13,
+      "TotalCBD": 0.08
+    },
+    "Terpenes": {
+      "Terpenes": {
+        "BETA-CARYOPHYLLENE": 0.5701,
+        "D-LIMONENE": 0.5377,
+        "LINALOOL": 0.2971,
+        "BETA-MYRCENE": 0.2029,
+        "ALPHA-HUMULENE": 0.1755,
+        "GUAIOL": 0.1457,
+        "FARNESENE": 0.1062,
+        "BETA-PINENE": 0.0800,
+        "FENCHOL": 0.0613,
+        "ALPHA-TERPINEOL": 0.0572,
+        "ALPHA-PINENE": 0.0482,
+        "BORNEOL": 0.0370,
+        "ALPHA-BISABOLOL": 0.0315,
+        "TERPINOLENE": 0.0213
+      },
+      "TotalTerpenes": 2.37
+    },
+    "Compliance": {
+      "Passed": true,
+      "ContaminantsPassed": true,
+      "Status": "pass"
+    },
+    "Freshness": {
+      "DaysSinceTest": 65,
+      "Score": 70,
+      "Band": "Good"
+    }
+  },
+  "Validation": {
+    "IsValid": true,
+    "Warnings": []
+  },
+  "Score": {
+    "Score": 80,
+    "Tier": "Fire",
+    "Breakdown": {
+      "Potency": 35,
+      "Terpenes": 15,
+      "Freshness": 20,
+      "Compliance": 10
+    }
+  },
+  "Profile": {
+    "DominantTerpene": "BETA-CARYOPHYLLENE",
+    "TopTerpenes": [
+      "BETA-CARYOPHYLLENE",
+      "D-LIMONENE",
+      "LINALOOL"
+    ],
+    "ProfileType": "Mixed",
+    "Lean": "Unknown"
+  }
+}
+{
+  "Coa": {
+    "ProductType": "Flower",
+    "IsAmended": false,
+    "LabName": "Kaycha Labs",
+    "ProductName": "",
+    "BatchId": "",
+    "HarvestDate": "2026-02-02T00:00:00",
+    "TestDate": "2026-02-24T00:00:00",
+    "PackageDate": null,
+    "Cannabinoids": {
+      "THC": {
+        "FieldName": "THC",
+        "Value": 0.3330,
+        "SourceText": "% 30.2400 \u003CLOQ 0.0960 1.3770 0.1540 \u003CLOQ \u003CLOQ \u003CLOQ 0.3330 \u003CLOQ \u003CLOQ 28.2800",
+        "Confidence": 0.95
+      },
+      "THCA": {
+        "FieldName": "THCA",
+        "Value": 28.2800,
+        "SourceText": "% 30.2400 \u003CLOQ 0.0960 1.3770 0.1540 \u003CLOQ \u003CLOQ \u003CLOQ 0.3330 \u003CLOQ \u003CLOQ 28.2800",
+        "Confidence": 0.95
+      },
+      "CBD": {
+        "FieldName": "CBD",
+        "Value": 0,
+        "SourceText": "",
+        "Confidence": 0
+      },
+      "CBDA": {
+        "FieldName": "CBDA",
+        "Value": 0.0960,
+        "SourceText": "% 30.2400 \u003CLOQ 0.0960 1.3770 0.1540 \u003CLOQ \u003CLOQ \u003CLOQ 0.3330 \u003CLOQ \u003CLOQ 28.2800",
+        "Confidence": 0.95
+      },
+      "TotalTHC": 25.13,
+      "TotalCBD": 0.08
+    },
+    "Terpenes": {
+      "Terpenes": {
+        "BETA-CARYOPHYLLENE": 0.5701,
+        "D-LIMONENE": 0.5377,
+        "LINALOOL": 0.2971,
+        "BETA-MYRCENE": 0.2029,
+        "ALPHA-HUMULENE": 0.1755,
+        "GUAIOL": 0.1457,
+        "FARNESENE": 0.1062,
+        "BETA-PINENE": 0.0800,
+        "FENCHOL": 0.0613,
+        "ALPHA-TERPINEOL": 0.0572,
+        "ALPHA-PINENE": 0.0482,
+        "BORNEOL": 0.0370,
+        "ALPHA-BISABOLOL": 0.0315,
+        "TERPINOLENE": 0.0213
+      },
+      "TotalTerpenes": 2.37
+    },
+    "Compliance": {
+      "Passed": true,
+      "ContaminantsPassed": true,
+      "Status": "pass"
+    },
+    "Freshness": {
+      "DaysSinceTest": 65,
+      "Score": 70,
+      "Band": "Good"
+    }
+  },
+  "Validation": {
+    "IsValid": true,
+    "Warnings": []
+  },
+  "Score": {
+    "Score": 80,
+    "Tier": "Fire",
+    "Breakdown": {
+      "Potency": 35,
+      "Terpenes": 15,
+      "Freshness": 20,
+      "Compliance": 10
+    }
+  },
+  "Profile": {
+    "DominantTerpene": "BETA-CARYOPHYLLENE",
+    "TopTerpenes": [
+      "BETA-CARYOPHYLLENE",
+      "D-LIMONENE",
+      "LINALOOL"
+    ],
+    "ProfileType": "Mixed",
+    "Lean": "Unknown"
+  }
+}
+{
+  "Coa": {
+    "ProductType": "Flower",
+    "IsAmended": false,
+    "LabName": "NV Cann Labs",
+    "ProductName": "",
+    "BatchId": "",
+    "HarvestDate": "2026-01-13T00:00:00",
+    "TestDate": "2026-02-11T00:00:00",
+    "PackageDate": null,
+    "Cannabinoids": {
+      "THC": {
+        "FieldName": "THC",
+        "Value": 1.060,
+        "SourceText": "\u03949-THC 0.083 1.060 10.60",
+        "Confidence": 0.85
+      },
+      "THCA": {
+        "FieldName": "THCA",
+        "Value": 24.545,
+        "SourceText": "THCa 0.083 24.545 245.45",
+        "Confidence": 0.85
+      },
+      "CBD": {
+        "FieldName": "CBD",
+        "Value": 0,
+        "SourceText": "CBD 0.083 \u003CLOQ \u003CLOQ",
+        "Confidence": 0
+      },
+      "CBDA": {
+        "FieldName": "CBDA",
+        "Value": 0,
+        "SourceText": "CBDa 0.083 \u003CLOQ \u003CLOQ \u03B1-Terpinene 0.083 \u003CLOQ \u003CLOQ",
+        "Confidence": 0
+      },
+      "TotalTHC": 22.59,
+      "TotalCBD": 0.00
+    },
+    "Terpenes": {
+      "Terpenes": {
+        "\u03B2-Caryophyllene": 0.7117,
+        "\u03B4-Limonene": 0.5373,
+        "Linalool": 0.3051,
+        "\u03B1-Humulene": 0.2014,
+        "\u03B2-Myrcene": 0.1431,
+        "Farnesene": 0.1328,
+        "\u03B2-Pinene": 0.0714,
+        "\u03B1-Terpineol": 0.0705,
+        "\u03B1-Bisabolol": 0.0658,
+        "\u03B1-Pinene": 0.0463,
+        "Nerolidol": 0.0384,
+        "Caryophyllene Oxide": 0.0141
+      },
+      "TotalTerpenes": 2.34
+    },
+    "Compliance": {
+      "Passed": true,
+      "ContaminantsPassed": true,
+      "Status": "pass"
+    },
+    "Freshness": {
+      "DaysSinceTest": 78,
+      "Score": 70,
+      "Band": "Good"
+    }
+  },
+  "Validation": {
+    "IsValid": true,
+    "Warnings": []
+  },
+  "Score": {
+    "Score": 75,
+    "Tier": "Solid",
+    "Breakdown": {
+      "Potency": 30,
+      "Terpenes": 15,
+      "Freshness": 20,
+      "Compliance": 10
+    }
+  },
+  "Profile": {
+    "DominantTerpene": "\u03B2-Caryophyllene",
+    "TopTerpenes": [
+      "\u03B2-Caryophyllene",
+      "\u03B4-Limonene",
+      "Linalool"
+    ],
+    "ProfileType": "Floral",
+    "Lean": "Unknown"
+  }
+}
+{
+  "Coa": {
+    "ProductType": "Flower",
+    "IsAmended": false,
+    "LabName": "NV Cann Labs",
+    "ProductName": "",
+    "BatchId": "",
+    "HarvestDate": "2026-01-13T00:00:00",
+    "TestDate": "2026-02-11T00:00:00",
+    "PackageDate": null,
+    "Cannabinoids": {
+      "THC": {
+        "FieldName": "THC",
+        "Value": 1.060,
+        "SourceText": "\u03949-THC 0.083 1.060 10.60",
+        "Confidence": 0.85
+      },
+      "THCA": {
+        "FieldName": "THCA",
+        "Value": 24.545,
+        "SourceText": "THCa 0.083 24.545 245.45",
+        "Confidence": 0.85
+      },
+      "CBD": {
+        "FieldName": "CBD",
+        "Value": 0,
+        "SourceText": "CBD 0.083 \u003CLOQ \u003CLOQ",
+        "Confidence": 0
+      },
+      "CBDA": {
+        "FieldName": "CBDA",
+        "Value": 0,
+        "SourceText": "CBDa 0.083 \u003CLOQ \u003CLOQ \u03B1-Terpinene 0.083 \u003CLOQ \u003CLOQ",
+        "Confidence": 0
+      },
+      "TotalTHC": 22.59,
+      "TotalCBD": 0.00
+    },
+    "Terpenes": {
+      "Terpenes": {
+        "\u03B2-Caryophyllene": 0.7117,
+        "\u03B4-Limonene": 0.5373,
+        "Linalool": 0.3051,
+        "\u03B1-Humulene": 0.2014,
+        "\u03B2-Myrcene": 0.1431,
+        "Farnesene": 0.1328,
+        "\u03B2-Pinene": 0.0714,
+        "\u03B1-Terpineol": 0.0705,
+        "\u03B1-Bisabolol": 0.0658,
+        "\u03B1-Pinene": 0.0463,
+        "Nerolidol": 0.0384,
+        "Caryophyllene Oxide": 0.0141
+      },
+      "TotalTerpenes": 2.34
+    },
+    "Compliance": {
+      "Passed": true,
+      "ContaminantsPassed": true,
+      "Status": "pass"
+    },
+    "Freshness": {
+      "DaysSinceTest": 78,
+      "Score": 70,
+      "Band": "Good"
+    }
+  },
+  "Validation": {
+    "IsValid": true,
+    "Warnings": []
+  },
+  "Score": {
+    "Score": 75,
+    "Tier": "Solid",
+    "Breakdown": {
+      "Potency": 30,
+      "Terpenes": 15,
+      "Freshness": 20,
+      "Compliance": 10
+    }
+  },
+  "Profile": {
+    "DominantTerpene": "\u03B2-Caryophyllene",
+    "TopTerpenes": [
+      "\u03B2-Caryophyllene",
+      "\u03B4-Limonene",
+      "Linalool"
+    ],
+    "ProfileType": "Floral",
+    "Lean": "Unknown"
+  }
+}
+{
+  "Coa": {
+    "ProductType": "Flower",
+    "IsAmended": false,
+    "LabName": "NV Cann Labs",
+    "ProductName": "",
+    "BatchId": "",
+    "HarvestDate": "2026-03-24T00:00:00",
+    "TestDate": "2026-04-10T00:00:00",
+    "PackageDate": null,
+    "Cannabinoids": {
+      "THC": {
+        "FieldName": "THC",
+        "Value": 1.192,
+        "SourceText": "\u03949-THC 0.083 1.192 11.92",
+        "Confidence": 0.85
+      },
+      "THCA": {
+        "FieldName": "THCA",
+        "Value": 31.232,
+        "SourceText": "THCa 0.083 31.232 312.32",
+        "Confidence": 0.85
+      },
+      "CBD": {
+        "FieldName": "CBD",
+        "Value": 0,
+        "SourceText": "CBD 0.083 \u003CLOQ \u003CLOQ",
+        "Confidence": 0
+      },
+      "CBDA": {
+        "FieldName": "CBDA",
+        "Value": 0,
+        "SourceText": "CBDa 0.083 \u003CLOQ \u003CLOQ \u03B1-Bisabolol 0.083 \u003CLOQ \u003CLOQ",
+        "Confidence": 0
+      },
+      "TotalTHC": 28.58,
+      "TotalCBD": 0.00
+    },
+    "Terpenes": {
+      "Terpenes": {
+        "\u03B2-Myrcene": 0.7768,
+        "\u03B2-Caryophyllene": 0.5761,
+        "\u03B4-Limonene": 0.5363,
+        "\u03B1-Humulene": 0.2326,
+        "Linalool": 0.2149,
+        "Guaiol": 0.1664,
+        "Farnesene": 0.1598,
+        "\u03B2-Pinene": 0.0876,
+        "\u03B1-Pinene": 0.0578,
+        "\u03B1-Terpineol": 0.0510,
+        "Caryophyllene Oxide": 0.0395,
+        "Camphene": 0.0247
+      },
+      "TotalTerpenes": 2.92
+    },
+    "Compliance": {
+      "Passed": true,
+      "ContaminantsPassed": true,
+      "Status": "pass"
+    },
+    "Freshness": {
+      "DaysSinceTest": 20,
+      "Score": 100,
+      "Band": "Excellent"
+    }
+  },
+  "Validation": {
+    "IsValid": true,
+    "Warnings": []
+  },
+  "Score": {
+    "Score": 90,
+    "Tier": "God Tier",
+    "Breakdown": {
+      "Potency": 35,
+      "Terpenes": 20,
+      "Freshness": 25,
+      "Compliance": 10
+    }
+  },
+  "Profile": {
+    "DominantTerpene": "\u03B2-Myrcene",
+    "TopTerpenes": [
+      "\u03B2-Myrcene",
+      "\u03B2-Caryophyllene",
+      "\u03B4-Limonene"
+    ],
+    "ProfileType": "Floral",
+    "Lean": "Unknown"
+  }
+}
+{
+  "Coa": {
+    "ProductType": "Flower",
+    "IsAmended": false,
+    "LabName": "NV Cann Labs",
+    "ProductName": "",
+    "BatchId": "",
+    "HarvestDate": "2026-03-24T00:00:00",
+    "TestDate": "2026-04-10T00:00:00",
+    "PackageDate": null,
+    "Cannabinoids": {
+      "THC": {
+        "FieldName": "THC",
+        "Value": 0.819,
+        "SourceText": "\u03949-THC 0.083 0.819 8.19",
+        "Confidence": 0.85
+      },
+      "THCA": {
+        "FieldName": "THCA",
+        "Value": 25.971,
+        "SourceText": "THCa 0.083 25.971 259.71",
+        "Confidence": 0.85
+      },
+      "CBD": {
+        "FieldName": "CBD",
+        "Value": 0,
+        "SourceText": "CBD 0.083 \u003CLOQ \u003CLOQ",
+        "Confidence": 0
+      },
+      "CBDA": {
+        "FieldName": "CBDA",
+        "Value": 0,
+        "SourceText": "CBDa 0.083 \u003CLOQ \u003CLOQ Camphene 0.083 0.226 0.0226",
+        "Confidence": 0
+      },
+      "TotalTHC": 23.60,
+      "TotalCBD": 0.00
+    },
+    "Terpenes": {
+      "Terpenes": {
+        "\u03B2-Caryophyllene": 0.7426,
+        "\u03B4-Limonene": 0.5016,
+        "Linalool": 0.3173,
+        "\u03B1-Humulene": 0.2217,
+        "Guaiol": 0.1707,
+        "Farnesene": 0.1514,
+        "\u03B2-Myrcene": 0.1087,
+        "Nerolidol": 0.0841,
+        "\u03B2-Pinene": 0.0724,
+        "\u03B1-Terpineol": 0.0600,
+        "\u03B1-Pinene": 0.0520,
+        "Caryophyllene Oxide": 0.0352,
+        "Camphene": 0.0226
+      },
+      "TotalTerpenes": 2.54
+    },
+    "Compliance": {
+      "Passed": true,
+      "ContaminantsPassed": true,
+      "Status": "pass"
+    },
+    "Freshness": {
+      "DaysSinceTest": 20,
+      "Score": 100,
+      "Band": "Excellent"
+    }
+  },
+  "Validation": {
+    "IsValid": true,
+    "Warnings": []
+  },
+  "Score": {
+    "Score": 85,
+    "Tier": "Fire",
+    "Breakdown": {
+      "Potency": 30,
+      "Terpenes": 20,
+      "Freshness": 25,
+      "Compliance": 10
+    }
+  },
+  "Profile": {
+    "DominantTerpene": "\u03B2-Caryophyllene",
+    "TopTerpenes": [
+      "\u03B2-Caryophyllene",
+      "\u03B4-Limonene",
+      "Linalool"
+    ],
+    "ProfileType": "Floral",
+    "Lean": "Unknown"
+  }
+}
+{
+  "Coa": {
+    "ProductType": "Flower",
+    "IsAmended": false,
+    "LabName": "NV Cann Labs",
+    "ProductName": "",
+    "BatchId": "",
+    "HarvestDate": "2026-03-24T00:00:00",
+    "TestDate": "2026-04-10T00:00:00",
+    "PackageDate": null,
+    "Cannabinoids": {
+      "THC": {
+        "FieldName": "THC",
+        "Value": 1.020,
+        "SourceText": "\u03949-THC 0.083 1.020 10.20",
+        "Confidence": 0.85
+      },
+      "THCA": {
+        "FieldName": "THCA",
+        "Value": 26.493,
+        "SourceText": "THCa 0.083 26.493 264.93",
+        "Confidence": 0.85
+      },
+      "CBD": {
+        "FieldName": "CBD",
+        "Value": 0,
+        "SourceText": "CBD 0.083 \u003CLOQ \u003CLOQ",
+        "Confidence": 0
+      },
+      "CBDA": {
+        "FieldName": "CBDA",
+        "Value": 0,
+        "SourceText": "CBDa 0.083 \u003CLOQ \u003CLOQ Camphene 0.083 0.212 0.0212",
+        "Confidence": 0
+      },
+      "TotalTHC": 24.25,
+      "TotalCBD": 0.00
+    },
+    "Terpenes": {
+      "Terpenes": {
+        "\u03B2-Caryophyllene": 0.7564,
+        "\u03B4-Limonene": 0.4455,
+        "Linalool": 0.3194,
+        "\u03B1-Humulene": 0.2242,
+        "Guaiol": 0.1700,
+        "Farnesene": 0.1608,
+        "\u03B2-Myrcene": 0.1073,
+        "Nerolidol": 0.0835,
+        "\u03B2-Pinene": 0.0648,
+        "\u03B1-Terpineol": 0.0593,
+        "\u03B1-Pinene": 0.0459,
+        "Caryophyllene Oxide": 0.0345,
+        "Camphene": 0.0212
+      },
+      "TotalTerpenes": 2.49
+    },
+    "Compliance": {
+      "Passed": true,
+      "ContaminantsPassed": true,
+      "Status": "pass"
+    },
+    "Freshness": {
+      "DaysSinceTest": 20,
+      "Score": 100,
+      "Band": "Excellent"
+    }
+  },
+  "Validation": {
+    "IsValid": true,
+    "Warnings": []
+  },
+  "Score": {
+    "Score": 80,
+    "Tier": "Fire",
+    "Breakdown": {
+      "Potency": 30,
+      "Terpenes": 15,
+      "Freshness": 25,
+      "Compliance": 10
+    }
+  },
+  "Profile": {
+    "DominantTerpene": "\u03B2-Caryophyllene",
+    "TopTerpenes": [
+      "\u03B2-Caryophyllene",
+      "\u03B4-Limonene",
+      "Linalool"
+    ],
+    "ProfileType": "Floral",
+    "Lean": "Unknown"
+  }
+}
+{
+  "Coa": {
+    "ProductType": "Edible",
+    "IsAmended": false,
+    "LabName": "374 Labs",
+    "ProductName": "",
+    "BatchId": "",
+    "HarvestDate": "2026-02-26T00:00:00",
+    "TestDate": "2026-03-02T00:00:00",
+    "PackageDate": null,
+    "Cannabinoids": {
+      "THC": {
+        "FieldName": "THC",
+        "Value": 9.69,
+        "SourceText": "\u03949-THC 0.38 9.69 2.55",
+        "Confidence": 0.95
+      },
+      "THCA": {
+        "FieldName": "THCA",
+        "Value": 0,
+        "SourceText": "THCa 0.38 \u003CLOQ \u003CLOQ \u03B1-Bisabolol 0.05 \u003CLOQ \u003CLOQ",
+        "Confidence": 0
+      },
+      "CBD": {
+        "FieldName": "CBD",
+        "Value": 0,
+        "SourceText": "CBD 0.38 \u003CLOQ \u003CLOQ \u03B2-Myrcene 0.05 \u003CLOQ \u003CLOQ",
+        "Confidence": 0
+      },
+      "CBDA": {
+        "FieldName": "CBDA",
+        "Value": 0,
+        "SourceText": "CBDa 0.38 \u003CLOQ \u003CLOQ \u03B2-Pinene 0.05 \u003CLOQ \u003CLOQ",
+        "Confidence": 0
+      },
+      "TotalTHC": 9.69,
+      "TotalCBD": 0.00
+    },
+    "Terpenes": {
+      "Terpenes": {},
+      "TotalTerpenes": 0
+    },
+    "Compliance": {
+      "Passed": false,
+      "ContaminantsPassed": null,
+      "Status": "unknown"
+    },
+    "Freshness": {
+      "DaysSinceTest": 59,
+      "Score": 85,
+      "Band": "Good"
+    }
+  },
+  "Validation": {
+    "IsValid": true,
+    "Warnings": []
+  },
+  "Score": {
+    "Score": 30,
+    "Tier": "Skip",
+    "Breakdown": {
+      "Potency": 5,
+      "Terpenes": 5,
+      "Freshness": 20,
+      "Compliance": 0
+    }
+  },
+  "Profile": {
+    "DominantTerpene": "",
+    "TopTerpenes": [],
+    "ProfileType": "Unknown",
+    "Lean": "Unknown"
+  }
+}
+{
+  "Coa": {
+    "ProductType": "Flower",
+    "IsAmended": false,
+    "LabName": "Kaycha Labs",
+    "ProductName": "",
+    "BatchId": "",
+    "HarvestDate": "2025-11-18T00:00:00",
+    "TestDate": "2025-12-14T00:00:00",
+    "PackageDate": null,
+    "Cannabinoids": {
+      "THC": {
+        "FieldName": "THC",
+        "Value": 0.7190,
+        "SourceText": "% 37.8950 \u003CLOQ 0.0830 0.6960 0.1540 \u003CLOQ \u003CLOQ \u003CLOQ 0.7190 \u003CLOQ \u003CLOQ 36.2430",
+        "Confidence": 0.95
+      },
+      "THCA": {
+        "FieldName": "THCA",
+        "Value": 36.2430,
+        "SourceText": "% 37.8950 \u003CLOQ 0.0830 0.6960 0.1540 \u003CLOQ \u003CLOQ \u003CLOQ 0.7190 \u003CLOQ \u003CLOQ 36.2430",
+        "Confidence": 0.95
+      },
+      "CBD": {
+        "FieldName": "CBD",
+        "Value": 0,
+        "SourceText": "",
+        "Confidence": 0
+      },
+      "CBDA": {
+        "FieldName": "CBDA",
+        "Value": 0.0830,
+        "SourceText": "% 37.8950 \u003CLOQ 0.0830 0.6960 0.1540 \u003CLOQ \u003CLOQ \u003CLOQ 0.7190 \u003CLOQ \u003CLOQ 36.2430",
+        "Confidence": 0.95
+      },
+      "TotalTHC": 32.50,
+      "TotalCBD": 0.07
+    },
+    "Terpenes": {
+      "Terpenes": {
+        "D-LIMONENE": 0.9384,
+        "BETA-MYRCENE": 0.3445,
+        "LINALOOL": 0.3229,
+        "ALPHA-PINENE": 0.3186,
+        "BETA-PINENE": 0.2245,
+        "BETA-CARYOPHYLLENE": 0.2219,
+        "ALPHA-TERPINEOL": 0.1065,
+        "FENCHOL": 0.1024,
+        "BORNEOL": 0.1008,
+        "ALPHA-HUMULENE": 0.0997,
+        "ALPHA-BISABOLOL": 0.0891,
+        "FARNESENE": 0.0632,
+        "OCIMENE": 0.0596,
+        "TERPINOLENE": 0.0547,
+        "CAMPHENE": 0.0515,
+        "SABINENE HYDRATE": 0.0423,
+        "FENCHONE": 0.0377,
+        "GAMMA-TERPINENE": 0.0376,
+        "EUCALYPTOL": 0.0337
+      },
+      "TotalTerpenes": 3.25
+    },
+    "Compliance": {
+      "Passed": true,
+      "ContaminantsPassed": true,
+      "Status": "pass"
+    },
+    "Freshness": {
+      "DaysSinceTest": 137,
+      "Score": 30,
+      "Band": "Aging"
+    }
+  },
+  "Validation": {
+    "IsValid": true,
+    "Warnings": []
+  },
+  "Score": {
+    "Score": 80,
+    "Tier": "Fire",
+    "Breakdown": {
+      "Potency": 40,
+      "Terpenes": 20,
+      "Freshness": 10,
+      "Compliance": 10
+    }
+  },
+  "Profile": {
+    "DominantTerpene": "D-LIMONENE",
+    "TopTerpenes": [
+      "D-LIMONENE",
+      "BETA-MYRCENE",
+      "LINALOOL"
+    ],
+    "ProfileType": "Mixed",
+    "Lean": "Unknown"
+  }
+}
+{
+  "Coa": {
+    "ProductType": "Flower",
+    "IsAmended": false,
+    "LabName": "Kaycha Labs",
+    "ProductName": "",
+    "BatchId": "",
+    "HarvestDate": "2025-05-13T00:00:00",
+    "TestDate": "2025-06-11T00:00:00",
+    "PackageDate": null,
+    "Cannabinoids": {
+      "THC": {
+        "FieldName": "THC",
+        "Value": 0.6618,
+        "SourceText": "% 28.6618 \u003CLOQ \u003CLOQ 1.1626 0.1067 \u003CLOQ \u003CLOQ \u003CLOQ 0.6618 \u003CLOQ 0.0537 26.6770",
+        "Confidence": 0.95
+      },
+      "THCA": {
+        "FieldName": "THCA",
+        "Value": 26.6770,
+        "SourceText": "% 28.6618 \u003CLOQ \u003CLOQ 1.1626 0.1067 \u003CLOQ \u003CLOQ \u003CLOQ 0.6618 \u003CLOQ 0.0537 26.6770",
+        "Confidence": 0.95
+      },
+      "CBD": {
+        "FieldName": "CBD",
+        "Value": 0,
+        "SourceText": "",
+        "Confidence": 0
+      },
+      "CBDA": {
+        "FieldName": "CBDA",
+        "Value": 0,
+        "SourceText": "",
+        "Confidence": 0
+      },
+      "TotalTHC": 24.06,
+      "TotalCBD": 0.00
+    },
+    "Terpenes": {
+      "Terpenes": {
+        "BETA-CARYOPHYLLENE": 0.4339,
+        "BETA-MYRCENE": 0.3872,
+        "D-LIMONENE": 0.2352,
+        "ALPHA-HUMULENE": 0.1689,
+        "LINALOOL": 0.1332,
+        "ALPHA-BISABOLOL": 0.0910,
+        "BETA-PINENE": 0.0467,
+        "FARNESENE": 0.0313,
+        "FENCHOL": 0.0309,
+        "ALPHA-TERPINEOL": 0.0274,
+        "ALPHA-PINENE": 0.0255
+      },
+      "TotalTerpenes": 1.61
+    },
+    "Compliance": {
+      "Passed": true,
+      "ContaminantsPassed": true,
+      "Status": "pass"
+    },
+    "Freshness": {
+      "DaysSinceTest": 323,
+      "Score": 10,
+      "Band": "Old"
+    }
+  },
+  "Validation": {
+    "IsValid": true,
+    "Warnings": []
+  },
+  "Score": {
+    "Score": 60,
+    "Tier": "Mid",
+    "Breakdown": {
+      "Potency": 30,
+      "Terpenes": 15,
+      "Freshness": 5,
+      "Compliance": 10
+    }
+  },
+  "Profile": {
+    "DominantTerpene": "BETA-CARYOPHYLLENE",
+    "TopTerpenes": [
+      "BETA-CARYOPHYLLENE",
+      "BETA-MYRCENE",
+      "D-LIMONENE"
+    ],
+    "ProfileType": "Mixed",
+    "Lean": "Unknown"
+  }
+}
+{
+  "Coa": {
+    "ProductType": "Flower",
+    "IsAmended": false,
+    "LabName": "Kaycha Labs",
+    "ProductName": "",
+    "BatchId": "",
+    "HarvestDate": "2025-10-21T00:00:00",
+    "TestDate": "2025-12-08T00:00:00",
+    "PackageDate": null,
+    "Cannabinoids": {
+      "THC": {
+        "FieldName": "THC",
+        "Value": 0.6380,
+        "SourceText": "% 35.0410 \u003CLOQ 0.0540 0.6730 0.1110 \u003CLOQ \u003CLOQ \u003CLOQ 0.6380 \u003CLOQ \u003CLOQ 33.5650",
+        "Confidence": 0.95
+      },
+      "THCA": {
+        "FieldName": "THCA",
+        "Value": 33.5650,
+        "SourceText": "% 35.0410 \u003CLOQ 0.0540 0.6730 0.1110 \u003CLOQ \u003CLOQ \u003CLOQ 0.6380 \u003CLOQ \u003CLOQ 33.5650",
+        "Confidence": 0.95
+      },
+      "CBD": {
+        "FieldName": "CBD",
+        "Value": 0,
+        "SourceText": "",
+        "Confidence": 0
+      },
+      "CBDA": {
+        "FieldName": "CBDA",
+        "Value": 0.0540,
+        "SourceText": "% 35.0410 \u003CLOQ 0.0540 0.6730 0.1110 \u003CLOQ \u003CLOQ \u003CLOQ 0.6380 \u003CLOQ \u003CLOQ 33.5650",
+        "Confidence": 0.95
+      },
+      "TotalTHC": 30.07,
+      "TotalCBD": 0.05
+    },
+    "Terpenes": {
+      "Terpenes": {
+        "D-LIMONENE": 0.7147,
+        "BETA-MYRCENE": 0.4757,
+        "BETA-CARYOPHYLLENE": 0.3597,
+        "ALPHA-HUMULENE": 0.1765,
+        "BETA-PINENE": 0.1583,
+        "LINALOOL": 0.1507,
+        "FENCHOL": 0.1260,
+        "BORNEOL": 0.1130,
+        "ALPHA-TERPINEOL": 0.1119,
+        "ALPHA-PINENE": 0.1058,
+        "ALPHA-BISABOLOL": 0.0948,
+        "FARNESENE": 0.0563,
+        "CAMPHENE": 0.0542,
+        "TERPINOLENE": 0.0530,
+        "CARYOPHYLLENE OXIDE": 0.0320,
+        "FENCHONE": 0.0291
+      },
+      "TotalTerpenes": 2.81
+    },
+    "Compliance": {
+      "Passed": true,
+      "ContaminantsPassed": true,
+      "Status": "pass"
+    },
+    "Freshness": {
+      "DaysSinceTest": 143,
+      "Score": 30,
+      "Band": "Aging"
+    }
+  },
+  "Validation": {
+    "IsValid": true,
+    "Warnings": []
+  },
+  "Score": {
+    "Score": 80,
+    "Tier": "Fire",
+    "Breakdown": {
+      "Potency": 40,
+      "Terpenes": 20,
+      "Freshness": 10,
+      "Compliance": 10
+    }
+  },
+  "Profile": {
+    "DominantTerpene": "D-LIMONENE",
+    "TopTerpenes": [
+      "D-LIMONENE",
+      "BETA-MYRCENE",
+      "BETA-CARYOPHYLLENE"
+    ],
+    "ProfileType": "Mixed",
+    "Lean": "Unknown"
+  }
+}
+{
+  "Coa": {
+    "ProductType": "Flower",
+    "IsAmended": false,
+    "LabName": "Kaycha Labs",
+    "ProductName": "",
+    "BatchId": "",
+    "HarvestDate": "2026-01-21T00:00:00",
+    "TestDate": "2026-02-11T00:00:00",
+    "PackageDate": null,
+    "Cannabinoids": {
+      "THC": {
+        "FieldName": "THC",
+        "Value": 0.1630,
+        "SourceText": "% 20.0190 \u003CLOQ 0.0720 0.4970 0.0770 \u003CLOQ \u003CLOQ \u003CLOQ 0.1630 \u003CLOQ \u003CLOQ 19.2100",
+        "Confidence": 0.95
+      },
+      "THCA": {
+        "FieldName": "THCA",
+        "Value": 19.2100,
+        "SourceText": "% 20.0190 \u003CLOQ 0.0720 0.4970 0.0770 \u003CLOQ \u003CLOQ \u003CLOQ 0.1630 \u003CLOQ \u003CLOQ 19.2100",
+        "Confidence": 0.95
+      },
+      "CBD": {
+        "FieldName": "CBD",
+        "Value": 0,
+        "SourceText": "",
+        "Confidence": 0
+      },
+      "CBDA": {
+        "FieldName": "CBDA",
+        "Value": 0.0720,
+        "SourceText": "% 20.0190 \u003CLOQ 0.0720 0.4970 0.0770 \u003CLOQ \u003CLOQ \u003CLOQ 0.1630 \u003CLOQ \u003CLOQ 19.2100",
+        "Confidence": 0.95
+      },
+      "TotalTHC": 17.01,
+      "TotalCBD": 0.06
+    },
+    "Terpenes": {
+      "Terpenes": {
+        "D-LIMONENE": 0.6345,
+        "BETA-MYRCENE": 0.2918,
+        "BETA-CARYOPHYLLENE": 0.2819,
+        "ALPHA-HUMULENE": 0.1450,
+        "LINALOOL": 0.1338,
+        "BETA-PINENE": 0.1301,
+        "FENCHOL": 0.1034,
+        "ALPHA-TERPINEOL": 0.0946,
+        "ALPHA-BISABOLOL": 0.0891,
+        "ALPHA-PINENE": 0.0872,
+        "BORNEOL": 0.0679,
+        "FARNESENE": 0.0533,
+        "TERPINOLENE": 0.0434,
+        "CAMPHENE": 0.0424,
+        "CARYOPHYLLENE OXIDE": 0.0343,
+        "GAMMA-TERPINENE": 0.0333
+      },
+      "TotalTerpenes": 2.27
+    },
+    "Compliance": {
+      "Passed": true,
+      "ContaminantsPassed": true,
+      "Status": "pass"
+    },
+    "Freshness": {
+      "DaysSinceTest": 78,
+      "Score": 70,
+      "Band": "Good"
+    }
+  },
+  "Validation": {
+    "IsValid": true,
+    "Warnings": []
+  },
+  "Score": {
+    "Score": 65,
+    "Tier": "Mid",
+    "Breakdown": {
+      "Potency": 20,
+      "Terpenes": 15,
+      "Freshness": 20,
+      "Compliance": 10
+    }
+  },
+  "Profile": {
+    "DominantTerpene": "D-LIMONENE",
+    "TopTerpenes": [
+      "D-LIMONENE",
+      "BETA-MYRCENE",
+      "BETA-CARYOPHYLLENE"
+    ],
+    "ProfileType": "Mixed",
+    "Lean": "Unknown"
+  }
+}
+{
+  "Coa": {
+    "ProductType": "Flower",
+    "IsAmended": false,
+    "LabName": "Kaycha Labs",
+    "ProductName": "",
+    "BatchId": "",
+    "HarvestDate": "2026-01-06T00:00:00",
+    "TestDate": "2026-02-11T00:00:00",
+    "PackageDate": null,
+    "Cannabinoids": {
+      "THC": {
+        "FieldName": "THC",
+        "Value": 0.5630,
+        "SourceText": "% 23.2440 \u003CLOQ 0.0660 0.8200 0.0620 \u003CLOQ \u003CLOQ \u003CLOQ 0.5630 \u003CLOQ \u003CLOQ 21.7330",
+        "Confidence": 0.95
+      },
+      "THCA": {
+        "FieldName": "THCA",
+        "Value": 21.7330,
+        "SourceText": "% 23.2440 \u003CLOQ 0.0660 0.8200 0.0620 \u003CLOQ \u003CLOQ \u003CLOQ 0.5630 \u003CLOQ \u003CLOQ 21.7330",
+        "Confidence": 0.95
+      },
+      "CBD": {
+        "FieldName": "CBD",
+        "Value": 0,
+        "SourceText": "",
+        "Confidence": 0
+      },
+      "CBDA": {
+        "FieldName": "CBDA",
+        "Value": 0.0660,
+        "SourceText": "% 23.2440 \u003CLOQ 0.0660 0.8200 0.0620 \u003CLOQ \u003CLOQ \u003CLOQ 0.5630 \u003CLOQ \u003CLOQ 21.7330",
+        "Confidence": 0.95
+      },
+      "TotalTHC": 19.62,
+      "TotalCBD": 0.06
+    },
+    "Terpenes": {
+      "Terpenes": {
+        "BETA-CARYOPHYLLENE": 0.5805,
+        "BETA-MYRCENE": 0.3686,
+        "D-LIMONENE": 0.3531,
+        "LINALOOL": 0.3246,
+        "ALPHA-HUMULENE": 0.2595,
+        "ALPHA-BISABOLOL": 0.1162,
+        "BETA-PINENE": 0.0873,
+        "FENCHOL": 0.0763,
+        "ALPHA-TERPINEOL": 0.0720,
+        "BORNEOL": 0.0672,
+        "ALPHA-PINENE": 0.0604,
+        "FARNESENE": 0.0561,
+        "CARYOPHYLLENE OXIDE": 0.0431,
+        "TERPINOLENE": 0.0425,
+        "CAMPHENE": 0.0336
+      },
+      "TotalTerpenes": 2.54
+    },
+    "Compliance": {
+      "Passed": true,
+      "ContaminantsPassed": true,
+      "Status": "pass"
+    },
+    "Freshness": {
+      "DaysSinceTest": 78,
+      "Score": 70,
+      "Band": "Good"
+    }
+  },
+  "Validation": {
+    "IsValid": true,
+    "Warnings": []
+  },
+  "Score": {
+    "Score": 70,
+    "Tier": "Solid",
+    "Breakdown": {
+      "Potency": 20,
+      "Terpenes": 20,
+      "Freshness": 20,
+      "Compliance": 10
+    }
+  },
+  "Profile": {
+    "DominantTerpene": "BETA-CARYOPHYLLENE",
+    "TopTerpenes": [
+      "BETA-CARYOPHYLLENE",
+      "BETA-MYRCENE",
+      "D-LIMONENE"
+    ],
+    "ProfileType": "Mixed",
+    "Lean": "Unknown"
+  }
+}
+{
+  "Coa": {
+    "ProductType": "Edible",
+    "IsAmended": false,
+    "LabName": "Kaycha Labs",
+    "ProductName": "",
+    "BatchId": "",
+    "HarvestDate": "2025-12-21T00:00:00",
+    "TestDate": "2026-01-16T00:00:00",
+    "PackageDate": null,
+    "Cannabinoids": {
+      "THC": {
+        "FieldName": "THC",
+        "Value": 0.4100,
+        "SourceText": "% 26.9200 \u003CLOQ 0.0360 0.6200 0.0850 \u003CLOQ \u003CLOQ \u003CLOQ 0.4100 \u003CLOQ \u003CLOQ 25.7690",
+        "Confidence": 0.95
+      },
+      "THCA": {
+        "FieldName": "THCA",
+        "Value": 25.7690,
+        "SourceText": "% 26.9200 \u003CLOQ 0.0360 0.6200 0.0850 \u003CLOQ \u003CLOQ \u003CLOQ 0.4100 \u003CLOQ \u003CLOQ 25.7690",
+        "Confidence": 0.95
+      },
+      "CBD": {
+        "FieldName": "CBD",
+        "Value": 0,
+        "SourceText": "",
+        "Confidence": 0
+      },
+      "CBDA": {
+        "FieldName": "CBDA",
+        "Value": 0.0360,
+        "SourceText": "% 26.9200 \u003CLOQ 0.0360 0.6200 0.0850 \u003CLOQ \u003CLOQ \u003CLOQ 0.4100 \u003CLOQ \u003CLOQ 25.7690",
+        "Confidence": 0.95
+      },
+      "TotalTHC": 23.01,
+      "TotalCBD": 0.03
+    },
+    "Terpenes": {
+      "Terpenes": {
+        "D-LIMONENE": 0.5974,
+        "BETA-MYRCENE": 0.3696,
+        "BETA-CARYOPHYLLENE": 0.3115,
+        "ALPHA-HUMULENE": 0.1587,
+        "BETA-PINENE": 0.1394,
+        "LINALOOL": 0.1370,
+        "FENCHOL": 0.1011,
+        "ALPHA-TERPINEOL": 0.0995,
+        "ALPHA-PINENE": 0.0885,
+        "BORNEOL": 0.0608,
+        "ALPHA-BISABOLOL": 0.0588,
+        "CAMPHENE": 0.0456,
+        "SABINENE HYDRATE": 0.0399,
+        "TERPINOLENE": 0.0394,
+        "FARNESENE": 0.0345,
+        "FENCHONE": 0.0249
+      },
+      "TotalTerpenes": 2.31
+    },
+    "Compliance": {
+      "Passed": true,
+      "ContaminantsPassed": true,
+      "Status": "pass"
+    },
+    "Freshness": {
+      "DaysSinceTest": 104,
+      "Score": 50,
+      "Band": "Aging"
+    }
+  },
+  "Validation": {
+    "IsValid": true,
+    "Warnings": []
+  },
+  "Score": {
+    "Score": 70,
+    "Tier": "Solid",
+    "Breakdown": {
+      "Potency": 30,
+      "Terpenes": 15,
+      "Freshness": 15,
+      "Compliance": 10
+    }
+  },
+  "Profile": {
+    "DominantTerpene": "D-LIMONENE",
+    "TopTerpenes": [
+      "D-LIMONENE",
+      "BETA-MYRCENE",
+      "BETA-CARYOPHYLLENE"
+    ],
+    "ProfileType": "Mixed",
+    "Lean": "Unknown"
+  }
+}
+{
+  "Coa": {
+    "ProductType": "Edible",
+    "IsAmended": true,
+    "LabName": "Kaycha Labs",
+    "ProductName": "",
+    "BatchId": "",
+    "HarvestDate": null,
+    "TestDate": "2026-02-23T00:00:00",
+    "PackageDate": null,
+    "Cannabinoids": {
+      "THC": {
+        "FieldName": "THC",
+        "Value": 0.6650,
+        "SourceText": "% 31.7870 \u003CLOQ 0.0860 1.6680 0.1270 \u003CLOQ \u003CLOQ \u003CLOQ 0.6650 \u003CLOQ \u003CLOQ 29.2410",
+        "Confidence": 0.95
+      },
+      "THCA": {
+        "FieldName": "THCA",
+        "Value": 29.2410,
+        "SourceText": "% 31.7870 \u003CLOQ 0.0860 1.6680 0.1270 \u003CLOQ \u003CLOQ \u003CLOQ 0.6650 \u003CLOQ \u003CLOQ 29.2410",
+        "Confidence": 0.95
+      },
+      "CBD": {
+        "FieldName": "CBD",
+        "Value": 0,
+        "SourceText": "",
+        "Confidence": 0
+      },
+      "CBDA": {
+        "FieldName": "CBDA",
+        "Value": 0.0860,
+        "SourceText": "% 31.7870 \u003CLOQ 0.0860 1.6680 0.1270 \u003CLOQ \u003CLOQ \u003CLOQ 0.6650 \u003CLOQ \u003CLOQ 29.2410",
+        "Confidence": 0.95
+      },
+      "TotalTHC": 26.31,
+      "TotalCBD": 0.08
+    },
+    "Terpenes": {
+      "Terpenes": {
+        "BETA-MYRCENE": 0.5165,
+        "BETA-CARYOPHYLLENE": 0.3741,
+        "ALPHA-PINENE": 0.3140,
+        "LINALOOL": 0.2129,
+        "D-LIMONENE": 0.2096,
+        "BETA-PINENE": 0.1602,
+        "ALPHA-HUMULENE": 0.1460,
+        "ALPHA-BISABOLOL": 0.0848,
+        "GUAIOL": 0.0549,
+        "FARNESENE": 0.0415,
+        "FENCHOL": 0.0387,
+        "ALPHA-TERPINEOL": 0.0374,
+        "BORNEOL": 0.0320,
+        "CARYOPHYLLENE OXIDE": 0.0251
+      },
+      "TotalTerpenes": 2.25
+    },
+    "Compliance": {
+      "Passed": true,
+      "ContaminantsPassed": true,
+      "Status": "pass"
+    },
+    "Freshness": {
+      "DaysSinceTest": 66,
+      "Score": 70,
+      "Band": "Good"
+    }
+  },
+  "Validation": {
+    "IsValid": false,
+    "Warnings": [
+      {
+        "Code": "AMENDED_COA",
+        "Message": "COA is marked as amended, revised, or corrected.",
+        "Severity": "warning"
+      }
+    ]
+  },
+  "Score": {
+    "Score": 80,
+    "Tier": "Fire",
+    "Breakdown": {
+      "Potency": 35,
+      "Terpenes": 15,
+      "Freshness": 20,
+      "Compliance": 10
+    }
+  },
+  "Profile": {
+    "DominantTerpene": "BETA-MYRCENE",
+    "TopTerpenes": [
+      "BETA-MYRCENE",
+      "BETA-CARYOPHYLLENE",
+      "ALPHA-PINENE"
+    ],
+    "ProfileType": "Mixed",
+    "Lean": "Unknown"
+  }
+}
+{
+  "Coa": {
+    "ProductType": "Edible",
+    "IsAmended": true,
+    "LabName": "Kaycha Labs",
+    "ProductName": "",
+    "BatchId": "",
+    "HarvestDate": null,
+    "TestDate": "2026-02-23T00:00:00",
+    "PackageDate": null,
+    "Cannabinoids": {
+      "THC": {
+        "FieldName": "THC",
+        "Value": 0.6650,
+        "SourceText": "% 31.7870 \u003CLOQ 0.0860 1.6680 0.1270 \u003CLOQ \u003CLOQ \u003CLOQ 0.6650 \u003CLOQ \u003CLOQ 29.2410",
+        "Confidence": 0.95
+      },
+      "THCA": {
+        "FieldName": "THCA",
+        "Value": 29.2410,
+        "SourceText": "% 31.7870 \u003CLOQ 0.0860 1.6680 0.1270 \u003CLOQ \u003CLOQ \u003CLOQ 0.6650 \u003CLOQ \u003CLOQ 29.2410",
+        "Confidence": 0.95
+      },
+      "CBD": {
+        "FieldName": "CBD",
+        "Value": 0,
+        "SourceText": "",
+        "Confidence": 0
+      },
+      "CBDA": {
+        "FieldName": "CBDA",
+        "Value": 0.0860,
+        "SourceText": "% 31.7870 \u003CLOQ 0.0860 1.6680 0.1270 \u003CLOQ \u003CLOQ \u003CLOQ 0.6650 \u003CLOQ \u003CLOQ 29.2410",
+        "Confidence": 0.95
+      },
+      "TotalTHC": 26.31,
+      "TotalCBD": 0.08
+    },
+    "Terpenes": {
+      "Terpenes": {
+        "BETA-MYRCENE": 0.5165,
+        "BETA-CARYOPHYLLENE": 0.3741,
+        "ALPHA-PINENE": 0.3140,
+        "LINALOOL": 0.2129,
+        "D-LIMONENE": 0.2096,
+        "BETA-PINENE": 0.1602,
+        "ALPHA-HUMULENE": 0.1460,
+        "ALPHA-BISABOLOL": 0.0848,
+        "GUAIOL": 0.0549,
+        "FARNESENE": 0.0415,
+        "FENCHOL": 0.0387,
+        "ALPHA-TERPINEOL": 0.0374,
+        "BORNEOL": 0.0320,
+        "CARYOPHYLLENE OXIDE": 0.0251
+      },
+      "TotalTerpenes": 2.25
+    },
+    "Compliance": {
+      "Passed": true,
+      "ContaminantsPassed": true,
+      "Status": "pass"
+    },
+    "Freshness": {
+      "DaysSinceTest": 66,
+      "Score": 70,
+      "Band": "Good"
+    }
+  },
+  "Validation": {
+    "IsValid": false,
+    "Warnings": [
+      {
+        "Code": "AMENDED_COA",
+        "Message": "COA is marked as amended, revised, or corrected.",
+        "Severity": "warning"
+      }
+    ]
+  },
+  "Score": {
+    "Score": 80,
+    "Tier": "Fire",
+    "Breakdown": {
+      "Potency": 35,
+      "Terpenes": 15,
+      "Freshness": 20,
+      "Compliance": 10
+    }
+  },
+  "Profile": {
+    "DominantTerpene": "BETA-MYRCENE",
+    "TopTerpenes": [
+      "BETA-MYRCENE",
+      "BETA-CARYOPHYLLENE",
+      "ALPHA-PINENE"
+    ],
+    "ProfileType": "Mixed",
+    "Lean": "Unknown"
+  }
+}
+{
+  "Coa": {
+    "ProductType": "Flower",
+    "IsAmended": false,
+    "LabName": "Digipath",
+    "ProductName": "",
+    "BatchId": "",
+    "HarvestDate": null,
+    "TestDate": "2026-02-25T00:00:00",
+    "PackageDate": null,
+    "Cannabinoids": {
+      "THC": {
+        "FieldName": "THC",
+        "Value": 0.422,
+        "SourceText": "\u03949-THC 0.003 0.422 4.22 Camphene 79-92-5 0.0068 0.0134 0.134",
+        "Confidence": 0.95
+      },
+      "THCA": {
+        "FieldName": "THCA",
+        "Value": 30.299,
+        "SourceText": "THCa 0.004 30.299 302.99 Caryophyllene Oxide 1139-30-6 0.0039 0.0166 0.166",
+        "Confidence": 0.95
+      },
+      "CBD": {
+        "FieldName": "CBD",
+        "Value": 0,
+        "SourceText": "CBD 0.014 \u003CLOQ \u003CLOQ \u03B4 -3-Carene 13466-78-9 0.0046 \u003CLOQ \u003CLOQ",
+        "Confidence": 0
+      },
+      "CBDA": {
+        "FieldName": "CBDA",
+        "Value": 0.079,
+        "SourceText": "CBDa 0.004 0.079 0.79 Eucalyptol 470-82-6 0.0053 \u003CLOQ \u003CLOQ",
+        "Confidence": 0.95
+      },
+      "TotalTHC": 26.99,
+      "TotalCBD": 0.07
+    },
+    "Terpenes": {
+      "Terpenes": {
+        "\u03B2-Caryophyllene": 0.6776,
+        "\u03B2-Myrcene": 0.4641,
+        "\u03B4-Limonene": 0.3776,
+        "\u03B1-Humulene": 0.2547,
+        "Linalool": 0.1978,
+        "Guaiol": 0.0892,
+        "\u03B1-Bisabolol": 0.0833,
+        "\u03B2-Pinene": 0.0802,
+        "\u03B1-Pinene": 0.0430,
+        "Farnesene": 0.0414,
+        "Nerolidol": 0.0314,
+        "Caryophyllene Oxide": 0.0166,
+        "Camphene": 0.0134,
+        "Terpinolene": 0.0067,
+        "Isopulegol": 0,
+        "Eucalyptol": 0,
+        "\u03B4-3-Carene": 0,
+        "\u03B3-Terpinene": 0,
+        "p-Cymene": 0,
+        "Ocimene": 0,
+        "\u03B1-Terpinene": 0,
+        "Geraniol": 0
+      },
+      "TotalTerpenes": 2.38
+    },
+    "Compliance": {
+      "Passed": false,
+      "ContaminantsPassed": null,
+      "Status": "unknown"
+    },
+    "Freshness": {
+      "DaysSinceTest": 64,
+      "Score": 70,
+      "Band": "Good"
+    }
+  },
+  "Validation": {
+    "IsValid": true,
+    "Warnings": []
+  },
+  "Score": {
+    "Score": 70,
+    "Tier": "Solid",
+    "Breakdown": {
+      "Potency": 35,
+      "Terpenes": 15,
+      "Freshness": 20,
+      "Compliance": 0
+    }
+  },
+  "Profile": {
+    "DominantTerpene": "\u03B2-Caryophyllene",
+    "TopTerpenes": [
+      "\u03B2-Caryophyllene",
+      "\u03B2-Myrcene",
+      "\u03B4-Limonene"
+    ],
+    "ProfileType": "Floral",
+    "Lean": "Unknown"
+  }
+}
+{
+  "Coa": {
+    "ProductType": "Flower",
+    "IsAmended": false,
+    "LabName": "Digipath",
+    "ProductName": "",
+    "BatchId": "",
+    "HarvestDate": null,
+    "TestDate": "2026-03-02T00:00:00",
+    "PackageDate": null,
+    "Cannabinoids": {
+      "THC": {
+        "FieldName": "THC",
+        "Value": 0.505,
+        "SourceText": "\u03949-THC 0.003 0.505 5.05 Camphene 79-92-5 0.0068 0.0119 0.119",
+        "Confidence": 0.95
+      },
+      "THCA": {
+        "FieldName": "THCA",
+        "Value": 27.875,
+        "SourceText": "THCa 0.004 27.875 278.75 Caryophyllene Oxide 1139-30-6 0.0039 0.0197 0.197",
+        "Confidence": 0.95
+      },
+      "CBD": {
+        "FieldName": "CBD",
+        "Value": 0,
+        "SourceText": "CBD 0.014 \u003CLOQ \u003CLOQ Terpinolene 586-62-9 0.0060 \u003CLOQ \u003CLOQ",
+        "Confidence": 0
+      },
+      "CBDA": {
+        "FieldName": "CBDA",
+        "Value": 0.072,
+        "SourceText": "CBDa 0.004 0.072 0.72 \u03B4 -3-Carene 13466-78-9 0.0046 \u003CLOQ \u003CLOQ",
+        "Confidence": 0.95
+      },
+      "TotalTHC": 24.95,
+      "TotalCBD": 0.06
+    },
+    "Terpenes": {
+      "Terpenes": {
+        "\u03B2-Caryophyllene": 0.7823,
+        "\u03B2-Myrcene": 0.3754,
+        "\u03B1-Humulene": 0.2936,
+        "\u03B4-Limonene": 0.2880,
+        "Linalool": 0.1919,
+        "Guaiol": 0.0935,
+        "\u03B1-Bisabolol": 0.0855,
+        "\u03B2-Pinene": 0.0689,
+        "Farnesene": 0.0439,
+        "Nerolidol": 0.0415,
+        "\u03B1-Pinene": 0.0387,
+        "Caryophyllene Oxide": 0.0197,
+        "Camphene": 0.0119,
+        "Isopulegol": 0,
+        "Eucalyptol": 0,
+        "\u03B4-3-Carene": 0,
+        "Terpinolene": 0,
+        "p-Cymene": 0,
+        "Ocimene": 0,
+        "\u03B3-Terpinene": 0,
+        "Geraniol": 0,
+        "\u03B1-Terpinene": 0
+      },
+      "TotalTerpenes": 2.33
+    },
+    "Compliance": {
+      "Passed": false,
+      "ContaminantsPassed": null,
+      "Status": "unknown"
+    },
+    "Freshness": {
+      "DaysSinceTest": 59,
+      "Score": 85,
+      "Band": "Good"
+    }
+  },
+  "Validation": {
+    "IsValid": true,
+    "Warnings": []
+  },
+  "Score": {
+    "Score": 65,
+    "Tier": "Mid",
+    "Breakdown": {
+      "Potency": 30,
+      "Terpenes": 15,
+      "Freshness": 20,
+      "Compliance": 0
+    }
+  },
+  "Profile": {
+    "DominantTerpene": "\u03B2-Caryophyllene",
+    "TopTerpenes": [
+      "\u03B2-Caryophyllene",
+      "\u03B2-Myrcene",
+      "\u03B1-Humulene"
+    ],
+    "ProfileType": "Floral",
+    "Lean": "Unknown"
+  }
+}
+{
+  "Coa": {
+    "ProductType": "Flower",
+    "IsAmended": false,
+    "LabName": "Digipath",
+    "ProductName": "",
+    "BatchId": "",
+    "HarvestDate": null,
+    "TestDate": "2026-03-02T00:00:00",
+    "PackageDate": null,
+    "Cannabinoids": {
+      "THC": {
+        "FieldName": "THC",
+        "Value": 0.505,
+        "SourceText": "\u03949-THC 0.003 0.505 5.05 Camphene 79-92-5 0.0068 0.0119 0.119",
+        "Confidence": 0.95
+      },
+      "THCA": {
+        "FieldName": "THCA",
+        "Value": 27.875,
+        "SourceText": "THCa 0.004 27.875 278.75 Caryophyllene Oxide 1139-30-6 0.0039 0.0197 0.197",
+        "Confidence": 0.95
+      },
+      "CBD": {
+        "FieldName": "CBD",
+        "Value": 0,
+        "SourceText": "CBD 0.014 \u003CLOQ \u003CLOQ Terpinolene 586-62-9 0.0060 \u003CLOQ \u003CLOQ",
+        "Confidence": 0
+      },
+      "CBDA": {
+        "FieldName": "CBDA",
+        "Value": 0.072,
+        "SourceText": "CBDa 0.004 0.072 0.72 \u03B4 -3-Carene 13466-78-9 0.0046 \u003CLOQ \u003CLOQ",
+        "Confidence": 0.95
+      },
+      "TotalTHC": 24.95,
+      "TotalCBD": 0.06
+    },
+    "Terpenes": {
+      "Terpenes": {
+        "\u03B2-Caryophyllene": 0.7823,
+        "\u03B2-Myrcene": 0.3754,
+        "\u03B1-Humulene": 0.2936,
+        "\u03B4-Limonene": 0.2880,
+        "Linalool": 0.1919,
+        "Guaiol": 0.0935,
+        "\u03B1-Bisabolol": 0.0855,
+        "\u03B2-Pinene": 0.0689,
+        "Farnesene": 0.0439,
+        "Nerolidol": 0.0415,
+        "\u03B1-Pinene": 0.0387,
+        "Caryophyllene Oxide": 0.0197,
+        "Camphene": 0.0119,
+        "Isopulegol": 0,
+        "Eucalyptol": 0,
+        "\u03B4-3-Carene": 0,
+        "Terpinolene": 0,
+        "p-Cymene": 0,
+        "Ocimene": 0,
+        "\u03B3-Terpinene": 0,
+        "Geraniol": 0,
+        "\u03B1-Terpinene": 0
+      },
+      "TotalTerpenes": 2.33
+    },
+    "Compliance": {
+      "Passed": false,
+      "ContaminantsPassed": null,
+      "Status": "unknown"
+    },
+    "Freshness": {
+      "DaysSinceTest": 59,
+      "Score": 85,
+      "Band": "Good"
+    }
+  },
+  "Validation": {
+    "IsValid": true,
+    "Warnings": []
+  },
+  "Score": {
+    "Score": 65,
+    "Tier": "Mid",
+    "Breakdown": {
+      "Potency": 30,
+      "Terpenes": 15,
+      "Freshness": 20,
+      "Compliance": 0
+    }
+  },
+  "Profile": {
+    "DominantTerpene": "\u03B2-Caryophyllene",
+    "TopTerpenes": [
+      "\u03B2-Caryophyllene",
+      "\u03B2-Myrcene",
+      "\u03B1-Humulene"
+    ],
+    "ProfileType": "Floral",
+    "Lean": "Unknown"
+  }
+}
+{
+  "Coa": {
+    "ProductType": "Edible",
+    "IsAmended": true,
+    "LabName": "Kaycha Labs",
+    "ProductName": "",
+    "BatchId": "",
+    "HarvestDate": null,
+    "TestDate": "2026-02-23T00:00:00",
+    "PackageDate": null,
+    "Cannabinoids": {
+      "THC": {
+        "FieldName": "THC",
+        "Value": 0.6650,
+        "SourceText": "% 31.7870 \u003CLOQ 0.0860 1.6680 0.1270 \u003CLOQ \u003CLOQ \u003CLOQ 0.6650 \u003CLOQ \u003CLOQ 29.2410",
+        "Confidence": 0.95
+      },
+      "THCA": {
+        "FieldName": "THCA",
+        "Value": 29.2410,
+        "SourceText": "% 31.7870 \u003CLOQ 0.0860 1.6680 0.1270 \u003CLOQ \u003CLOQ \u003CLOQ 0.6650 \u003CLOQ \u003CLOQ 29.2410",
+        "Confidence": 0.95
+      },
+      "CBD": {
+        "FieldName": "CBD",
+        "Value": 0,
+        "SourceText": "",
+        "Confidence": 0
+      },
+      "CBDA": {
+        "FieldName": "CBDA",
+        "Value": 0.0860,
+        "SourceText": "% 31.7870 \u003CLOQ 0.0860 1.6680 0.1270 \u003CLOQ \u003CLOQ \u003CLOQ 0.6650 \u003CLOQ \u003CLOQ 29.2410",
+        "Confidence": 0.95
+      },
+      "TotalTHC": 26.31,
+      "TotalCBD": 0.08
+    },
+    "Terpenes": {
+      "Terpenes": {
+        "BETA-MYRCENE": 0.5165,
+        "BETA-CARYOPHYLLENE": 0.3741,
+        "ALPHA-PINENE": 0.3140,
+        "LINALOOL": 0.2129,
+        "D-LIMONENE": 0.2096,
+        "BETA-PINENE": 0.1602,
+        "ALPHA-HUMULENE": 0.1460,
+        "ALPHA-BISABOLOL": 0.0848,
+        "GUAIOL": 0.0549,
+        "FARNESENE": 0.0415,
+        "FENCHOL": 0.0387,
+        "ALPHA-TERPINEOL": 0.0374,
+        "BORNEOL": 0.0320,
+        "CARYOPHYLLENE OXIDE": 0.0251
+      },
+      "TotalTerpenes": 2.25
+    },
+    "Compliance": {
+      "Passed": true,
+      "ContaminantsPassed": true,
+      "Status": "pass"
+    },
+    "Freshness": {
+      "DaysSinceTest": 66,
+      "Score": 70,
+      "Band": "Good"
+    }
+  },
+  "Validation": {
+    "IsValid": false,
+    "Warnings": [
+      {
+        "Code": "AMENDED_COA",
+        "Message": "COA is marked as amended, revised, or corrected.",
+        "Severity": "warning"
+      }
+    ]
+  },
+  "Score": {
+    "Score": 80,
+    "Tier": "Fire",
+    "Breakdown": {
+      "Potency": 35,
+      "Terpenes": 15,
+      "Freshness": 20,
+      "Compliance": 10
+    }
+  },
+  "Profile": {
+    "DominantTerpene": "BETA-MYRCENE",
+    "TopTerpenes": [
+      "BETA-MYRCENE",
+      "BETA-CARYOPHYLLENE",
+      "ALPHA-PINENE"
+    ],
+    "ProfileType": "Mixed",
+    "Lean": "Unknown"
+  }
+}
+{
+  "Coa": {
+    "ProductType": "Edible",
+    "IsAmended": true,
+    "LabName": "Kaycha Labs",
+    "ProductName": "",
+    "BatchId": "",
+    "HarvestDate": null,
+    "TestDate": "2026-02-23T00:00:00",
+    "PackageDate": null,
+    "Cannabinoids": {
+      "THC": {
+        "FieldName": "THC",
+        "Value": 0.6650,
+        "SourceText": "% 31.7870 \u003CLOQ 0.0860 1.6680 0.1270 \u003CLOQ \u003CLOQ \u003CLOQ 0.6650 \u003CLOQ \u003CLOQ 29.2410",
+        "Confidence": 0.95
+      },
+      "THCA": {
+        "FieldName": "THCA",
+        "Value": 29.2410,
+        "SourceText": "% 31.7870 \u003CLOQ 0.0860 1.6680 0.1270 \u003CLOQ \u003CLOQ \u003CLOQ 0.6650 \u003CLOQ \u003CLOQ 29.2410",
+        "Confidence": 0.95
+      },
+      "CBD": {
+        "FieldName": "CBD",
+        "Value": 0,
+        "SourceText": "",
+        "Confidence": 0
+      },
+      "CBDA": {
+        "FieldName": "CBDA",
+        "Value": 0.0860,
+        "SourceText": "% 31.7870 \u003CLOQ 0.0860 1.6680 0.1270 \u003CLOQ \u003CLOQ \u003CLOQ 0.6650 \u003CLOQ \u003CLOQ 29.2410",
+        "Confidence": 0.95
+      },
+      "TotalTHC": 26.31,
+      "TotalCBD": 0.08
+    },
+    "Terpenes": {
+      "Terpenes": {
+        "BETA-MYRCENE": 0.5165,
+        "BETA-CARYOPHYLLENE": 0.3741,
+        "ALPHA-PINENE": 0.3140,
+        "LINALOOL": 0.2129,
+        "D-LIMONENE": 0.2096,
+        "BETA-PINENE": 0.1602,
+        "ALPHA-HUMULENE": 0.1460,
+        "ALPHA-BISABOLOL": 0.0848,
+        "GUAIOL": 0.0549,
+        "FARNESENE": 0.0415,
+        "FENCHOL": 0.0387,
+        "ALPHA-TERPINEOL": 0.0374,
+        "BORNEOL": 0.0320,
+        "CARYOPHYLLENE OXIDE": 0.0251
+      },
+      "TotalTerpenes": 2.25
+    },
+    "Compliance": {
+      "Passed": true,
+      "ContaminantsPassed": true,
+      "Status": "pass"
+    },
+    "Freshness": {
+      "DaysSinceTest": 66,
+      "Score": 70,
+      "Band": "Good"
+    }
+  },
+  "Validation": {
+    "IsValid": false,
+    "Warnings": [
+      {
+        "Code": "AMENDED_COA",
+        "Message": "COA is marked as amended, revised, or corrected.",
+        "Severity": "warning"
+      }
+    ]
+  },
+  "Score": {
+    "Score": 80,
+    "Tier": "Fire",
+    "Breakdown": {
+      "Potency": 35,
+      "Terpenes": 15,
+      "Freshness": 20,
+      "Compliance": 10
+    }
+  },
+  "Profile": {
+    "DominantTerpene": "BETA-MYRCENE",
+    "TopTerpenes": [
+      "BETA-MYRCENE",
+      "BETA-CARYOPHYLLENE",
+      "ALPHA-PINENE"
+    ],
+    "ProfileType": "Mixed",
+    "Lean": "Unknown"
+  }
+}
+{
+  "Coa": {
+    "ProductType": "Edible",
+    "IsAmended": true,
+    "LabName": "Kaycha Labs",
+    "ProductName": "",
+    "BatchId": "",
+    "HarvestDate": null,
+    "TestDate": "2026-04-01T00:00:00",
+    "PackageDate": null,
+    "Cannabinoids": {
+      "THC": {
+        "FieldName": "THC",
+        "Value": 1.0520,
+        "SourceText": "% 37.3190 \u003CLOQ 0.0600 0.4550 \u003CLOQ \u003CLOQ \u003CLOQ \u003CLOQ 1.0520 \u003CLOQ \u003CLOQ 35.7520",
+        "Confidence": 0.95
+      },
+      "THCA": {
+        "FieldName": "THCA",
+        "Value": 35.7520,
+        "SourceText": "% 37.3190 \u003CLOQ 0.0600 0.4550 \u003CLOQ \u003CLOQ \u003CLOQ \u003CLOQ 1.0520 \u003CLOQ \u003CLOQ 35.7520",
+        "Confidence": 0.95
+      },
+      "CBD": {
+        "FieldName": "CBD",
+        "Value": 0,
+        "SourceText": "",
+        "Confidence": 0
+      },
+      "CBDA": {
+        "FieldName": "CBDA",
+        "Value": 0.0600,
+        "SourceText": "% 37.3190 \u003CLOQ 0.0600 0.4550 \u003CLOQ \u003CLOQ \u003CLOQ \u003CLOQ 1.0520 \u003CLOQ \u003CLOQ 35.7520",
+        "Confidence": 0.95
+      },
+      "TotalTHC": 32.41,
+      "TotalCBD": 0.05
+    },
+    "Terpenes": {
+      "Terpenes": {
+        "BETA-MYRCENE": 0.8677,
+        "ALPHA-PINENE": 0.5567,
+        "BETA-CARYOPHYLLENE": 0.3003,
+        "BETA-PINENE": 0.2596,
+        "D-LIMONENE": 0.1593,
+        "LINALOOL": 0.1535,
+        "ALPHA-HUMULENE": 0.1308,
+        "GUAIOL": 0.0917,
+        "ALPHA-BISABOLOL": 0.0721,
+        "BORNEOL": 0.0578,
+        "FARNESENE": 0.0572,
+        "FENCHOL": 0.0452,
+        "ALPHA-TERPINEOL": 0.0451,
+        "VALENCENE": 0.0411,
+        "TERPINOLENE": 0.0328,
+        "OCIMENE": 0.0294,
+        "ISOPULEGOL": 0.0285,
+        "CARYOPHYLLENE OXIDE": 0.0272,
+        "CAMPHENE": 0.0271
+      },
+      "TotalTerpenes": 2.94
+    },
+    "Compliance": {
+      "Passed": true,
+      "ContaminantsPassed": true,
+      "Status": "pass"
+    },
+    "Freshness": {
+      "DaysSinceTest": 29,
+      "Score": 100,
+      "Band": "Excellent"
+    }
+  },
+  "Validation": {
+    "IsValid": false,
+    "Warnings": [
+      {
+        "Code": "AMENDED_COA",
+        "Message": "COA is marked as amended, revised, or corrected.",
+        "Severity": "warning"
+      }
+    ]
+  },
+  "Score": {
+    "Score": 95,
+    "Tier": "God Tier",
+    "Breakdown": {
+      "Potency": 40,
+      "Terpenes": 20,
+      "Freshness": 25,
+      "Compliance": 10
+    }
+  },
+  "Profile": {
+    "DominantTerpene": "BETA-MYRCENE",
+    "TopTerpenes": [
+      "BETA-MYRCENE",
+      "ALPHA-PINENE",
+      "BETA-CARYOPHYLLENE"
+    ],
+    "ProfileType": "Mixed",
+    "Lean": "Unknown"
+  }
+}
+{
+  "Coa": {
+    "ProductType": "Flower",
+    "IsAmended": false,
+    "LabName": "Kaycha Labs",
+    "ProductName": "",
+    "BatchId": "",
+    "HarvestDate": "2025-08-19T00:00:00",
+    "TestDate": "2025-09-04T00:00:00",
+    "PackageDate": null,
+    "Cannabinoids": {
+      "THC": {
+        "FieldName": "THC",
+        "Value": 1.23308,
+        "SourceText": "% 36.6963 \u003CLOQ 0.0689837 0.492213 0.101892 \u003CLOQ \u003CLOQ \u003CLOQ 1.23308 \u003CLOQ 0.101188 34.6990",
+        "Confidence": 0.95
+      },
+      "THCA": {
+        "FieldName": "THCA",
+        "Value": 34.6990,
+        "SourceText": "% 36.6963 \u003CLOQ 0.0689837 0.492213 0.101892 \u003CLOQ \u003CLOQ \u003CLOQ 1.23308 \u003CLOQ 0.101188 34.6990",
+        "Confidence": 0.95
+      },
+      "CBD": {
+        "FieldName": "CBD",
+        "Value": 0,
+        "SourceText": "",
+        "Confidence": 0
+      },
+      "CBDA": {
+        "FieldName": "CBDA",
+        "Value": 0.0689837,
+        "SourceText": "% 36.6963 \u003CLOQ 0.0689837 0.492213 0.101892 \u003CLOQ \u003CLOQ \u003CLOQ 1.23308 \u003CLOQ 0.101188 34.6990",
+        "Confidence": 0.95
+      },
+      "TotalTHC": 31.66,
+      "TotalCBD": 0.06
+    },
+    "Terpenes": {
+      "Terpenes": {
+        "BETA-CARYOPHYLLENE": 1.267,
+        "BETA-MYRCENE": 0.8126,
+        "D-LIMONENE": 0.4196,
+        "ALPHA-HUMULENE": 0.4023,
+        "LINALOOL": 0.2484,
+        "ALPHA-BISABOLOL": 0.08297,
+        "BETA-PINENE": 0.06190,
+        "FENCHOL": 0.03895,
+        "ALPHA-TERPINEOL": 0.03728,
+        "ALPHA-PINENE": 0.02627
+      },
+      "TotalTerpenes": 3.40
+    },
+    "Compliance": {
+      "Passed": true,
+      "ContaminantsPassed": true,
+      "Status": "pass"
+    },
+    "Freshness": {
+      "DaysSinceTest": 238,
+      "Score": 10,
+      "Band": "Old"
+    }
+  },
+  "Validation": {
+    "IsValid": true,
+    "Warnings": []
+  },
+  "Score": {
+    "Score": 75,
+    "Tier": "Solid",
+    "Breakdown": {
+      "Potency": 40,
+      "Terpenes": 20,
+      "Freshness": 5,
+      "Compliance": 10
+    }
+  },
+  "Profile": {
+    "DominantTerpene": "BETA-CARYOPHYLLENE",
+    "TopTerpenes": [
+      "BETA-CARYOPHYLLENE",
+      "BETA-MYRCENE",
+      "D-LIMONENE"
+    ],
+    "ProfileType": "Mixed",
+    "Lean": "Unknown"
+  }
+}

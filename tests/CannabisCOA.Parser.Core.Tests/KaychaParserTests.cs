@@ -84,4 +84,41 @@ public class KaychaParserTests
         Assert.InRange(terpeneSum, result.Terpenes.TotalTerpenes - 0.1m, result.Terpenes.TotalTerpenes + 0.1m);
         Assert.Equal(2.3252m, result.Terpenes.TotalTerpenes);
     }
+
+    [Fact]
+    public void KaychaAdapter_Parse_EdibleFixture_ParsesCannabinoidsFromEdiblePotencyTable()
+    {
+        var text = File.ReadAllText(FixturePath("kaycha-edible-real-001.txt"));
+
+        var result = new KaychaLabsAdapter().Parse(text);
+
+        Assert.Equal(ProductType.Edible, result.ProductType);
+        Assert.Equal(103.6212m, result.Cannabinoids.THC.Value);
+        Assert.True(result.Cannabinoids.THC.Confidence > 0m);
+        Assert.Equal(0m, result.Cannabinoids.THCA.Value);
+        Assert.Equal(0m, result.Cannabinoids.THCA.Confidence);
+        Assert.Equal(0m, result.Cannabinoids.CBD.Value);
+        Assert.Equal(0m, result.Cannabinoids.CBD.Confidence);
+        Assert.Equal(0m, result.Cannabinoids.CBDA.Value);
+        Assert.Equal(0m, result.Cannabinoids.CBDA.Confidence);
+        Assert.Equal(103.6212m, result.Cannabinoids.TotalTHC);
+        Assert.Equal(0m, result.Cannabinoids.TotalCBD);
+    }
+
+    [Fact]
+    public void KaychaAdapter_Parse_EdibleFixture_DoesNotUseProductDescriptionOrWaterActivityAsCannabinoidSource()
+    {
+        var text = File.ReadAllText(FixturePath("kaycha-edible-real-001.txt"));
+
+        var result = new KaychaLabsAdapter().Parse(text);
+
+        Assert.True(
+            result.Cannabinoids.THC.SourceText.Contains("Δ9-THC") ||
+            result.Cannabinoids.THC.SourceText.Contains("∆9-THC"));
+        Assert.DoesNotContain("Strain:", result.Cannabinoids.THC.SourceText);
+        Assert.DoesNotContain("Gummy", result.Cannabinoids.THC.SourceText);
+        Assert.DoesNotContain("Aw:", result.Cannabinoids.CBD.SourceText);
+        Assert.DoesNotContain("Water Activity", result.Cannabinoids.CBD.SourceText);
+        Assert.DoesNotContain("∆9-THC + ∆8-THC", result.Cannabinoids.CBD.SourceText);
+    }
 }

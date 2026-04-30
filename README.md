@@ -82,10 +82,10 @@ dotnet run --project src/CannabisCOA.Parser.Cli -- --file fixtures/digipath-flow
     "IsAmended": false,
     "LabName": "MA Analytics",
     "ProductName": "Sample Flower",
-    "BatchId": "",
+    "BatchId": "ABC123",
     "HarvestDate": "2026-02-25T00:00:00",
     "TestDate": "2026-03-27T00:00:00",
-    "PackageDate": null,
+    "PackageDate": "2026-03-29T00:00:00",
     "Cannabinoids": {
       "THC": {
         "FieldName": "THC",
