@@ -45,6 +45,32 @@ public class CoaValidatorTests
         };
     }
 
+    private static CoaResult BuildCoaWithTotalTerpenes(decimal totalTerpenes, ProductType productType = ProductType.Unknown)
+    {
+        return new CoaResult
+        {
+            ProductType = productType,
+            TestDate = new DateTime(2026, 1, 1),
+            Cannabinoids = new CannabinoidProfile
+            {
+                THC = new ParsedField<decimal>
+                {
+                    FieldName = "THC",
+                    Value = 1m,
+                    Confidence = 0.95m
+                }
+            },
+            Terpenes = new TerpeneProfile
+            {
+                TotalTerpenes = totalTerpenes,
+                Terpenes =
+                {
+                    ["β-Myrcene"] = 1.2m
+                }
+            }
+        };
+    }
+
     [Fact]
     public void Flags_High_Total_THC()
     {
@@ -199,6 +225,86 @@ public class CoaValidatorTests
         var result = CoaValidator.Validate(coa);
 
         Assert.DoesNotContain(result.Warnings, w => w.Code == "TOTAL_CBD_HIGH");
+    }
+
+    [Fact]
+    public void Flags_TotalTerpenesHigh_For_Unknown_When_TotalTerpenes_Exceeds_ProfileThreshold()
+    {
+        var coa = BuildCoaWithTotalTerpenes(25.01m, ProductType.Unknown);
+
+        var result = CoaValidator.Validate(coa);
+
+        Assert.Contains(result.Warnings, w => w.Code == "TOTAL_TERPENES_HIGH");
+    }
+
+    [Fact]
+    public void Flags_TotalTerpenesHigh_For_Flower_When_TotalTerpenes_Exceeds_ProfileThreshold()
+    {
+        var coa = BuildCoaWithTotalTerpenes(25.01m, ProductType.Flower);
+
+        var result = CoaValidator.Validate(coa);
+
+        Assert.Contains(result.Warnings, w => w.Code == "TOTAL_TERPENES_HIGH");
+    }
+
+    [Fact]
+    public void Flags_TotalTerpenesHigh_For_PreRoll_When_TotalTerpenes_Exceeds_ProfileThreshold()
+    {
+        var coa = BuildCoaWithTotalTerpenes(25.01m, ProductType.PreRoll);
+
+        var result = CoaValidator.Validate(coa);
+
+        Assert.Contains(result.Warnings, w => w.Code == "TOTAL_TERPENES_HIGH");
+    }
+
+    [Fact]
+    public void Does_Not_Flag_TotalTerpenesHigh_For_Edible_When_TotalTerpenes_Exceeds_FlowerThreshold()
+    {
+        var coa = BuildCoaWithTotalTerpenes(26.2m, ProductType.Edible);
+
+        var result = CoaValidator.Validate(coa);
+
+        Assert.DoesNotContain(result.Warnings, w => w.Code == "TOTAL_TERPENES_HIGH");
+    }
+
+    [Fact]
+    public void Does_Not_Flag_TotalTerpenesHigh_For_Concentrate_When_TotalTerpenes_Exceeds_FlowerThreshold()
+    {
+        var coa = BuildCoaWithTotalTerpenes(26.2m, ProductType.Concentrate);
+
+        var result = CoaValidator.Validate(coa);
+
+        Assert.DoesNotContain(result.Warnings, w => w.Code == "TOTAL_TERPENES_HIGH");
+    }
+
+    [Fact]
+    public void Does_Not_Flag_TotalTerpenesHigh_For_Tincture_When_TotalTerpenes_Exceeds_FlowerThreshold()
+    {
+        var coa = BuildCoaWithTotalTerpenes(26.2m, ProductType.Tincture);
+
+        var result = CoaValidator.Validate(coa);
+
+        Assert.DoesNotContain(result.Warnings, w => w.Code == "TOTAL_TERPENES_HIGH");
+    }
+
+    [Fact]
+    public void Does_Not_Flag_TotalTerpenesHigh_For_Vape_When_TotalTerpenes_Exceeds_FlowerThreshold()
+    {
+        var coa = BuildCoaWithTotalTerpenes(26.2m, ProductType.Vape);
+
+        var result = CoaValidator.Validate(coa);
+
+        Assert.DoesNotContain(result.Warnings, w => w.Code == "TOTAL_TERPENES_HIGH");
+    }
+
+    [Fact]
+    public void Does_Not_Flag_TotalTerpenesHigh_For_Topical_When_TotalTerpenes_Exceeds_FlowerThreshold()
+    {
+        var coa = BuildCoaWithTotalTerpenes(26.2m, ProductType.Topical);
+
+        var result = CoaValidator.Validate(coa);
+
+        Assert.DoesNotContain(result.Warnings, w => w.Code == "TOTAL_TERPENES_HIGH");
     }
 
     [Fact]

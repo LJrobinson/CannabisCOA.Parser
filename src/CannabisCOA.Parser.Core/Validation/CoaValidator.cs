@@ -1,5 +1,6 @@
 using CannabisCOA.Parser.Core.Enums;
 using CannabisCOA.Parser.Core.Models;
+using System.Linq;
 
 namespace CannabisCOA.Parser.Core.Validation;
 
@@ -42,7 +43,8 @@ public static class CoaValidator
             });
         }
 
-        if (coa.Terpenes.TotalTerpenes > 25m)
+        if (profile.TotalTerpenesHighThreshold is { } totalTerpenesHighThreshold &&
+            coa.Terpenes.TotalTerpenes > totalTerpenesHighThreshold)
         {
             result.Warnings.Add(new ValidationWarning
             {
@@ -63,6 +65,54 @@ public static class CoaValidator
             });
         }
 
+        // Terpene total vs breakdown consistency (flower-only for now)
+        if ((coa.ProductType == ProductType.Flower ||
+            coa.ProductType == ProductType.PreRoll ||
+            coa.ProductType == ProductType.Unknown) &&
+            coa.Terpenes?.TotalTerpenes > 0m &&
+            coa.Terpenes.Terpenes != null &&
+            coa.Terpenes.Terpenes.Count > 0)
+        {
+            var sum = coa.Terpenes.Terpenes.Values.Sum();
+
+            if (Math.Abs(sum - coa.Terpenes.TotalTerpenes) > 0.25m)
+            {
+                result.Warnings.Add(new ValidationWarning
+                {
+                    Code = "TERPENE_TOTAL_MISMATCH",
+                    Message = "Total terpenes does not match sum of individual terpenes.",
+                    Severity = "warning"
+                });
+            }
+        }
+
+        // THC total consistency check (flower-like products only)
+        if ((coa.ProductType == ProductType.Flower ||
+            coa.ProductType == ProductType.PreRoll ||
+            coa.ProductType == ProductType.Unknown) &&
+            coa.Cannabinoids != null)
+        {
+            var cannabinoids = coa.Cannabinoids;
+
+            var thc = cannabinoids.THC?.Value ?? 0m;
+            var thca = cannabinoids.THCA?.Value ?? 0m;
+            var totalThc = cannabinoids.TotalTHC;
+
+            // Standard decarboxylation formula
+            var calculatedTotalThc = thc + (thca * 0.877m);
+
+            if ((thc > 0m || thca > 0m) &&
+                Math.Abs(calculatedTotalThc - totalThc) > 1.0m)
+            {
+                result.Warnings.Add(new ValidationWarning
+                {
+                    Code = "TOTAL_THC_MISMATCH",
+                    Message = "Total THC does not match THC + THCA calculation.",
+                    Severity = "warning"
+                });
+            }
+        }
+
         if (coa.TestDate == null)
         {
             result.Warnings.Add(new ValidationWarning
@@ -73,7 +123,9 @@ public static class CoaValidator
             });
         }
 
-        if (coa.Cannabinoids.THCA.Value == 0m && coa.Cannabinoids.THC.Value == 0m)
+        if (coa.Cannabinoids == null ||
+            ((coa.Cannabinoids.THCA?.Value ?? 0m) == 0m &&
+            (coa.Cannabinoids.THC?.Value ?? 0m) == 0m))
         {
             result.Warnings.Add(new ValidationWarning
             {
@@ -106,10 +158,7 @@ public static class CoaValidator
                 TotalCbdHighThreshold = 100m,
                 TotalTerpenesHighThreshold = 25m
             },
-            _ => new ValidationProfile
-            {
-                TotalTerpenesHighThreshold = 25m
-            }
+            _ => new ValidationProfile()
         };
     }
 }
