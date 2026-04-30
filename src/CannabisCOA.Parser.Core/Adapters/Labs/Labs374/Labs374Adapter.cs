@@ -14,6 +14,33 @@ public class Labs374Adapter : BaseLabAdapter
         @"^\s*(?<name>THCa|THCA|Δ9-THC|∆9-THC|Δ8-THC|∆8-THC|CBDa|CBDA|CBD|CBC|CBG|CBN|THCV|CBGa|CBGA)\s+(?<loq><\s*LOQ|<\s*LOD|<\s*MDL|ND|NR|NT|\d{1,6}(?:\.\d+)?|\.\d+)\s+(?<percent><\s*LOQ|<\s*LOD|<\s*MDL|ND|NR|NT|Not\s+Detected|\d{1,6}(?:\.\d+)?|\.\d+)\s+(?<mg><\s*LOQ|<\s*LOD|<\s*MDL|ND|NR|NT|Not\s+Detected|\d{1,6}(?:\.\d+)?|\.\d+)(?=\s|$)",
         RegexOptions.IgnoreCase | RegexOptions.Compiled);
 
+    private static readonly Regex TerpeneValueTripleRegex = new(
+        @"^\s+(?<loq><\s*LOQ|<\s*LOD|<\s*MDL|ND|NR|NT|Not\s+Detected|\d{1,6}(?:\.\d+)?|\.\d+)\s+(?<percent><\s*LOQ|<\s*LOD|<\s*MDL|ND|NR|NT|Not\s+Detected|\d{1,6}(?:\.\d+)?|\.\d+)\s+(?<mg><\s*LOQ|<\s*LOD|<\s*MDL|ND|NR|NT|Not\s+Detected|\d{1,6}(?:\.\d+)?|\.\d+)(?=\s|$)",
+        RegexOptions.IgnoreCase | RegexOptions.Compiled);
+
+    private static readonly (string CanonicalName, Regex NameRegex)[] TerpeneAnchors =
+    [
+        ("β-Myrcene", new Regex(@"(?<![\p{L}\p{N}])(?:β|Beta|B)\s*-?\s*Myrcene(?![\p{L}\p{N}])", RegexOptions.IgnoreCase | RegexOptions.Compiled)),
+        ("δ-Limonene", new Regex(@"(?<![\p{L}\p{N}])(?:(?:δ|Delta|D)\s*-\s*)?Limonene(?![\p{L}\p{N}])", RegexOptions.IgnoreCase | RegexOptions.Compiled)),
+        ("β-Caryophyllene", new Regex(@"(?<![\p{L}\p{N}])(?:β|Beta|B)\s*-?\s*Caryophyllene(?![\p{L}\p{N}])", RegexOptions.IgnoreCase | RegexOptions.Compiled)),
+        ("α-Humulene", new Regex(@"(?<![\p{L}\p{N}])(?:α|Alpha|A)\s*-?\s*Humulene(?![\p{L}\p{N}])", RegexOptions.IgnoreCase | RegexOptions.Compiled)),
+        ("Linalool", new Regex(@"(?<![\p{L}\p{N}])Linalool(?![\p{L}\p{N}])", RegexOptions.IgnoreCase | RegexOptions.Compiled)),
+        ("β-Pinene", new Regex(@"(?<![\p{L}\p{N}])(?:β|Beta|B)\s*-?\s*Pinene(?![\p{L}\p{N}])", RegexOptions.IgnoreCase | RegexOptions.Compiled)),
+        ("α-Bisabolol", new Regex(@"(?<![\p{L}\p{N}])(?:α|Alpha|A)\s*-?\s*Bisabolol(?![\p{L}\p{N}])", RegexOptions.IgnoreCase | RegexOptions.Compiled)),
+        ("α-Pinene", new Regex(@"(?<![\p{L}\p{N}])(?:α|Alpha|A)\s*-?\s*Pinene(?![\p{L}\p{N}])", RegexOptions.IgnoreCase | RegexOptions.Compiled)),
+        ("Caryophyllene Oxide", new Regex(@"(?<![\p{L}\p{N}])Caryophyllene\s+Oxide(?![\p{L}\p{N}])", RegexOptions.IgnoreCase | RegexOptions.Compiled)),
+        ("Ocimene", new Regex(@"(?<![\p{L}\p{N}])Ocimene(?![\p{L}\p{N}])", RegexOptions.IgnoreCase | RegexOptions.Compiled)),
+        ("Terpinolene", new Regex(@"(?<![\p{L}\p{N}])Terpinolene(?![\p{L}\p{N}])", RegexOptions.IgnoreCase | RegexOptions.Compiled)),
+        ("trans-Nerolidol", new Regex(@"(?<![\p{L}\p{N}])(?:trans\s*-?\s*)?Nerolidol(?![\p{L}\p{N}])", RegexOptions.IgnoreCase | RegexOptions.Compiled)),
+        ("Camphene", new Regex(@"(?<![\p{L}\p{N}])Camphene(?![\p{L}\p{N}])", RegexOptions.IgnoreCase | RegexOptions.Compiled)),
+        ("δ-3-Carene", new Regex(@"(?<![\p{L}\p{N}])(?:(?:δ|Delta|D)\s*-\s*)?3\s*-?\s*Carene(?![\p{L}\p{N}])", RegexOptions.IgnoreCase | RegexOptions.Compiled)),
+        ("Isopulegol", new Regex(@"(?<![\p{L}\p{N}])Isopulegol(?![\p{L}\p{N}])", RegexOptions.IgnoreCase | RegexOptions.Compiled)),
+        ("Guaiol", new Regex(@"(?<![\p{L}\p{N}])Guaiol(?![\p{L}\p{N}])", RegexOptions.IgnoreCase | RegexOptions.Compiled)),
+        ("Eucalyptol", new Regex(@"(?<![\p{L}\p{N}])Eucalyptol(?![\p{L}\p{N}])", RegexOptions.IgnoreCase | RegexOptions.Compiled)),
+        ("Fenchol", new Regex(@"(?<![\p{L}\p{N}])Fenchol(?![\p{L}\p{N}])", RegexOptions.IgnoreCase | RegexOptions.Compiled)),
+        ("Citronellol", new Regex(@"(?<![\p{L}\p{N}])Citronellol(?![\p{L}\p{N}])", RegexOptions.IgnoreCase | RegexOptions.Compiled))
+    ];
+
     protected override string[] DetectionTerms =>
     [
         "374LABS",
@@ -29,6 +56,17 @@ public class Labs374Adapter : BaseLabAdapter
         {
             CannabinoidCalculator.CalculateTotals(cannabinoids);
             result.Cannabinoids = cannabinoids;
+        }
+
+        if (TryParse374Terpenes(text, out var terpenes))
+        {
+            result.Terpenes.Terpenes.Clear();
+
+            foreach (var terpene in terpenes)
+                result.Terpenes.Terpenes[terpene.Key] = terpene.Value;
+
+            if (result.Terpenes.TotalTerpenes == 0m)
+                result.Terpenes.TotalTerpenes = terpenes.Values.Sum();
         }
 
         return result;
@@ -89,6 +127,99 @@ public class Labs374Adapter : BaseLabAdapter
         }
 
         return parsedAny;
+    }
+
+    private static bool TryParse374Terpenes(string text, out Dictionary<string, decimal> terpenes)
+    {
+        terpenes = new Dictionary<string, decimal>();
+
+        foreach (var row in Extract374PotencyTableRows(text))
+        {
+            foreach (var anchor in TerpeneAnchors)
+            {
+                foreach (Match nameMatch in anchor.NameRegex.Matches(row))
+                {
+                    if (!nameMatch.Success)
+                        continue;
+
+                    var afterName = row[(nameMatch.Index + nameMatch.Length)..];
+                    var valueMatch = TerpeneValueTripleRegex.Match(afterName);
+
+                    if (!valueMatch.Success ||
+                        !TryParseTerpeneResult(
+                            valueMatch.Groups["percent"].Value,
+                            valueMatch.Groups["mg"].Value,
+                            out var percent))
+                    {
+                        continue;
+                    }
+
+                    terpenes[anchor.CanonicalName] = percent;
+                }
+            }
+        }
+
+        return terpenes.Count > 0;
+    }
+
+    private static bool TryParseTerpeneResult(string rawPercent, string rawMgPerGram, out decimal percent)
+    {
+        percent = 0m;
+
+        if (IsNonDetectResultValue(rawPercent) && IsNonDetectResultValue(rawMgPerGram))
+            return false;
+
+        if (IsNonDetectResultValue(rawPercent) || IsNonDetectResultValue(rawMgPerGram))
+            return false;
+
+        if (!decimal.TryParse(rawPercent, NumberStyles.Number, CultureInfo.InvariantCulture, out percent) ||
+            !decimal.TryParse(rawMgPerGram, NumberStyles.Number, CultureInfo.InvariantCulture, out var mgPerGram) ||
+            percent <= 0m ||
+            percent > 25m)
+        {
+            return false;
+        }
+
+        return Math.Abs((percent * 10m) - mgPerGram) <= Math.Max(0.01m, mgPerGram * 0.01m);
+    }
+
+    private static IEnumerable<string> Extract374PotencyTableRows(string text)
+    {
+        var inTable = false;
+
+        foreach (var row in NormalizeRows(text))
+        {
+            if (!inTable)
+            {
+                if (Is374PotencyTableStart(row))
+                    inTable = true;
+
+                continue;
+            }
+
+            if (Is374PotencyTableEnd(row))
+                yield break;
+
+            yield return row;
+        }
+    }
+
+    private static bool Is374PotencyTableStart(string row)
+    {
+        return row.Contains("Cannabinoid", StringComparison.OrdinalIgnoreCase) &&
+               row.Contains("Terpene", StringComparison.OrdinalIgnoreCase);
+    }
+
+    private static bool Is374PotencyTableEnd(string row)
+    {
+        return row.StartsWith("10 Greg St", StringComparison.OrdinalIgnoreCase) ||
+               row.Contains("www.374labs.com", StringComparison.OrdinalIgnoreCase) ||
+               row.Contains("Unless otherwise", StringComparison.OrdinalIgnoreCase) ||
+               row.Contains("Pesticides", StringComparison.OrdinalIgnoreCase) ||
+               row.Contains("Microbials", StringComparison.OrdinalIgnoreCase) ||
+               row.Contains("Residual Solvents", StringComparison.OrdinalIgnoreCase) ||
+               row.Contains("Heavy Metals", StringComparison.OrdinalIgnoreCase) ||
+               row.Contains("Mycotoxins", StringComparison.OrdinalIgnoreCase);
     }
 
     private static decimal ParseResultValue(string raw)

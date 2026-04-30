@@ -19,7 +19,7 @@ public class MAAnalyticsAdapter : BaseLabAdapter
         RegexOptions.IgnoreCase | RegexOptions.Compiled);
 
     private static readonly Regex TerpeneRowRegex = new(
-        @"(?<![\p{L}\p{N}])(?<name>β-Myrcene|β-Caryophyllene|δ-Limonene|Linalool|α-Humulene|β-Pinene|α-Pinene|α-Bisabolol)\s+(?<loq><\s*LOQ|<\s*LOD|<\s*MDL|ND|NR|NT|\d{1,6}(?:\.\d+)?|\.\d+)\s+(?<mg><\s*LOQ|<\s*LOD|<\s*MDL|ND|NR|NT|\d{1,6}(?:\.\d+)?|\.\d+)\s+(?<percent><\s*LOQ|<\s*LOD|<\s*MDL|ND|NR|NT|\d{1,6}(?:\.\d+)?|\.\d+)(?=\s|$)",
+        @"(?<![\p{L}\p{N}])(?<name>(?:β|beta)\s*-\s*Myrcene|(?:β|beta)\s*-\s*Caryophyllene|(?:δ|delta)\s*-\s*Limonene|Linalool|(?:α|alpha)\s*-\s*Humulene|(?:β|beta)\s*-\s*Pinene|(?:α|alpha)\s*-\s*Pinene|(?:α|alpha)\s*-\s*Bisabolol|Terpinolene|(?:β|beta)\s*-\s*Ocimene|Caryophyllene\s+Oxide|cis\s*-\s*Nerolidol|trans\s*-\s*Nerolidol|Nerolidol|(?:δ|delta)\s*-\s*3\s*-\s*Carene|3\s*-\s*Carene|Camphene|Guaiol|Eucalyptol|(?:γ|gamma)\s*-\s*Terpinene|p\s*-\s*Cymene|Geraniol|Isopulegol|Farnesene|Fenchone|Valencene|Citronellol|Menthol)\s+(?<loq><\s*LOQ|<\s*LOD|<\s*MDL|ND|NR|NT|\d{1,6}(?:\.\d+)?|\.\d+)\s+(?<mg><\s*LOQ|<\s*LOD|<\s*MDL|ND|NR|NT|\d{1,6}(?:\.\d+)?|\.\d+)\s+(?<percent><\s*LOQ|<\s*LOD|<\s*MDL|ND|NR|NT|\d{1,6}(?:\.\d+)?|\.\d+)(?=\s|$)",
         RegexOptions.IgnoreCase | RegexOptions.Compiled);
 
     protected override string[] DetectionTerms =>

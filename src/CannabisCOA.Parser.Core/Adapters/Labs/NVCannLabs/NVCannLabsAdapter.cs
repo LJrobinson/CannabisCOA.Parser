@@ -20,20 +20,33 @@ public class NVCannLabsAdapter : BaseLabAdapter
     private static readonly (string CanonicalName, Regex NameRegex)[] NvTerpeneAnchors =
     [
         ("Linalool", new Regex(@"(?<![\p{L}\p{N}])Linalool(?![\p{L}\p{N}])", RegexOptions.IgnoreCase | RegexOptions.Compiled)),
-        ("δ-Limonene", new Regex(@"(?<![\p{L}\p{N}])δ\s*-\s*Limonene(?![\p{L}\p{N}])", RegexOptions.IgnoreCase | RegexOptions.Compiled)),
-        ("β-Caryophyllene", new Regex(@"(?<![\p{L}\p{N}])β\s*-\s*Caryophyllene(?![\p{L}\p{N}])", RegexOptions.IgnoreCase | RegexOptions.Compiled)),
+        ("δ-Limonene", new Regex(@"(?<![\p{L}\p{N}])(?:δ|delta)\s*-\s*Limonene(?![\p{L}\p{N}])", RegexOptions.IgnoreCase | RegexOptions.Compiled)),
+        ("β-Caryophyllene", new Regex(@"(?<![\p{L}\p{N}])(?:β|beta)\s*-\s*Caryophyllene(?![\p{L}\p{N}])", RegexOptions.IgnoreCase | RegexOptions.Compiled)),
         ("Farnesene", new Regex(@"(?<![\p{L}\p{N}])Farnesene(?![\p{L}\p{N}])", RegexOptions.IgnoreCase | RegexOptions.Compiled)),
-        ("β-Myrcene", new Regex(@"(?<![\p{L}\p{N}])β\s*-\s*Myrcene(?![\p{L}\p{N}])", RegexOptions.IgnoreCase | RegexOptions.Compiled)),
-        ("α-Humulene", new Regex(@"(?<![\p{L}\p{N}])α\s*-\s*Humulene(?![\p{L}\p{N}])", RegexOptions.IgnoreCase | RegexOptions.Compiled)),
-        ("α-Bisabolol", new Regex(@"(?<![\p{L}\p{N}])α\s*-\s*Bisabolol(?![\p{L}\p{N}])", RegexOptions.IgnoreCase | RegexOptions.Compiled)),
-        ("β-Pinene", new Regex(@"(?<![\p{L}\p{N}])β\s*-\s*Pinene(?![\p{L}\p{N}])", RegexOptions.IgnoreCase | RegexOptions.Compiled)),
-        ("α-Terpineol", new Regex(@"(?<![\p{L}\p{N}])α\s*-\s*Terpineol(?![\p{L}\p{N}])", RegexOptions.IgnoreCase | RegexOptions.Compiled)),
-        ("α-Pinene", new Regex(@"(?<![\p{L}\p{N}])α\s*-\s*Pinene(?![\p{L}\p{N}])", RegexOptions.IgnoreCase | RegexOptions.Compiled)),
-        ("Nerolidol", new Regex(@"(?<![\p{L}\p{N}])Nerolidol(?![\p{L}\p{N}])", RegexOptions.IgnoreCase | RegexOptions.Compiled)),
+        ("β-Myrcene", new Regex(@"(?<![\p{L}\p{N}])(?:β|beta)\s*-\s*Myrcene(?![\p{L}\p{N}])", RegexOptions.IgnoreCase | RegexOptions.Compiled)),
+        ("α-Humulene", new Regex(@"(?<![\p{L}\p{N}])(?:α|alpha)\s*-\s*Humulene(?![\p{L}\p{N}])", RegexOptions.IgnoreCase | RegexOptions.Compiled)),
+        ("α-Bisabolol", new Regex(@"(?<![\p{L}\p{N}])(?:α|alpha)\s*-\s*Bisabolol(?![\p{L}\p{N}])", RegexOptions.IgnoreCase | RegexOptions.Compiled)),
+        ("β-Pinene", new Regex(@"(?<![\p{L}\p{N}])(?:β|beta)\s*-\s*Pinene(?![\p{L}\p{N}])", RegexOptions.IgnoreCase | RegexOptions.Compiled)),
+        ("α-Terpineol", new Regex(@"(?<![\p{L}\p{N}])(?:α|alpha)\s*-\s*Terpineol(?![\p{L}\p{N}])", RegexOptions.IgnoreCase | RegexOptions.Compiled)),
+        ("α-Pinene", new Regex(@"(?<![\p{L}\p{N}])(?:α|alpha)\s*-\s*Pinene(?![\p{L}\p{N}])", RegexOptions.IgnoreCase | RegexOptions.Compiled)),
+        ("cis-Nerolidol", new Regex(@"(?<![\p{L}\p{N}])cis\s*-\s*Nerolidol(?![\p{L}\p{N}])", RegexOptions.IgnoreCase | RegexOptions.Compiled)),
+        ("trans-Nerolidol", new Regex(@"(?<![\p{L}\p{N}])trans\s*-\s*Nerolidol(?![\p{L}\p{N}])", RegexOptions.IgnoreCase | RegexOptions.Compiled)),
+        ("Nerolidol", new Regex(@"(?<![\p{L}\p{N}-])Nerolidol(?![\p{L}\p{N}])", RegexOptions.IgnoreCase | RegexOptions.Compiled)),
         ("Terpinolene", new Regex(@"(?<![\p{L}\p{N}])Terpinolene(?![\p{L}\p{N}])", RegexOptions.IgnoreCase | RegexOptions.Compiled)),
         ("Caryophyllene Oxide", new Regex(@"(?<![\p{L}\p{N}])Caryophyllene\s+Oxide(?![\p{L}\p{N}])", RegexOptions.IgnoreCase | RegexOptions.Compiled)),
         ("Camphene", new Regex(@"(?<![\p{L}\p{N}])Camphene(?![\p{L}\p{N}])", RegexOptions.IgnoreCase | RegexOptions.Compiled)),
-        ("Guaiol", new Regex(@"(?<![\p{L}\p{N}])Guaiol(?![\p{L}\p{N}])", RegexOptions.IgnoreCase | RegexOptions.Compiled))
+        ("Guaiol", new Regex(@"(?<![\p{L}\p{N}])Guaiol(?![\p{L}\p{N}])", RegexOptions.IgnoreCase | RegexOptions.Compiled)),
+        ("δ-3-Carene", new Regex(@"(?<![\p{L}\p{N}])(?:(?:δ|delta)\s*-\s*)?3\s*-\s*Carene(?![\p{L}\p{N}])", RegexOptions.IgnoreCase | RegexOptions.Compiled)),
+        ("β-Ocimene", new Regex(@"(?<![\p{L}\p{N}])(?:β|beta)\s*-\s*Ocimene(?![\p{L}\p{N}])", RegexOptions.IgnoreCase | RegexOptions.Compiled)),
+        ("Eucalyptol", new Regex(@"(?<![\p{L}\p{N}])Eucalyptol(?![\p{L}\p{N}])", RegexOptions.IgnoreCase | RegexOptions.Compiled)),
+        ("Fenchone", new Regex(@"(?<![\p{L}\p{N}])Fenchone(?![\p{L}\p{N}])", RegexOptions.IgnoreCase | RegexOptions.Compiled)),
+        ("γ-Terpinene", new Regex(@"(?<![\p{L}\p{N}])(?:γ|gamma)\s*-\s*Terpinene(?![\p{L}\p{N}])", RegexOptions.IgnoreCase | RegexOptions.Compiled)),
+        ("Geraniol", new Regex(@"(?<![\p{L}\p{N}])Geraniol(?![\p{L}\p{N}])", RegexOptions.IgnoreCase | RegexOptions.Compiled)),
+        ("Menthol", new Regex(@"(?<![\p{L}\p{N}])Menthol(?![\p{L}\p{N}])", RegexOptions.IgnoreCase | RegexOptions.Compiled)),
+        ("Isopulegol", new Regex(@"(?<![\p{L}\p{N}])Isopulegol(?![\p{L}\p{N}])", RegexOptions.IgnoreCase | RegexOptions.Compiled)),
+        ("p-Cymene", new Regex(@"(?<![\p{L}\p{N}])p\s*-\s*Cymene(?![\p{L}\p{N}])", RegexOptions.IgnoreCase | RegexOptions.Compiled)),
+        ("Valencene", new Regex(@"(?<![\p{L}\p{N}])Valencene(?![\p{L}\p{N}])", RegexOptions.IgnoreCase | RegexOptions.Compiled)),
+        ("Citronellol", new Regex(@"(?<![\p{L}\p{N}])Citronellol(?![\p{L}\p{N}])", RegexOptions.IgnoreCase | RegexOptions.Compiled))
     ];
 
     protected override string[] DetectionTerms =>

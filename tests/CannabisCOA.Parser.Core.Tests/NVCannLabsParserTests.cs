@@ -112,4 +112,31 @@ public class NVCannLabsParserTests
         var roundedActual = Math.Round(result.Cannabinoids.TotalTHC, 3);
         Assert.True(roundedActual is 27.890m or 27.891m);
     }
+
+    [Fact]
+    public void NVCannLabsAdapter_Parse_ExpandedTerpeneAliases_UsesPercentColumn()
+    {
+        var text = """
+        NV Cann Labs
+        Product Type: Plant, Flower - Cured
+        44.000 mg/g
+        Total Terpenes
+        Analyte LOQ Mass Mass
+        β -Ocimene 0.083 2.833 0.2833
+        delta-3-Carene 0.083 0.309 0.0309
+        γ -Terpinene 0.083 0.144 0.0144
+        p-Cymene 0.083 0.222 0.0222
+        Valencene 0.083 0.111 0.0111
+        """;
+
+        var result = new NVCannLabsAdapter().Parse(text);
+
+        Assert.Equal(4.4000m, result.Terpenes.TotalTerpenes);
+        Assert.Equal(0.2833m, result.Terpenes.Terpenes["β-Ocimene"]);
+        Assert.Equal(0.0309m, result.Terpenes.Terpenes["δ-3-Carene"]);
+        Assert.Equal(0.0144m, result.Terpenes.Terpenes["γ-Terpinene"]);
+        Assert.Equal(0.0222m, result.Terpenes.Terpenes["p-Cymene"]);
+        Assert.Equal(0.0111m, result.Terpenes.Terpenes["Valencene"]);
+        Assert.DoesNotContain(0.083m, result.Terpenes.Terpenes.Values);
+    }
 }

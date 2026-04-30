@@ -1572,10 +1572,11 @@ public static class DigipathFlowerParser
     {
         profile = CreateEmptyProfile();
 
+        var normalizedRows = NormalizeRows(text);
         var rows = ExtractCannabinoidSectionRows(text);
 
         if (rows.Count == 0)
-            rows = NormalizeRows(text);
+            rows = normalizedRows;
 
         if (rows.Count == 0)
             return false;
@@ -1585,8 +1586,12 @@ public static class DigipathFlowerParser
         if (!hasTableContext)
             return false;
 
-        var context = DetectTableContext(rows);
         var useMgPerGram = ShouldStoreCannabinoidsAsMgPerGram(productType);
+        var context = DetectTableContext(rows);
+
+        if (useMgPerGram && HasSideBySideCannabinoidTerpeneLayout(normalizedRows))
+            context = new DigipathTableContext(context.HasLoqColumn, "MG/G", true);
+
         var parsedAny = false;
         var delta8 = 0m;
 
@@ -2330,18 +2335,40 @@ public static class DigipathFlowerParser
     private static List<string> ExtractCannabinoidSectionRows(string text)
     {
         var rows = NormalizeRows(text);
-        var startIndex = rows.FindIndex(IsCannabinoidSectionStart);
+        var startIndex = rows.FindIndex(IsCannabinoidTestResultsStart);
+
+        if (startIndex < 0)
+            startIndex = rows.FindIndex(IsCannabinoidSectionStart);
 
         if (startIndex < 0)
             return [];
 
-        var sectionRows = new List<string>();
+        var headerIndex = -1;
 
         for (var i = startIndex + 1; i < rows.Count; i++)
         {
             var row = rows[i];
 
-            if (IsCannabinoidSectionEnd(row))
+            if (IsDigipathCannabinoidTableHeader(row) && !IsSideBySideTerpeneHeaderRow(row))
+            {
+                headerIndex = i;
+                break;
+            }
+
+            if (IsCannabinoidTableSearchEnd(row))
+                break;
+        }
+
+        if (headerIndex < 0)
+            return [];
+
+        var sectionRows = new List<string>();
+
+        for (var i = headerIndex; i < rows.Count; i++)
+        {
+            var row = rows[i];
+
+            if (i > headerIndex && IsCannabinoidSectionEnd(row))
                 break;
 
             sectionRows.Add(row);
@@ -2356,13 +2383,59 @@ public static class DigipathFlowerParser
                row.Contains("Potency Test Results", StringComparison.OrdinalIgnoreCase);
     }
 
+    private static bool IsCannabinoidTestResultsStart(string row)
+    {
+        return row.Contains("Cannabinoid Test Results", StringComparison.OrdinalIgnoreCase);
+    }
+
+    private static bool IsCannabinoidTableSearchEnd(string row)
+    {
+        return row.Contains("Terpene Test Results", StringComparison.OrdinalIgnoreCase) ||
+               row.Contains("Safety & Quality Tests", StringComparison.OrdinalIgnoreCase) ||
+               row.Contains("Pesticide", StringComparison.OrdinalIgnoreCase) ||
+               row.Contains("Heavy Metals", StringComparison.OrdinalIgnoreCase) ||
+               row.Contains("Microbials", StringComparison.OrdinalIgnoreCase) ||
+               row.Contains("Microbiological", StringComparison.OrdinalIgnoreCase) ||
+               row.Equals("Safety", StringComparison.OrdinalIgnoreCase);
+    }
+
     private static bool IsCannabinoidSectionEnd(string row)
     {
         return row.Contains("Total Potential THC", StringComparison.OrdinalIgnoreCase) ||
                row.Contains("Total Potential CBD", StringComparison.OrdinalIgnoreCase) ||
-               row.Contains("Terpene Test Results", StringComparison.OrdinalIgnoreCase) ||
-               row.Contains("Safety & Quality Tests", StringComparison.OrdinalIgnoreCase) ||
-               row.Equals("Safety", StringComparison.OrdinalIgnoreCase);
+               IsCannabinoidTableSearchEnd(row);
+    }
+
+    private static bool IsSideBySideTerpeneHeaderRow(string row)
+    {
+        return row.Contains("CAS No", StringComparison.OrdinalIgnoreCase) &&
+               row.Contains("Analyte", StringComparison.OrdinalIgnoreCase) &&
+               row.Contains("LOQ", StringComparison.OrdinalIgnoreCase) &&
+               row.Contains("Mass", StringComparison.OrdinalIgnoreCase);
+    }
+
+    private static bool HasSideBySideCannabinoidTerpeneLayout(IReadOnlyList<string> rows)
+    {
+        return rows.Any(row =>
+                   row.Contains("Cannabinoid Test Results", StringComparison.OrdinalIgnoreCase) &&
+                   row.Contains("Terpene Test Results", StringComparison.OrdinalIgnoreCase)) &&
+               rows.Any(IsSideBySideUnitRow) &&
+               rows.Any(row => IsDigipathCannabinoidTableHeader(row) &&
+                               FindAnalyteAnchors(row).Any(anchor => anchor.Kind == AnalyteKind.Terpene));
+    }
+
+    private static bool IsSideBySideUnitRow(string row)
+    {
+        var units = Regex.Matches(row.ToUpperInvariant(), @"%|MG\s*/\s*G|MG/G")
+            .Cast<Match>()
+            .Select(match => NormalizeUnit(match.Value))
+            .ToList();
+
+        return units.Count >= 4 &&
+               units[0] == "MG/G" &&
+               units[1] == "%" &&
+               units[2] == "%" &&
+               units[3] == "MG/G";
     }
 
     private static bool LooksLikeSafeCannabinoidRow(string row)

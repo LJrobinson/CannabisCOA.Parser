@@ -114,4 +114,28 @@ public class MAAnalyticsParserTests
         // The fixture total is more precise than the subset of individual rows parsed here.
         Assert.True(Math.Abs(terpeneSum - result.Terpenes.TotalTerpenes) <= 0.1m);
     }
+
+    [Fact]
+    public void MAAnalyticsAdapter_Parse_ExpandedTerpeneAliases_UsesPercentColumn()
+    {
+        var text = """
+        MA Analytics
+        Product Type: Plant, Flower - Cured
+        Terpenes
+        Analyte LOQ Mass Mass
+        Terpinolene 0.0125 0.2413 0.02413
+        β -Ocimene 0.0125 0.1155 0.01155
+        delta-3-Carene 0.0125 0.3626 0.03626
+        Caryophyllene Oxide 0.0125 0.4500 0.04500
+        Total 1.1694 0.11694
+        """;
+
+        var result = new MAAnalyticsAdapter().Parse(text);
+
+        Assert.Equal(0.02413m, result.Terpenes.Terpenes["Terpinolene"]);
+        Assert.Equal(0.01155m, result.Terpenes.Terpenes["β -Ocimene"]);
+        Assert.Equal(0.03626m, result.Terpenes.Terpenes["delta-3-Carene"]);
+        Assert.Equal(0.04500m, result.Terpenes.Terpenes["Caryophyllene Oxide"]);
+        Assert.DoesNotContain(0.0125m, result.Terpenes.Terpenes.Values);
+    }
 }
