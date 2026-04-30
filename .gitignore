@@ -1,0 +1,31 @@
+# Build output
+bin/
+obj/
+[Bb]in/
+[Oo]bj/
+
+# User/editor files
+.vs/
+.vscode/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Test results / coverage
+TestResults/
+coverage/
+*.coverage
+*.coveragexml
+*.trx
+
+# Logs
+*.log
+
+# Batch/parser output artifacts
+*.jsonl
+!tests/**/*.jsonl
+
+# OS junk
+.DS_Store
+Thumbs.db
