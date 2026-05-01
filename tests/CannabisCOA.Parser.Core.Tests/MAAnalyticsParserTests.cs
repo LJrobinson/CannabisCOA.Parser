@@ -25,6 +25,8 @@ public class MAAnalyticsParserTests
 
         Assert.Equal("MA Analytics", result.LabName);
         Assert.Equal(ProductType.Flower, result.ProductType);
+        Assert.Equal("Flower Rocky Road", result.ProductName);
+        Assert.Equal("0225RR7", result.BatchId);
         Assert.NotNull(result.TestDate);
         Assert.Equal(26.278m, result.Cannabinoids.THCA.Value);
         Assert.Equal(0.544m, result.Cannabinoids.THC.Value);

@@ -2,6 +2,7 @@ using System.Globalization;
 using System.Text.RegularExpressions;
 using CannabisCOA.Parser.Core.Adapters;
 using CannabisCOA.Parser.Core.Calculators;
+using CannabisCOA.Parser.Core.Enums;
 using CannabisCOA.Parser.Core.Models;
 
 namespace CannabisCOA.Parser.Core.Adapters.Labs.MAAnalytics;
@@ -32,6 +33,12 @@ public class MAAnalyticsAdapter : BaseLabAdapter
     {
         var result = base.Parse(text);
 
+        if (result.ProductType == ProductType.Flower)
+        {
+            result.ProductName = ExtractProductName(text);
+            result.BatchId = ExtractBatchId(text);
+        }
+
         if (TryParseMaCannabinoids(text, out var cannabinoids))
         {
             CannabinoidCalculator.CalculateTotals(cannabinoids);
@@ -50,6 +57,96 @@ public class MAAnalyticsAdapter : BaseLabAdapter
         }
 
         return result;
+    }
+
+    private static string ExtractProductName(string text)
+    {
+        var rows = NormalizeRows(text);
+        var displayedProductName = ExtractDisplayedProductName(rows);
+
+        if (!string.IsNullOrWhiteSpace(displayedProductName))
+            return displayedProductName;
+
+        return ExtractStrainName(rows);
+    }
+
+    private static string ExtractDisplayedProductName(IReadOnlyList<string> rows)
+    {
+        for (var i = 1; i < rows.Count; i++)
+        {
+            if (!IsMaFlowerDescriptor(rows[i]))
+                continue;
+
+            for (var j = i - 1; j >= 0 && i - j <= 3; j--)
+            {
+                var candidate = rows[j].Trim();
+
+                if (IsMaProductNameCandidate(candidate))
+                    return candidate;
+            }
+        }
+
+        return string.Empty;
+    }
+
+    private static string ExtractStrainName(IEnumerable<string> rows)
+    {
+        foreach (var row in rows)
+        {
+            var match = Regex.Match(row, @"\bStrain\s*:\s*(?<strain>.+?)(?:\s+Batch\s*#:|$)", RegexOptions.IgnoreCase);
+
+            if (!match.Success)
+                continue;
+
+            var strain = match.Groups["strain"].Value.Trim();
+
+            if (IsMaProductNameCandidate(strain))
+                return strain;
+        }
+
+        return string.Empty;
+    }
+
+    private static string ExtractBatchId(string text)
+    {
+        foreach (var row in NormalizeRows(text))
+        {
+            var match = Regex.Match(
+                row,
+                @"\bBatch\s*#\s*:\s*(?<batch>.*?)(?:\s*;\s*Lot\s*#|\s+Lot\s*#:|\s+Harvest/Production\s+Date:|$)",
+                RegexOptions.IgnoreCase);
+
+            if (!match.Success)
+                continue;
+
+            var batch = match.Groups["batch"].Value.Trim();
+
+            if (!string.IsNullOrWhiteSpace(batch))
+                return batch;
+        }
+
+        return string.Empty;
+    }
+
+    private static bool IsMaProductNameCandidate(string row)
+    {
+        return !string.IsNullOrWhiteSpace(row) &&
+               !Regex.IsMatch(row, @"^[\s\-–—_]+$") &&
+               !row.Contains(':') &&
+               !row.Contains(';') &&
+               !row.Contains("@") &&
+               !Regex.IsMatch(row, @"^\(?\d{3}\)?[\s-]\d{3}[\s-]\d{4}") &&
+               !row.StartsWith("Lic.", StringComparison.OrdinalIgnoreCase) &&
+               !row.Contains("North Las Vegas", StringComparison.OrdinalIgnoreCase) &&
+               !row.Contains("Lone Mountain Rd", StringComparison.OrdinalIgnoreCase);
+    }
+
+    private static bool IsMaFlowerDescriptor(string row)
+    {
+        return Regex.IsMatch(
+            row,
+            @"\bPlant\s*,\s*Flower(?:\s*-\s*Cured)?\b",
+            RegexOptions.IgnoreCase);
     }
 
     private static bool TryParseMaCannabinoids(string text, out CannabinoidProfile profile)
