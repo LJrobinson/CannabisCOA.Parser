@@ -200,9 +200,12 @@ public static class DigipathFlowerParser
     {
         var productType = DetectProductType(text);
         var rows = NormalizeRows(text);
-        var isSinglePanelTest = productType == ProductType.Flower && IsDigipathSinglePanelTest(rows);
+        var documentClassification = ClassifyDigipathReport(rows, productType);
+        var isFullComplianceCoa = documentClassification.Equals("FullComplianceCoa", StringComparison.OrdinalIgnoreCase);
 
-        var cannabinoids = ParseDigipathCannabinoidsOrFallback(text, productType);
+        var cannabinoids = isFullComplianceCoa
+            ? ParseDigipathCannabinoidsOrFallback(text, productType)
+            : new CannabinoidProfile();
 
         var testDate = GenericDateParser.ExtractTestDate(text);
         var freshness = FreshnessCalculator.Calculate(testDate);
@@ -217,8 +220,8 @@ public static class DigipathFlowerParser
             ProductType = productType,
             ProductName = productName,
             BatchId = batchId,
-            DocumentClassification = isSinglePanelTest ? "SinglePanelTest" : "FullComplianceCoa",
-            IsFullComplianceCoa = !isSinglePanelTest,
+            DocumentClassification = documentClassification,
+            IsFullComplianceCoa = isFullComplianceCoa,
             Cannabinoids = cannabinoids,
             Terpenes = terpenes,
             TestDate = testDate,
@@ -229,14 +232,15 @@ public static class DigipathFlowerParser
 
     internal static ProductType DetectProductType(string text)
     {
+        if (NormalizeRows(text).Any(IsDigipathFlowerDescriptor))
+            return ProductType.Flower;
+
         var productType = ProductTypeDetector.Detect(text);
 
         if (productType != ProductType.Unknown)
             return productType;
 
-        return NormalizeRows(text).Any(IsDigipathFlowerDescriptor)
-            ? ProductType.Flower
-            : ProductType.Unknown;
+        return ProductType.Unknown;
     }
 
     private static string ExtractProductName(string text)
@@ -381,6 +385,23 @@ public static class DigipathFlowerParser
         return string.Empty;
     }
 
+    private static string ClassifyDigipathReport(IReadOnlyList<string> rows, ProductType productType)
+    {
+        if (productType != ProductType.Flower || !rows.Any(IsDigipathFlowerDescriptor))
+            return "FullComplianceCoa";
+
+        if (HasCannabinoidPanel(rows) || HasTerpenePanel(rows))
+            return "FullComplianceCoa";
+
+        if (IsDigipathSinglePanelTest(rows) || IsDigipathPesticidesOnlySinglePanelTest(rows))
+            return "SinglePanelTest";
+
+        if (IsDigipathPesticidesAndMycotoxinsPartialPanelReport(rows))
+            return "PartialPanelReport";
+
+        return "FullComplianceCoa";
+    }
+
     private static bool IsDigipathProductNameCandidate(string row)
     {
         return !string.IsNullOrWhiteSpace(row) &&
@@ -400,6 +421,55 @@ public static class DigipathFlowerParser
                !LooksLikeDigipathBatchOrLotDisplayLine(row) &&
                !Regex.IsMatch(row, @"^\d+\s+of\s+\d+$", RegexOptions.IgnoreCase) &&
                !Regex.IsMatch(row, @"^\(?\d{3}\)?[\s-]\d{3}[\s-]\d{4}");
+    }
+
+    private static bool IsDigipathPesticidesOnlySinglePanelTest(IReadOnlyList<string> rows)
+    {
+        var hasOnePageMarker = rows.Any(row =>
+            Regex.IsMatch(row, @"\b1\s+of\s+1\b", RegexOptions.IgnoreCase));
+        var notTestedPanelCount = CountNotTestedPanelsIncludingHeavyMetals(rows);
+
+        return HasDigipathPanelResult(rows, "Pesticides") &&
+               !HasDigipathPanelResult(rows, "Heavy Metals") &&
+               !HasDigipathPanelResult(rows, "Microbials") &&
+               (!HasDigipathPanelResult(rows, "Mycotoxins") || hasOnePageMarker) &&
+               notTestedPanelCount >= 3;
+    }
+
+    private static bool IsDigipathPesticidesAndMycotoxinsPartialPanelReport(IReadOnlyList<string> rows)
+    {
+        return HasDigipathPanelResult(rows, "Pesticides") &&
+               HasDigipathPanelResult(rows, "Mycotoxins");
+    }
+
+    private static bool HasDigipathPanelResult(IEnumerable<string> rows, string panelName)
+    {
+        var panelPattern = Regex.Escape(panelName).Replace(@"\ ", @"\s+");
+
+        return rows.Any(row =>
+            Regex.IsMatch(
+                row,
+                $@"\b{panelPattern}\s*(?:\([^)]*\)\s*)?(?:Pass|Fail)\b",
+                RegexOptions.IgnoreCase));
+    }
+
+    private static int CountNotTestedPanelsIncludingHeavyMetals(IEnumerable<string> rows)
+    {
+        var panelNames = new[] { "Pesticides", "Microbials", "Mycotoxins", "Solvents", "Heavy Metals" };
+        var count = 0;
+
+        foreach (var panelName in panelNames)
+        {
+            var panelPattern = Regex.Escape(panelName).Replace(@"\ ", @"\s+");
+
+            if (rows.Any(row =>
+                    Regex.IsMatch(row, $@"\b{panelPattern}\s*Not\s*Tested\b", RegexOptions.IgnoreCase)))
+            {
+                count++;
+            }
+        }
+
+        return count;
     }
 
     private static bool IsDigipathFlowerDescriptor(string row)

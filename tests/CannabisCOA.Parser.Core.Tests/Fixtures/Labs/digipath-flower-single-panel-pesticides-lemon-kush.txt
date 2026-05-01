@@ -1,0 +1,24 @@
+1 of 1
+Certificate of Analysis
+Digipath Labs, NV
+Lemon Kush Flower Sample: DIGP2601.0104.P.00576
+Batch #: LK-PST-00576; Lot #: LK-PST-00576
+Sample Date: 01/23/2026 Report Date: 01/28/2026
+MME ID: 34783954003475226897 - RL006
+METRC Sample: 1A4040300002C89000003178
+Plant, Flower - Cured
+Pesticides Pass
+Analyte LOQ Limit Mass Status
+PPM PPM PPM
+Abamectin 0.443 200.000 <LOD Pass
+Acequinocyl 0.400 4.000 <LOQ Pass
+Myclobutanil 0.400 0.400 <LOQ Pass
+Heavy Metals Not Tested
+Analyte LOQ Limit Units Status
+Microbials Not Tested
+Analyte LOQ Limit Units Status
+Mycotoxins Not Tested
+Analyte LOQ Limit Mass Status
+Solvents Not Tested
+Analyte LOQ Limit Mass Status
+I certify that this sample has been tested by DigiPath Labs.

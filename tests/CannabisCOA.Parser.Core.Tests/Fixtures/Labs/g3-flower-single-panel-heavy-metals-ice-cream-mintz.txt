@@ -1,0 +1,20 @@
+Certificate of Analysis
+MA Analytics
+Las Vegas, NV 89102
+Lic. #81521595921502470043
+Sample: 2503G3L0057.2855
+Strain: Ice Cream Mintz Batch #: 68912; Lot #: 68912;
+Sample Received: 03/12/2025; Report Created: 03/12/2025
+Harvest/Production Date: Ice Cream Mintz Lab Sample
+Plant, Flower - Cured
+Harvest Process Lot: ; METRC Batch: 1A4040300000515000068912; METRC Sample: 1A40403000047E1000003526
+Heavy Metals(G3 SOP# IC501 / ICPMS)Pass
+LOQ = Limit of Quantitation
+Analyte LOQ Limit Result Status
+PPB PPB PPB
+Arsenic 2.5 2000.0 <LOQ Pass
+Cadmium 2.5 820.0 <LOQ Pass
+Lead 2.5 1200.0 <LOQ Pass
+Mercury 2.5 400.0 <LOQ Pass
+http://www.g3labsllc.com
+This product has been tested by G3 Labs using valid testing methodologies and a quality system as required by state law.

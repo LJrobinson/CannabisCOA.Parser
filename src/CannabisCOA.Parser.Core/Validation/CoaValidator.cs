@@ -21,13 +21,22 @@ public static class CoaValidator
             });
         }
 
-        if (!coa.IsFullComplianceCoa ||
-            coa.DocumentClassification.Equals("SinglePanelTest", StringComparison.OrdinalIgnoreCase))
+        if (coa.DocumentClassification.Equals("SinglePanelTest", StringComparison.OrdinalIgnoreCase))
         {
             result.Warnings.Add(new ValidationWarning
             {
                 Code = "SINGLE_PANEL_TEST",
-                Message = "COA appears to be a single-panel or partial-panel report, not a full compliance COA.",
+                Message = "COA appears to be a single-panel report, not a full compliance COA.",
+                Severity = "warning"
+            });
+        }
+        else if (!coa.IsFullComplianceCoa ||
+            coa.DocumentClassification.Equals("PartialPanelReport", StringComparison.OrdinalIgnoreCase))
+        {
+            result.Warnings.Add(new ValidationWarning
+            {
+                Code = "PARTIAL_PANEL_REPORT",
+                Message = "COA appears to be a partial-panel report, not a full compliance COA.",
                 Severity = "warning"
             });
         }

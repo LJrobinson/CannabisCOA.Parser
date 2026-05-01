@@ -1,0 +1,26 @@
+Certificate of Analysis
+Digipath Labs, NV
+Las Vegas, NV 89118
+Lic. #44967653318399830596
+Sample: 2510G3L0062.11357
+Strain: Josey Wales - Bulk Flower Batch #: 07264; Lot #: 07264
+Sample Received: 10/13/2025; Report Created: 10/20/2025
+Harvest/Production Date: Josey Wales - Bulk Flower
+Plant, Flower - Cured
+Harvest Process Lot: ; METRC Batch: 1A40403000044C1000007264; METRC Sample: 1A404030000012F000009304
+Mycotoxins Pass
+(G3 SOP# LA603 / ELISA)
+Analyte LOQ Limit Result Status
+PPB PPB PPB
+Aflatoxins 2.00 20.00 <LOQ Pass
+Ochratoxin A 2.00 20.00 <LOQ Pass
+1 of 2
+Pesticides Pass
+(G3 SOP# GC304 & LC404 / GCMS-MS & LCMS-MS)
+Analyte LOQ Limit Result Status
+PPM PPM PPM
+Abamectin 0.005 0.000 <LOD Pass
+Acequinocyl 0.005 4.000 <LOQ Pass
+Bifenazate 0.005 0.400 <LOQ Pass
+2 of 2
+This product has been tested by G3 Labs using valid testing methodologies and a quality system as required by state law.

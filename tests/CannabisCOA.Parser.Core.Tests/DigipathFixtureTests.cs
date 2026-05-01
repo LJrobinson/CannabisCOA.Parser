@@ -70,6 +70,48 @@ public class DigipathFixtureTests
     }
 
     [Fact]
+    public void Parses_Digipath_Flower_SinglePanelPesticides_ReportClassification()
+    {
+        var text = LoadFixture("digipath-flower-single-panel-pesticides-lemon-kush.txt");
+
+        var result = CoaParser.Parse(text);
+        var validation = CoaValidator.Validate(result);
+        var document = CoaDocumentMapper.FromCoaResult(result);
+
+        Assert.Equal("Digipath", result.LabName);
+        Assert.Equal(ProductType.Flower, result.ProductType);
+        Assert.Equal("SinglePanelTest", result.DocumentClassification);
+        Assert.False(result.IsFullComplianceCoa);
+        Assert.Equal("SinglePanelTest", document.DocumentClassification);
+        Assert.False(document.IsFullComplianceCoa);
+        Assert.Empty(document.Cannabinoids);
+        Assert.DoesNotContain(nameof(document.Cannabinoids), document.ParserMetadata.MissingFields);
+        Assert.Contains(validation.Warnings, warning => warning.Code == "SINGLE_PANEL_TEST");
+        Assert.DoesNotContain(validation.Warnings, warning => warning.Code == "MISSING_THC_VALUES");
+    }
+
+    [Fact]
+    public void Parses_Digipath_Flower_PesticidesMycotoxinsPartial_ReportClassification()
+    {
+        var text = LoadFixture("digipath-flower-partial-mycotoxins-pesticides-josey-wales.txt");
+
+        var result = CoaParser.Parse(text);
+        var validation = CoaValidator.Validate(result);
+        var document = CoaDocumentMapper.FromCoaResult(result);
+
+        Assert.Equal("Digipath", result.LabName);
+        Assert.Equal(ProductType.Flower, result.ProductType);
+        Assert.Equal("PartialPanelReport", result.DocumentClassification);
+        Assert.False(result.IsFullComplianceCoa);
+        Assert.Equal("PartialPanelReport", document.DocumentClassification);
+        Assert.False(document.IsFullComplianceCoa);
+        Assert.Empty(document.Cannabinoids);
+        Assert.DoesNotContain(nameof(document.Cannabinoids), document.ParserMetadata.MissingFields);
+        Assert.Contains(validation.Warnings, warning => warning.Code == "PARTIAL_PANEL_REPORT");
+        Assert.DoesNotContain(validation.Warnings, warning => warning.Code == "MISSING_THC_VALUES");
+    }
+
+    [Fact]
     public void Parses_Digipath_Flower_GenericDisplayName_FallsBackToStrain()
     {
         var text = LoadFixture("digipath-flower-generic-display-blue-dream.txt");
@@ -111,6 +153,26 @@ public class DigipathFixtureTests
         Assert.True(document.IsFullComplianceCoa);
         Assert.Equal("Trop Cherry Popcorn", result.ProductName);
         Assert.Equal("TCP-042", result.BatchId);
+        Assert.True(result.Cannabinoids.TotalTHC > 0m);
+    }
+
+    [Fact]
+    public void Parses_Digipath_Flower_PopcornBudsIceCreamCake_AsFlowerNotTopical()
+    {
+        var text = LoadFixture("digipath-flower-popcorn-buds-ice-cream-cake.txt");
+
+        var result = CoaParser.Parse(text);
+        var document = CoaDocumentMapper.FromCoaResult(result);
+
+        Assert.Equal("Digipath", result.LabName);
+        Assert.Equal(ProductType.Flower, result.ProductType);
+        Assert.NotEqual(ProductType.Topical, result.ProductType);
+        Assert.Equal("FullComplianceCoa", result.DocumentClassification);
+        Assert.True(result.IsFullComplianceCoa);
+        Assert.Equal("FullComplianceCoa", document.DocumentClassification);
+        Assert.True(document.IsFullComplianceCoa);
+        Assert.Equal("Ice Cream Cake", result.ProductName);
+        Assert.Equal("390R8ICE", result.BatchId);
         Assert.True(result.Cannabinoids.TotalTHC > 0m);
     }
 

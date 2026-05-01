@@ -1,5 +1,7 @@
 using CannabisCOA.Parser.Core.Adapters.Labs.G3Labs;
 using CannabisCOA.Parser.Core.Enums;
+using CannabisCOA.Parser.Core.Mappers;
+using CannabisCOA.Parser.Core.Validation;
 using Xunit;
 
 namespace CannabisCOA.Parser.Core.Tests;
@@ -43,6 +45,74 @@ public class G3LabsParserTests
         Assert.Equal(ProductType.Flower, result.ProductType);
         Assert.Equal("Bud Garlic Cookies", result.ProductName);
         Assert.Equal("359", result.BatchId);
+    }
+
+    [Fact]
+    public void CoaParser_Parse_PopcornBudletsLightDeprivationFixture_DetectsFlowerMetadata()
+    {
+        var text = File.ReadAllText(FixturePath("g3-flower-popcorn-budlets-light-deprivation.txt"));
+
+        var result = CoaParser.Parse(text);
+
+        Assert.Equal("G3 Labs", result.LabName);
+        Assert.Equal(ProductType.Flower, result.ProductType);
+        Assert.Equal("Peanut Butter Breath Budlets", result.ProductName);
+        Assert.Equal("PBB12082025F3", result.BatchId);
+    }
+
+    [Fact]
+    public void CoaParser_Parse_TrimIndoorFixture_DetectsFlowerMetadata()
+    {
+        var text = File.ReadAllText(FixturePath("g3-flower-trim-indoor-super-silver-haze.txt"));
+
+        var result = CoaParser.Parse(text);
+
+        Assert.Equal("G3 Labs", result.LabName);
+        Assert.Equal(ProductType.Flower, result.ProductType);
+        Assert.Equal("FullComplianceCoa", result.DocumentClassification);
+        Assert.True(result.IsFullComplianceCoa);
+        Assert.Equal("Super Silver Haze Trim", result.ProductName);
+        Assert.Equal("SSH-TRIM-09381", result.BatchId);
+        Assert.True(result.Cannabinoids.TotalTHC > 0m);
+    }
+
+    [Fact]
+    public void CoaParser_Parse_TrimLightDeprivationFixture_FallsBackToStrain()
+    {
+        var text = File.ReadAllText(FixturePath("g3-flower-trim-light-deprivation-sour-diesel.txt"));
+
+        var result = CoaParser.Parse(text);
+
+        Assert.Equal("G3 Labs", result.LabName);
+        Assert.Equal(ProductType.Flower, result.ProductType);
+        Assert.Equal("FullComplianceCoa", result.DocumentClassification);
+        Assert.True(result.IsFullComplianceCoa);
+        Assert.Equal("Sour Diesel", result.ProductName);
+        Assert.Equal("SD-LD-09675", result.BatchId);
+        Assert.True(result.Cannabinoids.TotalTHC > 0m);
+    }
+
+    [Fact]
+    public void CoaParser_Parse_G3HeavyMetalsOnlyFixture_ClassifiesSinglePanelReport()
+    {
+        var text = File.ReadAllText(FixturePath("g3-flower-single-panel-heavy-metals-ice-cream-mintz.txt"));
+
+        var result = CoaParser.Parse(text);
+        var validation = CoaValidator.Validate(result);
+        var document = CoaDocumentMapper.FromCoaResult(result);
+
+        Assert.Equal("G3 Labs", result.LabName);
+        Assert.Equal(ProductType.Flower, result.ProductType);
+        Assert.Equal("Ice Cream Mintz", result.ProductName);
+        Assert.Equal("68912", result.BatchId);
+        Assert.Equal("SinglePanelTest", result.DocumentClassification);
+        Assert.False(result.IsFullComplianceCoa);
+        Assert.Equal("SinglePanelTest", document.DocumentClassification);
+        Assert.False(document.IsFullComplianceCoa);
+        Assert.Empty(document.Cannabinoids);
+        Assert.DoesNotContain(nameof(document.Cannabinoids), document.ParserMetadata.MissingFields);
+        Assert.Contains(validation.Warnings, warning => warning.Code == "SINGLE_PANEL_TEST");
+        Assert.DoesNotContain(validation.Warnings, warning => warning.Code == "MISSING_THC_VALUES");
     }
 
     [Theory]

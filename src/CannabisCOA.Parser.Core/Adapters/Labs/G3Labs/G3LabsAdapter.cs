@@ -40,6 +40,12 @@ public class G3LabsAdapter : BaseLabAdapter
     public override CoaResult Parse(string text)
     {
         var result = base.Parse(text);
+        var rows = NormalizeRows(text);
+        var documentClassification = ClassifyG3Report(rows, result.ProductType);
+        var isFullComplianceCoa = documentClassification.Equals("FullComplianceCoa", StringComparison.OrdinalIgnoreCase);
+
+        result.DocumentClassification = documentClassification;
+        result.IsFullComplianceCoa = isFullComplianceCoa;
 
         if (result.ProductType == ProductType.Flower)
         {
@@ -47,10 +53,14 @@ public class G3LabsAdapter : BaseLabAdapter
             result.BatchId = ExtractBatchId(text);
         }
 
-        if (TryParseG3Cannabinoids(text, out var cannabinoids))
+        if (isFullComplianceCoa && TryParseG3Cannabinoids(text, out var cannabinoids))
         {
             CannabinoidCalculator.CalculateTotals(cannabinoids);
             result.Cannabinoids = cannabinoids;
+        }
+        else if (!isFullComplianceCoa)
+        {
+            result.Cannabinoids = new CannabinoidProfile();
         }
 
         if (TryParseG3TotalTerpenes(text, out var totalTerpenes))
@@ -65,6 +75,13 @@ public class G3LabsAdapter : BaseLabAdapter
         }
 
         return result;
+    }
+
+    public override ProductType DetectProductType(string text)
+    {
+        return NormalizeRows(text).Any(IsG3FlowerDescriptor)
+            ? ProductType.Flower
+            : base.DetectProductType(text);
     }
 
     private static string ExtractProductName(string text)
@@ -141,6 +158,10 @@ public class G3LabsAdapter : BaseLabAdapter
         return !string.IsNullOrWhiteSpace(row) &&
                !Regex.IsMatch(row, @"^[\s\-–—_]+$") &&
                !row.Equals("Flower", StringComparison.OrdinalIgnoreCase) &&
+               !row.Equals("Plant", StringComparison.OrdinalIgnoreCase) &&
+               !row.Equals("Popcorn Buds", StringComparison.OrdinalIgnoreCase) &&
+               !row.Equals("Trim", StringComparison.OrdinalIgnoreCase) &&
+               !row.StartsWith("Plant,", StringComparison.OrdinalIgnoreCase) &&
                !row.Contains(':') &&
                !row.Contains(';') &&
                !row.Contains("G3 Labs", StringComparison.OrdinalIgnoreCase) &&
@@ -149,6 +170,9 @@ public class G3LabsAdapter : BaseLabAdapter
                !row.StartsWith("Lic.", StringComparison.OrdinalIgnoreCase) &&
                !row.Contains("Sparks", StringComparison.OrdinalIgnoreCase) &&
                !row.Contains("Laughlin", StringComparison.OrdinalIgnoreCase) &&
+               !row.Contains("Amargosa Valley", StringComparison.OrdinalIgnoreCase) &&
+               !Regex.IsMatch(row, @"^\d{5,}[\s._-]+\S+", RegexOptions.IgnoreCase) &&
+               !Regex.IsMatch(row, @"^1A[0-9A-Z]{20,}$", RegexOptions.IgnoreCase) &&
                !Regex.IsMatch(row, @"^\(?\d{3}\)?[\s-]\d{3}[\s-]\d{4}") &&
                !Regex.IsMatch(row, @"^\d+\s+of\s+\d+$", RegexOptions.IgnoreCase);
     }
@@ -157,8 +181,54 @@ public class G3LabsAdapter : BaseLabAdapter
     {
         return Regex.IsMatch(
             row,
-            @"\bPlant\s*,\s*Flower(?:\s*-\s*Cured)?\b",
+            @"\bPlant\s*,\s*(?:Flower(?:\s*-\s*Cured)?|Popcorn\s+Buds|Trim(?:\s*,\s*(?:Indoor|Light\s+Deprivation))?(?!\s*,))\b",
             RegexOptions.IgnoreCase);
+    }
+
+    private static string ClassifyG3Report(IReadOnlyList<string> rows, ProductType productType)
+    {
+        if (productType != ProductType.Flower || !rows.Any(IsG3FlowerDescriptor))
+            return "FullComplianceCoa";
+
+        if (HasG3CannabinoidPanel(rows) || HasG3TerpenePanel(rows))
+            return "FullComplianceCoa";
+
+        if (HasG3PanelResult(rows, "Heavy Metals") &&
+            !HasG3PanelResult(rows, "Pesticides") &&
+            !HasG3PanelResult(rows, "Microbials") &&
+            !HasG3PanelResult(rows, "Mycotoxins"))
+        {
+            return "SinglePanelTest";
+        }
+
+        return "FullComplianceCoa";
+    }
+
+    private static bool HasG3CannabinoidPanel(IEnumerable<string> rows)
+    {
+        return rows.Any(row =>
+            row.Contains("Cannabinoids", StringComparison.OrdinalIgnoreCase) ||
+            row.Contains("Total Potential THC", StringComparison.OrdinalIgnoreCase) ||
+            Regex.IsMatch(row, @"^\s*THCa\b", RegexOptions.IgnoreCase) ||
+            Regex.IsMatch(row, @"^\s*(?:Δ|∆)9\s*-\s*THC\b", RegexOptions.IgnoreCase));
+    }
+
+    private static bool HasG3TerpenePanel(IEnumerable<string> rows)
+    {
+        return rows.Any(row =>
+            row.Contains("Terpenes", StringComparison.OrdinalIgnoreCase) ||
+            row.Contains("Total Terpenes", StringComparison.OrdinalIgnoreCase));
+    }
+
+    private static bool HasG3PanelResult(IEnumerable<string> rows, string panelName)
+    {
+        var panelPattern = Regex.Escape(panelName).Replace(@"\ ", @"\s+");
+
+        return rows.Any(row =>
+            Regex.IsMatch(
+                row,
+                $@"\b{panelPattern}\s*(?:\([^)]*\)\s*)?(?:Pass|Fail)\b",
+                RegexOptions.IgnoreCase));
     }
 
     private static bool TryParseG3Cannabinoids(string text, out CannabinoidProfile profile)
