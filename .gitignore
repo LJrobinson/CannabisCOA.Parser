@@ -29,3 +29,6 @@ coverage/
 # OS junk
 .DS_Store
 Thumbs.db
+
+#CODEX
+AGENTS.md

@@ -19,6 +19,12 @@ var jsonOptions = new JsonSerializerOptions
     Converters = { new JsonStringEnumConverter() }
 };
 
+var batchJsonLineOptions = new JsonSerializerOptions
+{
+    WriteIndented = false,
+    Converters = { new JsonStringEnumConverter() }
+};
+
 if (args.Length == 0)
 {
     Console.WriteLine("CannabisCOA.Parser CLI");
@@ -129,7 +135,7 @@ if (argsList.Contains("--batch"))
                 res.Coa.Terpenes.TotalTerpenes = Math.Round(res.Coa.Terpenes.TotalTerpenes, 2);
             }
 
-            writer.WriteLine(JsonSerializer.Serialize(res, jsonOptions));
+            writer.WriteLine(JsonSerializer.Serialize(res, batchJsonLineOptions));
             BatchCsvWriter.WriteRow(csvWriter, file, res);
 
             if (IsGenericLab(res.Coa.LabName))
