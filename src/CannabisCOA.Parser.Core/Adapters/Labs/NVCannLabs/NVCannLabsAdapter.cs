@@ -68,7 +68,9 @@ public class NVCannLabsAdapter : BaseLabAdapter
         "NV CANNLABS",
         "NV CANN LABS",
         "NEVADA CANNLABS",
-        "NEVADA CANN LABS"
+        "NEVADA CANN LABS",
+        "NVCANN.COM",
+        "6631 SCHUSTER STREET"
     ];
 
     public override CoaResult Parse(string text)

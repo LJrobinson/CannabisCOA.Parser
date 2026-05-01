@@ -53,6 +53,19 @@ public class NVCannLabsParserTests
         Assert.Equal("NV-BATCH-001", result.BatchId);
     }
 
+    [Fact]
+    public void CoaParser_Parse_FooterMarkerFixtureResolvesNvCannLabs()
+    {
+        var text = File.ReadAllText(FixturePath("nvcannlabs-flower-footer-marker-tangie-frosting.txt"));
+
+        var result = CoaParser.Parse(text);
+
+        Assert.Equal("NV Cann Labs", result.LabName);
+        Assert.Equal(ProductType.Flower, result.ProductType);
+        Assert.Equal("Tangie Frosting", result.ProductName);
+        Assert.Equal("LV.100625.R6.TF", result.BatchId);
+    }
+
     [Theory]
     [InlineData("CBD", "CBD 0.083 <LOQ <LOQ")]
     [InlineData("CBDA", "CBDa 0.083 <LOQ <LOQ")]

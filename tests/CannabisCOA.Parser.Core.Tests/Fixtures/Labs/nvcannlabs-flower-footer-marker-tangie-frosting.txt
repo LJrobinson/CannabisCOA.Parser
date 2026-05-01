@@ -1,0 +1,22 @@
+Certificate of Analysis
+Powered by Confident LIMS
+1 of 2
+Sample: 2025NVC2522-18421
+Strain: Tangie Frosting
+Las Vegas, NV 89119 Batch #: LV.100625.R6.TF; Lot #: 13239
+Sample Received: 10/08/2025; Report Created: 10/10/2025; Harvest/Production Date: 10/06/2025
+Tangie Frosting
+Plant, Flower - Cured, Indoor
+Harvest Process Lot: 13239; METRC Batch: 13239; METRC Sample: 1A404030000164D000013239
+
+Cannabinoids Terpenes
+Analyte LOQ Mass Mass
+% % mg/g
+THCa 0.083 24.000 240.00
+Δ9-THC 0.083 0.500 5.00
+CBDa 0.083 <LOQ <LOQ
+CBD 0.083 <LOQ <LOQ
+
+6631 Schuster Street Confident LIMS
+Las Vegas, NV
+http://www.nvcann.com Scientific (866) 506-5866
