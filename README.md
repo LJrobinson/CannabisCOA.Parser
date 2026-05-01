@@ -1,8 +1,8 @@
 # CannabisCOA.Parser
 
-CannabisCOA.Parser is a C#/.NET parser for cannabis Certificates of Analysis (COAs), built to normalize messy lab PDF output into structured lab, product, batch, cannabinoid, terpene, compliance, and audit data.
+CannabisCOA.Parser is a C#/.NET parser for cannabis Certificates of Analysis (COAs). It converts messy lab PDF output into structured lab, product, batch, cannabinoid, terpene, compliance, warning, and audit data.
 
-The project is currently focused on Nevada COA layouts and the Flower v1 audit workflow, with lab-specific parsing for real PDF text extraction issues: flattened tables, inconsistent headers, product-type edge cases, amended reports, side-by-side table bleed, missing lab headers, and partial/single-panel reports.
+The project is currently focused on Nevada COA layouts and the Flower v1 audit workflow. It handles real-world PDF extraction problems such as flattened tables, inconsistent headers, lab-specific layout drift, product-type edge cases, amended reports, side-by-side table bleed, missing lab headers, embedded quote characters, and partial/single-panel reports.
 
 ---
 
@@ -11,76 +11,58 @@ The project is currently focused on Nevada COA layouts and the Flower v1 audit w
 Latest confirmed local validation:
 
 ```text
-Test suite: 276/276 passing
-Current batch testing folder: G:\COA_BatchTests\combined-current\
-Latest stress batch size: 1,500 rows
-Latest stress batch runtime: ~2 min 8 sec
+Test suite:                 288/288 passing
+Current batch folder:       G:\COA_BatchTests\combined-current\
+Latest stress batch size:   1,500 reports
+Latest stress batch result: 1,500 / 1,500 Flower rows
+Missing core fields:        0
+Clean metadata rows:        1,500 / 1,500
 ```
 
 Latest 1,500-row batch audit:
 
 ```text
 Total rows:                 1,500
-Flower rows:                1,450
-Edible rows:                   43
-Unknown rows:                   7
+Flower rows:                1,500
+Edible rows:                    0
+Unknown rows:                   0
 
 FullComplianceCoa rows:     1,482
 SinglePanelTest rows:          18
 
-Rows with no missing core fields: 1,435 / 1,500
-Current clean rate:              95.7%
+Rows with no missing core fields: 1,500 / 1,500
+Current clean rate:              100.0%
 ```
 
-Important note: `SinglePanelTest` rows are now intentionally classified instead of being treated as parser failures. This matters for Digipath one-page partial-panel reports that are Flower-looking but are not full Flower compliance COAs.
+This is the current Flower v1 milestone: every report in the 1,500-file stress batch is classified as Flower, every row has required core metadata, and partial/single-panel reports are separated from full compliance COAs instead of being treated as parser failures.
 
 ---
 
-## 🎯 Current Sprint Summary
+## 🔥 Major Milestone
 
-The May Sprint has moved the parser from "works on known samples" to "survives large real-world batch audits."
+CannabisCOA.Parser now successfully processes a 1,500-report Nevada Flower stress batch with:
 
-Major recent wins:
+- ✅ 1,500 / 1,500 rows classified as Flower
+- ✅ 1,500 / 1,500 rows with no missing core fields
+- ✅ 0 Unknown product-type rows
+- ✅ 0 false Edible rows in the Flower batch
+- ✅ 18 Digipath single-panel reports correctly classified as `SinglePanelTest`
+- ✅ 8 labs represented in the stress batch
+- ✅ 288 / 288 tests passing
 
-- ✅ Added flat batch CSV audit output.
-- ✅ Added audit fields for Flower v1 review.
-- ✅ Added `DocumentClassification`.
-- ✅ Added `IsFullComplianceCoa`.
-- ✅ Classified Digipath single-panel / partial-panel reports.
-- ✅ Cleaned all Digipath metadata gaps in the latest stress batch.
-- ✅ Cleaned 374 Labs to 105/105 in the latest stress batch.
-- ✅ Added 374 Labs `Plant, Popcorn Buds` detection.
-- ✅ Added Ace `Plant, Popcorn Buds` detection with embedded quote CSV escaping.
-- ✅ Added NV Cann Labs footer-marker lab detection using `nvcann.com` / Schuster Street markers.
-- ✅ Added lab-specific product-name and batch-ID extraction across the major Flower v1 lab set.
-- ✅ Preserved narrow fixture-backed fixes instead of broad generic parser guessing.
-
-The project now has a repeatable parser hardening loop:
-
-```text
-Batch audit CSV
-→ identify highest-impact dirty rows
-→ inspect real COA layout
-→ add narrow lab-specific fixture
-→ make focused parser fix
-→ run full tests locally
-→ regenerate audit CSV
-→ repeat
-```
+This moves the project from sample parsing into real batch audit readiness for Flower v1.
 
 ---
 
-## 🧪 Latest 1,500-COA Stress Test
+## 🧪 Latest 1,500-Report Stress Test
 
 ### Product Type Distribution
 
 ```text
-Flower:   1,450
-Edible:      43
-Unknown:      7
+Flower:   1,500
+Edible:       0
+Unknown:      0
 ```
-
-The batch is intended to be Flower-focused, so remaining `Edible` and `Unknown` rows are treated as likely product-type/layout detection work unless manually confirmed otherwise.
 
 ### Document Classification
 
@@ -89,42 +71,39 @@ FullComplianceCoa: 1,482
 SinglePanelTest:      18
 ```
 
-The 18 `SinglePanelTest` rows are Digipath partial-panel reports. These are no longer counted as cannabinoid parsing failures.
+The 18 `SinglePanelTest` rows are Digipath partial-panel reports. These are legitimate lab reports, but they are not full Flower compliance COAs. They are intentionally classified separately so they do not appear as cannabinoid parser failures.
 
 ### Missing Core Field Summary
 
 ```text
-No missing fields:       1,435
-ProductName|BatchId:       50
-ProductName only:          10
-BatchId only:               5
+No missing fields: 1,500
+Missing fields:       0
 ```
 
-### Missing Core Fields by Lab
+### Lab Counts in the Stress Batch
 
 ```text
-NV Cann Labs:                  37 missing ProductName|BatchId
-Kaycha Labs:                   10 missing ProductName
-Kaycha Labs:                    6 missing ProductName|BatchId
-Kaycha Labs:                    4 missing BatchId
-G3 Labs:                        3 missing ProductName|BatchId
-RSR Analytical Laboratories:    2 missing ProductName|BatchId
-Ace Analytical Laboratory:      1 missing ProductName|BatchId
-MA Analytics:                   1 missing ProductName|BatchId
-MA Analytics:                   1 missing BatchId
+Kaycha Labs:                   628
+NV Cann Labs:                  297
+Ace Analytical Laboratory:     267
+374 Labs:                      105
+G3 Labs:                        72
+MA Analytics:                   64
+Digipath:                       49
+RSR Analytical Laboratories:    18
 ```
 
 ### Clean Rate by Lab
 
 ```text
-374 Labs:                   105 / 105 clean     100.0%
-Digipath:                    49 / 49 clean      100.0%
-Ace Analytical Laboratory:  266 / 267 clean      99.6%
-MA Analytics:                62 / 64 clean       96.9%
-Kaycha Labs:                608 / 628 clean      96.8%
-G3 Labs:                     69 / 72 clean       95.8%
-RSR Analytical Laboratories: 16 / 18 clean       88.9%
-NV Cann Labs:               260 / 297 clean      87.5%
+Kaycha Labs:                   628 / 628 clean   100.0%
+NV Cann Labs:                  297 / 297 clean   100.0%
+Ace Analytical Laboratory:     267 / 267 clean   100.0%
+374 Labs:                      105 / 105 clean   100.0%
+G3 Labs:                        72 / 72 clean    100.0%
+MA Analytics:                   64 / 64 clean    100.0%
+Digipath:                       49 / 49 clean    100.0%
+RSR Analytical Laboratories:    18 / 18 clean    100.0%
 ```
 
 ### Current Warning Board
@@ -140,10 +119,37 @@ TERPENE_BREAKDOWN_MISSING:              7
 
 Interpretation:
 
-- `AMENDED_COA` is expected compliance metadata, not a parser failure.
-- `SINGLE_PANEL_TEST` is expected for partial Digipath panel reports.
-- `TERPENE_TOTAL_MISMATCH` is now a real quality board item, concentrated mostly in G3 and RSR.
-- `TERPENE_BREAKDOWN_MISSING` is a smaller Kaycha follow-up item.
+- `AMENDED_COA` is compliance metadata, not a parser failure.
+- `SINGLE_PANEL_TEST` is expected for partial Digipath reports.
+- `TERPENE_TOTAL_MISMATCH` is now a quality-review board item, not a missing-core-field issue.
+- `TERPENE_BREAKDOWN_MISSING` is a smaller follow-up warning category.
+
+---
+
+## 🎯 Flower v1 Sprint Summary
+
+The Flower v1 sprint focused on turning real PDF chaos into a stable audit pipeline.
+
+Major completed wins:
+
+- ✅ Added flat batch CSV audit output
+- ✅ Added Flower v1 audit fields
+- ✅ Added `DocumentClassification`
+- ✅ Added `IsFullComplianceCoa`
+- ✅ Added Digipath single-panel / partial-panel classification
+- ✅ Cleaned Digipath metadata and single-panel handling
+- ✅ Cleaned 374 Labs to 105/105 in the stress batch
+- ✅ Added 374 Labs `Popcorn Buds` detection
+- ✅ Added Ace `Popcorn Buds` and `Trim` detection
+- ✅ Added G3 `Popcorn Buds` / `Light Deprivation` detection
+- ✅ Added MA Analytics `Trim` detection and BatchId fallback
+- ✅ Added RSR `Trim` detection
+- ✅ Added NV Cann Labs footer-marker lab detection using `nvcann.com` / Schuster Street markers
+- ✅ Added NV Cann Labs plant-material detection for `Popcorn Buds` and `Trim`
+- ✅ Added Kaycha raw plant handling for `Flower - Cured`, `Trim`, `Shake`, `Popcorn Buds`, and `Other - Not Listed`
+- ✅ Added CSV escaping coverage for embedded quote values like `8" Bagel`
+- ✅ Added lab-specific ProductName and BatchId extraction across the main Nevada Flower lab set
+- ✅ Preserved conservative generic parsing by keeping layout fixes lab-specific
 
 ---
 
@@ -160,24 +166,13 @@ Current lab adapters / lab coverage include:
 - ✅ NV Cann Labs
 - ✅ RSR Analytical Laboratories
 
-Latest stress-batch lab counts:
-
-```text
-Kaycha Labs:                   628
-NV Cann Labs:                  297
-Ace Analytical Laboratory:     267
-374 Labs:                      105
-G3 Labs:                        72
-MA Analytics:                   64
-Digipath:                       49
-RSR Analytical Laboratories:    18
-```
-
 ---
 
 ## 🌿 Product Coverage
 
-The current sprint emphasis is Flower v1. In this project, the Flower audit flow intentionally includes Nevada plant-material variants such as:
+The current production-grade workflow is Flower v1.
+
+For Nevada audit purposes, Flower v1 includes usable cannabis / plant-material variants such as:
 
 - Flower
 - Flower - Cured
@@ -186,7 +181,7 @@ The current sprint emphasis is Flower v1. In this project, the Flower audit flow
 - Small Buds
 - Shake
 - Trim
-- Raw Plant / Plant Material layouts where the test matrix clearly matches Flower/usable cannabis
+- Raw Plant / Plant Material layouts where the test matrix clearly matches Flower or usable cannabis
 
 Current coverage matrix:
 
@@ -240,7 +235,7 @@ The parser currently normalizes:
 
 ## 🧾 Document Classification
 
-The parser now separates product type from document completeness.
+The parser separates product type from document completeness.
 
 Example:
 
@@ -251,9 +246,7 @@ IsFullComplianceCoa = false
 Warnings = SINGLE_PANEL_TEST
 ```
 
-This is important because some files are legitimate lab reports but not full compliance COAs.
-
-Current classifications:
+This distinction matters because some lab reports describe a Flower product but are not full compliance COAs.
 
 ### `FullComplianceCoa`
 
@@ -263,13 +256,13 @@ Used for normal Flower v1 COAs with the expected compliance-style panel set.
 
 Used for partial/single-panel reports, such as Digipath one-page Heavy Metals-only reports.
 
-These files may describe a Flower product, but they should not be treated as complete Flower COAs or as cannabinoid parser failures.
+These files may describe Flower products, but they should not be treated as complete Flower COAs or as cannabinoid parser failures.
 
 ---
 
 ## 🧠 Nevada / METRC Methodology
 
-The project now distinguishes between:
+The parser distinguishes between:
 
 ```text
 ProductType
@@ -287,19 +280,12 @@ This matters because Nevada plant-material products can include:
 - Non-infused pre-roll material
 - Other usable cannabis / raw plant variants
 
-The parser should not rely on one label alone. Instead, it uses:
-
-1. Explicit COA product descriptors.
-2. Lab-specific layout patterns.
-3. Compliance panel evidence.
-4. Warnings/classification when the document is partial or incomplete.
-
 Core rule:
 
 ```text
 Explicit COA text determines product type.
 Test panel structure helps validate the compliance matrix.
-DocumentClassification determines whether the report is a full COA or partial/single-panel report.
+DocumentClassification determines whether the report is a full COA or a partial/single-panel report.
 ```
 
 ---
@@ -348,14 +334,14 @@ The CLI supports flat CSV export for Excel, Power BI, and batch QA review.
 
 CSV behavior:
 
-- One row per parsed report.
-- Dates are written as `yyyy-MM-dd`.
-- Missing/null values are blank.
-- Decimal values use invariant culture.
-- Warnings are pipe-delimited in a single cell.
-- Embedded commas, quotes, and line breaks are escaped correctly.
-- Embedded quote values such as `8" Bagel` are CSV-escaped correctly.
-- Terpene breakdown columns are intentionally excluded from the v1 summary CSV to keep it flat and stable.
+- One row per parsed report
+- Dates are written as `yyyy-MM-dd`
+- Missing/null values are blank
+- Decimal values use invariant culture
+- Warnings are pipe-delimited in a single cell
+- Embedded commas, quotes, and line breaks are escaped correctly
+- Embedded quote values such as `8" Bagel` are CSV-escaped correctly
+- Terpene breakdown columns are intentionally excluded from the v1 summary CSV to keep it flat and stable
 
 Current CSV audit columns include:
 
@@ -409,19 +395,8 @@ dotnet test
 Current latest confirmed result:
 
 ```text
-276/276 passing
+288/288 passing
 ```
-
-Note for AI-assisted development:
-
-```text
-CODEX must not run dotnet test.
-CODEX must not run dotnet build.
-CODEX must not run any dotnet test/build variant.
-The user runs all build/test validation locally and reports results.
-```
-
-This avoids Windows file-lock issues with generated `bin` / `obj` artifacts.
 
 ---
 
@@ -442,7 +417,7 @@ Fixture strategy:
 3. Make the smallest lab-specific production fix.
 4. Avoid broad generic parser changes unless the issue is truly generic.
 5. Preserve existing lab/product behavior.
-6. User runs the full local test suite.
+6. Run the full local test suite.
 7. Regenerate batch audit CSV.
 8. Use the audit board to choose the next target.
 
@@ -454,16 +429,16 @@ This project intentionally favors lab-specific parsing over aggressive generic g
 
 Core rules:
 
-- ✅ Prefer real fixtures over assumptions.
-- ✅ Fix one lab/product/layout at a time.
-- ✅ Keep generic parsers conservative.
-- ✅ Avoid broad refactors during parser hardening.
-- ✅ Do not loosen validators to hide parser misses.
-- ✅ Preserve source precision where the COA provides it.
-- ✅ Treat side-by-side PDF extraction as a first-class problem.
-- ✅ Use lab-specific parsing when layout identity is known.
-- ✅ Keep source text traceability for key parsed values.
-- ✅ Separate parser failures from partial/single-panel source documents.
+- ✅ Prefer real fixtures over assumptions
+- ✅ Fix one lab/product/layout at a time
+- ✅ Keep generic parsers conservative
+- ✅ Avoid broad refactors during parser hardening
+- ✅ Do not loosen validators to hide parser misses
+- ✅ Preserve source precision where the COA provides it
+- ✅ Treat side-by-side PDF extraction as a first-class problem
+- ✅ Use lab-specific parsing when layout identity is known
+- ✅ Keep source text traceability for key parsed values
+- ✅ Separate parser failures from partial/single-panel source documents
 
 ---
 
@@ -483,7 +458,6 @@ Local scratch output should also stay out of Git:
 
 ```text
 unknown-labs.txt
-AGENTS.md
 .codex-build/
 .tmp-build/
 ```
@@ -497,12 +471,6 @@ git status
 git diff --stat
 ```
 
-If needed:
-
-```powershell
-git restore unknown-labs.txt
-```
-
 ---
 
 ## 🧭 Current Roadmap
@@ -514,63 +482,60 @@ Completed / current milestone:
 - [x] JSONL batch output
 - [x] Lab-specific ProductName and BatchId extraction
 - [x] Kaycha raw plant layout handling
-- [x] Kaycha `Shake`, `Trim`, and `Popcorn Buds` handling
+- [x] Kaycha `Shake`, `Trim`, `Popcorn Buds`, and `Other - Not Listed` handling
 - [x] 374 Labs `Popcorn Buds` handling
-- [x] Ace `Popcorn Buds` handling
+- [x] Ace `Popcorn Buds` and `Trim` handling
+- [x] G3 `Popcorn Buds` / `Light Deprivation` handling
+- [x] MA Analytics `Trim` handling and BatchId fallback
+- [x] RSR `Trim` handling
 - [x] NV Cann Labs footer-marker lab detection
+- [x] NV Cann Labs `Popcorn Buds` and `Trim` handling
 - [x] Digipath compact sample-header ProductName extraction
 - [x] Digipath single-panel report classification
 - [x] CSV quote escaping coverage
 - [x] `DocumentClassification` and `IsFullComplianceCoa`
 - [x] Batch audit loop validated against 1,500 real COA/report files
+- [x] 1,500 / 1,500 Flower rows in the latest stress batch
+- [x] 1,500 / 1,500 rows with no missing core fields
 
 Next practical targets:
 
-- [ ] Fix / classify remaining NV Cann Labs rows currently detected as `Edible`
-- [ ] Clean remaining Kaycha ProductName / BatchId edge cases
-- [ ] Investigate remaining small `Unknown` groups: G3, RSR, MA, Ace
 - [ ] Review `TERPENE_TOTAL_MISMATCH` warnings, especially G3 and RSR
-- [ ] Review Kaycha `TERPENE_BREAKDOWN_MISSING`
+- [ ] Review `TERPENE_BREAKDOWN_MISSING` warnings
 - [ ] Add normalized cannabinoid CSV export
 - [ ] Add normalized terpene CSV export
 - [ ] Add safety/compliance panel extraction
 - [ ] Add database ingestion path
 - [ ] Add automated support matrix generation from fixture coverage
+- [ ] Run larger folder-level stress tests across the sorted COA archive
 
 ---
 
 ## 🔥 Recommended Next Engineering Step
 
-Based on the latest 1,500-row stress audit, the next highest-impact target is:
+The Flower v1 metadata/classification board is currently clean on the 1,500-report stress batch.
+
+Recommended next target:
 
 ```text
-NV Cann Labs rows currently classified as Edible
+Terpene warning review
 ```
 
 Why:
 
 ```text
-NV Cann Labs has 37 rows missing ProductName|BatchId.
-All 37 are currently ProductType = Edible.
-The batch is Flower-focused, so these are likely product-type detection false positives or Flower-adjacent layout variants.
+MissingCoreFields is now 0.
+ProductType false positives are now 0.
+The remaining quality signals are warning-based, especially TERPENE_TOTAL_MISMATCH and TERPENE_BREAKDOWN_MISSING.
 ```
 
 Recommended next workflow:
 
-1. Inspect 3-5 representative NV Cann `Edible` rows.
-2. Determine whether they are true edibles or Flower/plant-material false positives.
-3. If false positives, add narrow NV Cann product-type detection.
-4. Add fixture-backed tests.
-5. Regenerate the 1,500-row audit CSV.
-6. Re-score the dirty row board.
-
-Secondary targets:
-
-```text
-Kaycha: 20 smaller metadata gaps
-G3 / RSR / MA / Ace: small Unknown or metadata leftovers
-TERPENE_TOTAL_MISMATCH warning review
-```
+1. Group warning rows by lab.
+2. Inspect representative `TERPENE_TOTAL_MISMATCH` rows.
+3. Determine whether the mismatch is a parser issue, source rounding issue, or intentional COA display behavior.
+4. Add fixture-backed warning behavior where needed.
+5. Keep warning fixes separate from core metadata fixes.
 
 ---
 
@@ -592,15 +557,15 @@ git diff --stat
 
 ## 📌 Project Summary
 
-CannabisCOA.Parser has moved from a Flower-only parser into a real-world Nevada COA audit engine.
+CannabisCOA.Parser has moved from a Flower-focused parser into a real-world Nevada COA audit engine.
 
 Current state:
 
 ```text
-276/276 tests passing
+288/288 tests passing
 1,500-row real batch stress test
-95.7% clean audit rows
-1,450 Flower rows detected
+1,500 / 1,500 Flower rows
+1,500 / 1,500 rows with no missing core fields
 1,482 FullComplianceCoa rows
 18 SinglePanelTest rows correctly classified
 CSV audit output
@@ -613,10 +578,10 @@ The parser now supports a practical analyst workflow:
 ```text
 Parse real COA folders
 Export clean audit CSV
-Identify dirty rows by lab/layout
+Identify warning patterns by lab/layout
 Patch narrow parser behavior
 Validate with fixtures
 Repeat
 ```
 
-This project is now ready for continued Flower v1 hardening, expanded compliance panel extraction, normalized cannabinoid/terpene exports, and future database ingestion.
+This project is now ready for warning-quality review, normalized cannabinoid/terpene exports, compliance panel extraction, database ingestion, and larger folder-level stress testing across the sorted COA archive.
