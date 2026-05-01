@@ -26,10 +26,45 @@ public class ThreeSeventyFourLabsParserTests
 
         Assert.Equal("374 Labs", result.LabName);
         Assert.Equal(ProductType.Flower, result.ProductType);
+        Assert.Equal("702 Headband", result.ProductName);
+        Assert.Equal("S2.P32.R1.0223", result.BatchId);
         Assert.NotNull(result.TestDate);
         Assert.Equal(30.01m, result.Cannabinoids.THCA.Value);
         Assert.Equal(0.72m, result.Cannabinoids.THC.Value);
         Assert.Equal(0.07m, result.Cannabinoids.CBDA.Value);
+    }
+
+    [Fact]
+    public void ThreeSeventyFourLabsAdapter_Parse_BatchFlowerFixtureExtractsDisplayedProductAndBatch()
+    {
+        var text = File.ReadAllText(FixturePath("374labs-flower-batch-garlic-cocktail.txt"));
+
+        var result = new Labs374Adapter().Parse(text);
+
+        Assert.Equal("374 Labs", result.LabName);
+        Assert.Equal(ProductType.Flower, result.ProductType);
+        Assert.Equal("Garlic Cocktail", result.ProductName);
+        Assert.Equal("LV.103025.R7.GC", result.BatchId);
+    }
+
+    [Fact]
+    public void ThreeSeventyFourLabsAdapter_Parse_FlowerPlaceholderMetadataStaysEmpty()
+    {
+        var text = """
+        374 Labs
+        Strain: Flower
+        -
+        Plant, Flower - Cured
+        Batch #: -; Lot #: 1
+        Harvest Process Lot: ; METRC Batch: -; METRC Sample: 1A40403000000C9000013418
+        THCa 0.083 22.724 227.24
+        """;
+
+        var result = new Labs374Adapter().Parse(text);
+
+        Assert.Equal(ProductType.Flower, result.ProductType);
+        Assert.Equal(string.Empty, result.ProductName);
+        Assert.Equal(string.Empty, result.BatchId);
     }
 
     [Theory]
