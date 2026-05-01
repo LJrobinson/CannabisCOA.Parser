@@ -2,6 +2,7 @@ using System.Globalization;
 using System.Text.RegularExpressions;
 using CannabisCOA.Parser.Core.Adapters;
 using CannabisCOA.Parser.Core.Calculators;
+using CannabisCOA.Parser.Core.Enums;
 using CannabisCOA.Parser.Core.Models;
 
 namespace CannabisCOA.Parser.Core.Adapters.Labs.Labs374;
@@ -52,6 +53,12 @@ public class Labs374Adapter : BaseLabAdapter
     {
         var result = base.Parse(text);
 
+        if (result.ProductType == ProductType.Flower)
+        {
+            result.ProductName = ExtractProductName(text);
+            result.BatchId = ExtractBatchId(text);
+        }
+
         if (TryParse374Cannabinoids(text, out var cannabinoids))
         {
             CannabinoidCalculator.CalculateTotals(cannabinoids);
@@ -70,6 +77,146 @@ public class Labs374Adapter : BaseLabAdapter
         }
 
         return result;
+    }
+
+    public override ProductType DetectProductType(string text)
+    {
+        var productType = base.DetectProductType(text);
+
+        if (productType != ProductType.Unknown)
+            return productType;
+
+        return NormalizeRows(text).Any(Is374FlowerDescriptor)
+            ? ProductType.Flower
+            : ProductType.Unknown;
+    }
+
+    private static string ExtractProductName(string text)
+    {
+        var rows = NormalizeRows(text);
+        var displayedProductName = ExtractDisplayedProductName(rows);
+
+        if (!string.IsNullOrWhiteSpace(displayedProductName))
+            return displayedProductName;
+
+        return ExtractStrainName(rows);
+    }
+
+    private static string ExtractDisplayedProductName(IReadOnlyList<string> rows)
+    {
+        for (var i = 1; i < rows.Count; i++)
+        {
+            if (!Is374FlowerDescriptor(rows[i]))
+                continue;
+
+            var candidate = CleanMetadataValue(rows[i - 1]);
+
+            if (Is374ProductNameCandidate(candidate))
+                return candidate;
+        }
+
+        return string.Empty;
+    }
+
+    private static string ExtractStrainName(IEnumerable<string> rows)
+    {
+        foreach (var row in rows)
+        {
+            var match = Regex.Match(
+                row,
+                @"\bStrain\s*:\s*(?<strain>.+?)(?:,\s*Classi\S*cation\s*:|;\s*|$)",
+                RegexOptions.IgnoreCase);
+
+            if (!match.Success)
+                continue;
+
+            var strain = CleanMetadataValue(match.Groups["strain"].Value);
+
+            if (Is374ProductNameCandidate(strain))
+                return strain;
+        }
+
+        return string.Empty;
+    }
+
+    private static string ExtractBatchId(string text)
+    {
+        var rows = NormalizeRows(text);
+        var batchId = ExtractBatchId(rows, @"\bBatch\s*#\s*:\s*(?<batch>.*?)(?:\s*;\s*Lot\s*#|\s+Lot\s*#:|\s+Sample\s+Received:|\s+Report\s+Created:|\s+Harvest/Production\s+Date:|$)");
+
+        if (!string.IsNullOrWhiteSpace(batchId))
+            return batchId;
+
+        return ExtractBatchId(rows, @"\bMETRC\s+Batch\s*:\s*(?<batch>.*?)(?:\s*;\s*METRC\s+Sample\s*:|\s*;|$)");
+    }
+
+    private static string ExtractBatchId(IEnumerable<string> rows, string pattern)
+    {
+        foreach (var row in rows)
+        {
+            var match = Regex.Match(row, pattern, RegexOptions.IgnoreCase);
+
+            if (!match.Success)
+                continue;
+
+            var batch = CleanMetadataValue(match.Groups["batch"].Value);
+
+            if (Is374BatchIdCandidate(batch))
+                return batch;
+        }
+
+        return string.Empty;
+    }
+
+    private static string CleanMetadataValue(string value)
+    {
+        return Regex.Replace(value.Replace("\0", string.Empty).Trim(), @"\s+", " ");
+    }
+
+    private static bool Is374ProductNameCandidate(string row)
+    {
+        return !string.IsNullOrWhiteSpace(row) &&
+               !IsPlaceholder(row) &&
+               !row.Equals("Flower", StringComparison.OrdinalIgnoreCase) &&
+               !row.Equals("Plant", StringComparison.OrdinalIgnoreCase) &&
+               !row.StartsWith("Plant, Flower", StringComparison.OrdinalIgnoreCase) &&
+               !row.Contains(':') &&
+               !row.Contains(';') &&
+               !row.Contains("@") &&
+               !row.Contains("374 Labs", StringComparison.OrdinalIgnoreCase) &&
+               !row.Contains("www.", StringComparison.OrdinalIgnoreCase) &&
+               !row.Contains("Certificate", StringComparison.OrdinalIgnoreCase) &&
+               !row.Contains("Certi", StringComparison.OrdinalIgnoreCase) &&
+               !row.Contains("Confident LIMS", StringComparison.OrdinalIgnoreCase) &&
+               !row.StartsWith("Lic.", StringComparison.OrdinalIgnoreCase) &&
+               !Regex.IsMatch(row, @"^\(?\d{3}\)?[\s-]\d{3}[\s-]\d{4}") &&
+               !Regex.IsMatch(row, @"^\d+\s+of\s+\d+$", RegexOptions.IgnoreCase) &&
+               !Regex.IsMatch(row, @"\b(?:Greg\s+St|Sparks,\s*NV|Las\s+Vegas,\s*NV|Pahrump,\s*NV|Drive|Road|Street|Avenue)\b", RegexOptions.IgnoreCase);
+    }
+
+    private static bool Is374BatchIdCandidate(string row)
+    {
+        return !string.IsNullOrWhiteSpace(row) &&
+               !IsPlaceholder(row) &&
+               !row.Equals("Flower", StringComparison.OrdinalIgnoreCase) &&
+               !row.StartsWith("Plant, Flower", StringComparison.OrdinalIgnoreCase) &&
+               !row.Contains("374 Labs", StringComparison.OrdinalIgnoreCase) &&
+               !row.Contains("@") &&
+               !row.Contains("www.", StringComparison.OrdinalIgnoreCase) &&
+               !Regex.IsMatch(row, @"^\(?\d{3}\)?[\s-]\d{3}[\s-]\d{4}");
+    }
+
+    private static bool IsPlaceholder(string value)
+    {
+        return Regex.IsMatch(value, @"^[\s\-–—_]+$");
+    }
+
+    private static bool Is374FlowerDescriptor(string row)
+    {
+        return Regex.IsMatch(
+            row,
+            @"\bPlant\s*,\s*(?:Flower(?:\s*-\s*Cured)?|Popcorn\s+Buds)\b",
+            RegexOptions.IgnoreCase);
     }
 
     private static bool TryParse374Cannabinoids(string text, out CannabinoidProfile profile)
