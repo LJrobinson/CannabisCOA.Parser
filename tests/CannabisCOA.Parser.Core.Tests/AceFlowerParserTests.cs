@@ -473,6 +473,21 @@ public class AceFlowerParserTests
     }
 
     [Fact]
+    public void AceAnalyticalAdapter_Parse_PopcornBudsFixtureRejectsLotLikeDisplayNameAndUsesStrain()
+    {
+        var text = File.ReadAllText(FixturePath("ace-flower-popcorn-bagel.txt"));
+
+        var result = new CannabisCOA.Parser.Core.Adapters.Labs.AceAnalytical.AceAnalyticalAdapter()
+            .Parse(text);
+
+        Assert.Equal("Ace Analytical Laboratory", result.LabName);
+        Assert.Equal(ProductType.Flower, result.ProductType);
+        Assert.Equal("8\" Bagel", result.ProductName);
+        Assert.Equal("260129_8\" Bagel_F 0_CultM", result.BatchId);
+        Assert.NotEqual("260129.8\" Bagel", result.ProductName);
+    }
+
+    [Fact]
     public void AceAnalyticalAdapter_DoesNotIncorrectlyParseNonAceLab()
     {
         var text = File.ReadAllText(FixturePath("Digipath_Flower.txt"));

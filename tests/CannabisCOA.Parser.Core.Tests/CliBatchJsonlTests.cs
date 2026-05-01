@@ -85,12 +85,20 @@ public class CliBatchJsonlTests
         var sourceFile = "flower, one.txt";
         var edibleFile = "edible.txt";
         var singlePanelFile = "digipath-single-panel.txt";
+        var aceQuotedFile = "ace-quoted-popcorn.txt";
 
         Directory.CreateDirectory(inputDir);
 
         await File.WriteAllTextAsync(Path.Combine(inputDir, sourceFile), BuildG3FlowerText("30.00", "0.50"));
         await File.WriteAllTextAsync(Path.Combine(inputDir, edibleFile), BuildG3EdibleText());
         await File.WriteAllTextAsync(Path.Combine(inputDir, singlePanelFile), BuildDigipathSinglePanelText());
+        await File.WriteAllTextAsync(Path.Combine(inputDir, aceQuotedFile), File.ReadAllText(Path.Combine(
+            repoRoot,
+            "tests",
+            "CannabisCOA.Parser.Core.Tests",
+            "Fixtures",
+            "Labs",
+            "ace-flower-popcorn-bagel.txt")));
 
         try
         {
@@ -116,7 +124,7 @@ public class CliBatchJsonlTests
                 process.ExitCode == 0,
                 $"Expected CLI exit code 0 but was {process.ExitCode}. stdout: {stdout} stderr: {stderr}");
 
-            Assert.Contains("Processed 3 files", stdout);
+            Assert.Contains("Processed 4 files", stdout);
             Assert.Contains(csvPath, stdout);
             Assert.DoesNotContain("output.jsonl", stdout);
             Assert.False(File.Exists(defaultJsonlPath));
@@ -125,7 +133,7 @@ public class CliBatchJsonlTests
                 .Where(line => !string.IsNullOrWhiteSpace(line))
                 .ToArray();
 
-            Assert.Equal(4, csvLines.Length);
+            Assert.Equal(5, csvLines.Length);
 
             var header = SplitCsvLine(csvLines[0]);
             var rows = csvLines
@@ -135,6 +143,7 @@ public class CliBatchJsonlTests
             var flowerRow = rows.Single(row => Value(row, "SourceFile") == sourceFile);
             var edibleRow = rows.Single(row => Value(row, "SourceFile") == edibleFile);
             var singlePanelRow = rows.Single(row => Value(row, "SourceFile") == singlePanelFile);
+            var aceQuotedRow = rows.Single(row => Value(row, "SourceFile") == aceQuotedFile);
 
             Assert.Equal("SourceFile", header[0]);
             Assert.Contains("AuditProfile", header);
@@ -185,6 +194,13 @@ public class CliBatchJsonlTests
             Assert.Equal("0", Value(singlePanelRow, "CannabinoidCount"));
             Assert.DoesNotContain("Cannabinoids", Value(singlePanelRow, "MissingCoreFields"));
             Assert.Contains("SINGLE_PANEL_TEST", Value(singlePanelRow, "Warnings"));
+
+            Assert.Equal("Ace Analytical Laboratory", Value(aceQuotedRow, "LabName"));
+            Assert.Equal("Flower", Value(aceQuotedRow, "ProductType"));
+            Assert.Equal("8\" Bagel", Value(aceQuotedRow, "ProductName"));
+            Assert.Equal("260129_8\" Bagel_F 0_CultM", Value(aceQuotedRow, "BatchId"));
+            Assert.Contains(csvLines, line => line.Contains("\"8\"\" Bagel\"", StringComparison.Ordinal));
+            Assert.Contains(csvLines, line => line.Contains("\"260129_8\"\" Bagel_F 0_CultM\"", StringComparison.Ordinal));
 
             string Value(IReadOnlyList<string> row, string columnName)
             {

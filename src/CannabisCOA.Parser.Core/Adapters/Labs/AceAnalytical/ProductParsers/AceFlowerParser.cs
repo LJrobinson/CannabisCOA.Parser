@@ -265,6 +265,9 @@ public static class AceFlowerParser
                !row.Equals("PASSED", StringComparison.OrdinalIgnoreCase) &&
                !Regex.IsMatch(row, @"^\d+\s+of\s+\d+$", RegexOptions.IgnoreCase) &&
                !Regex.IsMatch(row, @"^\d{1,2}/\d{1,2}/\d{2,4}$") &&
+               !Regex.IsMatch(row, @"^\d{5,}[\s._-]+\S+", RegexOptions.IgnoreCase) &&
+               !Regex.IsMatch(row, @"^\d{6,8}$") &&
+               !Regex.IsMatch(row, @"^1A[0-9A-Z]{20,}$", RegexOptions.IgnoreCase) &&
                !row.StartsWith("Lic.", StringComparison.OrdinalIgnoreCase) &&
                !row.StartsWith("MME ID", StringComparison.OrdinalIgnoreCase) &&
                !row.Contains("Harvest/Production", StringComparison.OrdinalIgnoreCase) &&
@@ -275,7 +278,7 @@ public static class AceFlowerParser
     {
         return Regex.IsMatch(
             row,
-            @"\bPlant\s*,\s*Flower(?:\s*-\s*Cured)?\b",
+            @"\bPlant\s*,\s*(?:Flower(?:\s*-\s*Cured)?|Popcorn\s+Buds)\b",
             RegexOptions.IgnoreCase);
     }
 
@@ -986,7 +989,7 @@ public static class AceFlowerParser
     {
         var rows = NormalizeRows(text);
 
-        return rows.Any(row => Regex.IsMatch(row, @"\bPlant\s*,?\s*Flower\b|\bFlower\s*-\s*Cured\b", RegexOptions.IgnoreCase)) ||
+        return rows.Any(row => Regex.IsMatch(row, @"\bPlant\s*,\s*(?:Flower(?:\s*-\s*Cured)?|Popcorn\s+Buds)\b|\bFlower\s*-\s*Cured\b", RegexOptions.IgnoreCase)) ||
                (rows.Any(IsCannabinoidSectionStart) && rows.Any(IsTerpeneSectionStart));
     }
 

@@ -1,0 +1,22 @@
+Certificate of Analysis
+1 of 2
+Ace Analytical Laboratory
+Reno Area, NV 89509
+Lic. #91781014075623623744
+Sample: 2601ACE0029_P_00129
+Strain: 8" Bagel
+Batch #: 260129_8" Bagel_F 0_CultM; Lot #: 260129.8" Bagel.Lot 6
+Harvest/Production date: 01/29/2026
+Sample Received: 02/02/2026; Report Created: 02/04/2026;
+260129.8" Bagel
+Plant, Popcorn Buds, Indoor
+Harvest Process Lot: 260129.8" Bagel.Lot 6; METRC Batch: 260129.8" Bagel.Lot 6; METRC Sample: 1A40403000044C1000008129
+
+Cannabinoid Test Results
+Analyte LOQ Mass Mass
+% % mg/g
+THCa 0.060 24.000 240.00
+Delta-9 THC 0.060 0.500 5.00
+CBDa 0.060 <LOQ <LOQ
+CBD 0.060 <LOQ <LOQ
+Terpene Test Results
