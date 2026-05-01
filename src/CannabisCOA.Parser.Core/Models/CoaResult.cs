@@ -10,6 +10,8 @@ public class CoaResult
     public string LabName { get; set; } = "";
     public string ProductName { get; set; } = "";
     public string BatchId { get; set; } = "";
+    public string DocumentClassification { get; set; } = "FullComplianceCoa";
+    public bool IsFullComplianceCoa { get; set; } = true;
 
     public DateTime? HarvestDate { get; set; }
     public DateTime? TestDate { get; set; }

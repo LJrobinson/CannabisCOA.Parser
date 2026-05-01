@@ -10,6 +10,8 @@ public sealed class CoaDocument
     public string? ProductName { get; set; }
     public string? ProductType { get; set; } = "Flower";
     public string? StrainName { get; set; }
+    public string DocumentClassification { get; set; } = "FullComplianceCoa";
+    public bool IsFullComplianceCoa { get; set; } = true;
 
     public string? BatchId { get; set; }
     public string? LotId { get; set; }

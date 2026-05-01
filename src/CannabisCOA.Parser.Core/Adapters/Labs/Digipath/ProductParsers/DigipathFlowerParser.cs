@@ -199,6 +199,8 @@ public static class DigipathFlowerParser
     public static CoaResult Parse(string text, string labName)
     {
         var productType = ProductTypeDetector.Detect(text);
+        var rows = NormalizeRows(text);
+        var isSinglePanelTest = productType == ProductType.Flower && IsDigipathSinglePanelTest(rows);
 
         var cannabinoids = ParseDigipathCannabinoidsOrFallback(text, productType);
 
@@ -215,6 +217,8 @@ public static class DigipathFlowerParser
             ProductType = productType,
             ProductName = productName,
             BatchId = batchId,
+            DocumentClassification = isSinglePanelTest ? "SinglePanelTest" : "FullComplianceCoa",
+            IsFullComplianceCoa = !isSinglePanelTest,
             Cannabinoids = cannabinoids,
             Terpenes = terpenes,
             TestDate = testDate,
@@ -328,11 +332,29 @@ public static class DigipathFlowerParser
 
     private static string ExtractBatchId(string text)
     {
-        foreach (var row in NormalizeRows(text))
+        var rows = NormalizeRows(text);
+
+        foreach (var row in rows)
         {
             var match = Regex.Match(
                 row,
                 @"\bBatch\s*#\s*:\s*(?<batch>.*?)(?:\s*;\s*Lot\s*#|\s+Lot\s*#:|\s+Sample\s+Date:|\s+Report\s+Date:|$)",
+                RegexOptions.IgnoreCase);
+
+            if (!match.Success)
+                continue;
+
+            var batch = match.Groups["batch"].Value.Trim();
+
+            if (!string.IsNullOrWhiteSpace(batch))
+                return batch;
+        }
+
+        foreach (var row in rows)
+        {
+            var match = Regex.Match(
+                row,
+                @"^(?<batch>[A-Za-z0-9][A-Za-z0-9._-]*)\s+\([^)]+\)\s+Sample\s*:\s*DIGP[\w.]+(?:\s|$)",
                 RegexOptions.IgnoreCase);
 
             if (!match.Success)
@@ -388,6 +410,59 @@ public static class DigipathFlowerParser
                row.StartsWith("Batch #:", StringComparison.OrdinalIgnoreCase) ||
                row.StartsWith("METRC Sample:", StringComparison.OrdinalIgnoreCase) ||
                row.Contains("Cannabinoid", StringComparison.OrdinalIgnoreCase);
+    }
+
+    private static bool IsDigipathSinglePanelTest(IReadOnlyList<string> rows)
+    {
+        if (!rows.Any(IsDigipathFlowerDescriptor))
+            return false;
+
+        if (HasCannabinoidPanel(rows) || HasTerpenePanel(rows))
+            return false;
+
+        var hasOnePageMarker = rows.Any(row =>
+            Regex.IsMatch(row, @"\b1\s+of\s+1\b", RegexOptions.IgnoreCase));
+        var hasHeavyMetalsPanel = rows.Any(row =>
+            Regex.IsMatch(row, @"\bHeavy\s+Metals\s+Pass\b", RegexOptions.IgnoreCase));
+        var notTestedPanelCount = CountNotTestedPanels(rows);
+
+        return hasHeavyMetalsPanel &&
+               notTestedPanelCount >= 3 &&
+               (hasOnePageMarker || notTestedPanelCount >= 4);
+    }
+
+    private static int CountNotTestedPanels(IEnumerable<string> rows)
+    {
+        var panelNames = new[] { "Pesticides", "Microbials", "Mycotoxins", "Solvents" };
+        var count = 0;
+
+        foreach (var panelName in panelNames)
+        {
+            if (rows.Any(row =>
+                    Regex.IsMatch(row, $@"\b{panelName}\s+Not\s+Tested\b", RegexOptions.IgnoreCase)))
+            {
+                count++;
+            }
+        }
+
+        return count;
+    }
+
+    private static bool HasCannabinoidPanel(IEnumerable<string> rows)
+    {
+        return rows.Any(row =>
+            IsCannabinoidSectionStart(row) ||
+            row.Contains("Potency Test Results", StringComparison.OrdinalIgnoreCase) ||
+            row.Contains("Total THC Total CBD", StringComparison.OrdinalIgnoreCase) ||
+            Regex.IsMatch(row, @"^\s*THCa\b", RegexOptions.IgnoreCase) ||
+            Regex.IsMatch(row, @"^\s*(?:Δ|∆)9\s*-\s*THC\b", RegexOptions.IgnoreCase));
+    }
+
+    private static bool HasTerpenePanel(IEnumerable<string> rows)
+    {
+        return rows.Any(row =>
+            row.Contains("Terpene Test Results", StringComparison.OrdinalIgnoreCase) ||
+            row.Contains("Total Terpenes", StringComparison.OrdinalIgnoreCase));
     }
 
 

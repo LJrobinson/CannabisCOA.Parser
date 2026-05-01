@@ -84,11 +84,13 @@ public class CliBatchJsonlTests
         var defaultJsonlPath = Path.Combine(tempRoot, "output.jsonl");
         var sourceFile = "flower, one.txt";
         var edibleFile = "edible.txt";
+        var singlePanelFile = "digipath-single-panel.txt";
 
         Directory.CreateDirectory(inputDir);
 
         await File.WriteAllTextAsync(Path.Combine(inputDir, sourceFile), BuildG3FlowerText("30.00", "0.50"));
         await File.WriteAllTextAsync(Path.Combine(inputDir, edibleFile), BuildG3EdibleText());
+        await File.WriteAllTextAsync(Path.Combine(inputDir, singlePanelFile), BuildDigipathSinglePanelText());
 
         try
         {
@@ -114,7 +116,7 @@ public class CliBatchJsonlTests
                 process.ExitCode == 0,
                 $"Expected CLI exit code 0 but was {process.ExitCode}. stdout: {stdout} stderr: {stderr}");
 
-            Assert.Contains("Processed 2 files", stdout);
+            Assert.Contains("Processed 3 files", stdout);
             Assert.Contains(csvPath, stdout);
             Assert.DoesNotContain("output.jsonl", stdout);
             Assert.False(File.Exists(defaultJsonlPath));
@@ -123,7 +125,7 @@ public class CliBatchJsonlTests
                 .Where(line => !string.IsNullOrWhiteSpace(line))
                 .ToArray();
 
-            Assert.Equal(3, csvLines.Length);
+            Assert.Equal(4, csvLines.Length);
 
             var header = SplitCsvLine(csvLines[0]);
             var rows = csvLines
@@ -132,11 +134,14 @@ public class CliBatchJsonlTests
                 .ToList();
             var flowerRow = rows.Single(row => Value(row, "SourceFile") == sourceFile);
             var edibleRow = rows.Single(row => Value(row, "SourceFile") == edibleFile);
+            var singlePanelRow = rows.Single(row => Value(row, "SourceFile") == singlePanelFile);
 
             Assert.Equal("SourceFile", header[0]);
             Assert.Contains("AuditProfile", header);
             Assert.Contains("IsFlowerV1Candidate", header);
             Assert.Contains("MapperSchemaVersion", header);
+            Assert.Contains("DocumentClassification", header);
+            Assert.Contains("IsFullComplianceCoa", header);
             Assert.DoesNotContain("SchemaVersion", header);
             Assert.Contains("ProductName", header);
             Assert.Contains("BatchId", header);
@@ -151,6 +156,8 @@ public class CliBatchJsonlTests
             Assert.Equal("FlowerV1BatchAudit", Value(flowerRow, "AuditProfile"));
             Assert.Equal("true", Value(flowerRow, "IsFlowerV1Candidate"));
             Assert.Equal("flower-coa-v1", Value(flowerRow, "MapperSchemaVersion"));
+            Assert.Equal("FullComplianceCoa", Value(flowerRow, "DocumentClassification"));
+            Assert.Equal("true", Value(flowerRow, "IsFullComplianceCoa"));
             Assert.Equal("G3 Labs", Value(flowerRow, "LabName"));
             Assert.Equal("Flower", Value(flowerRow, "ProductType"));
             Assert.Equal("2026-01-02", Value(flowerRow, "TestDate"));
@@ -167,6 +174,17 @@ public class CliBatchJsonlTests
             Assert.Equal("false", Value(edibleRow, "IsFlowerV1Candidate"));
             Assert.Equal("flower-coa-v1", Value(edibleRow, "MapperSchemaVersion"));
             Assert.Equal("Edible", Value(edibleRow, "ProductType"));
+
+            Assert.Equal("FlowerV1BatchAudit", Value(singlePanelRow, "AuditProfile"));
+            Assert.Equal("true", Value(singlePanelRow, "IsFlowerV1Candidate"));
+            Assert.Equal("SinglePanelTest", Value(singlePanelRow, "DocumentClassification"));
+            Assert.Equal("false", Value(singlePanelRow, "IsFullComplianceCoa"));
+            Assert.Equal("Digipath", Value(singlePanelRow, "LabName"));
+            Assert.Equal("Flower", Value(singlePanelRow, "ProductType"));
+            Assert.Equal("20260126HBD-11", Value(singlePanelRow, "BatchId"));
+            Assert.Equal("0", Value(singlePanelRow, "CannabinoidCount"));
+            Assert.DoesNotContain("Cannabinoids", Value(singlePanelRow, "MissingCoreFields"));
+            Assert.Contains("SINGLE_PANEL_TEST", Value(singlePanelRow, "Warnings"));
 
             string Value(IReadOnlyList<string> row, string columnName)
             {
@@ -289,6 +307,27 @@ public class CliBatchJsonlTests
         THCa 0.00016 0.00 0.0
         Δ9-THC 0.00016 10.00 100.0
         Result Status: PASS
+        """;
+    }
+
+    private static string BuildDigipathSinglePanelText()
+    {
+        return """
+        1 of 1
+        20260126HBD-11 (702 Headband Flower) Sample: DIGP2602.0230.P.01288
+        G3 Labs (Digi) Sample Date: 02/27/2026 Report Date: 02/27/2026
+        MME ID: 46100778561169443516 - L007 METRC Sample: 1A4040300000087000018685
+        Plant, Flower - Cured
+        Pesticides Not Tested Microbials Not Tested
+        Mycotoxins Not Tested
+        Solvents Not Tested
+        Heavy Metals Pass
+        Arsenic 4.6 2000.0 22.3 Pass
+        Cadmium 6.9 820.0 <LOQ Pass
+        Lead 4.5 1200.0 7.4 Pass
+        Mercury 3.6 400.0 3.6 Pass
+        Heavy Metals analyzed per Digipath Labs SOP-321 using an Agilent 7700 or 7900 ICP.MS.
+        I certify that this sample has been tested by DigiPath Labs.
         """;
     }
 

@@ -21,6 +21,17 @@ public static class CoaValidator
             });
         }
 
+        if (!coa.IsFullComplianceCoa ||
+            coa.DocumentClassification.Equals("SinglePanelTest", StringComparison.OrdinalIgnoreCase))
+        {
+            result.Warnings.Add(new ValidationWarning
+            {
+                Code = "SINGLE_PANEL_TEST",
+                Message = "COA appears to be a single-panel or partial-panel report, not a full compliance COA.",
+                Severity = "warning"
+            });
+        }
+
         if (profile.TotalThcHighThreshold is { } totalThcHighThreshold &&
             coa.Cannabinoids.TotalTHC > totalThcHighThreshold)
         {
@@ -123,9 +134,10 @@ public static class CoaValidator
             });
         }
 
-        if (coa.Cannabinoids == null ||
+        if (coa.IsFullComplianceCoa &&
+            (coa.Cannabinoids == null ||
             ((coa.Cannabinoids.THCA?.Value ?? 0m) == 0m &&
-            (coa.Cannabinoids.THC?.Value ?? 0m) == 0m))
+            (coa.Cannabinoids.THC?.Value ?? 0m) == 0m)))
         {
             result.Warnings.Add(new ValidationWarning
             {

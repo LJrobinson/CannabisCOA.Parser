@@ -1,0 +1,25 @@
+1 of 1
+20260126HBD-11 (702 Headband Flower) Sample: DIGP2602.0230.P.01288
+G3 Labs (Digi) Sample Date: 02/27/2026 Report Date: 02/27/2026
+MME ID: 46100778561169443516 - L007 METRC Sample: 1A4040300000087000018685
+Plant, Flower - Cured
+Pesticides Not Tested Microbials Not Tested
+Analyte LOQ Limit Mass Status Analyte LOQ Limit Units Status
+Mycotoxins Not Tested
+Analyte LOQ Limit Mass Status
+Solvents Not Tested
+Analyte LOQ Limit Mass Status
+Heavy Metals Pass
+Analyte LOQ Limit Units Status
+PPB PPB PPB
+Arsenic 4.6 2000.0 22.3 Pass
+Cadmium 6.9 820.0 <LOQ Pass
+Lead 4.5 1200.0 7.4 Pass
+Mercury 3.6 400.0 3.6 Pass
+ND = Not Detected; LOQ = Limit of Quantitation; Tested Metals: Arsenic, Cadmium, Lead,
+Mercury. Heavy Metals analyzed per Digipath Labs SOP-321 using an Agilent 7700 or 7900
+ICP.MS.
+I certify that this sample has been tested by DigiPath Labs.
+All results are reported on AS-IS basis.
+Sherri Defreece
+Scientific Director

@@ -1,4 +1,5 @@
 using System.IO;
+using CannabisCOA.Parser.Core.Mappers;
 using CannabisCOA.Parser.Core.Enums;
 using CannabisCOA.Parser.Core.Validation;
 using Xunit;
@@ -27,6 +28,8 @@ public class DigipathFixtureTests
 
         Assert.Equal("Digipath", result.LabName);
         Assert.Equal(ProductType.Flower, result.ProductType);
+        Assert.Equal("FullComplianceCoa", result.DocumentClassification);
+        Assert.True(result.IsFullComplianceCoa);
         Assert.Equal("Kush Mints", result.ProductName);
         Assert.Equal("1A40403000044C1000008993", result.BatchId);
 
@@ -41,6 +44,29 @@ public class DigipathFixtureTests
         Assert.Equal("unknown", result.Compliance.Status);
 
         Assert.True(result.Terpenes.TotalTerpenes > 0);
+    }
+
+    [Fact]
+    public void Parses_Digipath_Flower_SinglePanelHeavyMetals_ReportClassification()
+    {
+        var text = LoadFixture("digipath-flower-single-panel-heavy-metals-headband.txt");
+
+        var result = CoaParser.Parse(text);
+        var validation = CoaValidator.Validate(result);
+        var document = CoaDocumentMapper.FromCoaResult(result);
+
+        Assert.Equal("Digipath", result.LabName);
+        Assert.Equal(ProductType.Flower, result.ProductType);
+        Assert.Equal("20260126HBD-11 (702 Headband Flower)", result.ProductName);
+        Assert.Equal("20260126HBD-11", result.BatchId);
+        Assert.Equal("SinglePanelTest", result.DocumentClassification);
+        Assert.False(result.IsFullComplianceCoa);
+        Assert.Equal("SinglePanelTest", document.DocumentClassification);
+        Assert.False(document.IsFullComplianceCoa);
+        Assert.Empty(document.Cannabinoids);
+        Assert.DoesNotContain(nameof(document.Cannabinoids), document.ParserMetadata.MissingFields);
+        Assert.Contains(validation.Warnings, warning => warning.Code == "SINGLE_PANEL_TEST");
+        Assert.DoesNotContain(validation.Warnings, warning => warning.Code == "MISSING_THC_VALUES");
     }
 
     [Fact]

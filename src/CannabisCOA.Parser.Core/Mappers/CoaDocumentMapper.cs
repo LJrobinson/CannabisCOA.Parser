@@ -14,6 +14,8 @@ public static class CoaDocumentMapper
             LabName = result.LabName,
             ProductName = result.ProductName,
             ProductType = result.ProductType.ToString(),
+            DocumentClassification = result.DocumentClassification,
+            IsFullComplianceCoa = result.IsFullComplianceCoa,
             BatchId = result.BatchId,
             HarvestDate = result.HarvestDate,
             TestDate = result.TestDate,
@@ -120,7 +122,8 @@ public static class CoaDocumentMapper
         if (string.IsNullOrWhiteSpace(document.BatchId)) missing.Add(nameof(document.BatchId));
         if (document.TestDate is null) missing.Add(nameof(document.TestDate));
         if (string.IsNullOrWhiteSpace(document.OverallStatus)) missing.Add(nameof(document.OverallStatus));
-        if (document.Cannabinoids.Count == 0) missing.Add(nameof(document.Cannabinoids));
+        if (document.IsFullComplianceCoa && document.Cannabinoids.Count == 0)
+            missing.Add(nameof(document.Cannabinoids));
 
         return missing;
     }
