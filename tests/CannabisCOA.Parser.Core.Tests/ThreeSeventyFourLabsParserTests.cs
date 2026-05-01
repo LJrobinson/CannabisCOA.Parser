@@ -47,6 +47,24 @@ public class ThreeSeventyFourLabsParserTests
         Assert.Equal("LV.103025.R7.GC", result.BatchId);
     }
 
+    [Theory]
+    [InlineData("374labs-flower-popcorn-fire-diesel.txt", "Fire Diesel Small Buds", "GH2_H5_11.11.25_FIRED")]
+    [InlineData("374labs-flower-popcorn-hummingbird-cake.txt", "Hummingbird Cake", "6797 2722 5975 1630")]
+    public void ThreeSeventyFourLabsAdapter_Parse_PopcornBudsFlowerFixtureExtractsDisplayedProductAndBatch(
+        string fixtureName,
+        string expectedProductName,
+        string expectedBatchId)
+    {
+        var text = File.ReadAllText(FixturePath(fixtureName));
+
+        var result = new Labs374Adapter().Parse(text);
+
+        Assert.Equal("374 Labs", result.LabName);
+        Assert.Equal(ProductType.Flower, result.ProductType);
+        Assert.Equal(expectedProductName, result.ProductName);
+        Assert.Equal(expectedBatchId, result.BatchId);
+    }
+
     [Fact]
     public void ThreeSeventyFourLabsAdapter_Parse_FlowerPlaceholderMetadataStaysEmpty()
     {
