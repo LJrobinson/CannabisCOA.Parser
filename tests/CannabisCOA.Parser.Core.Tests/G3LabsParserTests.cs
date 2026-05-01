@@ -162,6 +162,30 @@ public class G3LabsParserTests
     }
 
     [Fact]
+    public void G3LabsAdapter_Parse_ExpandedTerpeneFixture_MapsFullBreakdownWithoutMismatchWarning()
+    {
+        var text = File.ReadAllText(FixturePath("g3-flower-terpene-expanded-gumbo.txt"));
+
+        var result = new G3LabsAdapter().Parse(text);
+        var validation = CoaValidator.Validate(result);
+        var terpeneSum = result.Terpenes.Terpenes.Values.Sum();
+
+        Assert.Equal("G3 Labs", result.LabName);
+        Assert.Equal(ProductType.Flower, result.ProductType);
+        Assert.Equal("FullComplianceCoa", result.DocumentClassification);
+        Assert.True(result.IsFullComplianceCoa);
+        Assert.Equal(0.82m, result.Terpenes.TotalTerpenes);
+        Assert.Equal(5, result.Terpenes.Terpenes.Count);
+        Assert.Equal(0.230m, result.Terpenes.Terpenes["β-Myrcene"]);
+        Assert.Equal(0.223m, result.Terpenes.Terpenes["α-Pinene"]);
+        Assert.Equal(0.207m, result.Terpenes.Terpenes["β-Caryophyllene"]);
+        Assert.Equal(0.094m, result.Terpenes.Terpenes["β-Pinene"]);
+        Assert.Equal(0.067m, result.Terpenes.Terpenes["α-Humulene"]);
+        Assert.InRange(terpeneSum, result.Terpenes.TotalTerpenes - 0.01m, result.Terpenes.TotalTerpenes + 0.01m);
+        Assert.DoesNotContain(validation.Warnings, warning => warning.Code == "TERPENE_TOTAL_MISMATCH");
+    }
+
+    [Fact]
     public void G3LabsAdapter_Parse_RealFlowerFixture_TerpeneTotalMatchesSumWithinTolerance()
     {
         var text = File.ReadAllText(FixturePath("g3-flower-real-001.txt"));

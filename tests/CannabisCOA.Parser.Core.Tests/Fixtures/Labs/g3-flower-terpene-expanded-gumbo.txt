@@ -1,0 +1,53 @@
+Certificate of Analysis
+Silver State Cultivation Sample: 2505G3L0010.5144
+Strain: Gumbo
+Sparks, NV 89431 Batch #: 1064 3741 9711 9380; Lot #: 1064 3741 9711 9380;
+Sample Received: 05/07/2025; Report Created: 05/13/2025
+Lic. #95697016138994411312 Harvest/Production Date:
+Gumbo
+Plant, Flower - Cured, Indoor
+Harvest Process Lot: ; METRC Batch: 1A404030000008C000051264; METRC Sample: 1A404030000008C000051274
+Cannabinoids Terpenes
+(G3 SOP# LC402 / HPLC-PDA) (G3 SOP# GC302 / GCMS-HS)
+20.23% <LOQ 23.27% 8.20 mg/g
+Total Potential THC Total Potential CBD Total Cannabinoids Total Terpenes Hops Pine Cinnamon
+Analyte LOQ Mass Mass Terpene LOQ Mass Mass
+% % mg/g mg/g mg/g %
+THCa 0.00016 22.83 228.3 β-Myrcene 0.0025 2.30 0.230
+α-Pinene 0.0025 2.23 0.223
+Δ9-THC 0.00016 0.21 2.1
+β-Caryophyllene 0.0025 2.07 0.207
+Δ8-THC 0.00016 <LOQ <LOQ
+β-Pinene 0.0025 0.94 0.094
+CBD 0.00016 <LOQ <LOQ
+α-Humulene 0.0025 0.67 0.067
+CBDa 0.00016 <LOQ <LOQ
+3-Carene 0.0025 <LOQ <LOQ
+CBG 0.00016 <LOQ <LOQ
+α-Bisabolol 0.0025 <LOQ <LOQ
+CBN 0.00016 <LOQ <LOQ
+α-Terpinene 0.0025 <LOQ <LOQ
+THCV 0.00016 <LOQ <LOQ
+β-Ocimene 0.0025 <LOQ <LOQ
+CBGa 0.00016 0.24 2.4 Camphene 0.0025 <LOQ <LOQ
+Caryophyllene Oxide 0.0025 <LOQ <LOQ
+δ -Limonene 0.0025 <LOQ <LOQ
+Total THC = THCa * 0.877 + ∆9-THC + ∆8-THC
+Total CBD CBDa * 0.877 + CBD Eucalyptol 0.0025 <LOQ <LOQ
+=
+LOQ = Limit of Quantitation; Cannabinoid concentration values reported at 0.5% or less γ-Terpinene 0.0025 <LOQ <LOQ
+may be estimated; The reported result is based on a sample weight with the applicable
+moisture content for that sample; Unless otherwise stated all quality control samples Geraniol 0.0025 <LOQ <LOQ
+performed within specifications established by the Laboratory.
+Guaiol 0.0025 <LOQ <LOQ
+Isopulegol 0.0025 <LOQ <LOQ
+Linalool 0.0025 <LOQ <LOQ
+Nerolidol 0.0025 <LOQ <LOQ
+Ocimene 0.0025 <LOQ <LOQ
+p-Cymene 0.0025 <LOQ <LOQ
+Terpinolene 0.0025 <LOQ <LOQ
+trans-Nerolidol 0.0025 <LOQ <LOQ
+LOQ = Limit of Quantitation; The reported result is based on a sample weight with the
+applicable moisture content for that sample; Unless otherwise stated all quality control
+samples performed within specifications established by the Laboratory.
+Pass Pass Pass Not Tested Pass Pass Pass
