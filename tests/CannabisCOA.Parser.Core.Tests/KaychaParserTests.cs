@@ -61,6 +61,19 @@ public class KaychaParserTests
     }
 
     [Fact]
+    public void KaychaAdapter_Parse_FlowerDisplayedProductBlock_MapsProductName()
+    {
+        var text = File.ReadAllText(FixturePath("kaycha-flower-displayed-product-royale-grape.txt"));
+
+        var result = new KaychaLabsAdapter().Parse(text);
+
+        Assert.Equal("Kaycha Labs", result.LabName);
+        Assert.Equal(ProductType.Flower, result.ProductType);
+        Assert.Equal("Royale Grape", result.ProductName);
+        Assert.Equal("RG-0420", result.BatchId);
+    }
+
+    [Fact]
     public void KaychaAdapter_Parse_RealFlowerFixture_TotalThcMatchesFormulaWithinTolerance()
     {
         var text = File.ReadAllText(FixturePath("kaycha-flower-real-001.txt"));

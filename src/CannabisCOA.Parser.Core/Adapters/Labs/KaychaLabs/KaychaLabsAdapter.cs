@@ -83,7 +83,21 @@ public class KaychaLabsAdapter : BaseLabAdapter
     private static string ExtractProductName(string text)
     {
         var rows = NormalizeRows(text);
+        var headerProductName = ExtractHeaderProductName(rows);
 
+        if (!string.IsNullOrWhiteSpace(headerProductName))
+            return headerProductName;
+
+        var displayedProductName = ExtractDisplayedProductName(rows);
+
+        if (!string.IsNullOrWhiteSpace(displayedProductName))
+            return displayedProductName;
+
+        return ExtractStrainName(rows);
+    }
+
+    private static string ExtractHeaderProductName(IReadOnlyList<string> rows)
+    {
         for (var i = 0; i < rows.Count - 1; i++)
         {
             if (!rows[i].Equals("Kaycha Labs", StringComparison.OrdinalIgnoreCase))
@@ -104,6 +118,40 @@ public class KaychaLabsAdapter : BaseLabAdapter
         return string.Empty;
     }
 
+    private static string ExtractDisplayedProductName(IReadOnlyList<string> rows)
+    {
+        for (var i = 1; i < rows.Count; i++)
+        {
+            if (!IsKaychaFlowerDescriptor(rows[i]))
+                continue;
+
+            var candidate = rows[i - 1].Trim();
+
+            if (IsKaychaProductNameCandidate(candidate))
+                return candidate;
+        }
+
+        return string.Empty;
+    }
+
+    private static string ExtractStrainName(IEnumerable<string> rows)
+    {
+        foreach (var row in rows)
+        {
+            var match = Regex.Match(row, @"\bStrain\s*:\s*(?<strain>.+)$", RegexOptions.IgnoreCase);
+
+            if (!match.Success)
+                continue;
+
+            var strain = match.Groups["strain"].Value.Trim();
+
+            if (IsKaychaProductNameCandidate(strain))
+                return strain;
+        }
+
+        return string.Empty;
+    }
+
     private static bool IsKaychaProductNameCandidate(string row)
     {
         return !string.IsNullOrWhiteSpace(row) &&
@@ -115,6 +163,14 @@ public class KaychaLabsAdapter : BaseLabAdapter
                !Regex.IsMatch(row, @"^\d+\s+") &&
                !row.Contains("Ave", StringComparison.OrdinalIgnoreCase) &&
                !row.Contains("Las Vegas", StringComparison.OrdinalIgnoreCase);
+    }
+
+    private static bool IsKaychaFlowerDescriptor(string row)
+    {
+        return Regex.IsMatch(
+            row,
+            @"\bPlant\s*,\s*Flower(?:\s*-\s*Cured)?\b",
+            RegexOptions.IgnoreCase);
     }
 
     private static bool IsKaychaHeaderBoundary(string row)
