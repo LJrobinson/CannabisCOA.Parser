@@ -22,6 +22,16 @@ public class KaychaParserTests
         ["kaycha-flower-shake-carbon-fiber.txt", "Carbon Fiber", "DDUV 11.23.25 FR1"]
     ];
 
+    public static IEnumerable<object[]> KaychaRemainingFlowerMetadataFixtures =>
+    [
+        ["kaycha-flower-las-vegas-kush-cake.txt", "Las Vegas Kush Cake", "LVKC 12-29-25 F4 #421"],
+        ["kaycha-flower-702-headband-header.txt", "702 Headband", "S2.P29.R2.1201"],
+        ["kaycha-flower-production-run-ghost-train-haze.txt", "Featured Farms - Natures Chemistry Ghost Train Haze", "251002GTH-24-IPR"],
+        ["kaycha-flower-batch-id-blurazz.txt", "BluRazz - Flower - (A)", "BLURAZZ - 03 MARCH 25 FL-03"],
+        ["kaycha-flower-popcorn-old-layout-trop-cherry.txt", "Trop Cherry - Small Buds - (A)", "TROP CHERRY - 11 JUNE 24 FL-01"],
+        ["kaycha-flower-other-not-listed-coconut-milk.txt", "Featured Farms - Natures Chemistry Coconut Milk", "250304CM-60-IPR"]
+    ];
+
     private static string FixturePath(string fileName)
     {
         return Path.GetFullPath(Path.Combine(
@@ -98,6 +108,23 @@ public class KaychaParserTests
         Assert.Equal(expectedBatchId, result.BatchId);
         Assert.NotNull(result.TestDate);
         Assert.True(result.Cannabinoids.TotalTHC > 0m);
+    }
+
+    [Theory]
+    [MemberData(nameof(KaychaRemainingFlowerMetadataFixtures))]
+    public void KaychaAdapter_Parse_RemainingFlowerMetadataLayouts_MapCoreFields(
+        string fixtureName,
+        string expectedProductName,
+        string expectedBatchId)
+    {
+        var text = File.ReadAllText(FixturePath(fixtureName));
+
+        var result = new KaychaLabsAdapter().Parse(text);
+
+        Assert.Equal("Kaycha Labs", result.LabName);
+        Assert.Equal(ProductType.Flower, result.ProductType);
+        Assert.Equal(expectedProductName, result.ProductName);
+        Assert.Equal(expectedBatchId, result.BatchId);
     }
 
     [Fact]

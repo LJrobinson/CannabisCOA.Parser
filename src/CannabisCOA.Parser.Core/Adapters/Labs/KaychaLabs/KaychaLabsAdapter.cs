@@ -76,7 +76,7 @@ public class KaychaLabsAdapter : BaseLabAdapter
         var rows = NormalizeRows(text);
 
         return rows.Any(IsKaychaFlowerTypeRow) ||
-               (LooksLikeKaychaRawPlantMaterial(rows) && rows.Any(IsKaychaFlowerEquivalentTypeRow));
+               (LooksLikeKaychaPlantMaterial(rows) && rows.Any(IsKaychaFlowerEquivalentTypeRow));
     }
 
     private static bool IsKaychaFlowerTypeRow(string row)
@@ -87,17 +87,16 @@ public class KaychaLabsAdapter : BaseLabAdapter
             RegexOptions.IgnoreCase);
     }
 
-    private static bool LooksLikeKaychaRawPlantMaterial(IEnumerable<string> rows)
+    private static bool LooksLikeKaychaPlantMaterial(IEnumerable<string> rows)
     {
-        return rows.Any(row => row.Contains("Matrix: Plant Material", StringComparison.OrdinalIgnoreCase)) &&
-               rows.Any(row => row.Contains("Raw Plant", StringComparison.OrdinalIgnoreCase));
+        return rows.Any(row => row.Contains("Matrix: Plant Material", StringComparison.OrdinalIgnoreCase));
     }
 
     private static bool IsKaychaFlowerEquivalentTypeRow(string row)
     {
         return Regex.IsMatch(
             row,
-            @"\bType\s*:\s*(?:Trim|Popcorn\s+Buds|Shake)\b",
+            @"\bType\s*:\s*(?:Trim|Popcorn\s+Buds|Shake|Other\s*-\s*Not\s+Listed)\b",
             RegexOptions.IgnoreCase);
     }
 
@@ -188,9 +187,8 @@ public class KaychaLabsAdapter : BaseLabAdapter
                !Regex.IsMatch(row, @"\b\d{6}\.\d+(?:\.\d+)+\b", RegexOptions.IgnoreCase) &&
                !Regex.IsMatch(row, @"^[A-Z0-9]+(?:[._-][A-Z0-9]+){2,}$", RegexOptions.IgnoreCase) &&
                !Regex.IsMatch(row, @"^\(?\d{3}\)?[\s-]\d{3}[\s-]\d{4}") &&
-               !Regex.IsMatch(row, @"^\d+\s+") &&
-               !Regex.IsMatch(row, @"\bAve\.?\b", RegexOptions.IgnoreCase) &&
-               !row.Contains("Las Vegas", StringComparison.OrdinalIgnoreCase);
+               !Regex.IsMatch(row, @"^\d+\s+.+\b(?:Ave|Avenue|Blvd|Boulevard|Dr|Drive|Rd|Road|St|Street|Way)\b", RegexOptions.IgnoreCase) &&
+               !Regex.IsMatch(row, @"\b(?:Las Vegas|Henderson|Reno|Sparks),\s*NV\b", RegexOptions.IgnoreCase);
     }
 
     private static bool IsKaychaFlowerDescriptor(string row)
@@ -212,12 +210,31 @@ public class KaychaLabsAdapter : BaseLabAdapter
 
     private static string ExtractBatchId(string text)
     {
-        foreach (var row in NormalizeRows(text))
+        var rows = NormalizeRows(text);
+        var batchId = ExtractBatchId(
+            rows,
+            @"\bBatch\s*#\s*:\s*(?<batch>.*?)(?:\s+Ordered:|\s+Sampled(?:\s+Date)?:|\s+Completed:|\s+Received:|$)");
+
+        if (!string.IsNullOrWhiteSpace(batchId))
+            return batchId;
+
+        batchId = ExtractBatchId(
+            rows,
+            @"\bBatch\s+ID\s*:\s*(?<batch>.*?)(?:\s+Ordered:|\s+Sampled(?:\s+Date)?:|\s+Completed:|\s+Received:|$)");
+
+        if (!string.IsNullOrWhiteSpace(batchId))
+            return batchId;
+
+        return ExtractBatchId(
+            rows,
+            @"\bProduction\s+Run\s*#\s*:?\s*(?<batch>.*?)(?:\s+Ordered:|\s+Sampled(?:\s+Date)?:|\s+Completed:|\s+Received:|$)");
+    }
+
+    private static string ExtractBatchId(IEnumerable<string> rows, string pattern)
+    {
+        foreach (var row in rows)
         {
-            var match = Regex.Match(
-                row,
-                @"\bBatch\s*#\s*:\s*(?<batch>.*?)(?:\s+Ordered:|\s+Sampled:|\s+Completed:|\s+Received:|$)",
-                RegexOptions.IgnoreCase);
+            var match = Regex.Match(row, pattern, RegexOptions.IgnoreCase);
 
             if (!match.Success)
                 continue;
