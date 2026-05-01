@@ -1,27 +1,40 @@
 using System.Globalization;
 using CannabisCOA.Parser.Core.Analysis;
+using CannabisCOA.Parser.Core.Enums;
+using CannabisCOA.Parser.Core.Mappers;
 using CannabisCOA.Parser.Core.Models;
 
 internal static class BatchCsvWriter
 {
+    private const string AuditProfile = "FlowerV1BatchAudit";
+
     private static readonly string[] Header =
     [
-        "FileName",
-        "ProductType",
+        "SourceFile",
+        "AuditProfile",
+        "IsFlowerV1Candidate",
+        "MapperSchemaVersion",
         "LabName",
+        "ProductType",
         "ProductName",
         "BatchId",
-        "IsAmended",
-        "HarvestDate",
         "TestDate",
+        "HarvestDate",
         "PackageDate",
+        "OverallStatus",
+        "TotalTHC",
+        "TotalCBD",
+        "TotalTerpenes",
+        "CannabinoidCount",
+        "TerpeneCount",
+        "HasWarnings",
+        "WarningCount",
+        "MissingCoreFields",
+        "IsAmended",
         "THC",
         "THCA",
         "CBD",
         "CBDA",
-        "TotalTHC",
-        "TotalCBD",
-        "TotalTerpenes",
         "THCSourceText",
         "THCConfidence",
         "THCASourceText",
@@ -45,25 +58,44 @@ internal static class BatchCsvWriter
 
         var coa = result.Coa;
         var cannabinoids = coa.Cannabinoids;
+        var sourceFile = Path.GetFileName(filePath);
+        var document = CoaDocumentMapper.FromCoaResult(
+            coa,
+            sourceFileName: sourceFile,
+            parserName: nameof(BatchCsvWriter));
+        var isFlowerV1Candidate = coa.ProductType == ProductType.Flower;
+        var warningCodes = result.Validation.Warnings
+            .Select(w => w.Code)
+            .Where(code => !string.IsNullOrWhiteSpace(code))
+            .ToList();
 
         var row = new[]
         {
-            Path.GetFileName(filePath),
-            coa.ProductType.ToString(),
-            coa.LabName,
-            coa.ProductName,
-            coa.BatchId,
+            sourceFile,
+            AuditProfile,
+            isFlowerV1Candidate ? "true" : "false",
+            document.SchemaVersion,
+            document.LabName,
+            document.ProductType,
+            document.ProductName,
+            document.BatchId,
+            FormatDate(document.TestDate),
+            FormatDate(document.HarvestDate),
+            FormatDate(document.PackageDate),
+            document.OverallStatus,
+            FormatDecimal(document.TotalThcPercent),
+            FormatDecimal(document.TotalCbdPercent),
+            FormatDecimal(document.TotalTerpenesPercent),
+            document.Cannabinoids.Count.ToString(CultureInfo.InvariantCulture),
+            document.Terpenes.Count.ToString(CultureInfo.InvariantCulture),
+            warningCodes.Count > 0 ? "true" : "false",
+            warningCodes.Count.ToString(CultureInfo.InvariantCulture),
+            string.Join("|", document.ParserMetadata.MissingFields),
             coa.IsAmended ? "true" : "false",
-            FormatDate(coa.HarvestDate),
-            FormatDate(coa.TestDate),
-            FormatDate(coa.PackageDate),
             FormatParsedValue(cannabinoids.THC),
             FormatParsedValue(cannabinoids.THCA),
             FormatParsedValue(cannabinoids.CBD),
             FormatParsedValue(cannabinoids.CBDA),
-            FormatDecimal(coa.Cannabinoids.TotalTHC),
-            FormatDecimal(coa.Cannabinoids.TotalCBD),
-            FormatDecimal(coa.Terpenes.TotalTerpenes),
             cannabinoids.THC.SourceText,
             FormatParsedConfidence(cannabinoids.THC),
             cannabinoids.THCA.SourceText,
@@ -72,9 +104,7 @@ internal static class BatchCsvWriter
             FormatParsedConfidence(cannabinoids.CBD),
             cannabinoids.CBDA.SourceText,
             FormatParsedConfidence(cannabinoids.CBDA),
-            string.Join("|", result.Validation.Warnings
-                .Select(w => w.Code)
-                .Where(code => !string.IsNullOrWhiteSpace(code)))
+            string.Join("|", warningCodes)
         };
 
         writer.WriteLine(string.Join(",", row.Select(Escape)));
@@ -88,6 +118,11 @@ internal static class BatchCsvWriter
     private static string FormatDecimal(decimal value)
     {
         return value.ToString(CultureInfo.InvariantCulture);
+    }
+
+    private static string FormatDecimal(decimal? value)
+    {
+        return value?.ToString(CultureInfo.InvariantCulture) ?? "";
     }
 
     private static string FormatParsedValue(ParsedField<decimal> field)

@@ -2,6 +2,7 @@ using System.Globalization;
 using System.Text.RegularExpressions;
 using CannabisCOA.Parser.Core.Adapters;
 using CannabisCOA.Parser.Core.Calculators;
+using CannabisCOA.Parser.Core.Enums;
 using CannabisCOA.Parser.Core.Models;
 
 namespace CannabisCOA.Parser.Core.Adapters.Labs.KaychaLabs;
@@ -29,6 +30,13 @@ public class KaychaLabsAdapter : BaseLabAdapter
         "KAYCHA LABORATORIES"
     ];
 
+    public override ProductType DetectProductType(string text)
+    {
+        return LooksLikeKaychaFlower(text)
+            ? ProductType.Flower
+            : base.DetectProductType(text);
+    }
+
     public override CoaResult Parse(string text)
     {
         var result = base.Parse(text);
@@ -55,6 +63,15 @@ public class KaychaLabsAdapter : BaseLabAdapter
         }
 
         return result;
+    }
+
+    private static bool LooksLikeKaychaFlower(string text)
+    {
+        return NormalizeRows(text).Any(row =>
+            Regex.IsMatch(
+                row,
+                @"\bType\s*:\s*Flower(?:\s*-\s*Cured|\s+Cured)?\b",
+                RegexOptions.IgnoreCase));
     }
 
     private static bool TryParseKaychaCannabinoids(string text, out CannabinoidProfile profile)

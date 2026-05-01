@@ -6,6 +6,14 @@ namespace CannabisCOA.Parser.Core.Tests;
 
 public class KaychaParserTests
 {
+    public static IEnumerable<object[]> KaychaFlowerCuredFixtures =>
+    [
+        ["kaycha-flower-1A40403000004B6000020660.txt"],
+        ["kaycha-flower-1A4040300000E11000056638.txt"],
+        ["kaycha-flower-1A4040300008856000040815.txt"],
+        ["kaycha-flower-1A4040300008856000043658.txt"]
+    ];
+
     private static string FixturePath(string fileName)
     {
         return Path.GetFullPath(Path.Combine(
@@ -29,6 +37,20 @@ public class KaychaParserTests
         Assert.Equal(28.0530m, result.Cannabinoids.THCA.Value);
         Assert.Equal(0.6700m, result.Cannabinoids.THC.Value);
         //Assert.True(result.Cannabinoids.CBDA.Value is null || result.Cannabinoids.CBDA.Confidence == 0m);
+    }
+
+    [Theory]
+    [MemberData(nameof(KaychaFlowerCuredFixtures))]
+    public void KaychaAdapter_Parse_FlowerCuredFixturesWithEdiblesInstrumentText_DetectsFlower(string fixtureName)
+    {
+        var text = File.ReadAllText(FixturePath(fixtureName));
+
+        var result = new KaychaLabsAdapter().Parse(text);
+
+        Assert.Equal("Kaycha Labs", result.LabName);
+        Assert.Equal(ProductType.Flower, result.ProductType);
+        Assert.NotNull(result.TestDate);
+        Assert.True(result.Cannabinoids.TotalTHC > 0m);
     }
 
     [Fact]

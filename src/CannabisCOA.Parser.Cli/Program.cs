@@ -36,6 +36,7 @@ if (args.Length == 0)
     Console.WriteLine("  cannabis-coa --file fixtures/digipath-flower.txt --raw");
     Console.WriteLine("  cannabis-coa --file sample.pdf --dump-text");
     Console.WriteLine("  cannabis-coa --batch G:\\COAs --out parsed.jsonl");
+    Console.WriteLine("  cannabis-coa --batch G:\\COAs --csv audit.csv");
     Console.WriteLine("  cannabis-coa --batch G:\\COAs --out parsed.jsonl --csv parsed.csv");
     return;
 }
@@ -60,16 +61,21 @@ if (argsList.Contains("--batch"))
         return;
     }
 
-    var output = "output.jsonl";
+    string? jsonlOutput = null;
+    var outRequested = argsList.Contains("--out");
 
-    if (argsList.Contains("--out"))
+    if (outRequested)
     {
         var outIdx = argsList.IndexOf("--out");
 
-        if (outIdx + 1 < argsList.Count)
+        if (outIdx + 1 >= argsList.Count)
         {
-            output = argsList[outIdx + 1];
+            Console.Error.WriteLine("Missing file path after --out");
+            Environment.Exit(1);
+            return;
         }
+
+        jsonlOutput = argsList[outIdx + 1];
     }
 
     string? csvOutput = null;
@@ -86,6 +92,11 @@ if (argsList.Contains("--batch"))
         }
 
         csvOutput = argsList[csvIdx + 1];
+    }
+
+    if (!outRequested && csvOutput is null)
+    {
+        jsonlOutput = "output.jsonl";
     }
 
     var files = Directory.GetFiles(inputDir, "*.*", SearchOption.AllDirectories)
@@ -110,7 +121,7 @@ if (argsList.Contains("--batch"))
         return;
     }
 
-    using var writer = new StreamWriter(output, append: false);
+    using var writer = jsonlOutput is null ? null : new StreamWriter(jsonlOutput, append: false);
     using var csvWriter = csvOutput is null ? null : new StreamWriter(csvOutput, append: false);
 
     if (csvWriter is not null)
@@ -135,7 +146,7 @@ if (argsList.Contains("--batch"))
                 res.Coa.Terpenes.TotalTerpenes = Math.Round(res.Coa.Terpenes.TotalTerpenes, 2);
             }
 
-            writer.WriteLine(JsonSerializer.Serialize(res, batchJsonLineOptions));
+            writer?.WriteLine(JsonSerializer.Serialize(res, batchJsonLineOptions));
             BatchCsvWriter.WriteRow(csvWriter, file, res);
 
             if (IsGenericLab(res.Coa.LabName))
@@ -149,7 +160,15 @@ if (argsList.Contains("--batch"))
         }
     }
 
-    Console.WriteLine($"Processed {files.Count} files → {output}");
+    var writtenOutputs = new List<string>();
+
+    if (jsonlOutput is not null)
+        writtenOutputs.Add($"JSONL {jsonlOutput}");
+
+    if (csvOutput is not null)
+        writtenOutputs.Add($"CSV {csvOutput}");
+
+    Console.WriteLine($"Processed {files.Count} files → {string.Join(", ", writtenOutputs)}");
     return;
 }
 
