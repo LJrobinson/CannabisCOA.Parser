@@ -138,6 +138,8 @@ public class CliBatchJsonlTests
             Assert.Contains("IsFlowerV1Candidate", header);
             Assert.Contains("MapperSchemaVersion", header);
             Assert.DoesNotContain("SchemaVersion", header);
+            Assert.Contains("ProductName", header);
+            Assert.Contains("BatchId", header);
             Assert.Contains("CannabinoidCount", header);
             Assert.Contains("TerpeneCount", header);
             Assert.Contains("HasWarnings", header);

@@ -25,9 +25,24 @@ public class G3LabsParserTests
 
         Assert.Equal("G3 Labs", result.LabName);
         Assert.Equal(ProductType.Flower, result.ProductType);
+        Assert.Equal("Gorilla Glue #4", result.ProductName);
+        Assert.Equal("9580 3311 4391 4182", result.BatchId);
         Assert.NotNull(result.TestDate);
         Assert.Equal(28.66m, result.Cannabinoids.THCA.Value);
         Assert.Equal(0.51m, result.Cannabinoids.THC.Value);
+    }
+
+    [Fact]
+    public void G3LabsAdapter_Parse_DisplayProductFixture_MapsFlowerMetadata()
+    {
+        var text = File.ReadAllText(FixturePath("g3-flower-display-bud-garlic-cookies.txt"));
+
+        var result = new G3LabsAdapter().Parse(text);
+
+        Assert.Equal("G3 Labs", result.LabName);
+        Assert.Equal(ProductType.Flower, result.ProductType);
+        Assert.Equal("Bud Garlic Cookies", result.ProductName);
+        Assert.Equal("359", result.BatchId);
     }
 
     [Theory]

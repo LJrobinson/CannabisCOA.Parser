@@ -2,6 +2,7 @@ using System.Globalization;
 using System.Text.RegularExpressions;
 using CannabisCOA.Parser.Core.Adapters;
 using CannabisCOA.Parser.Core.Calculators;
+using CannabisCOA.Parser.Core.Enums;
 using CannabisCOA.Parser.Core.Models;
 
 namespace CannabisCOA.Parser.Core.Adapters.Labs.G3Labs;
@@ -40,6 +41,12 @@ public class G3LabsAdapter : BaseLabAdapter
     {
         var result = base.Parse(text);
 
+        if (result.ProductType == ProductType.Flower)
+        {
+            result.ProductName = ExtractProductName(text);
+            result.BatchId = ExtractBatchId(text);
+        }
+
         if (TryParseG3Cannabinoids(text, out var cannabinoids))
         {
             CannabinoidCalculator.CalculateTotals(cannabinoids);
@@ -58,6 +65,100 @@ public class G3LabsAdapter : BaseLabAdapter
         }
 
         return result;
+    }
+
+    private static string ExtractProductName(string text)
+    {
+        var rows = NormalizeRows(text);
+        var displayedProductName = ExtractDisplayedProductName(rows);
+
+        if (!string.IsNullOrWhiteSpace(displayedProductName))
+            return displayedProductName;
+
+        return ExtractStrainName(rows);
+    }
+
+    private static string ExtractDisplayedProductName(IReadOnlyList<string> rows)
+    {
+        for (var i = 1; i < rows.Count; i++)
+        {
+            if (!IsG3FlowerDescriptor(rows[i]))
+                continue;
+
+            for (var j = i - 1; j >= 0 && i - j <= 3; j--)
+            {
+                var candidate = rows[j].Trim();
+
+                if (IsG3ProductNameCandidate(candidate))
+                    return candidate;
+            }
+        }
+
+        return string.Empty;
+    }
+
+    private static string ExtractStrainName(IEnumerable<string> rows)
+    {
+        foreach (var row in rows)
+        {
+            var match = Regex.Match(row, @"\bStrain\s*:\s*(?<strain>.+?)(?:\s+Batch\s*#:|$)", RegexOptions.IgnoreCase);
+
+            if (!match.Success)
+                continue;
+
+            var strain = match.Groups["strain"].Value.Trim();
+
+            if (IsG3ProductNameCandidate(strain))
+                return strain;
+        }
+
+        return string.Empty;
+    }
+
+    private static string ExtractBatchId(string text)
+    {
+        foreach (var row in NormalizeRows(text))
+        {
+            var match = Regex.Match(
+                row,
+                @"\bBatch\s*#\s*:\s*(?<batch>.*?)(?:\s*;\s*Lot\s*#|\s+Lot\s*#:|\s+Sample\s+Received:|\s+Report\s+Created:|$)",
+                RegexOptions.IgnoreCase);
+
+            if (!match.Success)
+                continue;
+
+            var batch = match.Groups["batch"].Value.Trim();
+
+            if (!string.IsNullOrWhiteSpace(batch))
+                return batch;
+        }
+
+        return string.Empty;
+    }
+
+    private static bool IsG3ProductNameCandidate(string row)
+    {
+        return !string.IsNullOrWhiteSpace(row) &&
+               !Regex.IsMatch(row, @"^[\s\-–—_]+$") &&
+               !row.Equals("Flower", StringComparison.OrdinalIgnoreCase) &&
+               !row.Contains(':') &&
+               !row.Contains(';') &&
+               !row.Contains("G3 Labs", StringComparison.OrdinalIgnoreCase) &&
+               !row.Contains("G3 Laboratories", StringComparison.OrdinalIgnoreCase) &&
+               !row.Contains("Certificate", StringComparison.OrdinalIgnoreCase) &&
+               !row.StartsWith("Lic.", StringComparison.OrdinalIgnoreCase) &&
+               !row.Contains("Sparks", StringComparison.OrdinalIgnoreCase) &&
+               !row.Contains("Laughlin", StringComparison.OrdinalIgnoreCase) &&
+               !Regex.IsMatch(row, @"^\(?\d{3}\)?[\s-]\d{3}[\s-]\d{4}") &&
+               !Regex.IsMatch(row, @"^\d+\s+of\s+\d+$", RegexOptions.IgnoreCase);
+    }
+
+    private static bool IsG3FlowerDescriptor(string row)
+    {
+        return Regex.IsMatch(
+            row,
+            @"\bPlant\s*,\s*Flower(?:\s*-\s*Cured)?\b",
+            RegexOptions.IgnoreCase);
     }
 
     private static bool TryParseG3Cannabinoids(string text, out CannabinoidProfile profile)
