@@ -100,6 +100,13 @@ public class NVCannLabsAdapter : BaseLabAdapter
         return result;
     }
 
+    public override ProductType DetectProductType(string text)
+    {
+        return NormalizeRows(text).Any(IsNvFlowerDescriptor)
+            ? ProductType.Flower
+            : base.DetectProductType(text);
+    }
+
     private static string ExtractProductName(string text)
     {
         var rows = NormalizeRows(text);
@@ -174,8 +181,17 @@ public class NVCannLabsAdapter : BaseLabAdapter
         return !string.IsNullOrWhiteSpace(row) &&
                !Regex.IsMatch(row, @"^[\s\-–—_]+$") &&
                !row.Equals("Flower", StringComparison.OrdinalIgnoreCase) &&
+               !row.Equals("Plant", StringComparison.OrdinalIgnoreCase) &&
+               !row.Equals("Popcorn Buds", StringComparison.OrdinalIgnoreCase) &&
+               !row.Equals("Trim", StringComparison.OrdinalIgnoreCase) &&
+               !row.StartsWith("Plant,", StringComparison.OrdinalIgnoreCase) &&
                !row.Contains(':') &&
                !row.Contains(';') &&
+               !row.Contains("Certificate", StringComparison.OrdinalIgnoreCase) &&
+               !row.Contains("Confident LIMS", StringComparison.OrdinalIgnoreCase) &&
+               !row.StartsWith("Lic.", StringComparison.OrdinalIgnoreCase) &&
+               !Regex.IsMatch(row, @"^\d{5,}[\s._-]+\S+", RegexOptions.IgnoreCase) &&
+               !Regex.IsMatch(row, @"^1A[0-9A-Z]{20,}$", RegexOptions.IgnoreCase) &&
                !Regex.IsMatch(row, @"^\(?\d{3}\)?[\s-]\d{3}[\s-]\d{4}") &&
                !row.Contains("Las Vegas", StringComparison.OrdinalIgnoreCase);
     }
@@ -184,7 +200,7 @@ public class NVCannLabsAdapter : BaseLabAdapter
     {
         return Regex.IsMatch(
             row,
-            @"\bPlant\s*,\s*Flower(?:\s*-\s*Cured)?\b",
+            @"\bPlant\s*,\s*(?:Flower(?:\s*-\s*Cured)?|Popcorn\s+Buds|Trim)\b",
             RegexOptions.IgnoreCase);
     }
 

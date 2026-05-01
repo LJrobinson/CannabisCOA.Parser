@@ -1,0 +1,26 @@
+Certificate of Analysis
+Powered by Confident LIMS
+1 of 2
+Silver State Wellness, LLC Sample: 2025NVC2756-19474
+Strain: Crescendo, Classification: Sativa
+Las Vegas, NV 89120 Batch #: LV.111825.R2.CRE; Lot #: 13810
+Sample Received: 12/16/2025; Report Created: 12/19/2025; Harvest/Production Date: 11/18/2025
+Lic. #59957937698775278559
+Crescendo Popcorn
+Plant, Popcorn Buds, Indoor
+Harvest Process Lot: 13810; METRC Batch: 13810; METRC Sample: 1A40403000000C9000013811
+
+Cannabinoids
+Analyte LOQ Mass Mass
+% % mg/g
+THCa 0.083 34.853 348.53
+Delta9-THC 0.083 1.157 11.57
+CBD 0.083 <LOQ <LOQ
+CBDa 0.083 <LOQ <LOQ
+Total THC = THCa * 0.877 + D9-THC + D8-THC
+Total CBD = CBDa * 0.877 + CBD
+Total Edible THC = D9-THC + D8-THC
+
+6631 Schuster Street Confident LIMS
+Las Vegas, NV
+http://www.nvcann.com Scientific (866) 506-5866

@@ -66,6 +66,19 @@ public class NVCannLabsParserTests
         Assert.Equal("LV.100625.R6.TF", result.BatchId);
     }
 
+    [Fact]
+    public void CoaParser_Parse_PopcornBudsFixtureWithEdibleFormulaDetectsFlower()
+    {
+        var text = File.ReadAllText(FixturePath("nvcannlabs-flower-popcorn-crescendo-edible-label.txt"));
+
+        var result = CoaParser.Parse(text);
+
+        Assert.Equal("NV Cann Labs", result.LabName);
+        Assert.Equal(ProductType.Flower, result.ProductType);
+        Assert.Equal("Crescendo Popcorn", result.ProductName);
+        Assert.Equal("LV.111825.R2.CRE", result.BatchId);
+    }
+
     [Theory]
     [InlineData("CBD", "CBD 0.083 <LOQ <LOQ")]
     [InlineData("CBDA", "CBDa 0.083 <LOQ <LOQ")]
