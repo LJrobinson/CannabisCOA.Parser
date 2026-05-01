@@ -488,6 +488,20 @@ public class AceFlowerParserTests
     }
 
     [Fact]
+    public void AceAnalyticalAdapter_Parse_TrimFixtureMapsFlowerMetadata()
+    {
+        var text = File.ReadAllText(FixturePath("ace-flower-trim-hms-11092.txt"));
+
+        var result = new CannabisCOA.Parser.Core.Adapters.Labs.AceAnalytical.AceAnalyticalAdapter()
+            .Parse(text);
+
+        Assert.Equal("Ace Analytical Laboratory", result.LabName);
+        Assert.Equal(ProductType.Flower, result.ProductType);
+        Assert.Equal("HMS 11092", result.ProductName);
+        Assert.Equal("081225-F4T3-HMS", result.BatchId);
+    }
+
+    [Fact]
     public void AceAnalyticalAdapter_DoesNotIncorrectlyParseNonAceLab()
     {
         var text = File.ReadAllText(FixturePath("Digipath_Flower.txt"));

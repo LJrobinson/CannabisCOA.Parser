@@ -1,0 +1,18 @@
+Certificate of Analysis
+Powered by Confident LIMS
+Solace Enterprises LLC Sample: 2602MAA0039_1343
+6155 E. Azure Ave Strain: Pink Lemonade
+Las Vegas, NV 89115 Lot #: 119502; Harvest/Production Date: 2025-12-15
+Sample Received: 02/02/2026 Report Created: 02/05/2026
+
+Flower Pink Lemonade Bulk- 119502
+Plant, Flower - Cured
+Harvest Process Lot: H19B3-43-20251215; METRC Batch: 1A4040300003CF1000126711; METRC Sample: 1A4040300003CF1000126711
+
+Cannabinoids
+Analyte LOQ Mass Mass
+THCa 0.160 24.125 241.25
+Delta-9 THC 0.640 0.412 4.12
+CBD 0.640 <LOQ <LOQ
+
+MA Analytics

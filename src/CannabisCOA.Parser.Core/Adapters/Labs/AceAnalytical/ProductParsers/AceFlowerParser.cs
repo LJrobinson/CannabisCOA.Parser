@@ -260,6 +260,9 @@ public static class AceFlowerParser
                !Regex.IsMatch(row, @"^[\s\-–—_]+$") &&
                !row.Contains(':') &&
                !row.Contains(';') &&
+               !row.Equals("Flower", StringComparison.OrdinalIgnoreCase) &&
+               !row.Equals("Plant", StringComparison.OrdinalIgnoreCase) &&
+               !row.Equals("Trim", StringComparison.OrdinalIgnoreCase) &&
                !row.Equals("Certificate of Analysis", StringComparison.OrdinalIgnoreCase) &&
                !row.Equals("Ace Analytical Laboratory", StringComparison.OrdinalIgnoreCase) &&
                !row.Equals("PASSED", StringComparison.OrdinalIgnoreCase) &&
@@ -269,6 +272,7 @@ public static class AceFlowerParser
                !Regex.IsMatch(row, @"^\d{6,8}$") &&
                !Regex.IsMatch(row, @"^1A[0-9A-Z]{20,}$", RegexOptions.IgnoreCase) &&
                !row.StartsWith("Lic.", StringComparison.OrdinalIgnoreCase) &&
+               !row.StartsWith("Plant,", StringComparison.OrdinalIgnoreCase) &&
                !row.StartsWith("MME ID", StringComparison.OrdinalIgnoreCase) &&
                !row.Contains("Harvest/Production", StringComparison.OrdinalIgnoreCase) &&
                !row.Contains("Reno", StringComparison.OrdinalIgnoreCase);
@@ -278,7 +282,7 @@ public static class AceFlowerParser
     {
         return Regex.IsMatch(
             row,
-            @"\bPlant\s*,\s*(?:Flower(?:\s*-\s*Cured)?|Popcorn\s+Buds)\b",
+            @"\bPlant\s*,\s*(?:Flower(?:\s*-\s*Cured)?|Popcorn\s+Buds|Trim)\b",
             RegexOptions.IgnoreCase);
     }
 
@@ -989,7 +993,7 @@ public static class AceFlowerParser
     {
         var rows = NormalizeRows(text);
 
-        return rows.Any(row => Regex.IsMatch(row, @"\bPlant\s*,\s*(?:Flower(?:\s*-\s*Cured)?|Popcorn\s+Buds)\b|\bFlower\s*-\s*Cured\b", RegexOptions.IgnoreCase)) ||
+        return rows.Any(row => Regex.IsMatch(row, @"\bPlant\s*,\s*(?:Flower(?:\s*-\s*Cured)?|Popcorn\s+Buds|Trim)\b|\bFlower\s*-\s*Cured\b", RegexOptions.IgnoreCase)) ||
                (rows.Any(IsCannabinoidSectionStart) && rows.Any(IsTerpeneSectionStart));
     }
 

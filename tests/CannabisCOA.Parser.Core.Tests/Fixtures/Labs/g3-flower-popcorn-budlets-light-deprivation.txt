@@ -1,0 +1,22 @@
+Certificate of Analysis
+GreenLight_Amargosa Valley_NV_Cultivation Sample: 2601G3L0008.0087
+Strain: Peanut Butter Breath
+Amargosa Valley, NV 89020 Batch #: PBB12082025F3; Lot #: L3
+Sample Received: 01/06/2026; Report Created: 01/14/2026
+Lic. #57013223548758955335 Harvest/Production Date:
+Peanut Butter Breath Budlets
+Plant, Popcorn Buds, Light Deprivation
+Harvest Process Lot: ; METRC Batch: 1A404030000251E000026071; METRC Sample: 1A404030000251E000026114
+Cannabinoids Terpenes
+(G3 SOP# LC402 / HPLC-PDA) (G3 SOP# GC302 / GCMS-HS)
+24.69% <LOQ 28.47% 12.66 mg/g
+Total Potential THC Total Potential CBD Total Cannabinoids Total Terpenes Lemon Cinnamon Hops
+Analyte LOQ Mass Mass Terpene LOQ Mass Mass
+% % mg/g mg/g mg/g %
+THCa 0.00016 28.15 281.5 δ -Limonene 0.0025 6.51 0.651
+Δ9-THC 0.00016 <LOQ <LOQ
+CBD 0.00016 <LOQ <LOQ
+CBDa 0.00016 <LOQ <LOQ
+Total THC = THCa * 0.877 + D9-THC + D8-THC
+http://www.g3labsllc.com Confident LIMS
+This product has been tested by G3 Labs using valid testing methodologies.

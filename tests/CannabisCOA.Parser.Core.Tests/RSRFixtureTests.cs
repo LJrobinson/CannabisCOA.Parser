@@ -65,6 +65,19 @@ public class RSRFixtureTests
         Assert.Equal(1.12m, result.Cannabinoids.THC.Value);
     }
 
+    [Fact]
+    public void RsrAnalyticalAdapter_Parse_TrimFixtureMapsFlowerMetadata()
+    {
+        var text = File.ReadAllText(FixturePath("rsr-flower-trim-medellin.txt"));
+
+        var result = new RSRAnalyticalAdapter().Parse(text);
+
+        Assert.Equal("RSR Analytical Laboratories", result.LabName);
+        Assert.Equal(ProductType.Flower, result.ProductType);
+        Assert.Equal("MED 13316", result.ProductName);
+        Assert.Equal("111025-F2T6-MED", result.BatchId);
+    }
+
     [Theory]
     [InlineData("CBD", "CBD 0.25 <LOQ <LOQ")]
     [InlineData("CBDA", "CBDa 0.25 <LOQ <LOQ")]

@@ -29,6 +29,13 @@ public class MAAnalyticsAdapter : BaseLabAdapter
         "M.A. ANALYTICS"
     ];
 
+    public override ProductType DetectProductType(string text)
+    {
+        return NormalizeRows(text).Any(IsMaFlowerDescriptor)
+            ? ProductType.Flower
+            : base.DetectProductType(text);
+    }
+
     public override CoaResult Parse(string text)
     {
         var result = base.Parse(text);
@@ -125,6 +132,22 @@ public class MAAnalyticsAdapter : BaseLabAdapter
                 return batch;
         }
 
+        foreach (var row in NormalizeRows(text))
+        {
+            var match = Regex.Match(
+                row,
+                @"\bHarvest\s+Process\s+Lot\s*:\s*(?<batch>.*?)(?:\s*;\s*METRC\s+Batch\s*:|\s*;|$)",
+                RegexOptions.IgnoreCase);
+
+            if (!match.Success)
+                continue;
+
+            var batch = match.Groups["batch"].Value.Trim();
+
+            if (!string.IsNullOrWhiteSpace(batch))
+                return batch;
+        }
+
         return string.Empty;
     }
 
@@ -133,11 +156,14 @@ public class MAAnalyticsAdapter : BaseLabAdapter
         return !string.IsNullOrWhiteSpace(row) &&
                !Regex.IsMatch(row, @"^[\s\-–—_]+$") &&
                !row.Equals("Flower", StringComparison.OrdinalIgnoreCase) &&
+               !row.Equals("Plant", StringComparison.OrdinalIgnoreCase) &&
+               !row.Equals("Trim", StringComparison.OrdinalIgnoreCase) &&
                !row.Contains(':') &&
                !row.Contains(';') &&
                !row.Contains("@") &&
                !Regex.IsMatch(row, @"^\(?\d{3}\)?[\s-]\d{3}[\s-]\d{4}") &&
                !row.StartsWith("Lic.", StringComparison.OrdinalIgnoreCase) &&
+               !row.StartsWith("Plant,", StringComparison.OrdinalIgnoreCase) &&
                !row.Contains("North Las Vegas", StringComparison.OrdinalIgnoreCase) &&
                !row.Contains("Lone Mountain Rd", StringComparison.OrdinalIgnoreCase);
     }
@@ -146,7 +172,7 @@ public class MAAnalyticsAdapter : BaseLabAdapter
     {
         return Regex.IsMatch(
             row,
-            @"\bPlant\s*,\s*Flower(?:\s*-\s*Cured)?\b",
+            @"\bPlant\s*,\s*(?:Flower(?:\s*-\s*Cured)?|Trim)\b",
             RegexOptions.IgnoreCase);
     }
 

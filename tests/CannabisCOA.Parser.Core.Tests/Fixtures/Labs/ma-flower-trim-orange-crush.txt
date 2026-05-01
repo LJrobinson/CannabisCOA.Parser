@@ -1,0 +1,21 @@
+Certificate of Analysis
+Powered by Confident LIMS
+Amended 1 of 2
+Solace Enterprises LLC Sample: 2510MAA0023_3128
+6155 E. Azure Ave Strain: Orange Crush
+Las Vegas, NV 89115 Batch #: H27FR5-11-20251007
+Lot #: 114878; Harvest/Production Date: 2025-10-07
+Sample Received: 10/13/2025 Report Created: 10/27/2025
+
+Shake Orange Crush Bulk
+Plant, Trim
+Harvest Process Lot: H27FR5-11-20251007; METRC Batch: 1A4040300003CF1000126692; METRC Sample: 1A4040300003CF1000126692
+
+Cannabinoids
+Analyte LOQ Mass Mass
+THCa 0.160 26.278 262.78
+Delta-9 THC 0.640 0.544 5.44
+CBDa 0.160 <LOQ <LOQ
+CBD 0.640 <LOQ <LOQ
+
+MA Analytics

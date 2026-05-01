@@ -21,6 +21,13 @@ public class RSRAnalyticalAdapter : BaseLabAdapter
         "RSR LABORATORIES"
     ];
 
+    public override ProductType DetectProductType(string text)
+    {
+        return NormalizeRows(text).Any(IsRsrFlowerDescriptor)
+            ? ProductType.Flower
+            : base.DetectProductType(text);
+    }
+
     public override CoaResult Parse(string text)
     {
         var result = base.Parse(text);
@@ -149,6 +156,8 @@ public class RSRAnalyticalAdapter : BaseLabAdapter
         return !string.IsNullOrWhiteSpace(row) &&
                !Regex.IsMatch(row, @"^[\s\-_]+$") &&
                !row.Equals("Flower", StringComparison.OrdinalIgnoreCase) &&
+               !row.Equals("Plant", StringComparison.OrdinalIgnoreCase) &&
+               !row.Equals("Trim", StringComparison.OrdinalIgnoreCase) &&
                !row.Contains(':') &&
                !row.Contains(';') &&
                !row.Contains("@") &&
@@ -157,6 +166,7 @@ public class RSRAnalyticalAdapter : BaseLabAdapter
                !row.Contains("Laughlin", StringComparison.OrdinalIgnoreCase) &&
                !row.Contains("Bruce Woodbury", StringComparison.OrdinalIgnoreCase) &&
                !row.StartsWith("Lic.", StringComparison.OrdinalIgnoreCase) &&
+               !row.StartsWith("Plant,", StringComparison.OrdinalIgnoreCase) &&
                !Regex.IsMatch(row, @"^\(?\d{3}\)?[\s-]\d{3}[\s-]\d{4}") &&
                !Regex.IsMatch(row, @"^\d+\s+of\s+\d+$", RegexOptions.IgnoreCase);
     }
@@ -165,7 +175,7 @@ public class RSRAnalyticalAdapter : BaseLabAdapter
     {
         return Regex.IsMatch(
             row,
-            @"\bPlant\s*,\s*Flower(?:\s*-\s*Cured)?\b",
+            @"\bPlant\s*,\s*(?:Flower(?:\s*-\s*Cured)?|Trim)\b",
             RegexOptions.IgnoreCase);
     }
 

@@ -45,6 +45,32 @@ public class MAAnalyticsParserTests
         Assert.Equal("102425B183", result.BatchId);
     }
 
+    [Fact]
+    public void MAAnalyticsAdapter_Parse_TrimFixtureMapsFlowerMetadata()
+    {
+        var text = File.ReadAllText(FixturePath("ma-flower-trim-orange-crush.txt"));
+
+        var result = new MAAnalyticsAdapter().Parse(text);
+
+        Assert.Equal("MA Analytics", result.LabName);
+        Assert.Equal(ProductType.Flower, result.ProductType);
+        Assert.Equal("Shake Orange Crush Bulk", result.ProductName);
+        Assert.Equal("H27FR5-11-20251007", result.BatchId);
+    }
+
+    [Fact]
+    public void MAAnalyticsAdapter_Parse_HarvestProcessLotFixtureMapsBatchId()
+    {
+        var text = File.ReadAllText(FixturePath("ma-flower-harvest-process-lot-pink-lemonade.txt"));
+
+        var result = new MAAnalyticsAdapter().Parse(text);
+
+        Assert.Equal("MA Analytics", result.LabName);
+        Assert.Equal(ProductType.Flower, result.ProductType);
+        Assert.Equal("Flower Pink Lemonade Bulk- 119502", result.ProductName);
+        Assert.Equal("H19B3-43-20251215", result.BatchId);
+    }
+
     [Theory]
     [InlineData("CBD", "CBD 0.640 <LOQ <LOQ")]
     [InlineData("CBDA", "CBDa 0.160 <LOQ <LOQ")]
