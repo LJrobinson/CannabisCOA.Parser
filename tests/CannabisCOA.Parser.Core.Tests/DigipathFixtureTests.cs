@@ -26,6 +26,9 @@ public class DigipathFixtureTests
         var result = CoaParser.Parse(text);
 
         Assert.Equal("Digipath", result.LabName);
+        Assert.Equal(ProductType.Flower, result.ProductType);
+        Assert.Equal("Kush Mints", result.ProductName);
+        Assert.Equal("1A40403000044C1000008993", result.BatchId);
 
         Assert.Equal(26.564m, result.Cannabinoids.THCA.Value);
         Assert.Equal(0.225m, result.Cannabinoids.THC.Value);
@@ -38,6 +41,19 @@ public class DigipathFixtureTests
         Assert.Equal("unknown", result.Compliance.Status);
 
         Assert.True(result.Terpenes.TotalTerpenes > 0);
+    }
+
+    [Fact]
+    public void Parses_Digipath_Flower_GenericDisplayName_FallsBackToStrain()
+    {
+        var text = LoadFixture("digipath-flower-generic-display-blue-dream.txt");
+
+        var result = CoaParser.Parse(text);
+
+        Assert.Equal("Digipath", result.LabName);
+        Assert.Equal(ProductType.Flower, result.ProductType);
+        Assert.Equal("BLUE DREAM", result.ProductName);
+        Assert.Equal("DP-BATCH-001", result.BatchId);
     }
 
     [Fact]

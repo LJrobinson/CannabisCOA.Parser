@@ -73,27 +73,48 @@ public class KaychaLabsAdapter : BaseLabAdapter
 
     private static bool LooksLikeKaychaFlower(string text)
     {
-        return NormalizeRows(text).Any(row =>
-            Regex.IsMatch(
-                row,
-                @"\bType\s*:\s*Flower(?:\s*-\s*Cured|\s+Cured)?\b",
-                RegexOptions.IgnoreCase));
+        var rows = NormalizeRows(text);
+
+        return rows.Any(IsKaychaFlowerTypeRow) ||
+               (LooksLikeKaychaRawPlantMaterial(rows) && rows.Any(IsKaychaFlowerEquivalentTypeRow));
+    }
+
+    private static bool IsKaychaFlowerTypeRow(string row)
+    {
+        return Regex.IsMatch(
+            row,
+            @"\bType\s*:\s*Flower(?:\s*-\s*Cured|\s+Cured)?\b",
+            RegexOptions.IgnoreCase);
+    }
+
+    private static bool LooksLikeKaychaRawPlantMaterial(IEnumerable<string> rows)
+    {
+        return rows.Any(row => row.Contains("Matrix: Plant Material", StringComparison.OrdinalIgnoreCase)) &&
+               rows.Any(row => row.Contains("Raw Plant", StringComparison.OrdinalIgnoreCase));
+    }
+
+    private static bool IsKaychaFlowerEquivalentTypeRow(string row)
+    {
+        return Regex.IsMatch(
+            row,
+            @"\bType\s*:\s*(?:Trim|Popcorn\s+Buds|Shake)\b",
+            RegexOptions.IgnoreCase);
     }
 
     private static string ExtractProductName(string text)
     {
         var rows = NormalizeRows(text);
-        var headerProductName = ExtractHeaderProductName(rows);
-
-        if (!string.IsNullOrWhiteSpace(headerProductName))
-            return headerProductName;
-
         var displayedProductName = ExtractDisplayedProductName(rows);
 
         if (!string.IsNullOrWhiteSpace(displayedProductName))
             return displayedProductName;
 
-        return ExtractStrainName(rows);
+        var strainName = ExtractStrainName(rows);
+
+        if (!string.IsNullOrWhiteSpace(strainName))
+            return strainName;
+
+        return ExtractHeaderProductName(rows);
     }
 
     private static string ExtractHeaderProductName(IReadOnlyList<string> rows)
@@ -155,13 +176,20 @@ public class KaychaLabsAdapter : BaseLabAdapter
     private static bool IsKaychaProductNameCandidate(string row)
     {
         return !string.IsNullOrWhiteSpace(row) &&
+               !Regex.IsMatch(row, @"^[\s\-–—_]+$") &&
+               !row.Equals("Flower", StringComparison.OrdinalIgnoreCase) &&
+               !row.Equals("Trim", StringComparison.OrdinalIgnoreCase) &&
+               !row.Equals("Shake", StringComparison.OrdinalIgnoreCase) &&
+               !row.Equals("Popcorn Buds", StringComparison.OrdinalIgnoreCase) &&
                !row.Contains(':') &&
                !row.Contains("Kaycha Labs", StringComparison.OrdinalIgnoreCase) &&
                !row.Contains("Certificate", StringComparison.OrdinalIgnoreCase) &&
                !row.Equals("PASSED", StringComparison.OrdinalIgnoreCase) &&
+               !Regex.IsMatch(row, @"\b\d{6}\.\d+(?:\.\d+)+\b", RegexOptions.IgnoreCase) &&
+               !Regex.IsMatch(row, @"^[A-Z0-9]+(?:[._-][A-Z0-9]+){2,}$", RegexOptions.IgnoreCase) &&
                !Regex.IsMatch(row, @"^\(?\d{3}\)?[\s-]\d{3}[\s-]\d{4}") &&
                !Regex.IsMatch(row, @"^\d+\s+") &&
-               !row.Contains("Ave", StringComparison.OrdinalIgnoreCase) &&
+               !Regex.IsMatch(row, @"\bAve\.?\b", RegexOptions.IgnoreCase) &&
                !row.Contains("Las Vegas", StringComparison.OrdinalIgnoreCase);
     }
 

@@ -1,0 +1,13 @@
+Kaycha Labs
+Pave082625.1.4.001
+Strain: PAVE
+Matrix: Plant Material
+Classification: Raw Plant
+Type: Flower - Cured
+Harvest/Lot ID: Pave082625.1.4.001
+Batch #: Pave082625.1.4 Ordered: 03/20/26
+Analysis Date: 03/25/2026
+TOTAL
+CBDV CBDA CBGA CBG CBD THCV CBN D9-THC D8-THC CBC THCA
+CANNABINOIDS
+% 28.0730 <LOQ <LOQ 1.1160 0.1150 <LOQ <LOQ <LOQ 0.5010 <LOQ <LOQ 26.3410

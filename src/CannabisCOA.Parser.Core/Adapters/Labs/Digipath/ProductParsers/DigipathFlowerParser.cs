@@ -206,17 +206,162 @@ public static class DigipathFlowerParser
         var freshness = FreshnessCalculator.Calculate(testDate);
         var compliance = ParseDigipathComplianceOrFallback(text);
         var terpenes = ParseDigipathTerpenesOrFallback(text);
+        var productName = productType == ProductType.Flower ? ExtractProductName(text) : string.Empty;
+        var batchId = productType == ProductType.Flower ? ExtractBatchId(text) : string.Empty;
 
         return new CoaResult
         {
             LabName = labName,
             ProductType = productType,
+            ProductName = productName,
+            BatchId = batchId,
             Cannabinoids = cannabinoids,
             Terpenes = terpenes,
             TestDate = testDate,
             Freshness = freshness,
             Compliance = compliance
         };
+    }
+
+    private static string ExtractProductName(string text)
+    {
+        var rows = NormalizeRows(text);
+        var displayedProductName = ExtractDisplayedProductName(rows);
+
+        if (!string.IsNullOrWhiteSpace(displayedProductName))
+            return displayedProductName;
+
+        var strainName = ExtractStrainName(rows);
+
+        if (!string.IsNullOrWhiteSpace(strainName))
+            return strainName;
+
+        return ExtractHeaderProductName(rows);
+    }
+
+    private static string ExtractDisplayedProductName(IReadOnlyList<string> rows)
+    {
+        for (var i = 1; i < rows.Count; i++)
+        {
+            if (!IsDigipathFlowerDescriptor(rows[i]))
+                continue;
+
+            for (var j = i - 1; j >= 0 && i - j <= 3; j--)
+            {
+                var candidate = rows[j].Trim();
+
+                if (IsDigipathProductNameCandidate(candidate))
+                    return candidate;
+            }
+        }
+
+        return string.Empty;
+    }
+
+    private static string ExtractStrainName(IEnumerable<string> rows)
+    {
+        foreach (var row in rows)
+        {
+            var match = Regex.Match(row, @"\bStrain\s*:\s*(?<strain>.+?)(?:\s+Batch\s*#:|$)", RegexOptions.IgnoreCase);
+
+            if (!match.Success)
+                continue;
+
+            var strain = match.Groups["strain"].Value.Trim();
+
+            if (IsDigipathProductNameCandidate(strain))
+                return strain;
+        }
+
+        return string.Empty;
+    }
+
+    private static string ExtractHeaderProductName(IReadOnlyList<string> rows)
+    {
+        var headerLimit = Math.Min(rows.Count - 1, 25);
+
+        for (var i = 0; i < headerLimit; i++)
+        {
+            if (!IsDigipathLabHeader(rows[i]))
+                continue;
+
+            for (var j = i + 1; j < rows.Count; j++)
+            {
+                var candidate = rows[j].Trim();
+
+                if (IsDigipathProductNameCandidate(candidate))
+                    return candidate;
+
+                if (IsDigipathHeaderBoundary(candidate))
+                    break;
+            }
+        }
+
+        return string.Empty;
+    }
+
+    private static string ExtractBatchId(string text)
+    {
+        foreach (var row in NormalizeRows(text))
+        {
+            var match = Regex.Match(
+                row,
+                @"\bBatch\s*#\s*:\s*(?<batch>.*?)(?:\s*;\s*Lot\s*#|\s+Lot\s*#:|\s+Sample\s+Date:|\s+Report\s+Date:|$)",
+                RegexOptions.IgnoreCase);
+
+            if (!match.Success)
+                continue;
+
+            var batch = match.Groups["batch"].Value.Trim();
+
+            if (!string.IsNullOrWhiteSpace(batch))
+                return batch;
+        }
+
+        return string.Empty;
+    }
+
+    private static bool IsDigipathProductNameCandidate(string row)
+    {
+        return !string.IsNullOrWhiteSpace(row) &&
+               !Regex.IsMatch(row, @"^[\s\-–—_]+$") &&
+               !row.Equals("Flower", StringComparison.OrdinalIgnoreCase) &&
+               !row.Contains(':') &&
+               !row.Contains(';') &&
+               !row.Contains("Digipath", StringComparison.OrdinalIgnoreCase) &&
+               !row.Contains("Certificate", StringComparison.OrdinalIgnoreCase) &&
+               !row.Contains("Harvest/Production", StringComparison.OrdinalIgnoreCase) &&
+               !row.Contains("MME ID", StringComparison.OrdinalIgnoreCase) &&
+               !row.Contains("METRC", StringComparison.OrdinalIgnoreCase) &&
+               !row.Contains(" LLC", StringComparison.OrdinalIgnoreCase) &&
+               !row.Contains(" INC", StringComparison.OrdinalIgnoreCase) &&
+               !row.Contains(" LTD", StringComparison.OrdinalIgnoreCase) &&
+               !row.StartsWith("Lic.", StringComparison.OrdinalIgnoreCase) &&
+               !Regex.IsMatch(row, @"^\d+\s+of\s+\d+$", RegexOptions.IgnoreCase) &&
+               !Regex.IsMatch(row, @"^\(?\d{3}\)?[\s-]\d{3}[\s-]\d{4}");
+    }
+
+    private static bool IsDigipathFlowerDescriptor(string row)
+    {
+        return Regex.IsMatch(
+            row,
+            @"\bPlant\s*,\s*Flower(?:\s*-\s*Cured)?\b",
+            RegexOptions.IgnoreCase);
+    }
+
+    private static bool IsDigipathLabHeader(string row)
+    {
+        return row.Contains("Digipath", StringComparison.OrdinalIgnoreCase);
+    }
+
+    private static bool IsDigipathHeaderBoundary(string row)
+    {
+        return IsDigipathFlowerDescriptor(row) ||
+               row.StartsWith("Product Type:", StringComparison.OrdinalIgnoreCase) ||
+               row.StartsWith("Sample:", StringComparison.OrdinalIgnoreCase) ||
+               row.StartsWith("Batch #:", StringComparison.OrdinalIgnoreCase) ||
+               row.StartsWith("METRC Sample:", StringComparison.OrdinalIgnoreCase) ||
+               row.Contains("Cannabinoid", StringComparison.OrdinalIgnoreCase);
     }
 
 

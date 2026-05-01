@@ -14,6 +14,14 @@ public class KaychaParserTests
         ["kaycha-flower-1A4040300008856000043658.txt", "Kaycha Flower 43658", "KCH-43658"]
     ];
 
+    public static IEnumerable<object[]> KaychaRawPlantFlowerFixtures =>
+    [
+        ["kaycha-flower-trim-1A404030000012D000087179.txt", "TRIM - GHOST TRAIN HAZE", "GTH 3426"],
+        ["kaycha-flower-popcorn-buds-1A4040300000153000052234.txt", "SHADY APPLES", "SAP.11.06.25"],
+        ["kaycha-flower-cured-pave-new-layout.txt", "PAVE", "Pave082625.1.4"],
+        ["kaycha-flower-shake-carbon-fiber.txt", "Carbon Fiber", "DDUV 11.23.25 FR1"]
+    ];
+
     private static string FixturePath(string fileName)
     {
         return Path.GetFullPath(Path.Combine(
@@ -71,6 +79,25 @@ public class KaychaParserTests
         Assert.Equal(ProductType.Flower, result.ProductType);
         Assert.Equal("Royale Grape", result.ProductName);
         Assert.Equal("RG-0420", result.BatchId);
+    }
+
+    [Theory]
+    [MemberData(nameof(KaychaRawPlantFlowerFixtures))]
+    public void KaychaAdapter_Parse_RawPlantFlowerTypeVariants_DetectsFlower(
+        string fixtureName,
+        string expectedProductName,
+        string expectedBatchId)
+    {
+        var text = File.ReadAllText(FixturePath(fixtureName));
+
+        var result = new KaychaLabsAdapter().Parse(text);
+
+        Assert.Equal("Kaycha Labs", result.LabName);
+        Assert.Equal(ProductType.Flower, result.ProductType);
+        Assert.Equal(expectedProductName, result.ProductName);
+        Assert.Equal(expectedBatchId, result.BatchId);
+        Assert.NotNull(result.TestDate);
+        Assert.True(result.Cannabinoids.TotalTHC > 0m);
     }
 
     [Fact]
