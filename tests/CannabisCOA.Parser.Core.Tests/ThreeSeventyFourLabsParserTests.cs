@@ -65,6 +65,30 @@ public class ThreeSeventyFourLabsParserTests
         Assert.Equal(expectedBatchId, result.BatchId);
     }
 
+    [Theory]
+    [InlineData("374labs-flower-trim-indoor-lava-cake.txt", "Lava Cake", "LC-TRIM-0412")]
+    [InlineData("374labs-flower-ground-flower-indoor-blue-dream.txt", "Blue Dream Grind", "BD-GRIND-0420")]
+    [InlineData("374labs-flower-bulk-flower-gmo.txt", "GMO", "GMO-BULK-0428")]
+    [InlineData("374labs-flower-bulk-flower-white-truffle.txt", "Flower White Truffle-102416", "H9B1-12-20250609")]
+    public void ThreeSeventyFourLabsAdapter_Parse_PlantMaterialFixtureExtractsFlowerMetadata(
+        string fixtureName,
+        string expectedProductName,
+        string expectedBatchId)
+    {
+        var text = File.ReadAllText(FixturePath(fixtureName));
+
+        var result = new Labs374Adapter().Parse(text);
+
+        Assert.Equal("374 Labs", result.LabName);
+        Assert.Equal(ProductType.Flower, result.ProductType);
+        Assert.NotEqual(ProductType.Unknown, result.ProductType);
+        Assert.Equal("FullComplianceCoa", result.DocumentClassification);
+        Assert.True(result.IsFullComplianceCoa);
+        Assert.Equal(expectedProductName, result.ProductName);
+        Assert.Equal(expectedBatchId, result.BatchId);
+        Assert.True(result.Cannabinoids.TotalTHC > 0m);
+    }
+
     [Fact]
     public void ThreeSeventyFourLabsAdapter_Parse_FlowerPlaceholderMetadataStaysEmpty()
     {

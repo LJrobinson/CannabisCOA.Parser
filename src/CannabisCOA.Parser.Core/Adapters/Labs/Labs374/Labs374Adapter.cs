@@ -109,10 +109,13 @@ public class Labs374Adapter : BaseLabAdapter
             if (!Is374FlowerDescriptor(rows[i]))
                 continue;
 
-            var candidate = CleanMetadataValue(rows[i - 1]);
+            for (var j = i - 1; j >= 0 && i - j <= 4; j--)
+            {
+                var candidate = CleanMetadataValue(rows[j]);
 
-            if (Is374ProductNameCandidate(candidate))
-                return candidate;
+                if (Is374ProductNameCandidate(candidate))
+                    return candidate;
+            }
         }
 
         return string.Empty;
@@ -179,7 +182,15 @@ public class Labs374Adapter : BaseLabAdapter
                !IsPlaceholder(row) &&
                !row.Equals("Flower", StringComparison.OrdinalIgnoreCase) &&
                !row.Equals("Plant", StringComparison.OrdinalIgnoreCase) &&
-               !row.StartsWith("Plant, Flower", StringComparison.OrdinalIgnoreCase) &&
+               !row.Equals("Trim", StringComparison.OrdinalIgnoreCase) &&
+               !row.Equals("Bulk", StringComparison.OrdinalIgnoreCase) &&
+               !row.Equals("Bulk Flower", StringComparison.OrdinalIgnoreCase) &&
+               !row.Equals("Ground Flower", StringComparison.OrdinalIgnoreCase) &&
+               !row.StartsWith("Plant,", StringComparison.OrdinalIgnoreCase) &&
+               !row.StartsWith("Batch", StringComparison.OrdinalIgnoreCase) &&
+               !row.StartsWith("Lot", StringComparison.OrdinalIgnoreCase) &&
+               !row.StartsWith("METRC", StringComparison.OrdinalIgnoreCase) &&
+               !row.StartsWith("Harvest Process", StringComparison.OrdinalIgnoreCase) &&
                !row.Contains(':') &&
                !row.Contains(';') &&
                !row.Contains("@") &&
@@ -189,6 +200,7 @@ public class Labs374Adapter : BaseLabAdapter
                !row.Contains("Certi", StringComparison.OrdinalIgnoreCase) &&
                !row.Contains("Confident LIMS", StringComparison.OrdinalIgnoreCase) &&
                !row.StartsWith("Lic.", StringComparison.OrdinalIgnoreCase) &&
+               !Regex.IsMatch(row, @"^1A[0-9A-Z]{16,}$", RegexOptions.IgnoreCase) &&
                !Regex.IsMatch(row, @"^\(?\d{3}\)?[\s-]\d{3}[\s-]\d{4}") &&
                !Regex.IsMatch(row, @"^\d+\s+of\s+\d+$", RegexOptions.IgnoreCase) &&
                !Regex.IsMatch(row, @"\b(?:Greg\s+St|Sparks,\s*NV|Las\s+Vegas,\s*NV|Pahrump,\s*NV|Drive|Road|Street|Avenue)\b", RegexOptions.IgnoreCase);
@@ -215,7 +227,7 @@ public class Labs374Adapter : BaseLabAdapter
     {
         return Regex.IsMatch(
             row,
-            @"\bPlant\s*,\s*(?:Flower(?:\s*-\s*Cured)?|Popcorn\s+Buds)\b",
+            @"\bPlant\s*,\s*(?:Flower(?:\s*-\s*Cured)?|Popcorn\s+Buds|Trim\s*,\s*Indoor|Ground\s+Flower\s*,\s*Indoor|Bulk\s*,\s*Flower|Bulk\s+Flower)\b",
             RegexOptions.IgnoreCase);
     }
 

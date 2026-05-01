@@ -158,12 +158,23 @@ public class MAAnalyticsAdapter : BaseLabAdapter
                !row.Equals("Flower", StringComparison.OrdinalIgnoreCase) &&
                !row.Equals("Plant", StringComparison.OrdinalIgnoreCase) &&
                !row.Equals("Trim", StringComparison.OrdinalIgnoreCase) &&
+               !row.Equals("Popcorn Buds", StringComparison.OrdinalIgnoreCase) &&
                !row.Contains(':') &&
                !row.Contains(';') &&
                !row.Contains("@") &&
                !Regex.IsMatch(row, @"^\(?\d{3}\)?[\s-]\d{3}[\s-]\d{4}") &&
                !row.StartsWith("Lic.", StringComparison.OrdinalIgnoreCase) &&
                !row.StartsWith("Plant,", StringComparison.OrdinalIgnoreCase) &&
+               !row.StartsWith("Batch", StringComparison.OrdinalIgnoreCase) &&
+               !row.StartsWith("Lot", StringComparison.OrdinalIgnoreCase) &&
+               !row.StartsWith("METRC", StringComparison.OrdinalIgnoreCase) &&
+               !row.StartsWith("Harvest Process", StringComparison.OrdinalIgnoreCase) &&
+               !Regex.IsMatch(row, @"^1A[0-9A-Z]{16,}$", RegexOptions.IgnoreCase) &&
+               !row.Contains("MA Analytics", StringComparison.OrdinalIgnoreCase) &&
+               !row.Contains("M.A. Analytics", StringComparison.OrdinalIgnoreCase) &&
+               !row.Contains("Certificate", StringComparison.OrdinalIgnoreCase) &&
+               !row.Contains("Confident LIMS", StringComparison.OrdinalIgnoreCase) &&
+               !row.Contains("Powered by", StringComparison.OrdinalIgnoreCase) &&
                !row.Contains("North Las Vegas", StringComparison.OrdinalIgnoreCase) &&
                !row.Contains("Lone Mountain Rd", StringComparison.OrdinalIgnoreCase);
     }
@@ -172,7 +183,7 @@ public class MAAnalyticsAdapter : BaseLabAdapter
     {
         return Regex.IsMatch(
             row,
-            @"\bPlant\s*,\s*(?:Flower(?:\s*-\s*Cured)?|Trim)\b",
+            @"\bPlant\s*,\s*(?:Flower(?:\s*-\s*Cured)?|Trim|Popcorn\s+Buds\s*,\s*Indoor)\b",
             RegexOptions.IgnoreCase);
     }
 

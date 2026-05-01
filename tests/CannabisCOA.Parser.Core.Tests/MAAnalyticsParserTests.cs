@@ -54,8 +54,27 @@ public class MAAnalyticsParserTests
 
         Assert.Equal("MA Analytics", result.LabName);
         Assert.Equal(ProductType.Flower, result.ProductType);
+        Assert.Equal("FullComplianceCoa", result.DocumentClassification);
+        Assert.True(result.IsFullComplianceCoa);
         Assert.Equal("Shake Orange Crush Bulk", result.ProductName);
         Assert.Equal("H27FR5-11-20251007", result.BatchId);
+        Assert.True(result.Cannabinoids.TotalTHC > 0m);
+    }
+
+    [Fact]
+    public void MAAnalyticsAdapter_Parse_PopcornBudsIndoorFixture_FallsBackToStrain()
+    {
+        var text = File.ReadAllText(FixturePath("ma-flower-popcorn-buds-indoor-crescendo.txt"));
+
+        var result = new MAAnalyticsAdapter().Parse(text);
+
+        Assert.Equal("MA Analytics", result.LabName);
+        Assert.Equal(ProductType.Flower, result.ProductType);
+        Assert.Equal("FullComplianceCoa", result.DocumentClassification);
+        Assert.True(result.IsFullComplianceCoa);
+        Assert.Equal("Crescendo", result.ProductName);
+        Assert.Equal("CRE-POP-2201", result.BatchId);
+        Assert.True(result.Cannabinoids.TotalTHC > 0m);
     }
 
     [Fact]

@@ -78,6 +78,22 @@ public class RSRFixtureTests
         Assert.Equal("111025-F2T6-MED", result.BatchId);
     }
 
+    [Fact]
+    public void RsrAnalyticalAdapter_Parse_BulkFlowerIndoorFixtureMapsFlowerMetadata()
+    {
+        var text = File.ReadAllText(FixturePath("rsr-flower-bulk-flower-indoor-garlic-cookies.txt"));
+
+        var result = new RSRAnalyticalAdapter().Parse(text);
+
+        Assert.Equal("RSR Analytical Laboratories", result.LabName);
+        Assert.Equal(ProductType.Flower, result.ProductType);
+        Assert.Equal("FullComplianceCoa", result.DocumentClassification);
+        Assert.True(result.IsFullComplianceCoa);
+        Assert.Equal("Bulk Garlic Cookies", result.ProductName);
+        Assert.Equal("GC-BULK-0312", result.BatchId);
+        Assert.True(result.Cannabinoids.TotalTHC > 0m);
+    }
+
     [Theory]
     [InlineData("CBD", "CBD 0.25 <LOQ <LOQ")]
     [InlineData("CBDA", "CBDa 0.25 <LOQ <LOQ")]
