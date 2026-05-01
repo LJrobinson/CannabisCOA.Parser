@@ -31,6 +31,7 @@ public class AceFlowerParserTests
 
         Assert.Equal("Ace Analytical Laboratory", result.LabName);
         Assert.Equal(ProductType.Flower, result.ProductType);
+        Assert.True(result.IsAmended);
         Assert.Equal(22.959m, result.Cannabinoids.THCA.Value);
         Assert.Equal(0.285m, result.Cannabinoids.THC.Value);
         Assert.Equal(0m, result.Cannabinoids.CBDA.Value);
@@ -436,8 +437,24 @@ public class AceFlowerParserTests
 
         Assert.Equal("Ace Analytical Laboratory", result.LabName);
         Assert.Equal(ProductType.Flower, result.ProductType);
+        Assert.Equal("Royale Grape", result.ProductName);
+        Assert.Equal("251208-H231.2_Royale Grape", result.BatchId);
         Assert.Equal(new DateTime(2025, 12, 8), result.HarvestDate);
         Assert.NotNull(result.TestDate);
+    }
+
+    [Fact]
+    public void AceAnalyticalAdapter_Parse_HeaderProductFixture_MapsFlowerMetadata()
+    {
+        var text = File.ReadAllText(FixturePath("ace-flower.txt"));
+
+        var result = new CannabisCOA.Parser.Core.Adapters.Labs.AceAnalytical.AceAnalyticalAdapter()
+            .Parse(text);
+
+        Assert.Equal("Ace Analytical Laboratory", result.LabName);
+        Assert.Equal(ProductType.Flower, result.ProductType);
+        Assert.Equal("Kush Mints", result.ProductName);
+        Assert.Equal("1A40403000044C1000008993", result.BatchId);
     }
 
     [Fact]

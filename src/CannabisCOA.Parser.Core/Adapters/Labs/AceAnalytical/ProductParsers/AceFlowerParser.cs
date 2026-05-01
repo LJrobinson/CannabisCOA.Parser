@@ -141,12 +141,16 @@ public static class AceFlowerParser
         var testDate = GenericDateParser.ExtractTestDate(text);
         var harvestDate = GenericDateParser.ExtractHarvestDate(text);
         var packageDate = GenericDateParser.ExtractPackageDate(text);
+        var productName = productType == ProductType.Flower ? ExtractProductName(text) : string.Empty;
+        var batchId = productType == ProductType.Flower ? ExtractBatchId(text) : string.Empty;
 
         return new CoaResult
         {
             ProductType = productType,
             IsAmended = CoaMetadataParser.IsAmended(text),
             LabName = labName,
+            ProductName = productName,
+            BatchId = batchId,
             HarvestDate = harvestDate,
             TestDate = testDate,
             PackageDate = packageDate,
@@ -155,6 +159,132 @@ public static class AceFlowerParser
             Compliance = ParseAceComplianceOrFallback(text),
             Freshness = FreshnessCalculator.Calculate(testDate)
         };
+    }
+
+    private static string ExtractProductName(string text)
+    {
+        var rows = NormalizeRows(text);
+        var displayedProductName = ExtractDisplayedProductName(rows);
+
+        if (!string.IsNullOrWhiteSpace(displayedProductName))
+            return displayedProductName;
+
+        var strainName = ExtractStrainName(rows);
+
+        if (!string.IsNullOrWhiteSpace(strainName))
+            return strainName;
+
+        return ExtractHeaderProductName(rows);
+    }
+
+    private static string ExtractDisplayedProductName(IReadOnlyList<string> rows)
+    {
+        for (var i = 1; i < rows.Count; i++)
+        {
+            if (!IsAceFlowerDescriptor(rows[i]))
+                continue;
+
+            var candidate = rows[i - 1].Trim();
+
+            if (IsAceProductNameCandidate(candidate))
+                return candidate;
+        }
+
+        return string.Empty;
+    }
+
+    private static string ExtractStrainName(IEnumerable<string> rows)
+    {
+        foreach (var row in rows)
+        {
+            var match = Regex.Match(row, @"\bStrain\s*:\s*(?<strain>.+)$", RegexOptions.IgnoreCase);
+
+            if (!match.Success)
+                continue;
+
+            var strain = match.Groups["strain"].Value.Trim();
+
+            if (IsAceProductNameCandidate(strain))
+                return strain;
+        }
+
+        return string.Empty;
+    }
+
+    private static string ExtractHeaderProductName(IReadOnlyList<string> rows)
+    {
+        for (var i = 0; i < rows.Count - 1; i++)
+        {
+            if (!rows[i].Equals("Ace Analytical Laboratory", StringComparison.OrdinalIgnoreCase))
+                continue;
+
+            for (var j = i + 1; j < rows.Count; j++)
+            {
+                var candidate = rows[j].Trim();
+
+                if (IsAceProductNameCandidate(candidate))
+                    return candidate;
+
+                if (IsAceHeaderBoundary(candidate))
+                    break;
+            }
+        }
+
+        return string.Empty;
+    }
+
+    private static string ExtractBatchId(string text)
+    {
+        foreach (var row in NormalizeRows(text))
+        {
+            var match = Regex.Match(
+                row,
+                @"\bBatch\s*#\s*:\s*(?<batch>.*?)(?:\s*;\s*Lot\s*#|\s+Sample\s+Date:|\s+Report\s+Date:|$)",
+                RegexOptions.IgnoreCase);
+
+            if (!match.Success)
+                continue;
+
+            var batch = match.Groups["batch"].Value.Trim();
+
+            if (!string.IsNullOrWhiteSpace(batch))
+                return batch;
+        }
+
+        return string.Empty;
+    }
+
+    private static bool IsAceProductNameCandidate(string row)
+    {
+        return !string.IsNullOrWhiteSpace(row) &&
+               !row.Contains(':') &&
+               !row.Contains(';') &&
+               !row.Equals("Certificate of Analysis", StringComparison.OrdinalIgnoreCase) &&
+               !row.Equals("Ace Analytical Laboratory", StringComparison.OrdinalIgnoreCase) &&
+               !row.Equals("PASSED", StringComparison.OrdinalIgnoreCase) &&
+               !Regex.IsMatch(row, @"^\d+\s+of\s+\d+$", RegexOptions.IgnoreCase) &&
+               !Regex.IsMatch(row, @"^\d{1,2}/\d{1,2}/\d{2,4}$") &&
+               !row.StartsWith("Lic.", StringComparison.OrdinalIgnoreCase) &&
+               !row.StartsWith("MME ID", StringComparison.OrdinalIgnoreCase) &&
+               !row.Contains("Harvest/Production", StringComparison.OrdinalIgnoreCase) &&
+               !row.Contains("Reno", StringComparison.OrdinalIgnoreCase);
+    }
+
+    private static bool IsAceFlowerDescriptor(string row)
+    {
+        return Regex.IsMatch(
+            row,
+            @"\bPlant\s*,\s*Flower(?:\s*-\s*Cured)?\b",
+            RegexOptions.IgnoreCase);
+    }
+
+    private static bool IsAceHeaderBoundary(string row)
+    {
+        return IsAceFlowerDescriptor(row) ||
+               row.StartsWith("Sample:", StringComparison.OrdinalIgnoreCase) ||
+               row.StartsWith("Batch #:", StringComparison.OrdinalIgnoreCase) ||
+               row.StartsWith("METRC Sample:", StringComparison.OrdinalIgnoreCase) ||
+               row.Contains("Cannabinoid", StringComparison.OrdinalIgnoreCase);
     }
 
     //FUTURE COA RESULT
