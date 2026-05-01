@@ -198,7 +198,7 @@ public static class DigipathFlowerParser
     //LEGACY PARSING RETURN
     public static CoaResult Parse(string text, string labName)
     {
-        var productType = ProductTypeDetector.Detect(text);
+        var productType = DetectProductType(text);
         var rows = NormalizeRows(text);
         var isSinglePanelTest = productType == ProductType.Flower && IsDigipathSinglePanelTest(rows);
 
@@ -225,6 +225,18 @@ public static class DigipathFlowerParser
             Freshness = freshness,
             Compliance = compliance
         };
+    }
+
+    internal static ProductType DetectProductType(string text)
+    {
+        var productType = ProductTypeDetector.Detect(text);
+
+        if (productType != ProductType.Unknown)
+            return productType;
+
+        return NormalizeRows(text).Any(IsDigipathFlowerDescriptor)
+            ? ProductType.Flower
+            : ProductType.Unknown;
     }
 
     private static string ExtractProductName(string text)
@@ -385,6 +397,7 @@ public static class DigipathFlowerParser
                !row.Contains(" INC", StringComparison.OrdinalIgnoreCase) &&
                !row.Contains(" LTD", StringComparison.OrdinalIgnoreCase) &&
                !row.StartsWith("Lic.", StringComparison.OrdinalIgnoreCase) &&
+               !LooksLikeDigipathBatchOrLotDisplayLine(row) &&
                !Regex.IsMatch(row, @"^\d+\s+of\s+\d+$", RegexOptions.IgnoreCase) &&
                !Regex.IsMatch(row, @"^\(?\d{3}\)?[\s-]\d{3}[\s-]\d{4}");
     }
@@ -393,8 +406,15 @@ public static class DigipathFlowerParser
     {
         return Regex.IsMatch(
             row,
-            @"\bPlant\s*,\s*Flower(?:\s*-\s*Cured)?\b",
+            @"\bPlant\s*,\s*(?:Flower(?:\s*-\s*Cured)?|Popcorn\s+Buds|Shake\s*&\s*Duff)(?:\s*,\s*Indoor)?\b",
             RegexOptions.IgnoreCase);
+    }
+
+    private static bool LooksLikeDigipathBatchOrLotDisplayLine(string row)
+    {
+        return Regex.IsMatch(row, @"^1A[0-9A-Z]{16,}$", RegexOptions.IgnoreCase) ||
+               Regex.IsMatch(row, @"^DIGP[\w.]+$", RegexOptions.IgnoreCase) ||
+               Regex.IsMatch(row, @"^(?:Batch|Lot|METRC)(?:\s*#)?\b", RegexOptions.IgnoreCase);
     }
 
     private static bool IsDigipathLabHeader(string row)

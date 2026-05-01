@@ -1,7 +1,6 @@
 using CannabisCOA.Parser.Core.Adapters.Labs.Digipath.ProductParsers;
 using CannabisCOA.Parser.Core.Enums;
 using CannabisCOA.Parser.Core.Models;
-using CannabisCOA.Parser.Core.Parsers;
 
 namespace CannabisCOA.Parser.Core.Adapters.Labs.Digipath;
 
@@ -18,7 +17,7 @@ public class DigipathAdapter : BaseLabAdapter
 
     public override ProductType DetectProductType(string text)
     {
-        return ProductTypeDetector.Detect(text);
+        return DigipathFlowerParser.DetectProductType(text);
     }
 
     public override int MatchScore(string text)

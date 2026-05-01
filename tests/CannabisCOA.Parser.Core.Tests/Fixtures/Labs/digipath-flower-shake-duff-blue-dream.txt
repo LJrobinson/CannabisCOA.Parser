@@ -1,0 +1,18 @@
+Digipath Labs
+Strain: Blue Dream Shake
+Batch #: SHK-117; Lot #: 1A40403000004B6000017680
+Flower
+Plant, Shake & Duff
+Cannabinoid Test Results
+Analyte LOQ Mass Mass
+% % mg/g
+THCa 0.004 18.500 185.00
+Delta-9 THC 0.003 0.310 3.10
+CBDa 0.004 0.090 0.90
+CBD 0.014 <LOQ <LOQ
+Total 18.900 189.00
+Terpene Test Results
+Analyte CAS LOQ Mass Mass
+% mg/g
+Beta-Myrcene 123-35-3 0.0100 0.1678 1.678
+Total 0.1678 1.678

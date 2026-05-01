@@ -1,0 +1,19 @@
+Digipath Labs
+1 of 2
+Trop Cherry Popcorn
+Silver State Cultivation LLC Sample Date: 02/12/2026 Report Date: 02/15/2026
+MME ID: 46100778561169443516 - L007 METRC Sample: 1A4040300000214000083099
+Plant, Popcorn Buds, Indoor Batch #: TCP-042; Lot #: 1A4040300000214000083099
+Cannabinoid Test Results
+Analyte LOQ Mass Mass
+% % mg/g
+THCa 0.004 24.880 248.80
+Delta-9 THC 0.003 0.420 4.20
+CBDa 0.004 0.120 1.20
+CBD 0.014 0.050 0.50
+Total 25.470 254.70
+Terpene Test Results
+Analyte CAS LOQ Mass Mass
+% mg/g
+Beta-Caryophyllene 87-44-5 0.0100 0.4242 4.242
+Total 0.4242 4.242

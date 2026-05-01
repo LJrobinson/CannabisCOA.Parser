@@ -96,6 +96,44 @@ public class DigipathFixtureTests
     }
 
     [Fact]
+    public void Parses_Digipath_Flower_PopcornBudsIndoor_AsFullFlowerCoa()
+    {
+        var text = LoadFixture("digipath-flower-popcorn-buds-indoor-trop-cherry.txt");
+
+        var result = CoaParser.Parse(text);
+        var document = CoaDocumentMapper.FromCoaResult(result);
+
+        Assert.Equal("Digipath", result.LabName);
+        Assert.Equal(ProductType.Flower, result.ProductType);
+        Assert.Equal("FullComplianceCoa", result.DocumentClassification);
+        Assert.True(result.IsFullComplianceCoa);
+        Assert.Equal("FullComplianceCoa", document.DocumentClassification);
+        Assert.True(document.IsFullComplianceCoa);
+        Assert.Equal("Trop Cherry Popcorn", result.ProductName);
+        Assert.Equal("TCP-042", result.BatchId);
+        Assert.True(result.Cannabinoids.TotalTHC > 0m);
+    }
+
+    [Fact]
+    public void Parses_Digipath_Flower_ShakeDuff_AsFullFlowerCoa()
+    {
+        var text = LoadFixture("digipath-flower-shake-duff-blue-dream.txt");
+
+        var result = CoaParser.Parse(text);
+        var document = CoaDocumentMapper.FromCoaResult(result);
+
+        Assert.Equal("Digipath", result.LabName);
+        Assert.Equal(ProductType.Flower, result.ProductType);
+        Assert.Equal("FullComplianceCoa", result.DocumentClassification);
+        Assert.True(result.IsFullComplianceCoa);
+        Assert.Equal("FullComplianceCoa", document.DocumentClassification);
+        Assert.True(document.IsFullComplianceCoa);
+        Assert.Equal("Blue Dream Shake", result.ProductName);
+        Assert.Equal("SHK-117", result.BatchId);
+        Assert.True(result.Cannabinoids.TotalTHC > 0m);
+    }
+
+    [Fact]
     public void Parses_Digipath_Vape_Fixture_Cannabinoids_From_Mg_Per_Gram_Column()
     {
         var text = LoadFixture("digipath-vape-real-001.txt");
