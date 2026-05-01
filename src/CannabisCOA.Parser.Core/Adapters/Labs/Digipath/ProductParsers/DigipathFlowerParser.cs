@@ -236,6 +236,11 @@ public static class DigipathFlowerParser
         if (!string.IsNullOrWhiteSpace(strainName))
             return strainName;
 
+        var sampleHeaderProductName = ExtractSampleHeaderProductName(rows);
+
+        if (!string.IsNullOrWhiteSpace(sampleHeaderProductName))
+            return sampleHeaderProductName;
+
         return ExtractHeaderProductName(rows);
     }
 
@@ -271,6 +276,27 @@ public static class DigipathFlowerParser
 
             if (IsDigipathProductNameCandidate(strain))
                 return strain;
+        }
+
+        return string.Empty;
+    }
+
+    private static string ExtractSampleHeaderProductName(IEnumerable<string> rows)
+    {
+        foreach (var row in rows)
+        {
+            var match = Regex.Match(
+                row,
+                @"^(?<product>.+?)\s+Sample\s*:\s*DIGP[\w.]+(?:\s|$)",
+                RegexOptions.IgnoreCase);
+
+            if (!match.Success)
+                continue;
+
+            var productName = match.Groups["product"].Value.Trim();
+
+            if (IsDigipathProductNameCandidate(productName))
+                return productName;
         }
 
         return string.Empty;

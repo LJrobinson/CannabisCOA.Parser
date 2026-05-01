@@ -57,6 +57,19 @@ public class DigipathFixtureTests
     }
 
     [Fact]
+    public void Parses_Digipath_Flower_SampleHeaderProductName()
+    {
+        var text = LoadFixture("digipath-flower-sample-header-super-boof.txt");
+
+        var result = CoaParser.Parse(text);
+
+        Assert.Equal("Digipath", result.LabName);
+        Assert.Equal(ProductType.Flower, result.ProductType);
+        Assert.Equal("Super Boof", result.ProductName);
+        Assert.Equal("SB 12.10.25 FR3", result.BatchId);
+    }
+
+    [Fact]
     public void Parses_Digipath_Vape_Fixture_Cannabinoids_From_Mg_Per_Gram_Column()
     {
         var text = LoadFixture("digipath-vape-real-001.txt");
