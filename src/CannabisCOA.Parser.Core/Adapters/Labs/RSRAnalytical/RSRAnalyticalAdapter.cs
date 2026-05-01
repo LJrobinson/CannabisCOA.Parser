@@ -1,6 +1,7 @@
 using System.Globalization;
 using System.Text.RegularExpressions;
 using CannabisCOA.Parser.Core.Adapters;
+using CannabisCOA.Parser.Core.Enums;
 using CannabisCOA.Parser.Core.Models;
 
 namespace CannabisCOA.Parser.Core.Adapters.Labs.RSRAnalytical;
@@ -24,10 +25,148 @@ public class RSRAnalyticalAdapter : BaseLabAdapter
     {
         var result = base.Parse(text);
 
+        if (result.ProductType == ProductType.Flower)
+        {
+            result.ProductName = ExtractProductName(text);
+            result.BatchId = ExtractBatchId(text);
+        }
+
         if (TryParseRsrTotalTerpenes(text, out var totalTerpenes))
             result.Terpenes.TotalTerpenes = totalTerpenes;
 
         return result;
+    }
+
+    private static string ExtractProductName(string text)
+    {
+        var rows = NormalizeRows(text);
+        var displayedProductName = ExtractDisplayedProductName(rows);
+
+        if (!string.IsNullOrWhiteSpace(displayedProductName))
+            return displayedProductName;
+
+        return ExtractStrainName(rows);
+    }
+
+    private static string ExtractDisplayedProductName(IReadOnlyList<string> rows)
+    {
+        for (var i = 1; i < rows.Count; i++)
+        {
+            if (!IsRsrFlowerDescriptor(rows[i]))
+                continue;
+
+            for (var j = i - 1; j >= 0 && i - j <= 4; j--)
+            {
+                var candidate = rows[j].Trim();
+
+                if (IsRsrProductNameCandidate(candidate))
+                    return candidate;
+            }
+        }
+
+        return string.Empty;
+    }
+
+    private static string ExtractStrainName(IEnumerable<string> rows)
+    {
+        foreach (var row in rows)
+        {
+            var match = Regex.Match(
+                row,
+                @"\bStrain\s*:\s*(?<strain>.+?)(?:\s+Batch\s*#:|\s+Lot\s*#:|$)",
+                RegexOptions.IgnoreCase);
+
+            if (!match.Success)
+                continue;
+
+            var strain = match.Groups["strain"].Value.Trim();
+
+            if (IsRsrProductNameCandidate(strain))
+                return strain;
+        }
+
+        return string.Empty;
+    }
+
+    private static string ExtractBatchId(string text)
+    {
+        var rows = NormalizeRows(text);
+        var batchId = ExtractBatchId(rows);
+
+        if (!string.IsNullOrWhiteSpace(batchId))
+            return batchId;
+
+        return ExtractLotId(rows);
+    }
+
+    private static string ExtractBatchId(IEnumerable<string> rows)
+    {
+        foreach (var row in rows)
+        {
+            var match = Regex.Match(
+                row,
+                @"\bBatch\s*#\s*:\s*(?<batch>.*?)(?:\s*;\s*Lot\s*#|\s+Lot\s*#:|\s+Sample\s+Received:|\s+Report\s+Created:|$)",
+                RegexOptions.IgnoreCase);
+
+            if (!match.Success)
+                continue;
+
+            var batch = match.Groups["batch"].Value.Trim();
+
+            if (!string.IsNullOrWhiteSpace(batch))
+                return batch;
+        }
+
+        return string.Empty;
+    }
+
+    private static string ExtractLotId(IEnumerable<string> rows)
+    {
+        foreach (var row in rows)
+        {
+            if (row.Contains("Harvest Process Lot", StringComparison.OrdinalIgnoreCase))
+                continue;
+
+            var match = Regex.Match(
+                row,
+                @"\bLot\s*#\s*:\s*(?<lot>.*?)(?:\s+Sample\s+Received:|\s+Report\s+Created:|$)",
+                RegexOptions.IgnoreCase);
+
+            if (!match.Success)
+                continue;
+
+            var lot = match.Groups["lot"].Value.Trim();
+
+            if (!string.IsNullOrWhiteSpace(lot))
+                return lot;
+        }
+
+        return string.Empty;
+    }
+
+    private static bool IsRsrProductNameCandidate(string row)
+    {
+        return !string.IsNullOrWhiteSpace(row) &&
+               !Regex.IsMatch(row, @"^[\s\-_]+$") &&
+               !row.Equals("Flower", StringComparison.OrdinalIgnoreCase) &&
+               !row.Contains(':') &&
+               !row.Contains(';') &&
+               !row.Contains("@") &&
+               !row.Contains("RSR Analytical", StringComparison.OrdinalIgnoreCase) &&
+               !row.Contains("Certificate", StringComparison.OrdinalIgnoreCase) &&
+               !row.Contains("Laughlin", StringComparison.OrdinalIgnoreCase) &&
+               !row.Contains("Bruce Woodbury", StringComparison.OrdinalIgnoreCase) &&
+               !row.StartsWith("Lic.", StringComparison.OrdinalIgnoreCase) &&
+               !Regex.IsMatch(row, @"^\(?\d{3}\)?[\s-]\d{3}[\s-]\d{4}") &&
+               !Regex.IsMatch(row, @"^\d+\s+of\s+\d+$", RegexOptions.IgnoreCase);
+    }
+
+    private static bool IsRsrFlowerDescriptor(string row)
+    {
+        return Regex.IsMatch(
+            row,
+            @"\bPlant\s*,\s*Flower(?:\s*-\s*Cured)?\b",
+            RegexOptions.IgnoreCase);
     }
 
     private static bool TryParseRsrTotalTerpenes(string text, out decimal totalTerpenes)
@@ -50,5 +189,16 @@ public class RSRAnalyticalAdapter : BaseLabAdapter
         }
 
         return false;
+    }
+
+    private static List<string> NormalizeRows(string text)
+    {
+        return text
+            .Replace("\r\n", "\n")
+            .Replace('\r', '\n')
+            .Split('\n')
+            .Select(row => Regex.Replace(row.Trim(), @"\s+", " "))
+            .Where(row => !string.IsNullOrWhiteSpace(row))
+            .ToList();
     }
 }

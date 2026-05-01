@@ -58,6 +58,8 @@ public class RSRFixtureTests
 
         Assert.Equal("RSR Analytical Laboratories", result.LabName);
         Assert.Equal(ProductType.Flower, result.ProductType);
+        Assert.Equal("Bud Garlic Cookies", result.ProductName);
+        Assert.Equal("354 GC 01-05-26-B1", result.BatchId);
         Assert.NotNull(result.TestDate);
         Assert.Equal(37.74m, result.Cannabinoids.THCA.Value);
         Assert.Equal(1.12m, result.Cannabinoids.THC.Value);
