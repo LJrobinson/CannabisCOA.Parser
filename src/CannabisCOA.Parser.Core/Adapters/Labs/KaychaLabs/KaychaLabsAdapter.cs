@@ -41,6 +41,12 @@ public class KaychaLabsAdapter : BaseLabAdapter
     {
         var result = base.Parse(text);
 
+        if (result.ProductType == ProductType.Flower)
+        {
+            result.ProductName = ExtractProductName(text);
+            result.BatchId = ExtractBatchId(text);
+        }
+
         if (TryParseKaychaCannabinoids(text, out var cannabinoids))
         {
             CannabinoidCalculator.CalculateTotals(cannabinoids);
@@ -72,6 +78,73 @@ public class KaychaLabsAdapter : BaseLabAdapter
                 row,
                 @"\bType\s*:\s*Flower(?:\s*-\s*Cured|\s+Cured)?\b",
                 RegexOptions.IgnoreCase));
+    }
+
+    private static string ExtractProductName(string text)
+    {
+        var rows = NormalizeRows(text);
+
+        for (var i = 0; i < rows.Count - 1; i++)
+        {
+            if (!rows[i].Equals("Kaycha Labs", StringComparison.OrdinalIgnoreCase))
+                continue;
+
+            for (var j = i + 1; j < rows.Count; j++)
+            {
+                var candidate = rows[j].Trim();
+
+                if (IsKaychaProductNameCandidate(candidate))
+                    return candidate;
+
+                if (IsKaychaHeaderBoundary(candidate))
+                    break;
+            }
+        }
+
+        return string.Empty;
+    }
+
+    private static bool IsKaychaProductNameCandidate(string row)
+    {
+        return !string.IsNullOrWhiteSpace(row) &&
+               !row.Contains(':') &&
+               !row.Contains("Kaycha Labs", StringComparison.OrdinalIgnoreCase) &&
+               !row.Contains("Certificate", StringComparison.OrdinalIgnoreCase) &&
+               !row.Equals("PASSED", StringComparison.OrdinalIgnoreCase) &&
+               !Regex.IsMatch(row, @"^\(?\d{3}\)?[\s-]\d{3}[\s-]\d{4}") &&
+               !Regex.IsMatch(row, @"^\d+\s+") &&
+               !row.Contains("Ave", StringComparison.OrdinalIgnoreCase) &&
+               !row.Contains("Las Vegas", StringComparison.OrdinalIgnoreCase);
+    }
+
+    private static bool IsKaychaHeaderBoundary(string row)
+    {
+        return row.StartsWith("Matrix:", StringComparison.OrdinalIgnoreCase) ||
+               row.StartsWith("Type:", StringComparison.OrdinalIgnoreCase) ||
+               row.Contains("Certificate of Analysis", StringComparison.OrdinalIgnoreCase) ||
+               row.StartsWith("Harvest/Lot ID:", StringComparison.OrdinalIgnoreCase) ||
+               row.Contains("Batch #:", StringComparison.OrdinalIgnoreCase);
+    }
+
+    private static string ExtractBatchId(string text)
+    {
+        foreach (var row in NormalizeRows(text))
+        {
+            var match = Regex.Match(
+                row,
+                @"\bBatch\s*#\s*:\s*(?<batch>.*?)(?:\s+Ordered:|\s+Sampled:|\s+Completed:|\s+Received:|$)",
+                RegexOptions.IgnoreCase);
+
+            if (!match.Success)
+                continue;
+
+            var batch = match.Groups["batch"].Value.Trim();
+
+            if (!string.IsNullOrWhiteSpace(batch))
+                return batch;
+        }
+
+        return string.Empty;
     }
 
     private static bool TryParseKaychaCannabinoids(string text, out CannabinoidProfile profile)

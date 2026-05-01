@@ -8,10 +8,10 @@ public class KaychaParserTests
 {
     public static IEnumerable<object[]> KaychaFlowerCuredFixtures =>
     [
-        ["kaycha-flower-1A40403000004B6000020660.txt"],
-        ["kaycha-flower-1A4040300000E11000056638.txt"],
-        ["kaycha-flower-1A4040300008856000040815.txt"],
-        ["kaycha-flower-1A4040300008856000043658.txt"]
+        ["kaycha-flower-1A40403000004B6000020660.txt", "Kaycha Flower 20660", "KCH-20660"],
+        ["kaycha-flower-1A4040300000E11000056638.txt", "Kaycha Flower 56638", "KCH-56638"],
+        ["kaycha-flower-1A4040300008856000040815.txt", "Kaycha Flower 40815", "KCH-40815"],
+        ["kaycha-flower-1A4040300008856000043658.txt", "Kaycha Flower 43658", "KCH-43658"]
     ];
 
     private static string FixturePath(string fileName)
@@ -33,6 +33,8 @@ public class KaychaParserTests
 
         Assert.Equal("Kaycha Labs", result.LabName);
         Assert.Equal(ProductType.Flower, result.ProductType);
+        Assert.Equal("BANANA SMUGGLER", result.ProductName);
+        Assert.Equal("BS 21126", result.BatchId);
         Assert.NotNull(result.TestDate);
         Assert.Equal(28.0530m, result.Cannabinoids.THCA.Value);
         Assert.Equal(0.6700m, result.Cannabinoids.THC.Value);
@@ -41,7 +43,10 @@ public class KaychaParserTests
 
     [Theory]
     [MemberData(nameof(KaychaFlowerCuredFixtures))]
-    public void KaychaAdapter_Parse_FlowerCuredFixturesWithEdiblesInstrumentText_DetectsFlower(string fixtureName)
+    public void KaychaAdapter_Parse_FlowerCuredFixturesWithEdiblesInstrumentText_DetectsFlower(
+        string fixtureName,
+        string expectedProductName,
+        string expectedBatchId)
     {
         var text = File.ReadAllText(FixturePath(fixtureName));
 
@@ -49,6 +54,8 @@ public class KaychaParserTests
 
         Assert.Equal("Kaycha Labs", result.LabName);
         Assert.Equal(ProductType.Flower, result.ProductType);
+        Assert.Equal(expectedProductName, result.ProductName);
+        Assert.Equal(expectedBatchId, result.BatchId);
         Assert.NotNull(result.TestDate);
         Assert.True(result.Cannabinoids.TotalTHC > 0m);
     }
@@ -114,7 +121,10 @@ public class KaychaParserTests
 
         var result = new KaychaLabsAdapter().Parse(text);
 
+        Assert.Equal("Kaycha Labs", result.LabName);
         Assert.Equal(ProductType.Edible, result.ProductType);
+        Assert.Equal(string.Empty, result.ProductName);
+        Assert.Equal(string.Empty, result.BatchId);
         Assert.Equal(103.6212m, result.Cannabinoids.THC.Value);
         Assert.True(result.Cannabinoids.THC.Confidence > 0m);
         Assert.Equal(0m, result.Cannabinoids.THCA.Value);
