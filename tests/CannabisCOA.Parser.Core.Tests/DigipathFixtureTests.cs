@@ -1,6 +1,7 @@
 using System.IO;
 using CannabisCOA.Parser.Core.Mappers;
 using CannabisCOA.Parser.Core.Enums;
+using CannabisCOA.Parser.Core.Models;
 using CannabisCOA.Parser.Core.Validation;
 using Xunit;
 
@@ -69,10 +70,13 @@ public class DigipathFixtureTests
         Assert.DoesNotContain(validation.Warnings, warning => warning.Code == "MISSING_THC_VALUES");
     }
 
-    [Fact]
-    public void Parses_Digipath_Flower_SinglePanelPesticides_ReportClassification()
+    [Theory]
+    [InlineData("digipath-flower-single-panel-pesticides-00576.txt")]
+    [InlineData("digipath-flower-single-panel-pesticides-00598-a.txt")]
+    [InlineData("digipath-flower-single-panel-pesticides-00598-b.txt")]
+    public void Parses_Digipath_Flower_SinglePanelPesticides_ReportClassification(string fixtureName)
     {
-        var text = LoadFixture("digipath-flower-single-panel-pesticides-lemon-kush.txt");
+        var text = LoadFixture(fixtureName);
 
         var result = CoaParser.Parse(text);
         var validation = CoaValidator.Validate(result);
@@ -81,10 +85,12 @@ public class DigipathFixtureTests
         Assert.Equal("Digipath", result.LabName);
         Assert.Equal(ProductType.Flower, result.ProductType);
         Assert.Equal("SinglePanelTest", result.DocumentClassification);
+        Assert.True(string.IsNullOrWhiteSpace(result.BatchId));
         Assert.False(result.IsFullComplianceCoa);
         Assert.Equal("SinglePanelTest", document.DocumentClassification);
         Assert.False(document.IsFullComplianceCoa);
         Assert.Empty(document.Cannabinoids);
+        Assert.DoesNotContain(nameof(document.BatchId), document.ParserMetadata.MissingFields);
         Assert.DoesNotContain(nameof(document.Cannabinoids), document.ParserMetadata.MissingFields);
         Assert.Contains(validation.Warnings, warning => warning.Code == "SINGLE_PANEL_TEST");
         Assert.DoesNotContain(validation.Warnings, warning => warning.Code == "MISSING_THC_VALUES");
@@ -109,6 +115,32 @@ public class DigipathFixtureTests
         Assert.DoesNotContain(nameof(document.Cannabinoids), document.ParserMetadata.MissingFields);
         Assert.Contains(validation.Warnings, warning => warning.Code == "PARTIAL_PANEL_REPORT");
         Assert.DoesNotContain(validation.Warnings, warning => warning.Code == "MISSING_THC_VALUES");
+    }
+
+    [Fact]
+    public void Mapper_DoesNotReportBatchIdMissing_ForPartialPanelReport()
+    {
+        var result = new CoaResult
+        {
+            LabName = "Digipath",
+            ProductType = ProductType.Flower,
+            ProductName = "Partial Panel Flower",
+            BatchId = string.Empty,
+            DocumentClassification = "PartialPanelReport",
+            IsFullComplianceCoa = false,
+            TestDate = new DateTime(2025, 10, 20),
+            Compliance =
+            {
+                Status = "pass"
+            }
+        };
+
+        var document = CoaDocumentMapper.FromCoaResult(result);
+
+        Assert.Equal("PartialPanelReport", document.DocumentClassification);
+        Assert.False(document.IsFullComplianceCoa);
+        Assert.DoesNotContain(nameof(document.BatchId), document.ParserMetadata.MissingFields);
+        Assert.DoesNotContain(nameof(document.Cannabinoids), document.ParserMetadata.MissingFields);
     }
 
     [Fact]
@@ -174,6 +206,31 @@ public class DigipathFixtureTests
         Assert.Equal("Ice Cream Cake", result.ProductName);
         Assert.Equal("390R8ICE", result.BatchId);
         Assert.True(result.Cannabinoids.TotalTHC > 0m);
+    }
+
+    [Fact]
+    public void Parses_Digipath_Flower_PopcornBudsCollapsedCannabinoids_AsFullFlowerCoa()
+    {
+        var text = LoadFixture("digipath-flower-popcorn-buds-collapsed-cannabinoids-alien-mints.txt");
+
+        var result = CoaParser.Parse(text);
+        var validation = CoaValidator.Validate(result);
+        var document = CoaDocumentMapper.FromCoaResult(result);
+
+        Assert.Equal("Digipath", result.LabName);
+        Assert.Equal(ProductType.Flower, result.ProductType);
+        Assert.Equal("FullComplianceCoa", result.DocumentClassification);
+        Assert.True(result.IsFullComplianceCoa);
+        Assert.Equal("FullComplianceCoa", document.DocumentClassification);
+        Assert.True(document.IsFullComplianceCoa);
+        Assert.Equal("Alien Mints x Permanent Marker", result.ProductName);
+        Assert.Equal("F2AMPM110624L771", result.BatchId);
+        Assert.True(result.Cannabinoids.TotalTHC > 0m);
+        Assert.NotEmpty(document.Cannabinoids);
+        Assert.Equal(29.801m, result.Cannabinoids.THCA.Value);
+        Assert.Equal(0.588m, result.Cannabinoids.THC.Value);
+        Assert.InRange(result.Cannabinoids.TotalTHC, 26.72m, 26.73m);
+        Assert.DoesNotContain(validation.Warnings, warning => warning.Code == "MISSING_THC_VALUES");
     }
 
     [Fact]

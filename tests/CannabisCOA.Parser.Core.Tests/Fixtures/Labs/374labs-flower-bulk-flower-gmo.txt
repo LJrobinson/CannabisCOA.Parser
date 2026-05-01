@@ -1,0 +1,18 @@
+Certificate of Analysis
+Powered by Confident LIMS
+1 of 2
+374 Labs
+Strain: GMO
+Las Vegas, NV 89120 Batch #: GMO-BULK-0428; Lot #: 428
+Sample Received: 04/28/2026; Report Created: 04/30/2026; Harvest/Production Date: 04/21/2026
+Bulk Flower
+Plant, Bulk, Flower
+Harvest Process Lot: 428; METRC Batch: GMO-BULK-0428; METRC Sample: 1A40403000000C9000016428
+Cannabinoids
+Analyte LOQ Mass Mass
+% % mg/g
+THCa 0.083 24.000 240.00
+Δ9-THC 0.083 0.500 5.00
+CBD 0.083 <LOQ <LOQ
+CBDa 0.083 <LOQ <LOQ
+www.374labs.com

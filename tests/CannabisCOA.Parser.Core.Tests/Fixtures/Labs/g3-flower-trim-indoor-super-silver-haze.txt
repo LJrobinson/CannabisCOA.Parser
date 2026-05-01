@@ -1,0 +1,20 @@
+Certificate of Analysis
+G3 Labs
+Silver State Cultivation Sample: 2601G3L0033.09381
+Strain: Super Silver Haze
+Sparks, NV 89431 Batch #: SSH-TRIM-09381; Lot #: 1A4040300005C31000009381
+Sample Received: 01/14/2026; Report Created: 01/20/2026
+Lic. #95697016138994411312 Harvest/Production Date:
+Super Silver Haze Trim
+Plant, Trim, Indoor
+Harvest Process Lot: ; METRC Batch: 1A4040300005C31000009381; METRC Sample: 1A4040300005C31000009382
+Cannabinoids Terpenes
+Total Potential THC Total Potential CBD Total Cannabinoids Total Terpenes
+Analyte LOQ Mass Mass
+% % mg/g
+THCa 0.00016 21.25 212.5
+Δ9-THC 0.00016 0.34 3.4
+CBD 0.00016 <LOQ <LOQ
+CBDa 0.00016 <LOQ <LOQ
+Total THC = THCa * 0.877 + D9-THC + D8-THC
+This product has been tested by G3 Labs using valid testing methodologies.

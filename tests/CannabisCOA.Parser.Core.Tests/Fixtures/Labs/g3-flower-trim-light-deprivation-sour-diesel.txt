@@ -1,0 +1,20 @@
+Certificate of Analysis
+G3 Labs
+GreenLight_Amargosa Valley_NV_Cultivation Sample: 2601G3L0041.09675
+Strain: Sour Diesel
+Amargosa Valley, NV 89020 Batch #: SD-LD-09675; Lot #: 1A4040300005C31000009675
+Sample Received: 01/18/2026; Report Created: 01/24/2026
+Lic. #57013223548758955335 Harvest/Production Date:
+Trim
+Plant, Trim, Light Deprivation
+Harvest Process Lot: ; METRC Batch: 1A4040300005C31000009675; METRC Sample: 1A4040300005C31000009703
+Cannabinoids Terpenes
+Total Potential THC Total Potential CBD Total Cannabinoids Total Terpenes
+Analyte LOQ Mass Mass
+% % mg/g
+THCa 0.00016 18.42 184.2
+Δ9-THC 0.00016 0.27 2.7
+CBD 0.00016 <LOQ <LOQ
+CBDa 0.00016 <LOQ <LOQ
+Total THC = THCa * 0.877 + D9-THC + D8-THC
+This product has been tested by G3 Labs using valid testing methodologies.

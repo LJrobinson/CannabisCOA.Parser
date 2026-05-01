@@ -1,0 +1,18 @@
+Certificate of Analysis
+Powered by Confident LIMS
+1 of 2
+374 Labs
+Strain: Lava Cake
+Las Vegas, NV 89120 Batch #: LC-TRIM-0412; Lot #: 412
+Sample Received: 04/12/2026; Report Created: 04/15/2026; Harvest/Production Date: 04/08/2026
+Trim
+Plant, Trim, Indoor
+Harvest Process Lot: 412; METRC Batch: LC-TRIM-0412; METRC Sample: 1A40403000000C9000016412
+Cannabinoids
+Analyte LOQ Mass Mass
+% % mg/g
+THCa 0.083 19.500 195.00
+Δ9-THC 0.083 0.300 3.00
+CBD 0.083 <LOQ <LOQ
+CBDa 0.083 <LOQ <LOQ
+www.374labs.com

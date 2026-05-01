@@ -1,0 +1,25 @@
+1 of 1
+Marijuan flowers/buds Sample: DIGP2601.0104.P.00576
+RSR Analytical Laboratories Sample Date: 01/23/2026 Report Date: 01/28/2026
+MME ID: 34783954003475226897 - RL006 METRC Sample: 1A4040300002C89000003178
+Plant, Flower - Cured
+Pesticides Pass Microbials Not Tested
+Analyte LOQ Limit Mass Status Analyte LOQ Limit Units Status
+PPM PPM PPM
+Abamectin 0.44320 0.00000 <LOD Pass
+Acequinocyl 0.40000 4.00000 <LOQ Pass
+Bifenazate 0.40000 0.40000 <LOQ Pass
+Piperonyl Butoxide 0.40000 3.00000 <LOQ Pass Mycotoxins
+Pass
+Pyrethrins 0.03610 2.00000 <LOQ Pass
+Quintozene 0.40000 0.80000 <LOQ Pass
+Analyte LOQ Limit Mass Status
+PPB PPB PPB
+Aflatoxins 4.90 20.00 <LOQ Pass
+Ochratoxin A 4.40 20.00 <LOQ Pass
+Tested Mycotoxins: aflatoxin B1, aflatoxin B2, aflatoxin G1, aflatoxin G2, & Ochratoxin.
+Solvents Not Tested
+Analyte LOQ Limit Mass Status
+Heavy Metals Not Tested
+Analyte LOQ Limit Units Status
+I certify that this sample has been tested by DigiPath Labs.

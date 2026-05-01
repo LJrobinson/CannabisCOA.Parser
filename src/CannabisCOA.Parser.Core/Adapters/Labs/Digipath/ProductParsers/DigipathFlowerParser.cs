@@ -1970,12 +1970,157 @@ public static class DigipathFlowerParser
         }
 
         if (!parsedAny)
+            return TryParseCollapsedDigipathCannabinoidTable(text, out profile);
+
+        profile.TotalTHC = profile.THC.Value + (profile.THCA.Value * 0.877m) + delta8;
+        profile.TotalCBD = profile.CBD.Value + (profile.CBDA.Value * 0.877m);
+
+        return true;
+    }
+
+    private static bool TryParseCollapsedDigipathCannabinoidTable(string text, out CannabinoidProfile profile)
+    {
+        profile = CreateEmptyProfile();
+
+        var marker = Regex.Match(
+            text,
+            @"Analyte\s*LOQ\s*Mass\s*Mass\s*%+\s*",
+            RegexOptions.IgnoreCase);
+
+        if (!marker.Success)
+            return false;
+
+        var table = text[marker.Index..];
+        var endMatch = Regex.Match(
+            table,
+            @"Total\s+Potential\s+THC\s*=|Terpene\s+Test\s+Results|Safety\s*&\s*Quality\s+Tests",
+            RegexOptions.IgnoreCase);
+
+        if (endMatch.Success)
+            table = table[..endMatch.Index];
+
+        var parsedAny = false;
+        var delta8 = 0m;
+        var rowPattern = new Regex(
+            @"(?<name>THCa|THCA|(?:Δ|∆)9-THC|(?:Δ|∆)8-THC|THCV|CBDa|CBDA|CBDV|CBD|CBN|CBGa|CBGA|CBG|CBC)(?<values>.*?)(?=THCa|THCA|(?:Δ|∆)9-THC|(?:Δ|∆)8-THC|THCV|CBDa|CBDA|CBDV|CBD|CBN|CBGa|CBGA|CBG|CBC|Total\b|$)",
+            RegexOptions.IgnoreCase);
+
+        foreach (Match match in rowPattern.Matches(table))
+        {
+            if (!match.Success)
+                continue;
+
+            var fieldName = NormalizeCannabinoidName(match.Groups["name"].Value);
+
+            if (string.IsNullOrWhiteSpace(fieldName))
+                continue;
+
+            if (!TryParseCollapsedDigipathCannabinoidValues(match.Groups["values"].Value, out var value, out var confidence))
+                continue;
+
+            var field = new ParsedField<decimal>
+            {
+                FieldName = fieldName,
+                Value = value,
+                SourceText = match.Value,
+                Confidence = confidence
+            };
+
+            switch (fieldName)
+            {
+                case "THC" when profile.THC.Confidence == 0m:
+                    profile.THC = field;
+                    parsedAny = true;
+                    break;
+                case "THCA" when profile.THCA.Confidence == 0m:
+                    profile.THCA = field;
+                    parsedAny = true;
+                    break;
+                case "CBD" when profile.CBD.Confidence == 0m:
+                    profile.CBD = field;
+                    parsedAny = true;
+                    break;
+                case "CBDA" when profile.CBDA.Confidence == 0m:
+                    profile.CBDA = field;
+                    parsedAny = true;
+                    break;
+                case "D8-THC":
+                    delta8 = value;
+                    parsedAny = true;
+                    break;
+            }
+        }
+
+        if (!parsedAny)
             return false;
 
         profile.TotalTHC = profile.THC.Value + (profile.THCA.Value * 0.877m) + delta8;
         profile.TotalCBD = profile.CBD.Value + (profile.CBDA.Value * 0.877m);
 
         return true;
+    }
+
+    private static bool TryParseCollapsedDigipathCannabinoidValues(
+        string valueSegment,
+        out decimal value,
+        out decimal confidence)
+    {
+        value = 0m;
+        confidence = 0m;
+
+        var compact = Regex.Replace(valueSegment, @"\s+", string.Empty);
+        var match = Regex.Match(
+            compact,
+            @"^(?<loq>\d{1,2}\.\d{3})(?<result>.+)$",
+            RegexOptions.IgnoreCase);
+
+        if (!match.Success)
+            return false;
+
+        var result = match.Groups["result"].Value;
+
+        if (Regex.IsMatch(result, @"^(?:<LOQ|<LOD|ND|NR|NT){2}$", RegexOptions.IgnoreCase))
+            return true;
+
+        if (!TrySplitRepeatedDecimal(result, out value))
+            return false;
+
+        confidence = 0.95m;
+        return true;
+    }
+
+    private static string NormalizeCannabinoidName(string name)
+    {
+        return Regex.Replace(name, @"\s+", string.Empty).ToUpperInvariant() switch
+        {
+            "THCA" => "THCA",
+            "THC" or "Δ9-THC" or "∆9-THC" => "THC",
+            "Δ8-THC" or "∆8-THC" => "D8-THC",
+            "CBDA" => "CBDA",
+            "CBD" => "CBD",
+            _ => string.Empty
+        };
+    }
+
+    private static bool TrySplitRepeatedDecimal(string text, out decimal value)
+    {
+        value = 0m;
+
+        for (var split = 1; split < text.Length; split++)
+        {
+            var left = text[..split];
+            var right = text[split..];
+
+            if (!left.Equals(right, StringComparison.Ordinal))
+                continue;
+
+            if (!decimal.TryParse(left, NumberStyles.Number, CultureInfo.InvariantCulture, out value))
+                continue;
+
+            return value >= 0m && value <= 100m;
+        }
+
+        return false;
     }
 
     private static IEnumerable<ParsedDigipathCannabinoidRow> ParseCannabinoidRows(
@@ -2138,6 +2283,9 @@ public static class DigipathFlowerParser
 
         if (percent < 0m || percent > 100m)
             return false;
+
+        if (context.HasDuplicatePercentResultColumns)
+            return Math.Abs(percent - mgPerGram) <= 0.001m;
 
         return IsValidPercentMgPair(percent, mgPerGram);
     }
@@ -2652,6 +2800,17 @@ public static class DigipathFlowerParser
                 .Select(match => NormalizeUnit(match.Value))
                 .ToList();
 
+            if (hasLoqColumn && units.Count >= 3 &&
+                units[1] == "%" &&
+                units[2] == "%")
+            {
+                return new DigipathTableContext(
+                    hasLoqColumn,
+                    units[1],
+                    HasMgPerGramBeforePercent: false,
+                    HasDuplicatePercentResultColumns: true);
+            }
+
             if (hasLoqColumn && units.Count >= 3)
                 return new DigipathTableContext(
                     hasLoqColumn,
@@ -2885,7 +3044,8 @@ public static class DigipathFlowerParser
     private sealed record DigipathTableContext(
         bool HasLoqColumn,
         string PrimaryResultUnit,
-        bool HasMgPerGramBeforePercent);
+        bool HasMgPerGramBeforePercent,
+        bool HasDuplicatePercentResultColumns = false);
 
     private sealed record DigipathResultToken(
         decimal Value,

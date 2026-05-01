@@ -1,0 +1,21 @@
+Certificate of Analysis
+1 of 2 Certificate # AT-2711
+Clear River LLC Sample: 2604RSR0041.0312
+Strain: Garlic Cookies
+Laughlin, NV 89029 Batch #: GC-BULK-0312; Lot #: 1A4040300000285000034312
+Sample Received: 04/02/2026; Report Created: 04/05/2026
+
+Bulk Garlic Cookies
+Plant, Bulk Flower, Indoor
+Harvest Process Lot: GC-BULK-0312; METRC Batch: 1A4040300000285000034312; METRC Sample: 1A4040300000285000034313
+
+Cannabinoids Terpenes
+Analyte LOQ Mass Mass
+% % mg/g
+THCa 0.25 25.00 250.00
+Δ9-THC 0.25 0.75 7.50
+CBDa 0.25 <LOQ <LOQ
+CBD 0.25 <LOQ <LOQ
+
+http://www.rsrlabs.com
+This product has been tested by RSR Analytical Laboratories.

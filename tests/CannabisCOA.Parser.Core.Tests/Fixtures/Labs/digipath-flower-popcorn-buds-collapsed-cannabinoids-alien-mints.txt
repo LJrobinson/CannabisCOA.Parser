@@ -1,0 +1,45 @@
+1 of 2
+Alien Mints x Permanent Marker Sample: DIGP2501.0093.P.00505
+Las Vegas Cannabis - Cultivation Sample Date: 01/21/2025 Report Date: 01/24/2025
+MME ID: 42801984540428281831 - RC118 METRC Sample: 1A4040300001786000009914
+Plant, Popcorn Buds Batch #: F2AMPM110624L771; Lot #: 771.3;
+Potency Test Results
+Cannabinoid Test Results Terpene Test Results
+26.723% 0.057% Analyte CAS No. LOQ Mass Mass
+% % mg/g
+δ -Limonene 5989-27-5 0.004 0.500 5.00
+Total Potential THC Total Potential CBD
+β-Caryophyllene 87-44-5 0.005 0.371 3.71
+Farnesene 502-61-4 0.035 0.353 3.53
+29.801% 0.065% Linalool 78-70-6 0.002 0.215 2.15
+β-Pinene 18172-67-3 0.016 0.126 1.26
+THCa CBDa β-Myrcene 123-35-3 0.009 0.126 1.26
+α-Pinene 80-56-8 0.003 0.100 1.00
+α-Humulene 6753-98-6 0.006 0.095 0.95
+α-Bisabolol 23089-26-1 0.004 0.039 0.39
+Analyte LOQ Mass Mass Nerolidol 7212-44-4 0.011 0.035 0.35
+% % % Ocimene 13877-91-3 0.008 0.019 0.19
+THCa 0.004 29.801 29.801 Camphene 79-92-5 0.007 0.015 0.15
+Δ9-THC 0.003 0.588 0.588 Caryophyllene Oxide 1139-30-6 0.004 0.008 0.08
+Δ8-THC 0.040 <LOQ <LOQ Isopulegol 89-79-2 0.004 <LOQ <LOQ
+THCV 0.061 <LOQ <LOQ Eucalyptol 470-82-6 0.005 <LOQ <LOQ
+CBDa 0.004 0.065 0.065 δ -3-Carene 13466-78-9 0.005 <LOQ <LOQ
+CBD 0.014 <LOQ <LOQ Terpinolene 586-62-9 0.006 <LOQ <LOQ
+CBDV 0.004 0.016 0.016 p-Cymene 99-87-6 0.004 <LOQ <LOQ
+CBN 0.003 <LOQ <LOQ γ-Terpinene 99-85-4 0.004 <LOQ <LOQ
+CBGa 0.014 0.827 0.827 α-Terpinene 99-86-5 0.004 <LOQ <LOQ
+CBG 0.014 0.132 0.132 Geraniol 106-24-1 0.005 <LOQ <LOQ
+CBC 0.003 0.011 0.011 Guaiol 489-86-1 0.005 <LOQ <LOQ
+Total 31.440 31.440 Total 2.002 20.02
+Total Potential THC = (THCa * 0.877) + d9-THC + d8-THC, Total Potential CBD = (CBDa *
+0.877) + CBD, LOQ = Limit of Quantitation; NR = Not Reported; ND = Not Detected;
+Cannabinoid results reported as received. Cannabinoids analyzed per Digipath Labs SOP-317
+on an Agilent 1260 UPLC.
+Safety & Quality Tests
+Visual Pass Moisture Content 11.55%
+Limit 15.00%
+Scan to View Results Microbiological Pass Gender Not Tested
+Heavy Metals Pass Residual Solvents Not Tested
+Mycotoxins Pass Pesticides Pass
+Water Activity Not Tested
+I certify that this sample has been tested by DigiPath Labs.

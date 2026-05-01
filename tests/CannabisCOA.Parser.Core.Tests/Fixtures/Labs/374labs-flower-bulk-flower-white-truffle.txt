@@ -1,0 +1,22 @@
+Certificate of Analysis
+Powered by Confident LIMS
+1 of 2
+Solace Enterprises LLC Sample: 2508TSF0132.11092
+6155 E. Azure Ave Strain: White Truffle
+Las Vegas, NV 89115 Batch #: H9B1-12-20250609; Lot #: 102416
+monica.lau@stiiizy.com Sample Received: 08/27/2025; Report Generated: 09/02/2025
+(702) 290-3984 Harvest/Production Date: 06/09/2025
+Lic. #36812277747948686823
+Flower White Truffle-102416
+Plant, Bulk Flower
+Harvest Process Lot: H9B1-12-20250609; METRC Batch: 1A4040300003CF1000102416; METRC Sample: 1A4040300003CF1000108389
+Cannabinoids Terpenes
+Analyte LOQ Result Result
+% % mg/g
+THCa 0.05 17.43 174.3
+Δ9-THC 0.05 0.88 8.8
+CBD 0.05 <LOQ <LOQ
+CBDa 0.05 0.07 0.7
+Total 18.87 188.7
+Total 0.91 9.1
+10 Greg St Confident LIMS

@@ -1,0 +1,22 @@
+Certificate of Analysis
+Powered by Confident LIMS
+MA Analytics
+Sample: 2602MAA0042_2201
+Strain: Crescendo
+Las Vegas, NV 89120 Batch #: CRE-POP-2201; Lot #: 2201
+Sample Received: 02/12/2026 Report Created: 02/18/2026
+Lic. #12345678901234567890 Harvest/Production Date: 2026-02-05
+
+Popcorn Buds
+Plant, Popcorn Buds, Indoor
+Harvest Process Lot: CRE-POP-2201; METRC Batch: 1A40403000000C9000013811; METRC Sample: 1A40403000000C9000013812
+
+Cannabinoids
+Analyte LOQ Mass Mass
+% % mg/g
+THCa 0.160 24.500 245.00
+Δ9-THC 0.640 0.480 4.80
+CBDa 0.160 <LOQ <LOQ
+CBD 0.640 <LOQ <LOQ
+
+MA Analytics

@@ -1,0 +1,19 @@
+1 of 2
+Ice Cream Cake Sample: DIGP2508.1032.P.05269
+Polaris MMJ Sample Date: 08/28/2025 Report Date: 09/03/2025
+MME ID: 52625545245998432280 - RC168 METRC Sample: 1A4040300002775000032774
+Plant, Popcorn Buds Batch #: 390R8ICE; Lot #: 390R8ICE5P
+Potency Test Results
+Cannabinoid Test Results Terpene Test Results
+Analyte LOQ Mass Mass
+% % mg/g
+THCa 0.004 24.129 241.29 Caryophyllene Oxide 1139-30-6 0.004 0.010 0.10
+Δ9-THC 0.003 0.772 7.72 Terpinolene 586-62-9 0.006 0.007 0.07
+CBDa 0.004 0.052 0.52 α-Terpinene 99-86-5 0.004 <LOQ <LOQ
+CBD 0.014 <LOQ <LOQ p-Cymene 99-87-6 0.004 <LOQ <LOQ
+Total 26.095 260.95 Total 2.197 21.97
+Visual Microbiological Heavy Metals Mycotoxins Water Activity
+Pass Pass Pass Pass Not Tested
+Moisture Content Limit Gender Residual Solvents Pesticides HLVd
+8.44% 15.00% Not Tested Not Tested Pass Not Tested
+I certify that this sample has been tested by DigiPath Labs.

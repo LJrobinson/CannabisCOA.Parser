@@ -119,7 +119,8 @@ public static class CoaDocumentMapper
         if (string.IsNullOrWhiteSpace(document.LabName)) missing.Add(nameof(document.LabName));
         if (string.IsNullOrWhiteSpace(document.ProductName)) missing.Add(nameof(document.ProductName));
         if (string.IsNullOrWhiteSpace(document.ProductType)) missing.Add(nameof(document.ProductType));
-        if (string.IsNullOrWhiteSpace(document.BatchId)) missing.Add(nameof(document.BatchId));
+        if (document.IsFullComplianceCoa && string.IsNullOrWhiteSpace(document.BatchId))
+            missing.Add(nameof(document.BatchId));
         if (document.TestDate is null) missing.Add(nameof(document.TestDate));
         if (string.IsNullOrWhiteSpace(document.OverallStatus)) missing.Add(nameof(document.OverallStatus));
         if (document.IsFullComplianceCoa && document.Cannabinoids.Count == 0)
