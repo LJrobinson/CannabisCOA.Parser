@@ -25,9 +25,32 @@ public class NVCannLabsParserTests
 
         Assert.Equal("NV Cann Labs", result.LabName);
         Assert.Equal(ProductType.Flower, result.ProductType);
+        Assert.Equal("Flower Peach Ringz", result.ProductName);
+        Assert.Equal("1A404030000164D000038171", result.BatchId);
         Assert.NotNull(result.TestDate);
         Assert.Equal(30.782m, result.Cannabinoids.THCA.Value);
         Assert.Equal(0.894m, result.Cannabinoids.THC.Value);
+    }
+
+    [Fact]
+    public void NVCannLabsAdapter_Parse_GenericFlowerDisplayName_FallsBackToStrain()
+    {
+        var text = """
+        NV Cann Labs
+        Strain: PEACH RINGZ
+        Batch #: NV-BATCH-001; Lot #: NV-LOT-001
+        Flower
+        Plant, Flower - Cured, Indoor
+        THCa 0.083 30.782 307.82
+        Δ9-THC 0.083 0.894 8.94
+        """;
+
+        var result = new NVCannLabsAdapter().Parse(text);
+
+        Assert.Equal("NV Cann Labs", result.LabName);
+        Assert.Equal(ProductType.Flower, result.ProductType);
+        Assert.Equal("PEACH RINGZ", result.ProductName);
+        Assert.Equal("NV-BATCH-001", result.BatchId);
     }
 
     [Theory]
