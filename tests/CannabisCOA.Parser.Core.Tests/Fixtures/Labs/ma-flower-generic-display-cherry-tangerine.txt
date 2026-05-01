@@ -1,0 +1,12 @@
+MA Analytics
+Strain: CHERRY TANGERINE
+Batch #: 102425B183
+Lot #: ABCT02; Harvest/Production Date: 2025-10-24
+FLOWER
+Plant, Flower - Cured, Indoor
+Harvest Process Lot: 102425B183; METRC Batch: 1A404030000057A000000183; METRC Sample: 1A404030000057A000000184
+Cannabinoids Date Tested: 10/28/2025
+Analyte LOQ Mass Mass
+mg/g mg/g %
+THCa 0.160 260.00 26.000
+Δ9-THC 0.640 5.00 0.500

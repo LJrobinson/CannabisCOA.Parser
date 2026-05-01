@@ -132,6 +132,7 @@ public class MAAnalyticsAdapter : BaseLabAdapter
     {
         return !string.IsNullOrWhiteSpace(row) &&
                !Regex.IsMatch(row, @"^[\s\-–—_]+$") &&
+               !row.Equals("Flower", StringComparison.OrdinalIgnoreCase) &&
                !row.Contains(':') &&
                !row.Contains(';') &&
                !row.Contains("@") &&

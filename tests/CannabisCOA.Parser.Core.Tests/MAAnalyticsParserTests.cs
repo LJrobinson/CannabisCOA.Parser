@@ -32,6 +32,19 @@ public class MAAnalyticsParserTests
         Assert.Equal(0.544m, result.Cannabinoids.THC.Value);
     }
 
+    [Fact]
+    public void MAAnalyticsAdapter_Parse_GenericFlowerDisplayName_FallsBackToStrain()
+    {
+        var text = File.ReadAllText(FixturePath("ma-flower-generic-display-cherry-tangerine.txt"));
+
+        var result = new MAAnalyticsAdapter().Parse(text);
+
+        Assert.Equal("MA Analytics", result.LabName);
+        Assert.Equal(ProductType.Flower, result.ProductType);
+        Assert.Equal("CHERRY TANGERINE", result.ProductName);
+        Assert.Equal("102425B183", result.BatchId);
+    }
+
     [Theory]
     [InlineData("CBD", "CBD 0.640 <LOQ <LOQ")]
     [InlineData("CBDA", "CBDa 0.160 <LOQ <LOQ")]
