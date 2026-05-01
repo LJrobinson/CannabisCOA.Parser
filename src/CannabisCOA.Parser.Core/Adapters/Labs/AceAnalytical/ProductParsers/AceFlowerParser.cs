@@ -257,6 +257,7 @@ public static class AceFlowerParser
     private static bool IsAceProductNameCandidate(string row)
     {
         return !string.IsNullOrWhiteSpace(row) &&
+               !Regex.IsMatch(row, @"^[\s\-–—_]+$") &&
                !row.Contains(':') &&
                !row.Contains(';') &&
                !row.Equals("Certificate of Analysis", StringComparison.OrdinalIgnoreCase) &&

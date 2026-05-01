@@ -1,0 +1,16 @@
+Ace Analytical Laboratory
+-
+Sample: 2601ACE0021_P_00042
+Strain: Lemon Sorbet
+Batch #: 0821LS6; Lot #: 48663
+Flower - Lemon Sorbet
+Plant, Flower - Cured
+Harvest Process Lot: 0821LS6; METRC Batch: 1A404030000057A000048663; METRC Sample: 1A404030000057A000048664
+Cannabinoid Test Results
+Analyte LOQ Mass Mass
+% % mg/g
+THCa 0.060 24.000 240.00
+Δ9-THC 0.060 0.500 5.00
+CBDa 0.060 <LOQ <LOQ
+CBD 0.060 <LOQ <LOQ
+Total Potential THC = (THCa * 0.877) + d9-THC + d8-THC

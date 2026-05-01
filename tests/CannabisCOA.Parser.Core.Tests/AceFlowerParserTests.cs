@@ -458,6 +458,21 @@ public class AceFlowerParserTests
     }
 
     [Fact]
+    public void AceAnalyticalAdapter_Parse_DisplayedProductFixture_IgnoresPlaceholderProductName()
+    {
+        var text = File.ReadAllText(FixturePath("ace-flower-displayed-product-lemon-sorbet.txt"));
+
+        var result = new CannabisCOA.Parser.Core.Adapters.Labs.AceAnalytical.AceAnalyticalAdapter()
+            .Parse(text);
+
+        Assert.Equal("Ace Analytical Laboratory", result.LabName);
+        Assert.Equal(ProductType.Flower, result.ProductType);
+        Assert.Equal("Flower - Lemon Sorbet", result.ProductName);
+        Assert.NotEqual("-", result.ProductName);
+        Assert.Equal("0821LS6", result.BatchId);
+    }
+
+    [Fact]
     public void AceAnalyticalAdapter_DoesNotIncorrectlyParseNonAceLab()
     {
         var text = File.ReadAllText(FixturePath("Digipath_Flower.txt"));
