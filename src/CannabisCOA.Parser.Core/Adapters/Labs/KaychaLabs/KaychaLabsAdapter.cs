@@ -15,8 +15,52 @@ public class KaychaLabsAdapter : BaseLabAdapter
         @"^\s*TOTAL\s+TERPENES\s+(?<lod>\d{1,6}(?:\.\d+)?)\s+(?<loq>\d{1,6}(?:\.\d+)?)\s+\S+\s+(?<percent>\d{1,6}(?:\.\d+)?)\s+(?<mg>\d{1,6}(?:\.\d+)?)\s*$",
         RegexOptions.IgnoreCase | RegexOptions.Compiled);
 
+    private static readonly Regex SplitTableTotalTerpenesRegex = new(
+        @"(?<![\p{L}\p{N}-])TOTAL\s+TERPENES\s+(?<loq>\d{1,6}(?:\.\d+)?)\s+(?:\S+\s+)?(?<mg><\s*LOQ|<\s*\d{1,6}(?:\.\d+)?|ND|NR|NT|N/?A|\d{1,6}(?:\.\d+)?)\s+(?<percent><\s*LOQ|<\s*\d{1,6}(?:\.\d+)?|ND|NR|NT|N/?A|\d{1,6}(?:\.\d+)?)(?=\s|$)",
+        RegexOptions.IgnoreCase | RegexOptions.Compiled);
+
+    private static readonly Regex TerpeneTotalSummaryRegex = new(
+        @"\bTotal\s+\(%\)\s+(?<percent>\d{1,6}(?:\.\d+)?)\b",
+        RegexOptions.IgnoreCase | RegexOptions.Compiled);
+
     private static readonly Regex TerpeneRowRegex = new(
         @"^\s*(?<name>[A-Z0-9]+(?:-[A-Z0-9]+)*(?:\s+[A-Z0-9]+(?:-[A-Z0-9]+)*)*)\s+(?<lod>\d{1,6}(?:\.\d+)?)\s+(?<loq>\d{1,6}(?:\.\d+)?)\s+\S+\s+(?<percent><\s*LOQ|\d{1,6}(?:\.\d+)?)\s+(?<mg><\s*\d{1,6}(?:\.\d+)?|\d{1,6}(?:\.\d+)?)\s*$",
+        RegexOptions.IgnoreCase | RegexOptions.Compiled);
+
+    private static readonly string SplitTableTerpeneNamePattern = string.Join(
+        "|",
+        new[]
+        {
+            "CARYOPHYLLENE\\s+OXIDE",
+            "SABINENE\\s+HYDRATE",
+            "ALPHA-PHELLANDRENE",
+            "BETA-CARYOPHYLLENE",
+            "ALPHA-TERPINEOL",
+            "ALPHA-TERPINENE",
+            "GAMMA-TERPINENE",
+            "DELTA-3-CARENE",
+            "ALPHA-BISABOLOL",
+            "ALPHA-HUMULENE",
+            "BETA-MYRCENE",
+            "BETA-PINENE",
+            "ALPHA-PINENE",
+            "ALPHA-CEDRENE",
+            "D-LIMONENE",
+            "TERPINOLENE",
+            "FARNESENE",
+            "FENCHONE",
+            "FENCHOL",
+            "VALENCENE",
+            "PULEGONE",
+            "SABINENE",
+            "CAMPHENE",
+            "CAMPHOR",
+            "BORNEOL",
+            "LINALOOL"
+        });
+
+    private static readonly Regex SplitTableTerpeneEntryRegex = new(
+        $@"(?<![\p{{L}}\p{{N}}-])(?<name>{SplitTableTerpeneNamePattern})\s+(?<loq>\d{{1,6}}(?:\.\d+)?)\s+(?:\S+\s+)?(?<mg><\s*LOQ|<\s*\d{{1,6}}(?:\.\d+)?|ND|NR|NT|N/?A|\d{{1,6}}(?:\.\d+)?)\s+(?<percent><\s*LOQ|<\s*\d{{1,6}}(?:\.\d+)?|ND|NR|NT|N/?A|\d{{1,6}}(?:\.\d+)?)(?=\s|$)",
         RegexOptions.IgnoreCase | RegexOptions.Compiled);
 
     private static readonly Regex EdibleCannabinoidRowRegex = new(
@@ -430,6 +474,37 @@ public class KaychaLabsAdapter : BaseLabAdapter
             return true;
         }
 
+        foreach (var row in NormalizeRows(text))
+        {
+            var match = SplitTableTotalTerpenesRegex.Match(row);
+
+            if (!match.Success ||
+                !TryParseKaychaResultPair(
+                    match.Groups["percent"].Value,
+                    match.Groups["mg"].Value,
+                    out var percent))
+            {
+                continue;
+            }
+
+            totalTerpenes = percent;
+            return true;
+        }
+
+        foreach (var row in NormalizeRows(text))
+        {
+            var match = TerpeneTotalSummaryRegex.Match(row);
+
+            if (!match.Success ||
+                !decimal.TryParse(match.Groups["percent"].Value, NumberStyles.Number, CultureInfo.InvariantCulture, out var percent))
+            {
+                continue;
+            }
+
+            totalTerpenes = percent;
+            return true;
+        }
+
         return false;
     }
 
@@ -461,7 +536,38 @@ public class KaychaLabsAdapter : BaseLabAdapter
             terpenes[name] = percent;
         }
 
+        foreach (var row in NormalizeRows(text))
+        {
+            foreach (Match match in SplitTableTerpeneEntryRegex.Matches(row))
+            {
+                var name = Regex.Replace(match.Groups["name"].Value.ToUpperInvariant(), @"\s+", " ");
+
+                if (!TryParseKaychaResultPair(
+                    match.Groups["percent"].Value,
+                    match.Groups["mg"].Value,
+                    out var percent))
+                {
+                    continue;
+                }
+
+                terpenes[name] = percent;
+            }
+        }
+
         return terpenes.Count > 0;
+    }
+
+    private static bool TryParseKaychaResultPair(string rawPercent, string rawMgPerGram, out decimal percent)
+    {
+        percent = 0m;
+
+        if (!TryParseResultValue(rawPercent, out percent) ||
+            !TryParseResultValue(rawMgPerGram, out var mgPerGram))
+        {
+            return false;
+        }
+
+        return Math.Abs((percent * 10m) - mgPerGram) <= 0.01m;
     }
 
     private static bool LooksLikeCannabinoidHeader(IReadOnlyCollection<string> tokens)
@@ -577,7 +683,9 @@ public class KaychaLabsAdapter : BaseLabAdapter
         if (normalized.StartsWith("<", StringComparison.OrdinalIgnoreCase) ||
             normalized.Equals("ND", StringComparison.OrdinalIgnoreCase) ||
             normalized.Equals("NR", StringComparison.OrdinalIgnoreCase) ||
-            normalized.Equals("NT", StringComparison.OrdinalIgnoreCase))
+            normalized.Equals("NT", StringComparison.OrdinalIgnoreCase) ||
+            normalized.Equals("NA", StringComparison.OrdinalIgnoreCase) ||
+            normalized.Equals("N/A", StringComparison.OrdinalIgnoreCase))
         {
             return false;
         }

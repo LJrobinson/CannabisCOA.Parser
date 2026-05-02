@@ -29,6 +29,25 @@ public class MAAnalyticsAdapter : BaseLabAdapter
         "M.A. ANALYTICS"
     ];
 
+    public override int MatchScore(string text)
+    {
+        var score = base.MatchScore(text);
+
+        if (score == 0)
+            return 0;
+
+        if (Regex.IsMatch(text, @"\bMA\s+Analytics\b.{0,80}\bConfident\s+LIMS\b", RegexOptions.IgnoreCase | RegexOptions.Singleline))
+            score += 3;
+
+        if (text.Contains("www.maanalytics.com", StringComparison.OrdinalIgnoreCase))
+            score += 2;
+
+        if (Regex.IsMatch(text, @"written\s+approval\s+of\s+Ma\s+Analytics", RegexOptions.IgnoreCase))
+            score += 2;
+
+        return score;
+    }
+
     public override ProductType DetectProductType(string text)
     {
         return NormalizeRows(text).Any(IsMaFlowerDescriptor)

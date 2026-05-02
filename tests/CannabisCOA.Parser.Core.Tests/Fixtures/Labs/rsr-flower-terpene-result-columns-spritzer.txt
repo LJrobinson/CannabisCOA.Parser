@@ -1,0 +1,32 @@
+Certificate of Analysis
+RSR Analytical Laboratories
+Strain: SPRITZER Batch #: SP 7925; Lot #: SP 7925
+Sample Received: 07/09/2025; Report Created: 07/11/2025
+Plant, Flower - Cured
+Cannabinoids Terpenes
+Total THC Total CBD Moisture
+THCa 0.25 39.01 390.1
+Δ9-THC 0.25 0.31 3.1
+δ -Limonene 0.25 0.025 0.582 5.82
+β-Caryophyllene 0.25 0.025 0.439 4.39
+Linalool 0.28 0.028 0.310 3.10
+α-Humulene 0.24 0.024 0.140 1.40
+Δ8-THC 0.25 ND ND β-Myrcene 0.16 0.016 0.104 1.04
+CBDa 0.25 ND ND β-Pinene 0.14 0.014 0.066 0.66
+CBD 0.25 ND ND α-Pinene 0.22 0.022 0.043 0.43
+α-Bisabolol 0.20 0.020 0.040 0.40
+α-Terpinene 0.23 0.023 NR NR
+Camphene 0.17 0.017 NR NR
+Caryophyllene Oxide 0.21 0.021 ND ND
+Δ10-THC 0.01 NR NR cis-Nerolidol 0.19 0.019 NR NR
+Total 34.52 345.2 δ -3-Carene 0.24 0.024 NR NR
+Eucalyptol 0.34 0.034 NR NR
+γ-Terpinene 0.25 0.025 NR NR
+Guaiol 0.15 0.015 NR NR
+Ocimene 0.21 0.021 NR NR
+p-Cymene 0.21 0.021 NR NR
+Terpinolene 0.23 0.023 ND ND
+trans-Nerolidol 0.19 0.019 NR NR
+Total Potential THC = (THCa * 0.877) + Δ9-THC + Δ8-THC, Total Potential CBD = (CBDa Total 1.724 17.24
+Cannabinoids: RSR-SOP-002 by HPLC Terpenes: RSR-SOP-003 by GC-MS
+Pesticides Pass Heavy Metals Pass

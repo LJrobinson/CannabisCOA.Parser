@@ -1,9 +1,20 @@
+using CannabisCOA.Parser.Core.Enums;
 using Xunit;
 
 namespace CannabisCOA.Parser.Core.Tests;
 
 public class LabAdapterDetectionTests
 {
+    private static string FixturePath(string fileName)
+    {
+        return Path.GetFullPath(Path.Combine(
+            AppContext.BaseDirectory,
+            "..", "..", "..",
+            "Fixtures",
+            "Labs",
+            fileName));
+    }
+
     [Theory]
     [InlineData("374Labs Certificate of Analysis Product Type: Flower THC: 20% Result: PASS", "374 Labs")]
     [InlineData("G3 Labs Certificate of Analysis Product Type: Flower THC: 20% Result: PASS", "G3 Labs")]
@@ -37,5 +48,55 @@ public class LabAdapterDetectionTests
         var result = CoaParser.Parse(text);
 
         Assert.Equal("Digipath", result.LabName);
+    }
+
+    [Fact]
+    public void Resolves_MaAnalytics_When_MicrobialMethodsReferenceG3Sops()
+    {
+        var text = File.ReadAllText(FixturePath("ma-flower-g3-method-footer-ice-cream-mintz.txt"));
+
+        var result = CoaParser.Parse(text);
+
+        Assert.Equal("MA Analytics", result.LabName);
+        Assert.NotEqual("G3 Labs", result.LabName);
+        Assert.Equal(ProductType.Flower, result.ProductType);
+        Assert.Equal("Ice Cream Mintz", result.ProductName);
+        Assert.Equal("08020725ICM", result.BatchId);
+    }
+
+    [Fact]
+    public void Resolves_G3Fixture_AsG3Labs()
+    {
+        var text = File.ReadAllText(FixturePath("g3-flower-real-001.txt"));
+
+        var result = CoaParser.Parse(text);
+
+        Assert.Equal("G3 Labs", result.LabName);
+        Assert.Equal(ProductType.Flower, result.ProductType);
+    }
+
+    [Fact]
+    public void Resolves_Rsr_When_HeaderNoteReferencesDigipathTesting()
+    {
+        var text = File.ReadAllText(FixturePath("rsr-flower-digipath-note-mai-tai.txt"));
+
+        var result = CoaParser.Parse(text);
+
+        Assert.Equal("RSR Analytical Laboratories", result.LabName);
+        Assert.NotEqual("Digipath", result.LabName);
+        Assert.Equal(ProductType.Flower, result.ProductType);
+        Assert.Equal("Mai Tai", result.ProductName);
+        Assert.Equal("08121925MT", result.BatchId);
+    }
+
+    [Fact]
+    public void Resolves_DigipathFixture_AsDigipath()
+    {
+        var text = File.ReadAllText(FixturePath("Digipath_Flower.txt"));
+
+        var result = CoaParser.Parse(text);
+
+        Assert.Equal("Digipath", result.LabName);
+        Assert.Equal(ProductType.Flower, result.ProductType);
     }
 }

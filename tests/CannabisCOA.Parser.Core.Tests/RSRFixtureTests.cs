@@ -2,6 +2,7 @@ using System;
 using System.IO;
 using CannabisCOA.Parser.Core.Adapters.Labs.RSRAnalytical;
 using CannabisCOA.Parser.Core.Enums;
+using CannabisCOA.Parser.Core.Validation;
 using Xunit;
 
 namespace CannabisCOA.Parser.Core.Tests;
@@ -170,6 +171,33 @@ public class RSRFixtureTests
 
         Assert.NotNull(result.Terpenes);
         Assert.Equal(2.143m, result.Terpenes.TotalTerpenes);
+    }
+
+    [Fact]
+    public void RsrAnalyticalAdapter_Parse_TerpeneResultColumns_MapsBreakdownWithoutMismatchWarning()
+    {
+        var text = File.ReadAllText(FixturePath("rsr-flower-terpene-result-columns-spritzer.txt"));
+
+        var result = new RSRAnalyticalAdapter().Parse(text);
+        var validation = CoaValidator.Validate(result);
+        var terpeneSum = result.Terpenes.Terpenes.Values.Sum();
+
+        Assert.Equal("RSR Analytical Laboratories", result.LabName);
+        Assert.Equal(ProductType.Flower, result.ProductType);
+        Assert.Equal("SPRITZER", result.ProductName);
+        Assert.Equal("SP 7925", result.BatchId);
+        Assert.Equal(1.724m, result.Terpenes.TotalTerpenes);
+        Assert.Equal(8, result.Terpenes.Terpenes.Count);
+        Assert.Equal(0.582m, result.Terpenes.Terpenes["δ-Limonene"]);
+        Assert.Equal(0.439m, result.Terpenes.Terpenes["β-Caryophyllene"]);
+        Assert.Equal(0.310m, result.Terpenes.Terpenes["Linalool"]);
+        Assert.Equal(0.140m, result.Terpenes.Terpenes["α-Humulene"]);
+        Assert.Equal(0.104m, result.Terpenes.Terpenes["β-Myrcene"]);
+        Assert.Equal(0.066m, result.Terpenes.Terpenes["β-Pinene"]);
+        Assert.Equal(0.043m, result.Terpenes.Terpenes["α-Pinene"]);
+        Assert.Equal(0.040m, result.Terpenes.Terpenes["α-Bisabolol"]);
+        Assert.InRange(terpeneSum, result.Terpenes.TotalTerpenes - 0.01m, result.Terpenes.TotalTerpenes + 0.01m);
+        Assert.DoesNotContain(validation.Warnings, warning => warning.Code == "TERPENE_TOTAL_MISMATCH");
     }
 
     [Fact]

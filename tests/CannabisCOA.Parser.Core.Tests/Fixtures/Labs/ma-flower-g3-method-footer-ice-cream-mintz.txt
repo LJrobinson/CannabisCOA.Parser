@@ -1,0 +1,27 @@
+THC Nevada, LLC Sample: 2502MAA0048_0986
+3840 E. Craig Rd Strain: Ice Cream Mintz
+North Las Vegas, NV 89030 Batch #: 08020725ICM
+Lot #: 68706
+Ice Cream Mintz
+Plant, Flower - Cured, Indoor
+Harvest Process Lot: ; METRC Batch: 1A4040300000515000068706; METRC Sample: 1A4040300000515000068750
+Safety
+Pesticides Microbials Mycotoxins
+Not Tested Pass Pass
+THCa 0.160 26.278 262.78
+Δ9-THC 0.640 0.544 5.44
+β-Myrcene 0.0125 5.3400 0.53400
+Total 32.6120 3.26120
+Method: Moisture content is performed under MA Analytics method QC-MTH-14
+Terpenes is performed under MA Analytics method QC-MTH-2.
+LOQ = Limit of Quantitation. Cannabinoids is performed under MA Analytics method QC-MTH-1.
+MA Analytics Revised footer and sampling conditions Confident LIMS
+2009 Western Ave All Rights Reserved
+www.maanalytics.com Scientific Director www.confidentlims.com
+Microbials Aspergillus terreus is performed under G3 Labs methods Yeast & Mold 0.9 (G3SOP#MB206 / RYM Negative Pass)
+Total Coliform (G3 SOP# MB207 / ECCompact Dry) Total Aerobic Bacteria (G3 SOP# MB208 / ACPetrilm)
+Enterobacteriaceae (G3 SOP# MB210 / EB Petrilm) Aspergillus (G3SOP# MB212 / GENE-UP PCR)
+STEC (E. coli) (G3 SOP# MB213 / GENE-UP PCR) Salmonella (G3 SOP# MB213 / GENE-UP PCR)
+Pesticides and Mycotoxins are performed under MA Analytics method QC-MTH-12.
+This product has been tested by MA Analytics using valid testing methodologies and a quality system as required by state law.
+This certificate shall not be reproduced except in full, without the written approval of Ma Analytics.

@@ -1,5 +1,6 @@
 using CannabisCOA.Parser.Core.Adapters.Labs.KaychaLabs;
 using CannabisCOA.Parser.Core.Enums;
+using CannabisCOA.Parser.Core.Validation;
 using Xunit;
 
 namespace CannabisCOA.Parser.Core.Tests;
@@ -179,6 +180,31 @@ public class KaychaParserTests
 
         Assert.InRange(terpeneSum, result.Terpenes.TotalTerpenes - 0.1m, result.Terpenes.TotalTerpenes + 0.1m);
         Assert.Equal(2.3252m, result.Terpenes.TotalTerpenes);
+    }
+
+    [Fact]
+    public void KaychaAdapter_Parse_SplitTerpeneTableFixture_MapsBreakdownWithoutWarnings()
+    {
+        var text = File.ReadAllText(FixturePath("kaycha-flower-split-terpene-table-kush-mints.txt"));
+
+        var result = new KaychaLabsAdapter().Parse(text);
+        var validation = CoaValidator.Validate(result);
+        var terpeneSum = result.Terpenes.Terpenes.Values.Sum();
+
+        Assert.Equal("Kaycha Labs", result.LabName);
+        Assert.Equal(ProductType.Flower, result.ProductType);
+        Assert.Equal(0.6572m, result.Terpenes.TotalTerpenes);
+        Assert.Equal(7, result.Terpenes.Terpenes.Count);
+        Assert.Equal(0.2708m, result.Terpenes.Terpenes["BETA-CARYOPHYLLENE"]);
+        Assert.Equal(0.1046m, result.Terpenes.Terpenes["ALPHA-HUMULENE"]);
+        Assert.Equal(0.0858m, result.Terpenes.Terpenes["LINALOOL"]);
+        Assert.Equal(0.0636m, result.Terpenes.Terpenes["D-LIMONENE"]);
+        Assert.Equal(0.0532m, result.Terpenes.Terpenes["BETA-MYRCENE"]);
+        Assert.Equal(0.0529m, result.Terpenes.Terpenes["FARNESENE"]);
+        Assert.Equal(0.0263m, result.Terpenes.Terpenes["FENCHOL"]);
+        Assert.InRange(terpeneSum, result.Terpenes.TotalTerpenes - 0.01m, result.Terpenes.TotalTerpenes + 0.01m);
+        Assert.DoesNotContain(validation.Warnings, warning => warning.Code == "TERPENE_BREAKDOWN_MISSING");
+        Assert.DoesNotContain(validation.Warnings, warning => warning.Code == "TERPENE_TOTAL_MISMATCH");
     }
 
     [Fact]
